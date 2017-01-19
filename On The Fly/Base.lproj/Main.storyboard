@@ -59,8 +59,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0b-Qa-2zE">
-                                <frame key="frameInset" minX="111" minY="435" width="152" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0b-Qa-2zE">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="152" id="OqW-xC-ImR"/>
                                     <constraint firstAttribute="height" constant="32" id="pA9-gc-fUu"/>
@@ -79,6 +78,7 @@
                             <constraint firstItem="KVc-Qd-fF3" firstAttribute="leading" secondItem="vHP-vZ-4lt" secondAttribute="trailing" constant="8" id="E4I-Fk-uaS"/>
                             <constraint firstItem="tmn-8P-33f" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FGg-7G-cfh"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NYb-05-T7X"/>
+                            <constraint firstItem="b0b-Qa-2zE" firstAttribute="top" secondItem="tmn-8P-33f" secondAttribute="bottom" constant="27" id="SqB-0x-6Ut"/>
                             <constraint firstItem="vHP-vZ-4lt" firstAttribute="top" secondItem="ybv-al-dXP" secondAttribute="bottom" constant="22" id="UGm-6F-6Uw"/>
                             <constraint firstItem="YHi-8l-bZE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="bDr-sU-EXR"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gnC-l2-ckp"/>
