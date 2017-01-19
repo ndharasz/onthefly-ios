@@ -74,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3CAF60F1E31260300A17817 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		C3FF6FAE1E306C0600C59DB3 = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
-				C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */,
+				C3CAF60F1E31260300A17817 /* View Controllers */,
 				C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */,
 				C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */,
 				C3FF6FC31E306C0600C59DB3 /* LaunchScreen.storyboard */,
