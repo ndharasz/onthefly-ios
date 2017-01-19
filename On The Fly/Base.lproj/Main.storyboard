@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -43,22 +43,6 @@
                                     <segue destination="RIX-6T-wnz" kind="show" id="9IC-Jg-V01"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vHP-vZ-4lt">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="49" id="oi3-Zr-dVN"/>
-                                    <constraint firstAttribute="height" constant="31" id="qs8-NI-p0g"/>
-                                </constraints>
-                                <color key="onTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Remember Me" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KVc-Qd-fF3">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="CIV-hP-mY0"/>
-                                    <constraint firstAttribute="width" constant="143" id="M1f-bW-Nix"/>
-                                </constraints>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0b-Qa-2zE">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="152" id="OqW-xC-ImR"/>
@@ -69,26 +53,48 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ul-4aR">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="6RL-T0-xew"/>
+                                    <constraint firstAttribute="height" constant="25" id="ikC-71-xov"/>
+                                </constraints>
+                                <state key="normal" image="checkbox_unchecked"/>
+                                <connections>
+                                    <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xvk-2G-EJ8"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Remember Me" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KVc-Qd-fF3">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="CIV-hP-mY0"/>
+                                    <constraint firstAttribute="width" constant="143" id="M1f-bW-Nix"/>
+                                </constraints>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.29019607843137252" green="0.45882352941176469" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tmn-8P-33f" firstAttribute="leading" secondItem="KVc-Qd-fF3" secondAttribute="trailing" constant="67" id="1OV-Vp-tei"/>
                             <constraint firstItem="b0b-Qa-2zE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4do-Ee-Wif"/>
                             <constraint firstItem="tmn-8P-33f" firstAttribute="top" secondItem="ybv-al-dXP" secondAttribute="bottom" constant="16" id="AEx-ld-zao"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D9r-6M-Iky"/>
-                            <constraint firstItem="KVc-Qd-fF3" firstAttribute="leading" secondItem="vHP-vZ-4lt" secondAttribute="trailing" constant="8" id="E4I-Fk-uaS"/>
+                            <constraint firstItem="KVc-Qd-fF3" firstAttribute="leading" secondItem="fdk-ul-4aR" secondAttribute="trailing" constant="8" symbolic="YES" id="Eo8-Zx-bUz"/>
                             <constraint firstItem="tmn-8P-33f" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FGg-7G-cfh"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NYb-05-T7X"/>
                             <constraint firstItem="b0b-Qa-2zE" firstAttribute="top" secondItem="tmn-8P-33f" secondAttribute="bottom" constant="27" id="SqB-0x-6Ut"/>
-                            <constraint firstItem="vHP-vZ-4lt" firstAttribute="top" secondItem="ybv-al-dXP" secondAttribute="bottom" constant="22" id="UGm-6F-6Uw"/>
                             <constraint firstItem="YHi-8l-bZE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="bDr-sU-EXR"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gnC-l2-ckp"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="top" secondItem="YHi-8l-bZE" secondAttribute="bottom" constant="8" id="h3L-Yn-UXw"/>
-                            <constraint firstItem="vHP-vZ-4lt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="ilI-Qk-e9Q"/>
                             <constraint firstItem="YHi-8l-bZE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="j7T-ch-GUB"/>
+                            <constraint firstItem="KVc-Qd-fF3" firstAttribute="centerY" secondItem="fdk-ul-4aR" secondAttribute="centerY" id="nFU-Rl-ogw"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="o5S-5I-pG1"/>
                             <constraint firstItem="KVc-Qd-fF3" firstAttribute="top" secondItem="ybv-al-dXP" secondAttribute="bottom" constant="18" id="xx5-ZC-EN1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="checkBoxButton" destination="fdk-ul-4aR" id="diY-Qy-all"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,4 +119,7 @@
             <point key="canvasLocation" x="812" y="37"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkbox_unchecked" width="48" height="48"/>
+    </resources>
 </document>

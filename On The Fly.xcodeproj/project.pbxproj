@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */; };
-		C3FF6FBD1E306C0600C59DB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBC1E306C0600C59DB3 /* ViewController.swift */; };
+		C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */; };
 		C3FF6FC01E306C0600C59DB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */; };
 		C3FF6FC21E306C0600C59DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */; };
 		C3FF6FC51E306C0600C59DB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3FF6FC31E306C0600C59DB3 /* LaunchScreen.storyboard */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		C3FF6FB71E306C0600C59DB3 /* On The Fly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Fly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C3FF6FBC1E306C0600C59DB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C3FF6FBF1E306C0600C59DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3FF6FC41E306C0600C59DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
-				C3FF6FBC1E306C0600C59DB3 /* ViewController.swift */,
+				C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */,
 				C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */,
 				C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */,
 				C3FF6FC31E306C0600C59DB3 /* LaunchScreen.storyboard */,
@@ -262,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3FF6FBD1E306C0600C59DB3 /* ViewController.swift in Sources */,
+				C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */,
 				C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +512,7 @@
 				C3FF6FE11E306C0600C59DB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3FF6FE21E306C0600C59DB3 /* Build configuration list for PBXNativeTarget "On The FlyTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +521,7 @@
 				C3FF6FE41E306C0600C59DB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3FF6FE51E306C0600C59DB3 /* Build configuration list for PBXNativeTarget "On The FlyUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +530,7 @@
 				C3FF6FE71E306C0600C59DB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
