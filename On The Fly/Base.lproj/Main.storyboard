@@ -196,6 +196,9 @@
                         <outlet property="flightLabel2" destination="ENK-7h-PdZ" id="FUD-mN-fgh"/>
                         <outlet property="flightLabel3" destination="6fm-LN-A7c" id="n0u-hD-Och"/>
                         <outlet property="flightLabel4" destination="1hl-MO-v4k" id="5Mz-qP-TVN"/>
+                        <outlet property="label2from1" destination="QNN-3P-7QU" id="lkj-hw-ear"/>
+                        <outlet property="label3from2" destination="6cu-2u-fed" id="kAm-sP-iA2"/>
+                        <outlet property="label4from3" destination="rpt-3v-J0M" id="zCU-kf-X02"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7F-WJ-nXY" userLabel="First Responder" sceneMemberID="firstResponder"/>

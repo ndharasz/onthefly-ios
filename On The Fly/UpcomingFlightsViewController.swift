@@ -15,14 +15,31 @@ class UpcomingFlightsViewController: UIViewController {
     @IBOutlet weak var flightLabel3: UILabel!
     @IBOutlet weak var flightLabel4: UILabel!
     
+    var label1selected = false
+    var label2selected = false
+    var label3selected = false
+    var label4selected = false
+    
+    let standardOffsetDistance: CGFloat = 15.00
+    let verticalOffsetDistance: CGFloat = 75.00
+    
+    
+    @IBOutlet weak var label2from1: NSLayoutConstraint!
+    @IBOutlet weak var label3from2: NSLayoutConstraint!
+    @IBOutlet weak var label4from3: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap))
-        let tapRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap))
-        let tapRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap))
-        let tapRecognizer4 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap))
+        label1selected = false
+        label2selected = false
+        label3selected = false
+        label4selected = false
+        
+        let tapRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap1))
+        let tapRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap2))
+        let tapRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap3))
+        let tapRecognizer4 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap4))
         
 
         flightLabel1.addGestureRecognizer(tapRecognizer1)
@@ -36,8 +53,49 @@ class UpcomingFlightsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func handleTap(gestureRecognizer: UITapGestureRecognizer) {
-        print("tapped")
+    
+    // MARK: - Tap Gesture Recognizers
+    
+    func handleTap1(gestureRecognizer: UITapGestureRecognizer) {
+        if label1selected {
+            label1selected = false
+            label2from1.constant = standardOffsetDistance
+        } else {
+            label1selected = true
+            label2from1.constant = verticalOffsetDistance
+        }
+        
+    }
+    
+    func handleTap2(gestureRecognizer: UITapGestureRecognizer) {
+        if label2selected {
+            label2selected = false
+            label3from2.constant = standardOffsetDistance
+        } else {
+            label2selected = true
+            label3from2.constant = verticalOffsetDistance
+        }
+        
+    }
+    
+    func handleTap3(gestureRecognizer: UITapGestureRecognizer) {
+        if label3selected {
+            label3selected = false
+            label4from3.constant = standardOffsetDistance
+        } else {
+            label3selected = true
+            label4from3.constant = verticalOffsetDistance
+        }
+        
+    }
+    
+    func handleTap4(gestureRecognizer: UITapGestureRecognizer) {
+        if label4selected {
+            label4selected = false
+        } else {
+            label4selected = true
+        }
+        
     }
     
 
