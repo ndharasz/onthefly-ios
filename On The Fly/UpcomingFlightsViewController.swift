@@ -14,6 +14,7 @@ class UpcomingFlightsViewController: UIViewController {
     @IBOutlet weak var flightLabel2: UILabel!
     @IBOutlet weak var flightLabel3: UILabel!
     @IBOutlet weak var flightLabel4: UILabel!
+    @IBOutlet weak var mainHeaderLabel: UILabel!
     
     var label1selected = false
     var label2selected = false
@@ -27,6 +28,8 @@ class UpcomingFlightsViewController: UIViewController {
     @IBOutlet weak var label2from1: NSLayoutConstraint!
     @IBOutlet weak var label3from2: NSLayoutConstraint!
     @IBOutlet weak var label4from3: NSLayoutConstraint!
+    
+    var newInfoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,15 @@ class UpcomingFlightsViewController: UIViewController {
         flightLabel2.addGestureRecognizer(tapRecognizer2)
         flightLabel3.addGestureRecognizer(tapRecognizer3)
         flightLabel4.addGestureRecognizer(tapRecognizer4)
+        
+        
+        newInfoLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 450, height: 70))
+        newInfoLabel.numberOfLines = 0
+        newInfoLabel.text = "Dpt Time     Arr Time    A/C Reg # \n\n  09:00         12:00          N736OR"
+        newInfoLabel.textColor = UIColor.white
+        newInfoLabel.setSizeFont(sizeFont: 23.0)
+        newInfoLabel.isHidden = true
+        self.view.addSubview(newInfoLabel)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,10 +71,15 @@ class UpcomingFlightsViewController: UIViewController {
     func handleTap1(gestureRecognizer: UITapGestureRecognizer) {
         if label1selected {
             label1selected = false
+            newInfoLabel.isHidden = true
             label2from1.constant = standardOffsetDistance
+            
         } else {
             label1selected = true
             label2from1.constant = verticalOffsetDistance
+            newInfoLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
+            newInfoLabel.frame.origin.y = flightLabel1.frame.origin.y + 15
+            newInfoLabel.isHidden = false
         }
         
     }
