@@ -103,6 +103,7 @@ class UpcomingFlightsViewController: UIViewController {
             newInfoLabel.frame.origin.y = flightLabel1.frame.origin.y + 65
             newInfoLabel.isHidden = false
             
+            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 133)
             darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
             darkRectangle.frame.origin.y = flightLabel1.frame.origin.y - 45
             darkRectangle.isHidden = false
@@ -114,10 +115,27 @@ class UpcomingFlightsViewController: UIViewController {
     func handleTap2(gestureRecognizer: UITapGestureRecognizer) {
         if label2selected {
             label2selected = false
+            newInfoLabel.isHidden = true
+            infoHeaderLabel.isHidden = true
+            darkRectangle.isHidden = true
             label3from2.constant = standardOffsetDistance
         } else {
             label2selected = true
             label3from2.constant = verticalOffsetDistance
+            
+            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
+            infoHeaderLabel.frame.origin.y = flightLabel2.frame.origin.y + 35
+            infoHeaderLabel.isHidden = false
+            
+            newInfoLabel.frame.origin.x = flightLabel2.frame.origin.x
+            newInfoLabel.frame.origin.y = flightLabel2.frame.origin.y + 65
+            newInfoLabel.isHidden = false
+            
+            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 90)
+            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
+            darkRectangle.frame.origin.y = flightLabel2.frame.origin.y
+            darkRectangle.isHidden = false
+            self.view.sendSubview(toBack: darkRectangle)
         }
         
     }
@@ -125,10 +143,27 @@ class UpcomingFlightsViewController: UIViewController {
     func handleTap3(gestureRecognizer: UITapGestureRecognizer) {
         if label3selected {
             label3selected = false
+            newInfoLabel.isHidden = true
+            infoHeaderLabel.isHidden = true
+            darkRectangle.isHidden = true
             label4from3.constant = standardOffsetDistance
         } else {
             label3selected = true
             label4from3.constant = verticalOffsetDistance
+            
+            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
+            infoHeaderLabel.frame.origin.y = flightLabel3.frame.origin.y + 35
+            infoHeaderLabel.isHidden = false
+            
+            newInfoLabel.frame.origin.x = flightLabel3.frame.origin.x
+            newInfoLabel.frame.origin.y = flightLabel3.frame.origin.y + 65
+            newInfoLabel.isHidden = false
+            
+            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 90)
+            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
+            darkRectangle.frame.origin.y = flightLabel3.frame.origin.y
+            darkRectangle.isHidden = false
+            self.view.sendSubview(toBack: darkRectangle)
         }
         
     }
@@ -136,8 +171,25 @@ class UpcomingFlightsViewController: UIViewController {
     func handleTap4(gestureRecognizer: UITapGestureRecognizer) {
         if label4selected {
             label4selected = false
+            newInfoLabel.isHidden = true
+            infoHeaderLabel.isHidden = true
+            darkRectangle.isHidden = true
         } else {
             label4selected = true
+            
+            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
+            infoHeaderLabel.frame.origin.y = flightLabel4.frame.origin.y + 35
+            infoHeaderLabel.isHidden = false
+            
+            newInfoLabel.frame.origin.x = flightLabel4.frame.origin.x
+            newInfoLabel.frame.origin.y = flightLabel4.frame.origin.y + 65
+            newInfoLabel.isHidden = false
+            
+            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 90)
+            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
+            darkRectangle.frame.origin.y = flightLabel4.frame.origin.y
+            darkRectangle.isHidden = false
+            self.view.sendSubview(toBack: darkRectangle)
         }
         
     }
