@@ -68,7 +68,7 @@ class UpcomingFlightsViewController: UIViewController {
         newInfoLabel.isHidden = true
         self.view.addSubview(newInfoLabel)
         
-        darkRectangle = UIView(frame: CGRect(x: 0, y: 0, width: 314, height: 133))
+        darkRectangle = UIView(frame: CGRect(x: 0, y: 0, width: 350, height: 133))
         darkRectangle.backgroundColor = UIColor.darkGray
         darkRectangle.isHidden = true
         self.view.addSubview(darkRectangle)
@@ -103,8 +103,8 @@ class UpcomingFlightsViewController: UIViewController {
             newInfoLabel.frame.origin.y = flightLabel1.frame.origin.y + 65
             newInfoLabel.isHidden = false
             
-            darkRectangle.frame.origin.x = flightLabel2.frame.origin.x
-            darkRectangle.frame.origin.y = flightLabel2.frame.origin.y + 60
+            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
+            darkRectangle.frame.origin.y = flightLabel1.frame.origin.y - 45
             darkRectangle.isHidden = false
             self.view.sendSubview(toBack: darkRectangle)
         }
