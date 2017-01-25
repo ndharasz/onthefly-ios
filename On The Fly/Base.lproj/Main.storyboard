@@ -170,6 +170,9 @@
                                 <state key="normal" title="Add New Flight">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="sYD-sc-Y89" kind="show" id="0vI-Ss-A1A"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -207,8 +210,162 @@
             </objects>
             <point key="canvasLocation" x="821.60000000000002" y="36.431784107946029"/>
         </scene>
+        <!--Create New Flight View Controller-->
+        <scene sceneID="NNU-Kz-Rkv">
+            <objects>
+                <viewController id="sYD-sc-Y89" customClass="CreateNewFlightViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qnT-nu-bTC"/>
+                        <viewControllerLayoutGuide type="bottom" id="y1s-B0-w6M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MpA-6i-W6N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New Flight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWW-yQ-7xd">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="K67-jE-3p8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-vO-T5T">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="0qc-gQ-X35"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="sYD-sc-Y89" id="Hrv-0T-79N"/>
+                                    <outlet property="delegate" destination="sYD-sc-Y89" id="B2h-tL-YBA"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the aircraft:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-pR-03W">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="iKV-Nf-9lC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. ATL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Lmf-iC-AOt"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the departure airport:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2k-Od-bzu">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="0Rr-ey-xSy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. DFW" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0NY-N7-KFP"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the arrival airport:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efV-l6-HPJ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="yZd-mX-spZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-AN-9kf">
+                                <date key="date" timeIntervalSinceReferenceDate="507013899.48793203">
+                                    <!--2017-01-25 05:11:39 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the date and time of the flight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajp-EB-u8P">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Zt8-jv-YL8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZR5-qQ-kWU">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="gv1-Gd-vTv"/>
+                                    <constraint firstAttribute="width" constant="100" id="wk4-ff-HHG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="RIX-6T-wnz" kind="show" id="shT-jx-5dC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLZ-cw-jzt">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="iSf-Xt-IgT"/>
+                                    <constraint firstAttribute="width" constant="100" id="x4k-kb-eay"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="RIX-6T-wnz" kind="show" id="MPv-9M-z1d"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="top" secondItem="PwZ-pR-03W" secondAttribute="bottom" constant="5" id="0rc-hb-CYu"/>
+                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="top" secondItem="VTT-AN-9kf" secondAttribute="bottom" constant="16" id="7vY-fn-Xig"/>
+                            <constraint firstItem="dWW-yQ-7xd" firstAttribute="top" secondItem="qnT-nu-bTC" secondAttribute="bottom" constant="8" symbolic="YES" id="90U-Rh-6Cy"/>
+                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="QUK-dV-23c" secondAttribute="trailing" id="Bnl-Vr-Dp2"/>
+                            <constraint firstItem="dWW-yQ-7xd" firstAttribute="centerX" secondItem="Vfc-vO-T5T" secondAttribute="centerX" id="IBS-lD-t8e"/>
+                            <constraint firstItem="y1s-B0-w6M" firstAttribute="top" secondItem="lLZ-cw-jzt" secondAttribute="bottom" constant="62" id="IOE-Bj-Cr2"/>
+                            <constraint firstItem="QUK-dV-23c" firstAttribute="trailing" secondItem="5Y4-Ee-Ywo" secondAttribute="trailing" id="JHC-nn-7ur"/>
+                            <constraint firstItem="efV-l6-HPJ" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="16" id="JjL-3v-FdL"/>
+                            <constraint firstAttribute="trailing" secondItem="VTT-AN-9kf" secondAttribute="trailing" id="Jq9-k7-Cke"/>
+                            <constraint firstItem="VTT-AN-9kf" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="Nk9-Iz-E1d"/>
+                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="centerX" secondItem="VTT-AN-9kf" secondAttribute="centerX" id="Nkm-on-GaG"/>
+                            <constraint firstItem="ZR5-qQ-kWU" firstAttribute="leading" secondItem="lLZ-cw-jzt" secondAttribute="trailing" constant="85" id="PcK-TV-eyH"/>
+                            <constraint firstItem="QUK-dV-23c" firstAttribute="top" secondItem="s2k-Od-bzu" secondAttribute="bottom" constant="15" id="QaB-aB-pMg"/>
+                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="top" secondItem="efV-l6-HPJ" secondAttribute="bottom" constant="15" id="YmH-m9-2gH"/>
+                            <constraint firstItem="PwZ-pR-03W" firstAttribute="leading" secondItem="Vfc-vO-T5T" secondAttribute="leading" id="a2D-xu-G5T"/>
+                            <constraint firstItem="VTT-AN-9kf" firstAttribute="top" secondItem="ajp-EB-u8P" secondAttribute="bottom" constant="8" symbolic="YES" id="bVs-8k-KNl"/>
+                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="leading" secondItem="s2k-Od-bzu" secondAttribute="leading" id="bkU-tZ-iji"/>
+                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="leading" secondItem="ajp-EB-u8P" secondAttribute="leading" id="c5w-Gu-qsy"/>
+                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="baseline" secondItem="ZR5-qQ-kWU" secondAttribute="baseline" id="e1S-xr-FKH"/>
+                            <constraint firstItem="ajp-EB-u8P" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="19" id="fhz-Oh-4kg"/>
+                            <constraint firstItem="PwZ-pR-03W" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="kMs-E4-OZd"/>
+                            <constraint firstItem="QUK-dV-23c" firstAttribute="leading" secondItem="efV-l6-HPJ" secondAttribute="leading" id="vTg-LA-nzk"/>
+                            <constraint firstItem="s2k-Od-bzu" firstAttribute="leading" secondItem="QUK-dV-23c" secondAttribute="leading" id="w8Q-Y8-ZCv"/>
+                            <constraint firstItem="s2k-Od-bzu" firstAttribute="top" secondItem="Vfc-vO-T5T" secondAttribute="bottom" constant="20" id="xKz-mY-QDW"/>
+                            <constraint firstItem="PwZ-pR-03W" firstAttribute="centerX" secondItem="lLZ-cw-jzt" secondAttribute="centerX" id="yTF-N9-fpa"/>
+                            <constraint firstItem="PwZ-pR-03W" firstAttribute="top" secondItem="dWW-yQ-7xd" secondAttribute="bottom" constant="21" id="ydd-kV-efm"/>
+                            <constraint firstItem="efV-l6-HPJ" firstAttribute="leading" secondItem="5Y4-Ee-Ywo" secondAttribute="leading" id="zP7-7W-6c0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="VTT-AN-9kf" id="ugV-Eo-JJM"/>
+                        <outlet property="planePicker" destination="Vfc-vO-T5T" id="jVW-LP-EBq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7dg-eE-p0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="821.60000000000002" y="777.66116941529242"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="shT-jx-5dC"/>
+    </inferredMetricsTieBreakers>
 </document>
