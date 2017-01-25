@@ -40,6 +40,13 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         return pickerData[row]
     }
     
+    /*    WAY TO CHANGE WORDS TO WHITE COLOR
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleData = pickerData[row]
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 15.0)!,NSForegroundColorAttributeName:UIColor.white])
+        return myTitle
+    }*/
+    
 
     /*
     // MARK: - Navigation
