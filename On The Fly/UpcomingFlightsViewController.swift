@@ -29,7 +29,9 @@ class UpcomingFlightsViewController: UIViewController {
     @IBOutlet weak var label3from2: NSLayoutConstraint!
     @IBOutlet weak var label4from3: NSLayoutConstraint!
     
+    var infoHeaderLabel: UILabel!
     var newInfoLabel: UILabel!
+    var darkRectangle: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +53,26 @@ class UpcomingFlightsViewController: UIViewController {
         flightLabel4.addGestureRecognizer(tapRecognizer4)
         
         
-        newInfoLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 450, height: 70))
+        infoHeaderLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 325.5, height: 27.5))
+        infoHeaderLabel.text = "Dpt Time      Arr Time     A/C Reg #"
+        infoHeaderLabel.textColor = UIColor.white
+        infoHeaderLabel.setSizeFont(sizeFont: 21.0)
+        infoHeaderLabel.isHidden = true
+        self.view.addSubview(infoHeaderLabel)
+        
+        newInfoLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 450, height: 30))
         newInfoLabel.numberOfLines = 0
-        newInfoLabel.text = "Dpt Time     Arr Time    A/C Reg # \n\n  09:00         12:00          N736OR"
+        newInfoLabel.text = "09:00            12:00               N736OR"
         newInfoLabel.textColor = UIColor.white
-        newInfoLabel.setSizeFont(sizeFont: 23.0)
+        newInfoLabel.setSizeFont(sizeFont: 18.0)
         newInfoLabel.isHidden = true
         self.view.addSubview(newInfoLabel)
+        
+        darkRectangle = UIView(frame: CGRect(x: 0, y: 0, width: 314, height: 133))
+        darkRectangle.backgroundColor = UIColor.darkGray
+        darkRectangle.isHidden = true
+        self.view.addSubview(darkRectangle)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,14 +87,26 @@ class UpcomingFlightsViewController: UIViewController {
         if label1selected {
             label1selected = false
             newInfoLabel.isHidden = true
+            infoHeaderLabel.isHidden = true
+            darkRectangle.isHidden = true
             label2from1.constant = standardOffsetDistance
             
         } else {
             label1selected = true
             label2from1.constant = verticalOffsetDistance
-            newInfoLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
-            newInfoLabel.frame.origin.y = flightLabel1.frame.origin.y + 15
+            
+            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
+            infoHeaderLabel.frame.origin.y = flightLabel1.frame.origin.y + 35
+            infoHeaderLabel.isHidden = false
+            
+            newInfoLabel.frame.origin.x = flightLabel1.frame.origin.x
+            newInfoLabel.frame.origin.y = flightLabel1.frame.origin.y + 65
             newInfoLabel.isHidden = false
+            
+            darkRectangle.frame.origin.x = flightLabel2.frame.origin.x
+            darkRectangle.frame.origin.y = flightLabel2.frame.origin.y + 60
+            darkRectangle.isHidden = false
+            self.view.sendSubview(toBack: darkRectangle)
         }
         
     }
