@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C302D8A21E3721F100CB2B54 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302D8A11E3721F100CB2B54 /* Utilities.swift */; };
+		C33B9CA61E38671500AF47A6 /* CreateNewFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */; };
 		C3CAF6111E3132DF00A17817 /* UpcomingFlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */; };
 		C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */; };
 		C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		C302D8A11E3721F100CB2B54 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ../Utilities.swift; sourceTree = "<group>"; };
+		C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewFlightViewController.swift; sourceTree = "<group>"; };
 		C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingFlightsViewController.swift; sourceTree = "<group>"; };
 		C3FF6FB71E306C0600C59DB3 /* On The Fly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Fly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */,
 				C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */,
+				C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */,
 				C302D8A21E3721F100CB2B54 /* Utilities.swift in Sources */,
 				C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */,
+				C33B9CA61E38671500AF47A6 /* CreateNewFlightViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
