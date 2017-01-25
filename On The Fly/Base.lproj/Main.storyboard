@@ -72,6 +72,12 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WiS-cd-Bak">
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Create New Account">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.29019607843137252" green="0.45882352941176469" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -84,9 +90,11 @@
                             <constraint firstItem="ybv-al-dXP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NYb-05-T7X"/>
                             <constraint firstItem="b0b-Qa-2zE" firstAttribute="top" secondItem="tmn-8P-33f" secondAttribute="bottom" constant="27" id="SqB-0x-6Ut"/>
                             <constraint firstItem="YHi-8l-bZE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="bDr-sU-EXR"/>
+                            <constraint firstItem="WiS-cd-Bak" firstAttribute="top" secondItem="b0b-Qa-2zE" secondAttribute="bottom" constant="7.5" id="fvH-Ew-Q9R"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gnC-l2-ckp"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="top" secondItem="YHi-8l-bZE" secondAttribute="bottom" constant="8" id="h3L-Yn-UXw"/>
                             <constraint firstItem="YHi-8l-bZE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="j7T-ch-GUB"/>
+                            <constraint firstItem="WiS-cd-Bak" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mtl-sg-vKQ"/>
                             <constraint firstItem="KVc-Qd-fF3" firstAttribute="centerY" secondItem="fdk-ul-4aR" secondAttribute="centerY" id="nFU-Rl-ogw"/>
                             <constraint firstItem="ybv-al-dXP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="o5S-5I-pG1"/>
                             <constraint firstItem="KVc-Qd-fF3" firstAttribute="top" secondItem="ybv-al-dXP" secondAttribute="bottom" constant="18" id="xx5-ZC-EN1"/>
@@ -100,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
-        <!--View Controller-->
+        <!--Upcoming Flights View Controller-->
         <scene sceneID="p5t-Ns-cej">
             <objects>
-                <viewController id="RIX-6T-wnz" sceneMemberID="viewController">
+                <viewController id="RIX-6T-wnz" customClass="UpcomingFlightsViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kzi-pX-X37"/>
                         <viewControllerLayoutGuide type="bottom" id="wOl-5n-g16"/>
@@ -111,12 +119,93 @@
                     <view key="view" contentMode="scaleToFill" id="oqQ-ai-pQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFr-kz-kkM">
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="61" id="1Y7-7i-56F"/>
+                                    <constraint firstAttribute="width" constant="61" id="Vav-yQ-zQa"/>
+                                    <constraint firstAttribute="height" constant="30" id="suf-1e-XTE"/>
+                                </constraints>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="XfB-cj-NX0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Flights" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apo-2G-pRC">
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date         Dept Arpt        Arr Arpt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhD-Jt-VcT">
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-10-17            ATL                        CHI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fm-LN-A7c">
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-10-17            ATL                        DFW" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENK-7h-PdZ">
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-10-17            ATL                        AUS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4f-zG-p2U">
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-10-17            ATL                        SSI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hl-MO-v4k">
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sN0-4l-Q2k">
+                                <frame key="frameInset" minX="101" minY="607" width="173" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Add New Flight">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="apo-2G-pRC" firstAttribute="centerX" secondItem="oqQ-ai-pQc" secondAttribute="centerX" id="0Ah-u2-C5b"/>
+                            <constraint firstItem="j4f-zG-p2U" firstAttribute="leading" secondItem="ENK-7h-PdZ" secondAttribute="leading" id="3pM-0H-dxe"/>
+                            <constraint firstItem="6fm-LN-A7c" firstAttribute="top" secondItem="ENK-7h-PdZ" secondAttribute="bottom" constant="15" id="6cu-2u-fed"/>
+                            <constraint firstItem="mhD-Jt-VcT" firstAttribute="centerX" secondItem="oqQ-ai-pQc" secondAttribute="centerX" id="6zM-s5-FyC"/>
+                            <constraint firstItem="wOl-5n-g16" firstAttribute="top" secondItem="sN0-4l-Q2k" secondAttribute="bottom" constant="20" id="8Aj-Nh-Wts"/>
+                            <constraint firstItem="mhD-Jt-VcT" firstAttribute="top" secondItem="apo-2G-pRC" secondAttribute="bottom" constant="8" id="FAp-F0-gh9"/>
+                            <constraint firstItem="apo-2G-pRC" firstAttribute="top" secondItem="kzi-pX-X37" secondAttribute="bottom" constant="70" id="Fw5-b6-YzW"/>
+                            <constraint firstAttribute="trailing" secondItem="eFr-kz-kkM" secondAttribute="trailing" constant="15" id="Jjt-EB-rAV"/>
+                            <constraint firstItem="ENK-7h-PdZ" firstAttribute="top" secondItem="j4f-zG-p2U" secondAttribute="bottom" constant="15" id="QNN-3P-7QU"/>
+                            <constraint firstItem="j4f-zG-p2U" firstAttribute="top" secondItem="mhD-Jt-VcT" secondAttribute="bottom" constant="15" id="R28-Ys-SBk"/>
+                            <constraint firstItem="ENK-7h-PdZ" firstAttribute="leading" secondItem="6fm-LN-A7c" secondAttribute="leading" id="ZKG-d3-zxX"/>
+                            <constraint firstItem="j4f-zG-p2U" firstAttribute="centerX" secondItem="mhD-Jt-VcT" secondAttribute="centerX" id="gsg-TI-os4"/>
+                            <constraint firstItem="sN0-4l-Q2k" firstAttribute="centerX" secondItem="oqQ-ai-pQc" secondAttribute="centerX" id="hDI-ON-R4V"/>
+                            <constraint firstItem="eFr-kz-kkM" firstAttribute="top" secondItem="kzi-pX-X37" secondAttribute="bottom" constant="8" id="lIf-kN-zdK"/>
+                            <constraint firstItem="1hl-MO-v4k" firstAttribute="top" secondItem="6fm-LN-A7c" secondAttribute="bottom" constant="15" id="rpt-3v-J0M"/>
+                            <constraint firstItem="6fm-LN-A7c" firstAttribute="leading" secondItem="1hl-MO-v4k" secondAttribute="leading" id="yQz-QB-E6b"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="flightLabel1" destination="j4f-zG-p2U" id="YkV-ij-NsT"/>
+                        <outlet property="flightLabel2" destination="ENK-7h-PdZ" id="FUD-mN-fgh"/>
+                        <outlet property="flightLabel3" destination="6fm-LN-A7c" id="n0u-hD-Och"/>
+                        <outlet property="flightLabel4" destination="1hl-MO-v4k" id="5Mz-qP-TVN"/>
+                        <outlet property="label2from1" destination="QNN-3P-7QU" id="lkj-hw-ear"/>
+                        <outlet property="label3from2" destination="6cu-2u-fed" id="kAm-sP-iA2"/>
+                        <outlet property="label4from3" destination="rpt-3v-J0M" id="zCU-kf-X02"/>
+                        <outlet property="mainHeaderLabel" destination="mhD-Jt-VcT" id="kYK-5Q-0rd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7F-WJ-nXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="37"/>
+            <point key="canvasLocation" x="821.60000000000002" y="36.431784107946029"/>
         </scene>
     </scenes>
     <resources>
