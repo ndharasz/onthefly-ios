@@ -13,7 +13,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var planePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    
     var pickerData: [String] = [String]()
 
     override func viewDidLoad() {
@@ -24,7 +23,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
