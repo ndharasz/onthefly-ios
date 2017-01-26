@@ -52,6 +52,9 @@
                                 <state key="normal" title="I forgot my password">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="AGw-0L-gsZ" kind="show" id="BCJ-Vu-RHp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ul-4aR">
                                 <constraints>
@@ -224,6 +227,24 @@
             </objects>
             <point key="canvasLocation" x="821.60000000000002" y="36.431784107946029"/>
         </scene>
+        <!--Forgot Password View Controller-->
+        <scene sceneID="02P-eP-Ctm">
+            <objects>
+                <viewController id="AGw-0L-gsZ" customClass="ForgotPasswordViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KQb-K7-YsK"/>
+                        <viewControllerLayoutGuide type="bottom" id="7xy-uB-DYs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X0A-CO-8Gf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dA9-vo-zdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-322" y="788"/>
+        </scene>
         <!--Create Account View Controller-->
         <scene sceneID="lZe-Do-dty">
             <objects>
@@ -328,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gz9-oc-tnr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="16.800000000000001" y="777.66116941529242"/>
+            <point key="canvasLocation" x="670" y="788"/>
         </scene>
         <!--Create New Flight View Controller-->
         <scene sceneID="NNU-Kz-Rkv">
@@ -479,7 +500,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dg-eE-p0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="821.60000000000002" y="777.66116941529242"/>
+            <point key="canvasLocation" x="1458" y="788"/>
         </scene>
         <!--Edit Flight View Controller-->
         <scene sceneID="o6q-Eq-SKo">
@@ -644,14 +665,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvy-4U-wmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1736.8" y="777.66116941529242"/>
+            <point key="canvasLocation" x="2375" y="788"/>
         </scene>
     </scenes>
     <resources>
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MPv-9M-z1d"/>
-        <segue reference="XfB-cj-NX0"/>
+        <segue reference="9IC-Jg-V01"/>
+        <segue reference="zze-yy-t1c"/>
     </inferredMetricsTieBreakers>
 </document>
