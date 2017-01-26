@@ -521,17 +521,81 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCn-dX-fK2">
+                                <frame key="frameInset" minX="23" minY="130" width="150" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Passenger View">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9Q-uq-UCU">
+                                <frame key="frameInset" minX="202" minY="130" width="150" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Cargo View">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-BZ-01j">
+                                <frame key="frameInset" minX="23" minY="206" width="329" height="381"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZuY-dv-N5F">
+                                    <size key="itemSize" width="123" height="109"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="5" maxX="10" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="gce-Q2-N3N">
+                                        <rect key="frame" x="10" y="5" width="123" height="109"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="123" height="109"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seat 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdI-uX-jdp">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="jdI-uX-jdp" firstAttribute="centerY" secondItem="gce-Q2-N3N" secondAttribute="centerY" id="HP6-zz-yCN"/>
+                                            <constraint firstItem="jdI-uX-jdp" firstAttribute="centerX" secondItem="gce-Q2-N3N" secondAttribute="centerX" id="dwK-YR-4vD"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="wDc-Yu-kR2" id="AX3-qw-y7c"/>
+                                    <outlet property="delegate" destination="wDc-Yu-kR2" id="afP-GD-5me"/>
+                                </connections>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="erA-nP-hW5">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="KXK-TX-fuQ"/>
+                                    <constraint firstAttribute="height" constant="37" id="RhA-EE-g8H"/>
+                                </constraints>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Oo-U7-NaC" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="0KN-lr-24t"/>
                             <constraint firstItem="SWk-Pu-QVv" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="2kI-Dw-Dzi"/>
+                            <constraint firstItem="erA-nP-hW5" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="Ecz-xB-oDp"/>
                             <constraint firstItem="6Oo-U7-NaC" firstAttribute="top" secondItem="nm7-ll-iYW" secondAttribute="bottom" constant="8" id="MM0-QR-yYp"/>
                             <constraint firstItem="SWk-Pu-QVv" firstAttribute="top" secondItem="6Oo-U7-NaC" secondAttribute="bottom" constant="8" id="PHu-CB-D9g"/>
-                            <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="8" id="rOF-3q-6Jh"/>
+                            <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="erA-nP-hW5" secondAttribute="bottom" constant="48" id="Q2b-6Z-Ae5"/>
+                            <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="15" id="rOF-3q-6Jh"/>
                             <constraint firstItem="gXp-bj-j7s" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="tFw-3r-zpp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pageControl" destination="erA-nP-hW5" id="5kf-h4-M5z"/>
+                        <outlet property="passengerCollectionView" destination="QE9-BZ-01j" id="39Y-Wx-Eod"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvy-4U-wmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
