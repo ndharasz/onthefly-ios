@@ -13,13 +13,54 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var passengerCollectionView: UICollectionView!
     
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var passengerViewButton: UIButton!
+    @IBOutlet weak var cargoViewButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var frontCargoView: UIView!
+    @IBOutlet weak var rearCargoView: UIView!
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        passengerCollectionView.isHidden = false
+        
         pageControl.numberOfPages = 2
-        pageControl.currentPage = 1
+        
+        let buttons: [UIButton] = [passengerViewButton, cargoViewButton]
+        for each in buttons {
+            each.layer.borderWidth = 2
+            each.layer.borderColor = UIColor.white.cgColor
+        }
+        passengerViewButton.backgroundColor = Style.darkBlueAccentColor
+        
+        let addButton1 = UIButton(type: .custom)
+        addButton1.frame = CGRect(x: 140, y: 80, width: 60, height: 60)
+        addButton1.layer.cornerRadius = 0.5 * addButton1.bounds.size.width
+        addButton1.clipsToBounds = true
+        addButton1.setTitle("+", for: .normal)
+        addButton1.titleLabel?.setSizeFont(sizeFont: 40)
+        addButton1.setTitleColor(UIColor.black, for: .normal)
+        addButton1.layer.backgroundColor = UIColor.white.cgColor
+        frontCargoView.addSubview(addButton1)
+        
+        let addButton2 = UIButton(type: .custom)
+        addButton2.frame = CGRect(x: 140, y: 80, width: 60, height: 60)
+        addButton2.layer.cornerRadius = 0.5 * addButton1.bounds.size.width
+        addButton2.clipsToBounds = true
+        addButton2.setTitle("+", for: .normal)
+        addButton2.titleLabel?.setSizeFont(sizeFont: 40)
+        addButton2.setTitleColor(UIColor.black, for: .normal)
+        addButton2.layer.backgroundColor = UIColor.white.cgColor
+        rearCargoView.addSubview(addButton2)
+        
+//        addButton1.addTarget(self, action: #selector(thumbsUpButtonPressed), for: .touchUpInside)
+//        addButton1.centerXAnchor.constraint(equalTo: frontCargoView.centerXAnchor).isActive = true
+//        addButton1.centerYAnchor.constraint(equalTo: frontCargoView.centerYAnchor).isActive = true
+//        addButton1.widthAnchor.constraint(equalToConstant: 50).isActive = true
+//        addButton1.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         
     }
@@ -45,6 +86,34 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.backgroundColor = Style.darkBlueAccentColor
         return cell
     }
+    
+    
+    // MARK: - Passenger and Cargo View Button Actions
+    
+    @IBAction func passengerViewButtonSelected(_ sender: AnyObject) {
+        passengerViewButton.backgroundColor = Style.darkBlueAccentColor
+        cargoViewButton.backgroundColor = Style.mainBackgroundColor
+        pageControl.currentPage = 0
+        passengerCollectionView.isHidden = false
+        frontCargoView.isHidden = true
+        rearCargoView.isHidden = true
+        containerView.isHidden = true
+        
+    }
+    
+    
+    @IBAction func cargoViewButtonSelected(_ sender: AnyObject) {
+        passengerViewButton.backgroundColor = Style.mainBackgroundColor
+        cargoViewButton.backgroundColor = Style.darkBlueAccentColor
+        pageControl.currentPage = 1
+        passengerCollectionView.isHidden = true
+        frontCargoView.isHidden = false
+        rearCargoView.isHidden = false
+        containerView.isHidden = false
+        self.view.sendSubview(toBack: containerView)
+    }
+    
+    
     
 
     /*
