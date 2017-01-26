@@ -37,7 +37,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         passengerViewButton.backgroundColor = Style.darkBlueAccentColor
         
         let addButton1 = UIButton(type: .custom)
-        addButton1.frame = CGRect(x: 140, y: 80, width: 60, height: 60)
+        addButton1.frame = CGRect(x: 130, y: 80, width: 60, height: 60)
         addButton1.layer.cornerRadius = 0.5 * addButton1.bounds.size.width
         addButton1.clipsToBounds = true
         addButton1.setTitle("+", for: .normal)
@@ -47,7 +47,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         frontCargoView.addSubview(addButton1)
         
         let addButton2 = UIButton(type: .custom)
-        addButton2.frame = CGRect(x: 140, y: 80, width: 60, height: 60)
+        addButton2.frame = CGRect(x: 130, y: 80, width: 60, height: 60)
         addButton2.layer.cornerRadius = 0.5 * addButton1.bounds.size.width
         addButton2.clipsToBounds = true
         addButton2.setTitle("+", for: .normal)
