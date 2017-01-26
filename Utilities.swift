@@ -21,6 +21,22 @@ extension UIViewController {
     }
 }
 
+extension UIButton {
+    
+    func changeImageAnimated(image: UIImage?) {
+        guard let imageView = self.imageView, let currentImage = imageView.image, let newImage = image else {
+            return
+        }
+        let crossFade: CABasicAnimation = CABasicAnimation(keyPath: "contents")
+        crossFade.duration = 0.5
+        crossFade.fromValue = currentImage.cgImage
+        crossFade.toValue = newImage.cgImage
+        crossFade.isRemovedOnCompletion = false
+        crossFade.fillMode = kCAFillModeForwards
+        imageView.layer.add(crossFade, forKey: "animateContents")
+    }
+}
+
 extension UILabel {
     func setSizeFont (sizeFont: Double) {
         self.font =  UIFont(name: self.font.fontName, size: CGFloat(sizeFont))!

@@ -30,10 +30,12 @@ class LoginViewController: UIViewController {
         
         if isRememberMeClicked {
             isRememberMeClicked = false
-            checkBoxButton.setImage(uncheckedImage!, for: UIControlState.normal)
+//            checkBoxButton.setImage(uncheckedImage!, for: UIControlState.normal)
+            checkBoxButton.changeImageAnimated(image: uncheckedImage)
         } else {
             isRememberMeClicked = true
-            checkBoxButton.setImage(checkedImage!, for: UIControlState.normal)
+//            checkBoxButton.setImage(checkedImage!, for: UIControlState.normal)
+            checkBoxButton.changeImageAnimated(image: checkedImage)
         }
         
     }
