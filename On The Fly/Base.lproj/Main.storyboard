@@ -262,6 +262,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F65-9V-krp">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Zld-hg-07G"/>
+                                    <constraint firstAttribute="height" constant="43" id="mKr-xZ-c5R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBK-Xk-O9w">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -276,23 +287,12 @@
                                     <action selector="resetButtonPressed:" destination="AGw-0L-gsZ" eventType="touchUpInside" id="kzj-92-fTg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F65-9V-krp">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Zld-hg-07G"/>
-                                    <constraint firstAttribute="height" constant="43" id="mKr-xZ-c5R"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3Eq-Fh-5ZG" firstAttribute="trailing" secondItem="X0A-CO-8Gf" secondAttribute="trailingMargin" id="1a0-5i-odF"/>
                             <constraint firstItem="eee-hx-3Zw" firstAttribute="top" secondItem="a1h-rl-cvJ" secondAttribute="bottom" constant="8" id="Ajo-CD-Ks6"/>
-                            <constraint firstItem="nBK-Xk-O9w" firstAttribute="top" secondItem="3Eq-Fh-5ZG" secondAttribute="bottom" constant="8" id="J8F-KV-9X9"/>
+                            <constraint firstItem="nBK-Xk-O9w" firstAttribute="top" secondItem="3Eq-Fh-5ZG" secondAttribute="bottom" constant="17" id="J8F-KV-9X9"/>
                             <constraint firstItem="3Eq-Fh-5ZG" firstAttribute="leading" secondItem="X0A-CO-8Gf" secondAttribute="leadingMargin" id="LMr-xH-PYO"/>
                             <constraint firstItem="nBK-Xk-O9w" firstAttribute="centerX" secondItem="X0A-CO-8Gf" secondAttribute="centerX" id="SOy-e5-Uxw"/>
                             <constraint firstItem="eee-hx-3Zw" firstAttribute="centerX" secondItem="X0A-CO-8Gf" secondAttribute="centerX" id="Sdv-Wf-AnS"/>
@@ -300,7 +300,7 @@
                             <constraint firstItem="3Eq-Fh-5ZG" firstAttribute="top" secondItem="eee-hx-3Zw" secondAttribute="bottom" constant="35" id="iQX-aM-yVs"/>
                             <constraint firstItem="F65-9V-krp" firstAttribute="centerX" secondItem="X0A-CO-8Gf" secondAttribute="centerX" id="j9O-5x-PA9"/>
                             <constraint firstItem="a1h-rl-cvJ" firstAttribute="top" secondItem="KQb-K7-YsK" secondAttribute="bottom" constant="80" id="puJ-Ac-WfJ"/>
-                            <constraint firstItem="F65-9V-krp" firstAttribute="top" secondItem="nBK-Xk-O9w" secondAttribute="bottom" constant="25" id="wkT-r1-sSy"/>
+                            <constraint firstItem="F65-9V-krp" firstAttribute="top" secondItem="nBK-Xk-O9w" secondAttribute="bottom" constant="16" id="wkT-r1-sSy"/>
                         </constraints>
                     </view>
                 </viewController>
