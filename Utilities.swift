@@ -9,6 +9,18 @@
 import Foundation
 import UIKit
 
+// Allows the project to enable feature of dismissing keyboard whenever the user taps the screen anywhere
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 extension UILabel {
     func setSizeFont (sizeFont: Double) {
         self.font =  UIFont(name: self.font.fontName, size: CGFloat(sizeFont))!
@@ -40,6 +52,7 @@ struct Style{
     static var sectionHeaderAlpha: CGFloat = 1.0
     
     static var mainBackgroundColor = UIColor(netHex: 0x4A75FF)
+    static var darkBlueAccentColor = UIColor(netHex: 0x0036e6)
     static var greenAccentColor = UIColor(netHex: 0x35DB32)
     
     // MARK: ToDO Implement theme selection

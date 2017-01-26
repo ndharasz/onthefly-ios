@@ -423,7 +423,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RIX-6T-wnz" kind="show" id="shT-jx-5dC"/>
+                                    <segue destination="wDc-Yu-kR2" kind="show" id="wGQ-rn-mch"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLZ-cw-jzt">
@@ -481,12 +481,177 @@
             </objects>
             <point key="canvasLocation" x="821.60000000000002" y="777.66116941529242"/>
         </scene>
+        <!--Edit Flight View Controller-->
+        <scene sceneID="o6q-Eq-SKo">
+            <objects>
+                <viewController id="wDc-Yu-kR2" customClass="EditFlightViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nm7-ll-iYW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bai-eV-ydR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lBC-Cd-P8x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mTt-Df-Q2v">
+                                <frame key="frameInset" minX="26" minY="212" width="323" height="185"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Front Cargo Hold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvF-qY-JE4">
+                                        <frame key="frameInset" minX="70" minY="8" width="182" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qPQ-cV-mvH">
+                                <frame key="frameInset" minX="26" minY="400" width="323" height="185"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rear Cargo Hold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3L7-pF-ffm">
+                                        <frame key="frameInset" minX="82" minY="22" width="182" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teR-fr-XTd">
+                                <frame key="frameInset" minX="23" height="381" maxX="23" maxY="77"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View and Edit Flight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Oo-U7-NaC">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="fRB-wV-n7P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Information" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWk-Pu-QVv">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="1qI-WC-CJ5"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="xfE-C5-x5b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXp-bj-j7s">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AKx-qe-mVE"/>
+                                    <constraint firstAttribute="width" constant="329" id="hJW-Xm-Zz4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Generate Weight and Balance Report">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCn-dX-fK2">
+                                <frame key="frameInset" minX="23" minY="130" width="165" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <size key="titleShadowOffset" width="3" height="3"/>
+                                <state key="normal" title="Passenger View">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="passengerViewButtonSelected:" destination="wDc-Yu-kR2" eventType="touchUpInside" id="ZVg-aX-7VI"/>
+                                </connections>
+                            </button>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-BZ-01j">
+                                <frame key="frameInset" minX="23" minY="206" width="329" height="381"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZuY-dv-N5F">
+                                    <size key="itemSize" width="123" height="109"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="gce-Q2-N3N">
+                                        <rect key="frame" x="10" y="10" width="123" height="109"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="123" height="109"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seat X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdI-uX-jdp">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="jdI-uX-jdp" firstAttribute="centerY" secondItem="gce-Q2-N3N" secondAttribute="centerY" id="HP6-zz-yCN"/>
+                                            <constraint firstItem="jdI-uX-jdp" firstAttribute="centerX" secondItem="gce-Q2-N3N" secondAttribute="centerX" id="dwK-YR-4vD"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="wDc-Yu-kR2" id="AX3-qw-y7c"/>
+                                    <outlet property="delegate" destination="wDc-Yu-kR2" id="afP-GD-5me"/>
+                                </connections>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="erA-nP-hW5">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="KXK-TX-fuQ"/>
+                                    <constraint firstAttribute="height" constant="37" id="RhA-EE-g8H"/>
+                                </constraints>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9Q-uq-UCU">
+                                <frame key="frameInset" minX="187" minY="130" width="165" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Cargo View">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cargoViewButtonSelected:" destination="wDc-Yu-kR2" eventType="touchUpInside" id="x6k-y9-abL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Oo-U7-NaC" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="0KN-lr-24t"/>
+                            <constraint firstItem="SWk-Pu-QVv" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="2kI-Dw-Dzi"/>
+                            <constraint firstItem="erA-nP-hW5" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="Ecz-xB-oDp"/>
+                            <constraint firstItem="6Oo-U7-NaC" firstAttribute="top" secondItem="nm7-ll-iYW" secondAttribute="bottom" constant="8" id="MM0-QR-yYp"/>
+                            <constraint firstItem="SWk-Pu-QVv" firstAttribute="top" secondItem="6Oo-U7-NaC" secondAttribute="bottom" constant="8" id="PHu-CB-D9g"/>
+                            <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="erA-nP-hW5" secondAttribute="bottom" constant="48" id="Q2b-6Z-Ae5"/>
+                            <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="15" id="rOF-3q-6Jh"/>
+                            <constraint firstItem="gXp-bj-j7s" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="tFw-3r-zpp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cargoViewButton" destination="V9Q-uq-UCU" id="sEU-Kg-XUT"/>
+                        <outlet property="containerView" destination="teR-fr-XTd" id="LvF-mn-o6R"/>
+                        <outlet property="frontCargoView" destination="mTt-Df-Q2v" id="jmk-1C-g0K"/>
+                        <outlet property="pageControl" destination="erA-nP-hW5" id="5kf-h4-M5z"/>
+                        <outlet property="passengerCollectionView" destination="QE9-BZ-01j" id="39Y-Wx-Eod"/>
+                        <outlet property="passengerViewButton" destination="pCn-dX-fK2" id="wVz-xh-vHE"/>
+                        <outlet property="rearCargoView" destination="qPQ-cV-mvH" id="cgx-gC-q7i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xvy-4U-wmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1736.8" y="777.66116941529242"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="shT-jx-5dC"/>
+        <segue reference="MPv-9M-z1d"/>
         <segue reference="XfB-cj-NX0"/>
     </inferredMetricsTieBreakers>
 </document>
