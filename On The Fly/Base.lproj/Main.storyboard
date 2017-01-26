@@ -238,12 +238,72 @@
                     <view key="view" contentMode="scaleToFill" id="X0A-CO-8Gf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Reset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1h-rl-cvJ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="198" id="9vV-EP-cmb"/>
+                                    <constraint firstAttribute="height" constant="34" id="rcT-tj-PeZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email below to reset your password." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eee-hx-3Zw">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="ae9-Gr-y7r"/>
+                                    <constraint firstAttribute="width" constant="295" id="o3G-0l-hXD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="youremail@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Eq-Fh-5ZG">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBK-Xk-O9w">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="237" id="Z6l-Su-CQj"/>
+                                    <constraint firstAttribute="height" constant="40" id="ogb-mh-shs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Reset My Password">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F65-9V-krp">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Zld-hg-07G"/>
+                                    <constraint firstAttribute="height" constant="43" id="mKr-xZ-c5R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3Eq-Fh-5ZG" firstAttribute="trailing" secondItem="X0A-CO-8Gf" secondAttribute="trailingMargin" id="1a0-5i-odF"/>
+                            <constraint firstItem="eee-hx-3Zw" firstAttribute="top" secondItem="a1h-rl-cvJ" secondAttribute="bottom" constant="8" id="Ajo-CD-Ks6"/>
+                            <constraint firstItem="nBK-Xk-O9w" firstAttribute="top" secondItem="3Eq-Fh-5ZG" secondAttribute="bottom" constant="8" id="J8F-KV-9X9"/>
+                            <constraint firstItem="3Eq-Fh-5ZG" firstAttribute="leading" secondItem="X0A-CO-8Gf" secondAttribute="leadingMargin" id="LMr-xH-PYO"/>
+                            <constraint firstItem="nBK-Xk-O9w" firstAttribute="centerX" secondItem="X0A-CO-8Gf" secondAttribute="centerX" id="SOy-e5-Uxw"/>
+                            <constraint firstItem="eee-hx-3Zw" firstAttribute="centerX" secondItem="X0A-CO-8Gf" secondAttribute="centerX" id="Sdv-Wf-AnS"/>
+                            <constraint firstItem="a1h-rl-cvJ" firstAttribute="centerX" secondItem="X0A-CO-8Gf" secondAttribute="centerX" id="dKa-uh-FVk"/>
+                            <constraint firstItem="3Eq-Fh-5ZG" firstAttribute="top" secondItem="eee-hx-3Zw" secondAttribute="bottom" constant="35" id="iQX-aM-yVs"/>
+                            <constraint firstItem="F65-9V-krp" firstAttribute="centerX" secondItem="X0A-CO-8Gf" secondAttribute="centerX" id="j9O-5x-PA9"/>
+                            <constraint firstItem="a1h-rl-cvJ" firstAttribute="top" secondItem="KQb-K7-YsK" secondAttribute="bottom" constant="80" id="puJ-Ac-WfJ"/>
+                            <constraint firstItem="F65-9V-krp" firstAttribute="top" secondItem="nBK-Xk-O9w" secondAttribute="bottom" constant="25" id="wkT-r1-sSy"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dA9-vo-zdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-322" y="788"/>
+            <point key="canvasLocation" x="-322.39999999999998" y="787.55622188905556"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="lZe-Do-dty">
@@ -672,7 +732,7 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9IC-Jg-V01"/>
         <segue reference="zze-yy-t1c"/>
+        <segue reference="MPv-9M-z1d"/>
     </inferredMetricsTieBreakers>
 </document>
