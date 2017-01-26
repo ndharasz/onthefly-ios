@@ -504,7 +504,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Information" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWk-Pu-QVv">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="1qI-WC-CJ5"/>
-                                    <constraint firstAttribute="height" constant="24" id="ajd-Eb-tOX"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="xfE-C5-x5b"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
