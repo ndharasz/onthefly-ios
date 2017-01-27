@@ -35,6 +35,20 @@ class ReportGenerationViewController: UIViewController {
         saveLocallyCheckbox.checkBox()
     }
     
+    @IBAction func sendButtonPressed(_ sender: AnyObject) {
+        
+        let alert = UIAlertController(title: "Report Sent!", message: "Your weight and balance report has been send to the email address above.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK. Return to Home", style: UIAlertActionStyle.default, handler: {action in
+        
+            self.performSegue(withIdentifier: "homeAfterReportSegue", sender: nil)
+        
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
