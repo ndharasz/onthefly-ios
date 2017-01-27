@@ -10,33 +10,19 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var checkBoxButton: UIButton!
-    var isRememberMeClicked = false
-    var checkedImage = UIImage(named: "checkbox_checked")
-    var uncheckedImage = UIImage(named: "checkbox_unchecked")
+    @IBOutlet weak var checkBoxButton: CheckboxButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        isRememberMeClicked = false
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func checkboxClicked(_ sender: AnyObject) {
         
-        if isRememberMeClicked {
-            isRememberMeClicked = false
-//            checkBoxButton.setImage(uncheckedImage!, for: UIControlState.normal)
-            checkBoxButton.changeImageAnimated(image: uncheckedImage)
-        } else {
-            isRememberMeClicked = true
-//            checkBoxButton.setImage(checkedImage!, for: UIControlState.normal)
-            checkBoxButton.changeImageAnimated(image: checkedImage)
-        }
+        checkBoxButton.checkBox()
         
     }
     
