@@ -23,19 +23,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ybv-al-dXP">
-                                <rect key="frame" x="16" y="319" width="343" height="30"/>
+                                <rect key="frame" x="16" y="318.5" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YHi-8l-bZE">
-                                <rect key="frame" x="16" y="281" width="343" height="30"/>
+                                <rect key="frame" x="16" y="280.5" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmn-8P-33f">
-                                <rect key="frame" x="259" y="365" width="100" height="43"/>
+                                <rect key="frame" x="259" y="364.5" width="100" height="43"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="8AU-cL-ayi"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0b-Qa-2zE">
-                                <rect key="frame" x="112" y="435" width="152" height="32"/>
+                                <rect key="frame" x="111.5" y="434.5" width="152" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="152" id="OqW-xC-ImR"/>
                                     <constraint firstAttribute="height" constant="32" id="pA9-gc-fUu"/>
@@ -64,7 +64,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ul-4aR" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="374" width="25" height="25"/>
+                                <rect key="frame" x="16" y="373.5" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="6RL-T0-xew"/>
                                     <constraint firstAttribute="height" constant="25" id="ikC-71-xov"/>
@@ -75,7 +75,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Remember Me" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KVc-Qd-fF3">
-                                <rect key="frame" x="49" y="367" width="143" height="39"/>
+                                <rect key="frame" x="49" y="366.5" width="143" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="CIV-hP-mY0"/>
                                     <constraint firstAttribute="width" constant="143" id="M1f-bW-Nix"/>
@@ -85,7 +85,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3h-nH-3dD">
-                                <rect key="frame" x="84" y="475" width="207" height="40"/>
+                                <rect key="frame" x="84" y="474.5" width="207" height="40"/>
                                 <color key="backgroundColor" red="0.20784313730000001" green="0.85882352939999995" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="AA1-OD-s8i"/>
@@ -101,10 +101,10 @@
                                     <segue destination="ulT-5a-T9a" kind="show" id="fBc-Vd-gj0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On the Fly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6d2-ra-594">
-                                <rect key="frame" x="91" y="90" width="193" height="114"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On the Fly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6d2-ra-594">
+                                <rect key="frame" x="62.5" y="90" width="250" height="114"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="193" id="dOG-lF-ums"/>
+                                    <constraint firstAttribute="width" constant="250" id="dOG-lF-ums"/>
                                     <constraint firstAttribute="height" constant="114" id="xT6-mT-ybN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="42"/>
@@ -176,7 +176,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date         Dept Arpt        Arr Arpt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhD-Jt-VcT">
-                                <rect key="frame" x="25" y="131.5" width="325.5" height="27.5"/>
+                                <rect key="frame" x="24.5" y="131.5" width="326" height="27.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -823,7 +823,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success! Report Generated. Please select the method of delivery for the report: " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Y-qc-4WG">
-                                <rect key="frame" x="47.5" y="100" width="281" height="119"/>
+                                <rect key="frame" x="47" y="100" width="281" height="119"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="281" id="URh-Ol-sH1"/>
                                     <constraint firstAttribute="height" constant="119" id="eDZ-l2-899"/>
@@ -917,7 +917,7 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9IC-Jg-V01"/>
         <segue reference="zze-yy-t1c"/>
-        <segue reference="w7Z-Mi-zfh"/>
     </inferredMetricsTieBreakers>
 </document>
