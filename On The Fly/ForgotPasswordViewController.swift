@@ -32,6 +32,11 @@ class ForgotPasswordViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         
     }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
     /*
     // MARK: - Navigation
