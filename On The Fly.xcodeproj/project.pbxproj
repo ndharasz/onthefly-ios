@@ -90,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C35FBA411E3B041100A53888 /* Custom Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C302D8A11E3721F100CB2B54 /* Utilities.swift */,
+				C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */,
+			);
+			name = "Custom Support Files";
+			sourceTree = "<group>";
+		};
 		C3CAF60F1E31260300A17817 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,13 +136,12 @@
 		C3FF6FB91E306C0600C59DB3 /* On The Fly */ = {
 			isa = PBXGroup;
 			children = (
-				C302D8A11E3721F100CB2B54 /* Utilities.swift */,
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
-				C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */,
+				C35FBA411E3B041100A53888 /* Custom Support Files */,
 				C3CAF60F1E31260300A17817 /* View Controllers */,
 				C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */,
-				C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */,
 				C3FF6FC31E306C0600C59DB3 /* LaunchScreen.storyboard */,
+				C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */,
 				C3FF6FC61E306C0600C59DB3 /* Info.plist */,
 			);
 			path = "On The Fly";
