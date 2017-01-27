@@ -63,7 +63,7 @@
                                     <segue destination="AGw-0L-gsZ" kind="show" id="BCJ-Vu-RHp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ul-4aR">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ul-4aR" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
                                 <rect key="frame" x="16" y="373.5" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="6RL-T0-xew"/>
@@ -685,6 +685,9 @@
                                 <state key="normal" title="Generate Weight and Balance Report">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="osF-aw-xvC" kind="show" id="5JA-Xc-8dJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCn-dX-fK2">
                                 <rect key="frame" x="23" y="130" width="165" height="50"/>
@@ -780,12 +783,101 @@
             </objects>
             <point key="canvasLocation" x="2375" y="788"/>
         </scene>
+        <!--Report Generation View Controller-->
+        <scene sceneID="MKS-FE-sD2">
+            <objects>
+                <viewController id="osF-aw-xvC" customClass="ReportGenerationViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SPi-Ux-aRx"/>
+                        <viewControllerLayoutGuide type="bottom" id="kvj-hv-Mzs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y93-lw-xGJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success! Report Generated. Please select the method of delivery for the report: " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Y-qc-4WG">
+                                <rect key="frame" x="47.5" y="100" width="281" height="119"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="URh-Ol-sH1"/>
+                                    <constraint firstAttribute="height" constant="119" id="eDZ-l2-899"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send to user registered email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOv-0t-Bta">
+                                <rect key="frame" x="49" y="248" width="242" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qYs-Vh-D6E">
+                                <rect key="frame" x="16" y="297" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save report locally" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juB-51-2QI">
+                                <rect key="frame" x="49" y="357" width="242" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NW-Kn-ZVj" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
+                                <rect key="frame" x="16" y="247" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="checkbox_unchecked"/>
+                                <connections>
+                                    <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F3J-AL-RkC"/>
+                                    <action selector="sendReportButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="glB-vy-165"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n56-zD-rkw" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
+                                <rect key="frame" x="16" y="356" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="checkbox_unchecked"/>
+                                <connections>
+                                    <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tur-wW-Zox"/>
+                                    <action selector="saveLocallyButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="4Gg-ou-JWp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTv-mr-RBH">
+                                <rect key="frame" x="138" y="492" width="100" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="Udc-aq-2rO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Z1Y-qc-4WG" firstAttribute="centerX" secondItem="Y93-lw-xGJ" secondAttribute="centerX" id="kMD-it-Qc9"/>
+                            <constraint firstItem="Z1Y-qc-4WG" firstAttribute="top" secondItem="SPi-Ux-aRx" secondAttribute="bottom" constant="80" id="lzX-FO-xb5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="saveLocallyCheckbox" destination="n56-zD-rkw" id="EdT-gT-3X6"/>
+                        <outlet property="sendReportCheckbox" destination="7NW-Kn-ZVj" id="FTM-5S-gV7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8T-R1-tMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2373.5999999999999" y="1534.1829085457273"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zze-yy-t1c"/>
-        <segue reference="MPv-9M-z1d"/>
+        <segue reference="9IC-Jg-V01"/>
     </inferredMetricsTieBreakers>
 </document>

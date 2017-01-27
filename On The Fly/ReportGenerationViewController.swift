@@ -10,15 +10,33 @@ import UIKit
 
 class ReportGenerationViewController: UIViewController {
 
+    @IBOutlet weak var sendReportCheckbox: CheckboxButton!
+    
+    @IBOutlet weak var saveLocallyCheckbox: CheckboxButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func sendReportButtonPressed(_ sender: Any) {
+        sendReportCheckbox.checkBox()
+    }
+    
+    @IBAction func saveLocallyButtonPressed(_ sender: Any) {
+        saveLocallyCheckbox.checkBox()
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 

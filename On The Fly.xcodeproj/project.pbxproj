@@ -10,6 +10,7 @@
 		C302D8A21E3721F100CB2B54 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302D8A11E3721F100CB2B54 /* Utilities.swift */; };
 		C33B9CA61E38671500AF47A6 /* CreateNewFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */; };
 		C35FBA3E1E3AED3700A53888 /* ReportGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FBA3D1E3AED3700A53888 /* ReportGenerationViewController.swift */; };
+		C35FBA401E3AF97700A53888 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */; };
 		C36CAD111E3906EC008C685E /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD101E3906EC008C685E /* CreateAccountViewController.swift */; };
 		C36CAD131E390E9F008C685E /* EditFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD121E390E9F008C685E /* EditFlightViewController.swift */; };
 		C36CAD151E39A470008C685E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */; };
@@ -44,6 +45,7 @@
 		C302D8A11E3721F100CB2B54 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ../Utilities.swift; sourceTree = "<group>"; };
 		C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewFlightViewController.swift; sourceTree = "<group>"; };
 		C35FBA3D1E3AED3700A53888 /* ReportGenerationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGenerationViewController.swift; sourceTree = "<group>"; };
+		C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		C36CAD101E3906EC008C685E /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		C36CAD121E390E9F008C685E /* EditFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFlightViewController.swift; sourceTree = "<group>"; };
 		C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				C302D8A11E3721F100CB2B54 /* Utilities.swift */,
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
+				C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */,
 				C3CAF60F1E31260300A17817 /* View Controllers */,
 				C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */,
 				C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */,
@@ -291,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35FBA401E3AF97700A53888 /* CheckboxButton.swift in Sources */,
 				C36CAD151E39A470008C685E /* ForgotPasswordViewController.swift in Sources */,
 				C36CAD131E390E9F008C685E /* EditFlightViewController.swift in Sources */,
 				C36CAD111E3906EC008C685E /* CreateAccountViewController.swift in Sources */,
