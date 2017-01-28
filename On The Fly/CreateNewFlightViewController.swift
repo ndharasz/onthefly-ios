@@ -13,12 +13,21 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var planePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var departureArptTextfield: UITextField!
+    @IBOutlet weak var arrivalArptTextfield: UITextField!
+    
     var pickerData: [String] = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
+        
+        departureArptTextfield.roundCorners()
+        arrivalArptTextfield.roundCorners()
+        
+        datePicker.setValue(UIColor.white, forKey: "textColor")
+        datePicker.setValue(true, forKey: "highlightsToday")
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,12 +49,11 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         return pickerData[row]
     }
     
-    /*    WAY TO CHANGE WORDS TO WHITE COLOR
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleData = pickerData[row]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 15.0)!,NSForegroundColorAttributeName:UIColor.white])
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName:UIColor.white])
         return myTitle
-    }*/
+    }
     
 
     /*

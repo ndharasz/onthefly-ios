@@ -11,13 +11,15 @@ import UIKit
 class ReportGenerationViewController: UIViewController {
 
     @IBOutlet weak var sendReportCheckbox: CheckboxButton!
-    
     @IBOutlet weak var saveLocallyCheckbox: CheckboxButton!
     
+    @IBOutlet weak var emailTextfield: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextfield.roundCorners()
 
         
     }

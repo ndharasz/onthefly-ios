@@ -11,9 +11,14 @@ import UIKit
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var checkBoxButton: CheckboxButton!
+    @IBOutlet weak var usernameTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextfield.roundCorners()
+        passwordTextfield.roundCorners()
     }
 
     override func didReceiveMemoryWarning() {

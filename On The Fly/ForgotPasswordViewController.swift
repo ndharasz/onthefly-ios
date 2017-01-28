@@ -10,8 +10,13 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController {
 
+    @IBOutlet weak var emailTextfield: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextfield.roundCorners()
 
     }
 

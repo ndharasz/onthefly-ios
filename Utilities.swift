@@ -21,6 +21,14 @@ extension UIViewController {
     }
 }
 
+// Auto-round the corner of the TextField boxes
+extension UITextField {
+    func roundCorners() {
+        self.layer.borderWidth = 2.0
+        self.layer.cornerRadius = 8.0
+    }
+}
+
 extension UIButton {
     
     func changeImageAnimated(image: UIImage?) {
