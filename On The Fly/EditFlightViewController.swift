@@ -24,6 +24,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         passengerCollectionView.isHidden = false
         
