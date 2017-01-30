@@ -10,11 +10,11 @@ import UIKit
 
 class CreateAccountViewController: UIViewController {
 
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: PaddedTextField!
+    @IBOutlet weak var lastNameTextField: PaddedTextField!
+    @IBOutlet weak var emailTextField: PaddedTextField!
+    @IBOutlet weak var passwordTextField: PaddedTextField!
+    @IBOutlet weak var confirmPasswordTextField: PaddedTextField!
     
     var textFieldArray: [UITextField] = []
     

@@ -11,8 +11,8 @@ import UIKit
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var checkBoxButton: CheckboxButton!
-    @IBOutlet weak var usernameTextfield: UITextField!
-    @IBOutlet weak var passwordTextfield: UITextField!
+    @IBOutlet weak var usernameTextfield: PaddedTextField!
+    @IBOutlet weak var passwordTextfield: PaddedTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

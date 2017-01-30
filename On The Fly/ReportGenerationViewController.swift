@@ -13,7 +13,7 @@ class ReportGenerationViewController: UIViewController {
     @IBOutlet weak var sendReportCheckbox: CheckboxButton!
     @IBOutlet weak var saveLocallyCheckbox: CheckboxButton!
     
-    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var emailTextfield: PaddedTextField!
     
     
     override func viewDidLoad() {

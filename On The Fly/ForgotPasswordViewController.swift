@@ -10,7 +10,7 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController {
 
-    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var emailTextfield: PaddedTextField!
     
     
     override func viewDidLoad() {

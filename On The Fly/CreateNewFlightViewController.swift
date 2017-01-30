@@ -13,8 +13,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var planePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBOutlet weak var departureArptTextfield: UITextField!
-    @IBOutlet weak var arrivalArptTextfield: UITextField!
+    @IBOutlet weak var departureArptTextfield: PaddedTextField!
+    @IBOutlet weak var arrivalArptTextfield: PaddedTextField!
     
     var pickerData: [String] = [String]()
 

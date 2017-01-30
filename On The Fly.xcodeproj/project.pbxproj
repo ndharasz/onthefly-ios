@@ -15,6 +15,7 @@
 		C36CAD131E390E9F008C685E /* EditFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD121E390E9F008C685E /* EditFlightViewController.swift */; };
 		C36CAD151E39A470008C685E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */; };
 		C3CAF6111E3132DF00A17817 /* UpcomingFlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */; };
+		C3FF5AC91E3EE6ED00D1A96E /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */; };
 		C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */; };
 		C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */; };
 		C3FF6FC01E306C0600C59DB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		C36CAD121E390E9F008C685E /* EditFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFlightViewController.swift; sourceTree = "<group>"; };
 		C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingFlightsViewController.swift; sourceTree = "<group>"; };
+		C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		C3FF6FB71E306C0600C59DB3 /* On The Fly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Fly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				C302D8A11E3721F100CB2B54 /* Utilities.swift */,
 				C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */,
+				C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */,
 			);
 			name = "Custom Support Files";
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				C35FBA401E3AF97700A53888 /* CheckboxButton.swift in Sources */,
 				C36CAD151E39A470008C685E /* ForgotPasswordViewController.swift in Sources */,
 				C36CAD131E390E9F008C685E /* EditFlightViewController.swift in Sources */,
+				C3FF5AC91E3EE6ED00D1A96E /* PaddedTextField.swift in Sources */,
 				C36CAD111E3906EC008C685E /* CreateAccountViewController.swift in Sources */,
 				C3CAF6111E3132DF00A17817 /* UpcomingFlightsViewController.swift in Sources */,
 				C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */,
