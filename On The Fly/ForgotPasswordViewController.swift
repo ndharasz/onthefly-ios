@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ForgotPasswordViewController: UIViewController {
 
@@ -28,14 +29,26 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBAction func resetButtonPressed(_ sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Password Successfully Reset", message: "You have successfully reset the password. Select 'Okay' to return to the home screen.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: {action in
-            
-            self.dismiss(animated: true, completion: nil)
-            
-        }))
-            
-        self.present(alert, animated: true, completion: nil)
+        if let userEmail = emailTextfield.text {
+            if userEmail.isValidEmail() {
+                // do soemthing
+            } else {
+                // not a valid email
+                alert(message: "The email you entered is not valid, please check the email and try again", title: "Invalid email address")
+            }
+        } else {
+            alert(message: "You have not entered an email in the text field. Please try again.", title: "No email entered")
+        }
+        
+        
+//        let alert = UIAlertController(title: "Password Successfully Reset", message: "You have successfully reset the password. Select 'Okay' to return to the home screen.", preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: {action in
+//            
+//            self.dismiss(animated: true, completion: nil)
+//            
+//        }))
+//            
+//        self.present(alert, animated: true, completion: nil)
         
     }
     
