@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ForgotPasswordViewController: UIViewController {
 
@@ -28,14 +29,32 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBAction func resetButtonPressed(_ sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Password Successfully Reset", message: "You have successfully reset the password. Select 'Okay' to return to the home screen.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: {action in
-            
-            self.dismiss(animated: true, completion: nil)
-            
-        }))
-            
-        self.present(alert, animated: true, completion: nil)
+        if let userEmail = emailTextfield.text {
+            if userEmail.characters.count == 0 {
+                self.alert(message: "You have not entered an email in the text field above.", title: "Please try again")
+            } else {
+                if userEmail.isValidEmail() {
+                    FIRAuth.auth()?.sendPasswordReset(withEmail: userEmail, completion: { (error) in
+                        var title = ""
+                        var message = ""
+                        
+                        if error != nil {
+                            title = "Oops!"
+                            message = (error?.localizedDescription)!
+                            self.alert(message: message, title: title)
+                        } else {
+                            title = "Success!"
+                            message = "Password reset email sent"
+                            self.alertDismissView(message: message, title: title)
+                        }
+                    })
+                } else {
+                    // not a valid email
+                    alert(message: "The email you entered is not valid, please check the email and try again", title: "Invalid email address")
+                }
+
+            }
+        }
         
     }
     

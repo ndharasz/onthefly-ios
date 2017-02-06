@@ -57,6 +57,7 @@
 		9626DE2D45498C5E6EC5474B /* Pods_On_The_FlyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_On_The_FlyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C302D8A11E3721F100CB2B54 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ../Utilities.swift; sourceTree = "<group>"; };
 		C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewFlightViewController.swift; sourceTree = "<group>"; };
+		C34899A51E4918B2006EEEC1 /* On The Fly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "On The Fly.entitlements"; sourceTree = "<group>"; };
 		C35D35341E42880E0047962C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C35FBA3D1E3AED3700A53888 /* ReportGenerationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGenerationViewController.swift; sourceTree = "<group>"; };
 		C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		C3FF6FB91E306C0600C59DB3 /* On The Fly */ = {
 			isa = PBXGroup;
 			children = (
+				C34899A51E4918B2006EEEC1 /* On The Fly.entitlements */,
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
 				C35FBA411E3B041100A53888 /* Custom Support Files */,
 				C3CAF60F1E31260300A17817 /* View Controllers */,
@@ -290,6 +292,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = YBDBYTJ7R7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					C3FF6FCA1E306C0600C59DB3 = {
 						CreatedOnToolsVersion = 8.0;
@@ -659,6 +666,7 @@
 			baseConfigurationReference = 3364B4826F8520D44A8AA407 /* Pods-On The Fly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "On The Fly/On The Fly.entitlements";
 				DEVELOPMENT_TEAM = YBDBYTJ7R7;
 				INFOPLIST_FILE = "On The Fly/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -673,6 +681,7 @@
 			baseConfigurationReference = 67678A9B74D2A58285A1B798 /* Pods-On The Fly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "On The Fly/On The Fly.entitlements";
 				DEVELOPMENT_TEAM = YBDBYTJ7R7;
 				INFOPLIST_FILE = "On The Fly/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

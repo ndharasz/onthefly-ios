@@ -19,6 +19,25 @@ extension UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    // easily present pop-up alerts
+    func alert(message: String, title: String = "") {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func alertDismissView(message: String, title: String = "") {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        })
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 // Auto-round the corner of the TextField boxes
@@ -26,6 +45,17 @@ extension UITextField {
     func roundCorners() {
         self.layer.borderWidth = 2.0
         self.layer.cornerRadius = 8.0
+    }
+}
+
+// Use regular expression matching to check for a valid email
+extension String {
+    func isValidEmail() -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
     }
 }
 
