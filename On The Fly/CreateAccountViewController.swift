@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateAccountViewController: UIViewController {
 
@@ -18,6 +19,27 @@ class CreateAccountViewController: UIViewController {
     
     var textFieldArray: [UITextField] = []
     
+    @IBAction func createAccountButtonPressed(_ sender: UIButton) {
+//        text box variables
+        //        let userFirstName = firstNameTextField.text
+        //        let userLastName = lastNameTextField.text
+        let userEmail = emailTextField.text
+        let userPassword = passwordTextField.text
+        //        let userConfirmPassword = confirmPasswordTextField.text
+        FIRAuth.auth()?.createUser(withEmail: userEmail!, password: userPassword!, completion: { (user: FIRUser?, error) in
+            var title = ""
+            var message = ""
+            if error != nil {
+                title = "Oops!"
+                message = (error?.localizedDescription)!
+                self.alert(message: message, title: title)
+            } else {
+                title = "Success!"
+                message = "Account created."
+                self.alertDismissView(message: message, title: title)
+            }
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
