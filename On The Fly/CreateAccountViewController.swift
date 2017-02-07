@@ -16,23 +16,25 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var emailTextField: PaddedTextField!
     @IBOutlet weak var passwordTextField: PaddedTextField!
     @IBOutlet weak var confirmPasswordTextField: PaddedTextField!
+    var ref = FIRDatabase.database() //trying to get to database here
     
     var textFieldArray: [UITextField] = []
     
     @IBAction func createAccountButtonPressed(_ sender: UIButton) {
-//      text box variables
-//        let userFirstName = firstNameTextField.text
-//        let userLastName = lastNameTextField.text
+        //these are the variables not directly required for account creation
+        let userFirstName = firstNameTextField.text
+        let userLastName = lastNameTextField.text
         let userConfirmPassword = confirmPasswordTextField.text
+        //create account
         if let userEmail = emailTextField.text, let userPassword = passwordTextField.text {
-            let validEmail = checkValidEmail(email: userEmail)
-            let validPassword = checkValidPassword(password: userPassword, confirmPassword: userConfirmPassword!)
+            let validEmail = checkValidEmail(email: userEmail) //checks to make sure email is valid
+            let validPassword = checkValidPassword(password: userPassword, confirmPassword: userConfirmPassword!) //checks to make sure passwords match
             if (validEmail) {
                 if (validPassword) {
+                    //actually creating new user in firebase
                     FIRAuth.auth()?.createUser(withEmail: userEmail, password: userPassword, completion: { (user: FIRUser?, error) in
                         var title = ""
                         var message = ""
-                        
                         if error != nil {
                             title = "Oops!"
                             message = (error?.localizedDescription)!
@@ -43,6 +45,8 @@ class CreateAccountViewController: UIViewController {
                             self.alertDismissView(message: message, title: title)
                         }
                     })
+                    //trying to add the first and last name to info
+                    addUserInfo(firstName: userFirstName!, lastName: userLastName!)
                 } else {
                     //not a valid password combo
                     alert(message: "The passwords you entered do not match, please try again.", title: "Passwords don't match")
@@ -74,6 +78,17 @@ class CreateAccountViewController: UIViewController {
             return false
         }
     }
+    
+    //adding the user's first and last name to their user id in firebase
+    private func addUserInfo(firstName: String, lastName: String) {
+//        let newUser = [
+//            "provider": authData.provider,
+//            "displayName": authData.providerData["displayName"] as? NSString as? String
+//        ]
+//        ref.childByAppendingPath("users")
+//            .childByAppendingPath(authData.uid).setValue(newUser)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
