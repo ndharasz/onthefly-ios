@@ -22,17 +22,20 @@ class CreateAccountViewController: UIViewController {
     var textFieldArray: [UITextField] = []
     
     @IBAction func createAccountButtonPressed(_ sender: UIButton) {
-        //these are the variables not directly required for account creation
+        // dismiss the keyboard if it is still up
+        self.dismissKeyboard()
+        
+        // these are the variables not directly required for account creation
         let userFirstName = firstNameTextField.text
         let userLastName = lastNameTextField.text
         let userConfirmPassword = confirmPasswordTextField.text
-        //create account
+        
+        // create account
         if let userEmail = emailTextField.text, let userPassword = passwordTextField.text {
-            let validEmail = checkValidEmail(email: userEmail) //checks to make sure email is valid
             let validPassword = checkValidPassword(password: userPassword, confirmPassword: userConfirmPassword!) //checks to make sure passwords match
-            if (validEmail) {
+            if (userEmail.isValidEmail()) {
                 if (validPassword) {
-                    //actually creating new user in firebase
+                    // actually creating new user in firebase
                     FIRAuth.auth()?.createUser(withEmail: userEmail, password: userPassword, completion: { (user: FIRUser?, error) in
                         var title = ""
                         var message = ""
@@ -44,6 +47,7 @@ class CreateAccountViewController: UIViewController {
                             // add the first and last name to info
                             let userID = user?.uid
                             self.addUserInfo(email: userEmail, firstName: userFirstName!, lastName: userLastName!, userID: userID!)
+                            
                             // feedback to user that the account creation worked
                             title = "Success!"
                             message = "Account created."
@@ -52,25 +56,12 @@ class CreateAccountViewController: UIViewController {
                     })
                     
                 } else {
-                    //not a valid password combo
+                    // not a valid password combo
                     alert(message: "The passwords you entered do not match, please try again.", title: "Passwords don't match")
                 }
             } else {
                 alert(message: "The email you entered is not valid, please check the email and try again", title: "Invalid email address")
             }
-        }
-    }
-    
-    //checking validity of email address
-    private func checkValidEmail(email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        if (email.characters.count == 0) {
-            return false
-        } else if (!emailTest.evaluate(with: email)) {
-            return false
-        } else {
-            return true
         }
     }
     
@@ -111,6 +102,9 @@ class CreateAccountViewController: UIViewController {
         
     }
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
