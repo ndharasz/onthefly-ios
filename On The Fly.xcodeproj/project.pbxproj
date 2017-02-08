@@ -17,6 +17,7 @@
 		C36CAD111E3906EC008C685E /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD101E3906EC008C685E /* CreateAccountViewController.swift */; };
 		C36CAD131E390E9F008C685E /* EditFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD121E390E9F008C685E /* EditFlightViewController.swift */; };
 		C36CAD151E39A470008C685E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */; };
+		C38FBBD21E4B918B0087F9CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FBBD11E4B918B0087F9CA /* User.swift */; };
 		C3CAF6111E3132DF00A17817 /* UpcomingFlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */; };
 		C3FF5AC91E3EE6ED00D1A96E /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */; };
 		C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		C36CAD101E3906EC008C685E /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		C36CAD121E390E9F008C685E /* EditFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFlightViewController.swift; sourceTree = "<group>"; };
 		C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		C38FBBD11E4B918B0087F9CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C3A0A3FA66C71C7A5463191C /* Pods-On The FlyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The FlyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The FlyUITests/Pods-On The FlyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingFlightsViewController.swift; sourceTree = "<group>"; };
 		C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
@@ -143,6 +145,14 @@
 			name = "Custom Support Files";
 			sourceTree = "<group>";
 		};
+		C38FBBD31E4B92AB0087F9CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C38FBBD11E4B918B0087F9CA /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C3CAF60F1E31260300A17817 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +194,7 @@
 			children = (
 				C34899A51E4918B2006EEEC1 /* On The Fly.entitlements */,
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
+				C38FBBD31E4B92AB0087F9CA /* Model */,
 				C35FBA411E3B041100A53888 /* Custom Support Files */,
 				C3CAF60F1E31260300A17817 /* View Controllers */,
 				C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */,
@@ -511,6 +522,7 @@
 				C3CAF6111E3132DF00A17817 /* UpcomingFlightsViewController.swift in Sources */,
 				C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */,
 				C302D8A21E3721F100CB2B54 /* Utilities.swift in Sources */,
+				C38FBBD21E4B918B0087F9CA /* User.swift in Sources */,
 				C35FBA3E1E3AED3700A53888 /* ReportGenerationViewController.swift in Sources */,
 				C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */,
 				C33B9CA61E38671500AF47A6 /* CreateNewFlightViewController.swift in Sources */,
