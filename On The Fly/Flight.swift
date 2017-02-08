@@ -40,4 +40,15 @@ struct Flight {
         self.fireRef = snapshot.ref
     }
     
+    func toAnyObject() -> Any {
+        return [
+            "plane": plane,
+            "departAirport": departAirport,
+            "arriveAirport": arriveAirport,
+            "date": date,
+            "time:": time,
+            "userid": userid
+        ]
+    }
+    
 }

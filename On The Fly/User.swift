@@ -34,4 +34,12 @@ struct User {
         self.fireRef = snapshot.ref
     }
     
+    func toAnyObject() -> Any {
+        return [
+            "email": email,
+            "firstName": firstName,
+            "lastName": lastName
+        ]
+    }
+    
 }
