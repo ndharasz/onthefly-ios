@@ -19,9 +19,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var frontCargoView: UIView!
     @IBOutlet weak var rearCargoView: UIView!
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
