@@ -19,6 +19,9 @@ class CreateAccountViewController: UIViewController {
     
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     
+    var loadingView: UIView = UIView()
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var textFieldArray: [UITextField] = []
     
     @IBAction func createAccountButtonPressed(_ sender: UIButton) {
@@ -29,6 +32,8 @@ class CreateAccountViewController: UIViewController {
         let userFirstName = firstNameTextField.text
         let userLastName = lastNameTextField.text
         let userConfirmPassword = confirmPasswordTextField.text
+        
+        showActivityIndicatory()
         
         // create account
         if let userEmail = emailTextField.text, let userPassword = passwordTextField.text {
@@ -42,6 +47,7 @@ class CreateAccountViewController: UIViewController {
                         if error != nil {
                             title = "Oops!"
                             message = (error?.localizedDescription)!
+                            self.hideActivityIndicator()
                             self.alert(message: message, title: title)
                         } else {
                             // add the first and last name to info
@@ -57,9 +63,11 @@ class CreateAccountViewController: UIViewController {
                     
                 } else {
                     // not a valid password combo
+                    hideActivityIndicator()
                     alert(message: "The passwords you entered do not match, please try again.", title: "Passwords don't match")
                 }
             } else {
+                hideActivityIndicator()
                 alert(message: "The email you entered is not valid, please check the email and try again", title: "Invalid email address")
             }
         }
@@ -83,6 +91,7 @@ class CreateAccountViewController: UIViewController {
         ]
         
         ref.child("users/\(userID)").setValue(newUser)
+        hideActivityIndicator()
     }
     
     
@@ -104,6 +113,30 @@ class CreateAccountViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Set up a spinning activity indicator with a black background (in shape of rounded rectangle)
+    func showActivityIndicatory() {
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        loadingView.center = self.view.center
+        loadingView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2,
+                                y: loadingView.frame.size.height / 2)
+        loadingView.addSubview(activityIndicator)
+        self.view.addSubview(loadingView)
+        activityIndicator.startAnimating()
+    }
+    
+    // Stop animating activity indicator, and remove the black background that surrounds it
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+        self.loadingView.removeFromSuperview()
     }
 
     /*
