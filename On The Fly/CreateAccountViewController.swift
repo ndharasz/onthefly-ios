@@ -16,7 +16,8 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var emailTextField: PaddedTextField!
     @IBOutlet weak var passwordTextField: PaddedTextField!
     @IBOutlet weak var confirmPasswordTextField: PaddedTextField!
-    var ref = FIRDatabase.database() //trying to get to database here
+    
+    var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     
     var textFieldArray: [UITextField] = []
     
@@ -40,13 +41,16 @@ class CreateAccountViewController: UIViewController {
                             message = (error?.localizedDescription)!
                             self.alert(message: message, title: title)
                         } else {
+                            // add the first and last name to info
+                            let userID = user?.uid
+                            self.addUserInfo(email: userEmail, firstName: userFirstName!, lastName: userLastName!, userID: userID!)
+                            // feedback to user that the account creation worked
                             title = "Success!"
                             message = "Account created."
                             self.alertDismissView(message: message, title: title)
                         }
                     })
-                    //trying to add the first and last name to info
-                    addUserInfo(firstName: userFirstName!, lastName: userLastName!)
+                    
                 } else {
                     //not a valid password combo
                     alert(message: "The passwords you entered do not match, please try again.", title: "Passwords don't match")
@@ -70,7 +74,7 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
-    //checking validity of password and making sure passwords match
+    // checking validity of password and making sure passwords match
     private func checkValidPassword(password: String, confirmPassword: String) -> Bool {
         if (password == confirmPassword) {
             return true
@@ -79,14 +83,15 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
-    //adding the user's first and last name to their user id in firebase
-    private func addUserInfo(firstName: String, lastName: String) {
-//        let newUser = [
-//            "provider": authData.provider,
-//            "displayName": authData.providerData["displayName"] as? NSString as? String
-//        ]
-//        ref.childByAppendingPath("users")
-//            .childByAppendingPath(authData.uid).setValue(newUser)
+    // adding the user's first and last name to their user id in firebase
+    func addUserInfo(email: String, firstName: String, lastName: String, userID: String) {
+        let newUser = [
+            "email": email,
+            "firstName": firstName,
+            "lastName": lastName
+        ]
+        
+        ref.child("users/\(userID)").setValue(newUser)
     }
     
     
