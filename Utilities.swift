@@ -73,6 +73,11 @@ extension UIButton {
         crossFade.fillMode = kCAFillModeForwards
         imageView.layer.add(crossFade, forKey: "animateContents")
     }
+    
+    func addBlackBorder() {
+        self.layer.borderWidth = 2.0
+        self.layer.borderColor = UIColor.black.cgColor
+    }
 }
 
 extension UILabel {

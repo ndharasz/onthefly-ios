@@ -13,12 +13,16 @@ class ForgotPasswordViewController: UIViewController {
 
     @IBOutlet weak var emailTextfield: PaddedTextField!
     
+    @IBOutlet weak var resetPswdButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
         emailTextfield.roundCorners()
+        resetPswdButton.addBlackBorder()
+        cancelButton.addBlackBorder()
 
     }
 

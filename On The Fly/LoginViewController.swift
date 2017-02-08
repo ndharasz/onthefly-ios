@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var checkBoxButton: CheckboxButton!
     @IBOutlet weak var usernameTextfield: PaddedTextField!
     @IBOutlet weak var passwordTextfield: PaddedTextField!
@@ -20,6 +21,7 @@ class LoginViewController: UIViewController {
         
         usernameTextfield.roundCorners()
         passwordTextfield.roundCorners()
+        loginButton.addBlackBorder()
     }
 
     override func didReceiveMemoryWarning() {

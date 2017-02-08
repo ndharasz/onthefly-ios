@@ -16,6 +16,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var emailTextField: PaddedTextField!
     @IBOutlet weak var passwordTextField: PaddedTextField!
     @IBOutlet weak var confirmPasswordTextField: PaddedTextField!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     
@@ -125,6 +126,8 @@ class CreateAccountViewController: UIViewController {
         for eachTextField in textFieldArray {
             eachTextField.roundCorners()
         }
+        
+        cancelButton.addBlackBorder()
     }
 
     override func didReceiveMemoryWarning() {
