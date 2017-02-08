@@ -38,8 +38,9 @@ class CreateAccountViewController: UIViewController {
         // create account
         if let userEmail = emailTextField.text, let userPassword = passwordTextField.text {
             let validPassword = checkValidPassword(password: userPassword, confirmPassword: userConfirmPassword!) //checks to make sure passwords match
+            let validNames = checkValidNames(firstName: userFirstName!, lastName: userLastName!) //checks for illegal characters in first and last name
             if (userEmail.isValidEmail()) {
-                if (validPassword) {
+                if (validPassword && validNames) {
                     // actually creating new user in firebase
                     FIRAuth.auth()?.createUser(withEmail: userEmail, password: userPassword, completion: { (user: FIRUser?, error) in
                         var title = ""
@@ -64,7 +65,11 @@ class CreateAccountViewController: UIViewController {
                 } else {
                     // not a valid password combo
                     hideActivityIndicator()
-                    alert(message: "The passwords you entered do not match, please try again.", title: "Passwords don't match")
+                    if (!validPassword) {
+                        alert(message: "The passwords you entered do not match, please try again.", title: "Passwords don't match")
+                    } else {
+                        alert(message: "There is an illegal character in either your first or last name, please use letters only.")
+                    }
                 }
             } else {
                 hideActivityIndicator()
@@ -80,6 +85,22 @@ class CreateAccountViewController: UIViewController {
         } else {
             return false
         }
+    }
+    
+    // checking validity of first and last name
+    private func checkValidNames(firstName: String, lastName: String) -> Bool {
+        var valid = true
+        for chr in firstName.characters {
+            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
+                valid = false
+            }
+        }
+        for chr in lastName.characters {
+            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
+                valid = false
+            }
+        }
+        return valid
     }
     
     // adding the user's first and last name to their user id in firebase
