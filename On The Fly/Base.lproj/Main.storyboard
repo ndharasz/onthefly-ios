@@ -55,7 +55,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RIX-6T-wnz" kind="show" id="9IC-Jg-V01"/>
+                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5fd-cP-69W"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ul-4aR" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
@@ -139,6 +139,7 @@
                         <outlet property="loginButton" destination="tmn-8P-33f" id="W4S-QL-O9U"/>
                         <outlet property="passwordTextfield" destination="ybv-al-dXP" id="p1c-Nu-PkX"/>
                         <outlet property="usernameTextfield" destination="YHi-8l-bZE" id="FlV-bX-6Uo"/>
+                        <segue destination="RIX-6T-wnz" kind="show" identifier="HomePage" id="9Nc-cD-QYA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -987,6 +988,6 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9IC-Jg-V01"/>
+        <segue reference="9Nc-cD-QYA"/>
     </inferredMetricsTieBreakers>
 </document>
