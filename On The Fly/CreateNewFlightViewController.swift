@@ -79,7 +79,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         if let p = selectedPlane {
             plane = p
         } else {
-            plane = "Plane 1"
+            plane = pickerData[0]
         }
         let dptArpt = departureArptTextfield.text!
         let arvArpt = arrivalArptTextfield.text!
