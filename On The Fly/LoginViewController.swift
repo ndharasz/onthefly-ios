@@ -24,7 +24,16 @@ class LoginViewController: UIViewController {
         passwordTextfield.roundCorners()
         loginButton.addBlackBorder()
         
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let checkboxShouldBeChecked = UserDefaults.standard.value(forKey: "rememberMeChecked") {
+            if checkboxShouldBeChecked as! Bool {
+                self.checkBoxButton.checkYes()
+            } else {
+                self.checkBoxButton.checkNo()
+            }
+        }
     }
     
     @IBAction func loginAction(_ sender: Any) {
@@ -57,8 +66,7 @@ class LoginViewController: UIViewController {
                     }
                     
                     // Go to the UpcomingFlightsViewController if the login is sucessful
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomePage")
-                    self.present(vc!, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "HomePage", sender: nil)
                     
                 } else {
                     
