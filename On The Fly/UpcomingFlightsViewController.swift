@@ -205,6 +205,8 @@ class UpcomingFlightsViewController: UIViewController {
                 try FIRAuth.auth()?.signOut()
                 print("You have successfully logged out")
                 
+                UserDefaults.standard.set(false, forKey: "rememberMeChecked")
+                
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
                 present(vc, animated: true, completion: nil)
                 
