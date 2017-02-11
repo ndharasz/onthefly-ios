@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UpcomingFlightsViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class UpcomingFlightsViewController: UIViewController {
     @IBOutlet weak var flightLabel3: UILabel!
     @IBOutlet weak var flightLabel4: UILabel!
     @IBOutlet weak var mainHeaderLabel: UILabel!
+    @IBOutlet weak var createFlightButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     var label1selected = false
     var label2selected = false
@@ -35,6 +38,8 @@ class UpcomingFlightsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createFlightButton.addBlackBorder()
         
         label1selected = false
         label2selected = false
@@ -193,6 +198,24 @@ class UpcomingFlightsViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        if FIRAuth.auth()?.currentUser != nil {
+            do {
+                try FIRAuth.auth()?.signOut()
+                print("You have successfully logged out")
+                
+                UserDefaults.standard.set(false, forKey: "rememberMeChecked")
+                
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
+                present(vc, animated: true, completion: nil)
+                
+            } catch let error as NSError {
+                self.alert(message: error.localizedDescription, title: "Logout Error")
+            }
+        }
+    }
+    
     
 
     /*

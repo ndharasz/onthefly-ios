@@ -40,6 +40,16 @@ class CheckboxButton: UIButton {
 
     }
     
+    func checkYes() -> Void {
+        self.isClicked = true
+        self.imageView?.image = checkedImage
+    }
+    
+    func checkNo() -> Void {
+        self.isClicked = false
+        self.imageView?.image = uncheckedImage
+    }
+    
     func isChecked() -> Bool {
         return self.isClicked
     }
