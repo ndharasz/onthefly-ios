@@ -29,7 +29,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
 
-        pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
+//        pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
+        pickerData = GlobalVariables.sharedInstance.planeArray
         
         departureArptTextfield.roundCorners()
         arrivalArptTextfield.roundCorners()

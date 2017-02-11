@@ -12,22 +12,54 @@ import Firebase
 struct Plane {
     
     let name: String
+    let dryWeight: Double
+    let frontBaggageArm: Double
+    let rearBaggageArm: Double
+    let wingBaggageArm: Double
+    let pilotSeatsArm: Double
+    let rowArms: [Double]
+    let fuelArm: Double
+    let auxTankArm: Double
     let fireRef: FIRDatabaseReference?
     
-    init(name: String) {
+    init(name: String, dryWeight: Double, frontBagArm: Double, rearBagArm: Double, wingBagArm: Double, pilotArm: Double, rowArms: [Double], fuelArm: Double, auxTankArm: Double) {
         self.name = name
+        self.dryWeight = dryWeight
+        self.frontBaggageArm = frontBagArm
+        self.rearBaggageArm = rearBagArm
+        self.wingBaggageArm = wingBagArm
+        self.pilotSeatsArm = pilotArm
+        self.rowArms = rowArms
+        self.fuelArm = fuelArm
+        self.auxTankArm = auxTankArm
         fireRef = nil
     }
     
     init(snapshot: FIRDataSnapshot) {
         let snapshotValue = snapshot.value as! [String: Any]
-        self.name = snapshotValue["name"] as! String
+        self.dryWeight = snapshotValue["dryWeight"] as! Double
+        self.frontBaggageArm = snapshotValue["frontBaggageArm"] as! Double
+        self.rearBaggageArm = snapshotValue["rearBaggageArm"] as! Double
+        self.wingBaggageArm = snapshotValue["wingBaggageArm"] as! Double
+        self.pilotSeatsArm = snapshotValue["pilotSeatsArm"] as! Double
+        self.rowArms = snapshotValue["rowArms"] as! [Double]
+        self.fuelArm = snapshotValue["fuelArm"] as! Double
+        self.auxTankArm = snapshotValue["auxTankArm"] as! Double
+        self.name = snapshot.key
         self.fireRef = snapshot.ref
     }
     
     func toAnyObject() -> Any {
         return [
-            "name": name
+            "name": name,
+            "dryWeight": dryWeight,
+            "frontBaggageArm": frontBaggageArm,
+            "rearBaggageArm": rearBaggageArm,
+            "wingBaggageArm": wingBaggageArm,
+            "pilotSeatsArm": pilotSeatsArm,
+            "rowArms": rowArms,
+            "fuelArm": fuelArm,
+            "auxTankArm": auxTankArm
         ]
     }
     

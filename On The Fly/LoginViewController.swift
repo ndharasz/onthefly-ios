@@ -28,6 +28,7 @@ class LoginViewController: UIViewController {
         loginButton.addBlackBorder()
         
         rememberMeLogin()
+        syncPlaneList()
         
     }
     
@@ -147,6 +148,21 @@ class LoginViewController: UIViewController {
         
         checkBoxButton.checkBox()
         
+    }
+    
+    func syncPlaneList() {
+        GlobalVariables.sharedInstance.planeArray = []
+        let fireRef = FIRDatabase.database().reference()
+        let planeRef = fireRef.child("planes")
+        planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            for each in snapshot.children {
+//                print((each as! FIRDataSnapshot).key)
+                GlobalVariables.sharedInstance.planeArray.append((each as! FIRDataSnapshot).key)
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
 

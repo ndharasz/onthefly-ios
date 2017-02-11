@@ -144,10 +144,10 @@
 		C35FBA411E3B041100A53888 /* Custom Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				C37090051E4F716A00AB3B8B /* GlobalVariables.swift */,
 				C302D8A11E3721F100CB2B54 /* Utilities.swift */,
 				C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */,
 				C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */,
-				C37090051E4F716A00AB3B8B /* GlobalVariables.swift */,
 			);
 			name = "Custom Support Files";
 			sourceTree = "<group>";
