@@ -18,9 +18,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var frontCargoView: UIView!
     @IBOutlet weak var rearCargoView: UIView!
-    
-    
-    
+    @IBOutlet weak var createReportButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +60,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 //        addButton1.centerYAnchor.constraint(equalTo: frontCargoView.centerYAnchor).isActive = true
 //        addButton1.widthAnchor.constraint(equalToConstant: 50).isActive = true
 //        addButton1.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        createReportButton.addBlackBorder()
 
         
     }
