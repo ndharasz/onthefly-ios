@@ -15,14 +15,17 @@ class ReportGenerationViewController: UIViewController {
     
     @IBOutlet weak var emailTextfield: PaddedTextField!
     
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
         emailTextfield.roundCorners()
-
         
+        sendButton.addBlackBorder()
+        cancelButton.addBlackBorder()        
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -21,6 +22,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var arrivalArptTextfield: PaddedTextField!
     
     var pickerData: [String] = [String]()
+    
+    var selectedPlane: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +65,48 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName:UIColor.white])
         return myTitle
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedPlane = pickerData[row]
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func submitButtonPressed(_ sender: Any) {
+        var plane = ""
+        if let p = selectedPlane {
+            plane = p
+        } else {
+            plane = "Plane 1"
+        }
+        let dptArpt = departureArptTextfield.text!
+        let arvArpt = arrivalArptTextfield.text!
+        
+        let dateFormatter = DateFormatter()
+        // Now we specify the display format, e.g. "08-27-2017"
+        dateFormatter.dateFormat = "MM-dd-YYYY"
+        // Now we get the date from the UIDatePicker and convert it to a string
+        let strDate = dateFormatter.string(from: datePicker.date)
+        // Finally we set the text of the label to our new string with the date
+        let date = strDate
+        
+        dateFormatter.timeStyle = .short
+        let strTime = dateFormatter.string(from: datePicker.date)
+        let time = strTime
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        let newFlight = Flight(plane: plane, dptArpt: dptArpt, arvArpt: arvArpt, date: date, time: time, uid: uid!)
+        
+        let fireRef = FIRDatabase.database().reference()
+        let flightRef = fireRef.child("flights")
+        flightRef.childByAutoId().setValue(newFlight.toAnyObject())
+        
+        self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
+    }
+    
+    
     
 
     /*

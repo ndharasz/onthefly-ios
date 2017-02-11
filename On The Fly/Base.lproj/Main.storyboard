@@ -593,7 +593,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="wDc-Yu-kR2" kind="show" id="wGQ-rn-mch"/>
+                                    <action selector="submitButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="UNz-TA-bKp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLZ-cw-jzt">
@@ -607,7 +607,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RIX-6T-wnz" kind="show" id="MPv-9M-z1d"/>
+                                    <action selector="cancelButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="TVa-Tz-huR"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. ATL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
@@ -663,6 +663,7 @@
                         <outlet property="departureArptTextfield" destination="QUK-dV-23c" id="2yb-b5-4tg"/>
                         <outlet property="planePicker" destination="Vfc-vO-T5T" id="jVW-LP-EBq"/>
                         <outlet property="submitButton" destination="ZR5-qQ-kWU" id="RDO-sD-LcH"/>
+                        <segue destination="wDc-Yu-kR2" kind="show" identifier="createFlightToEditFlight" id="ACs-8Z-TM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dg-eE-p0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -846,6 +847,7 @@
                     <connections>
                         <outlet property="cargoViewButton" destination="V9Q-uq-UCU" id="sEU-Kg-XUT"/>
                         <outlet property="containerView" destination="teR-fr-XTd" id="LvF-mn-o6R"/>
+                        <outlet property="createReportButton" destination="gXp-bj-j7s" id="UWG-fg-7Yt"/>
                         <outlet property="frontCargoView" destination="mTt-Df-Q2v" id="jmk-1C-g0K"/>
                         <outlet property="pageControl" destination="erA-nP-hW5" id="5kf-h4-M5z"/>
                         <outlet property="passengerCollectionView" destination="QE9-BZ-01j" id="39Y-Wx-Eod"/>
@@ -977,8 +979,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="qTv-mr-RBH" id="nxP-rW-VZv"/>
                         <outlet property="emailTextfield" destination="qYs-Vh-D6E" id="7DH-Me-6tN"/>
                         <outlet property="saveLocallyCheckbox" destination="n56-zD-rkw" id="EdT-gT-3X6"/>
+                        <outlet property="sendButton" destination="f4e-c9-8Z2" id="5ik-Gf-NL8"/>
                         <outlet property="sendReportCheckbox" destination="7NW-Kn-ZVj" id="FTM-5S-gV7"/>
                         <segue destination="RIX-6T-wnz" kind="show" identifier="homeAfterReportSegue" id="ELt-yp-pXI"/>
                     </connections>
@@ -992,6 +996,6 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MPv-9M-z1d"/>
+        <segue reference="w7Z-Mi-zfh"/>
     </inferredMetricsTieBreakers>
 </document>
