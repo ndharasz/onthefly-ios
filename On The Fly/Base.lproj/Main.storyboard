@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--LoginPage-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginPage" title="LoginPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -55,7 +55,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RIX-6T-wnz" kind="show" id="9IC-Jg-V01"/>
+                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5fd-cP-69W"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ul-4aR" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
@@ -139,11 +139,12 @@
                         <outlet property="loginButton" destination="tmn-8P-33f" id="W4S-QL-O9U"/>
                         <outlet property="passwordTextfield" destination="ybv-al-dXP" id="p1c-Nu-PkX"/>
                         <outlet property="usernameTextfield" destination="YHi-8l-bZE" id="FlV-bX-6Uo"/>
+                        <segue destination="RIX-6T-wnz" kind="show" identifier="HomePage" id="9Nc-cD-QYA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
+            <point key="canvasLocation" x="-153" y="7"/>
         </scene>
         <!--Upcoming Flights View Controller-->
         <scene sceneID="p5t-Ns-cej">
@@ -168,7 +169,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="XfB-cj-NX0"/>
+                                    <action selector="logoutButtonPressed:" destination="RIX-6T-wnz" eventType="touchUpInside" id="xrK-KO-Qo1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Flights" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apo-2G-pRC">
@@ -245,6 +246,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="createFlightButton" destination="sN0-4l-Q2k" id="efW-eL-xXL"/>
                         <outlet property="flightLabel1" destination="j4f-zG-p2U" id="YkV-ij-NsT"/>
                         <outlet property="flightLabel2" destination="ENK-7h-PdZ" id="FUD-mN-fgh"/>
                         <outlet property="flightLabel3" destination="6fm-LN-A7c" id="n0u-hD-Och"/>
@@ -252,6 +254,7 @@
                         <outlet property="label2from1" destination="QNN-3P-7QU" id="lkj-hw-ear"/>
                         <outlet property="label3from2" destination="6cu-2u-fed" id="kAm-sP-iA2"/>
                         <outlet property="label4from3" destination="rpt-3v-J0M" id="zCU-kf-X02"/>
+                        <outlet property="logoutButton" destination="eFr-kz-kkM" id="RkE-80-Gml"/>
                         <outlet property="mainHeaderLabel" destination="mhD-Jt-VcT" id="kYK-5Q-0rd"/>
                     </connections>
                 </viewController>
@@ -655,9 +658,11 @@
                     </view>
                     <connections>
                         <outlet property="arrivalArptTextfield" destination="5Y4-Ee-Ywo" id="Urz-XI-BLW"/>
+                        <outlet property="cancelButton" destination="lLZ-cw-jzt" id="lxS-BL-4Te"/>
                         <outlet property="datePicker" destination="VTT-AN-9kf" id="ugV-Eo-JJM"/>
                         <outlet property="departureArptTextfield" destination="QUK-dV-23c" id="2yb-b5-4tg"/>
                         <outlet property="planePicker" destination="Vfc-vO-T5T" id="jVW-LP-EBq"/>
+                        <outlet property="submitButton" destination="ZR5-qQ-kWU" id="RDO-sD-LcH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dg-eE-p0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -987,6 +992,6 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9IC-Jg-V01"/>
+        <segue reference="MPv-9M-z1d"/>
     </inferredMetricsTieBreakers>
 </document>

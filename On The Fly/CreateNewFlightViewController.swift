@@ -13,6 +13,10 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var planePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    
     @IBOutlet weak var departureArptTextfield: PaddedTextField!
     @IBOutlet weak var arrivalArptTextfield: PaddedTextField!
     
@@ -29,6 +33,9 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         
         datePicker.setValue(UIColor.white, forKey: "textColor")
         datePicker.setValue(true, forKey: "highlightsToday")
+        
+        submitButton.addBlackBorder()
+        cancelButton.addBlackBorder()
     }
 
     override func didReceiveMemoryWarning() {
