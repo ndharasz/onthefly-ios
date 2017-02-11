@@ -86,8 +86,8 @@ class LoginViewController: UIViewController {
     
     func rememberMeLogin() {
         if let checkboxShouldBeChecked = UserDefaults.standard.value(forKey: "rememberMeChecked") {
-            self.showActivityIndicatory()
             if checkboxShouldBeChecked as! Bool {
+                self.showActivityIndicatory()
                 let username = UserDefaults.standard.value(forKey: "username") as! String
                 let password = UserDefaults.standard.value(forKey: "password") as! String
                 FIRAuth.auth()?.signIn(withEmail: username, password: password) { (user, error) in
