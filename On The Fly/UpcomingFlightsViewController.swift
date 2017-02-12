@@ -17,9 +17,10 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     
     var flights:[Flight] = [Flight]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.layer.cornerRadius = 8
         
         createFlightButton.addBlackBorder()
         
@@ -121,6 +122,15 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         self.performSegue(withIdentifier: "EditFlight", sender: nil)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
+        cell.editButton.isHidden = false
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
+        cell.editButton.isHidden = true
+    }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        var randString = flights[indexPath.row]
