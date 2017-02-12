@@ -17,6 +17,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     
     var flights:[Flight] = [Flight]()
     
+    let flightsRef = FIRDatabase.database().reference(withPath: "flights")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,11 +26,19 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         
         createFlightButton.addBlackBorder()
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         fetchUserFlights()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if let selection: IndexPath = tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: selection, animated: true)
+            let cell = tableView.cellForRow(at: selection) as! UpcomingFlightTableViewCell
+            cell.editButton.isHidden = true
+        }
+        
+            }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,18 +66,18 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     
     func fetchUserFlights() {
         GlobalVariables.sharedInstance.flightArray = []
-        let fireRef = FIRDatabase.database().reference()
-        let planeRef = fireRef.child("flights")
-        planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        flightsRef.queryOrdered(byChild: "date").observe(.value, with: { (snapshot) in
+            var newFlights: [Flight] = []
+            
             for each in snapshot.children {
-                //                print((each as! FIRDataSnapshot).key)
                 let newFlight = Flight(snapshot: each as! FIRDataSnapshot)
                 let uid = FIRAuth.auth()!.currentUser!.uid
                 if newFlight.userid == uid {
-                    GlobalVariables.sharedInstance.flightArray.append(newFlight)
+                    newFlights.append(newFlight)
                 }
             }
-            self.flights = GlobalVariables.sharedInstance.flightArray
+            self.flights = newFlights
             self.tableView.reloadData()
             
         }) { (error) in
@@ -106,6 +116,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         
         cell.infoLabel.text = "\(dateFormatter.string(from: date))          \(flight.departAirport)                  \(flight.arriveAirport)"
         
+        cell.editButton.tag = indexPath.row
+        
         return cell
     }
     
@@ -118,13 +130,21 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     
-    @IBAction func editButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "EditFlight", sender: nil)
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = false
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
+        if cell.isSelected {
+            cell.editButton.isHidden = true
+            tableView.deselectRow(at: indexPath, animated: true)
+            return nil
+        } else {
+            return indexPath
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -132,15 +152,16 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         cell.editButton.isHidden = true
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        var randString = flights[indexPath.row]
-//        
-//        randString.append("\n\n\n\n")
-//        
-//        flights[indexPath.row] = randString
-//        
-//        tableView.reloadData()
-//    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let flight = flights[indexPath.row]
+            flight.fireRef?.removeValue()
+        }
+    }
     
 
     /*
