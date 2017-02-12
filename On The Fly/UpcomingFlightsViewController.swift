@@ -16,9 +16,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var logoutButton: UIButton!
     
     var flights:[Flight] = [Flight]()
-    
     let flightsRef = FIRDatabase.database().reference(withPath: "flights")
-    
     var flightToEdit: Flight?
     
     var messageView: UIView = UIView()
@@ -26,7 +24,6 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     var loadingView: UIView = UIView()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +49,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Logout Button Coding
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         if FIRAuth.auth()?.currentUser != nil {

@@ -26,6 +26,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
+        if let thisFlight = flight {
+            print(thisFlight.toAnyObject())
+        }
+        
         // Example of updating and saving to Firebase from this "EditFlight" screen
 //        if let thisFlight = flight {
 //            let updates = ["departAirport":"SLC"]
