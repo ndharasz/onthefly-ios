@@ -13,7 +13,7 @@ class GlobalVariables {
     var tripName = "Trip Name"
     var gallonsOfFeul = 0.0      // in gallons
     var planeArray: [String] = []
-    
+    var flightArray: [Flight] = []
     
     static let sharedInstance = GlobalVariables()
 }

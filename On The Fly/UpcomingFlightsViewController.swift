@@ -9,194 +9,29 @@
 import UIKit
 import Firebase
 
-class UpcomingFlightsViewController: UIViewController {
+class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var flightLabel1: UILabel!
-    @IBOutlet weak var flightLabel2: UILabel!
-    @IBOutlet weak var flightLabel3: UILabel!
-    @IBOutlet weak var flightLabel4: UILabel!
-    @IBOutlet weak var mainHeaderLabel: UILabel!
     @IBOutlet weak var createFlightButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var logoutButton: UIButton!
     
-    var label1selected = false
-    var label2selected = false
-    var label3selected = false
-    var label4selected = false
+    var flights:[Flight] = [Flight]()
     
-    let standardOffsetDistance: CGFloat = 15.00
-    let verticalOffsetDistance: CGFloat = 75.00
-    
-    
-    @IBOutlet weak var label2from1: NSLayoutConstraint!
-    @IBOutlet weak var label3from2: NSLayoutConstraint!
-    @IBOutlet weak var label4from3: NSLayoutConstraint!
-    
-    var infoHeaderLabel: UILabel!
-    var newInfoLabel: UILabel!
-    var darkRectangle: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createFlightButton.addBlackBorder()
         
-        label1selected = false
-        label2selected = false
-        label3selected = false
-        label4selected = false
-        
-        let tapRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap1))
-        let tapRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap2))
-        let tapRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap3))
-        let tapRecognizer4 = UITapGestureRecognizer(target: self, action: #selector(UpcomingFlightsViewController.handleTap4))
-        
-
-        flightLabel1.addGestureRecognizer(tapRecognizer1)
-        flightLabel2.addGestureRecognizer(tapRecognizer2)
-        flightLabel3.addGestureRecognizer(tapRecognizer3)
-        flightLabel4.addGestureRecognizer(tapRecognizer4)
-        
-        
-        infoHeaderLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 325.5, height: 27.5))
-        infoHeaderLabel.text = "Dpt Time      Arr Time     A/C Reg #"
-        infoHeaderLabel.textColor = UIColor.white
-        infoHeaderLabel.setSizeFont(sizeFont: 21.0)
-        infoHeaderLabel.isHidden = true
-        self.view.addSubview(infoHeaderLabel)
-        
-        newInfoLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 450, height: 30))
-        newInfoLabel.numberOfLines = 0
-        newInfoLabel.text = "09:00            12:00               N736OR"
-        newInfoLabel.textColor = UIColor.white
-        newInfoLabel.setSizeFont(sizeFont: 18.0)
-        newInfoLabel.isHidden = true
-        self.view.addSubview(newInfoLabel)
-        
-        darkRectangle = UIView(frame: CGRect(x: 0, y: 0, width: 350, height: 133))
-        darkRectangle.backgroundColor = UIColor.darkGray
-        darkRectangle.isHidden = true
-        self.view.addSubview(darkRectangle)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchUserFlights()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    
-    // MARK: - Tap Gesture Recognizers
-    
-    func handleTap1(gestureRecognizer: UITapGestureRecognizer) {
-        if label1selected {
-            label1selected = false
-            newInfoLabel.isHidden = true
-            infoHeaderLabel.isHidden = true
-            darkRectangle.isHidden = true
-            label2from1.constant = standardOffsetDistance
-            
-        } else {
-            label1selected = true
-            label2from1.constant = verticalOffsetDistance
-            
-            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
-            infoHeaderLabel.frame.origin.y = flightLabel1.frame.origin.y + 35
-            infoHeaderLabel.isHidden = false
-            
-            newInfoLabel.frame.origin.x = flightLabel1.frame.origin.x
-            newInfoLabel.frame.origin.y = flightLabel1.frame.origin.y + 65
-            newInfoLabel.isHidden = false
-            
-            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 133)
-            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
-            darkRectangle.frame.origin.y = flightLabel1.frame.origin.y - 45
-            darkRectangle.isHidden = false
-            self.view.sendSubview(toBack: darkRectangle)
-        }
-        
-    }
-    
-    func handleTap2(gestureRecognizer: UITapGestureRecognizer) {
-        if label2selected {
-            label2selected = false
-            newInfoLabel.isHidden = true
-            infoHeaderLabel.isHidden = true
-            darkRectangle.isHidden = true
-            label3from2.constant = standardOffsetDistance
-        } else {
-            label2selected = true
-            label3from2.constant = verticalOffsetDistance
-            
-            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
-            infoHeaderLabel.frame.origin.y = flightLabel2.frame.origin.y + 35
-            infoHeaderLabel.isHidden = false
-            
-            newInfoLabel.frame.origin.x = flightLabel2.frame.origin.x
-            newInfoLabel.frame.origin.y = flightLabel2.frame.origin.y + 65
-            newInfoLabel.isHidden = false
-            
-            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 90)
-            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
-            darkRectangle.frame.origin.y = flightLabel2.frame.origin.y
-            darkRectangle.isHidden = false
-            self.view.sendSubview(toBack: darkRectangle)
-        }
-        
-    }
-    
-    func handleTap3(gestureRecognizer: UITapGestureRecognizer) {
-        if label3selected {
-            label3selected = false
-            newInfoLabel.isHidden = true
-            infoHeaderLabel.isHidden = true
-            darkRectangle.isHidden = true
-            label4from3.constant = standardOffsetDistance
-        } else {
-            label3selected = true
-            label4from3.constant = verticalOffsetDistance
-            
-            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
-            infoHeaderLabel.frame.origin.y = flightLabel3.frame.origin.y + 35
-            infoHeaderLabel.isHidden = false
-            
-            newInfoLabel.frame.origin.x = flightLabel3.frame.origin.x
-            newInfoLabel.frame.origin.y = flightLabel3.frame.origin.y + 65
-            newInfoLabel.isHidden = false
-            
-            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 90)
-            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
-            darkRectangle.frame.origin.y = flightLabel3.frame.origin.y
-            darkRectangle.isHidden = false
-            self.view.sendSubview(toBack: darkRectangle)
-        }
-        
-    }
-    
-    func handleTap4(gestureRecognizer: UITapGestureRecognizer) {
-        if label4selected {
-            label4selected = false
-            newInfoLabel.isHidden = true
-            infoHeaderLabel.isHidden = true
-            darkRectangle.isHidden = true
-        } else {
-            label4selected = true
-            
-            infoHeaderLabel.frame.origin.x = mainHeaderLabel.frame.origin.x
-            infoHeaderLabel.frame.origin.y = flightLabel4.frame.origin.y + 35
-            infoHeaderLabel.isHidden = false
-            
-            newInfoLabel.frame.origin.x = flightLabel4.frame.origin.x
-            newInfoLabel.frame.origin.y = flightLabel4.frame.origin.y + 65
-            newInfoLabel.isHidden = false
-            
-            darkRectangle.frame = CGRect(x: 0, y: 0, width: 350, height: 90)
-            darkRectangle.frame.origin.x = mainHeaderLabel.frame.origin.x - 5
-            darkRectangle.frame.origin.y = flightLabel4.frame.origin.y
-            darkRectangle.isHidden = false
-            self.view.sendSubview(toBack: darkRectangle)
-        }
-        
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
@@ -216,6 +51,86 @@ class UpcomingFlightsViewController: UIViewController {
         }
     }
     
+    // MARK: - Firebase Call for Flight Retrieval
+    
+    func fetchUserFlights() {
+        GlobalVariables.sharedInstance.flightArray = []
+        let fireRef = FIRDatabase.database().reference()
+        let planeRef = fireRef.child("flights")
+        planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            for each in snapshot.children {
+                //                print((each as! FIRDataSnapshot).key)
+                let newFlight = Flight(snapshot: each as! FIRDataSnapshot)
+                let uid = FIRAuth.auth()!.currentUser!.uid
+                if newFlight.userid == uid {
+                    GlobalVariables.sharedInstance.flightArray.append(newFlight)
+                }
+            }
+            self.flights = GlobalVariables.sharedInstance.flightArray
+            self.tableView.reloadData()
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    // MARK: - TableView Functions
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.flights.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Date            Dpt Arpt          Arr Arpt"
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UpcomingFlightTableViewCell
+        
+        let flight = flights[indexPath.row]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yy"
+        
+        guard let date = dateFormatter.date(from: flight.date) else {
+            print("oops")
+            return cell
+        }
+        
+        
+        cell.infoLabel.text = "\(dateFormatter.string(from: date))          \(flight.departAirport)                  \(flight.arriveAirport)"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    
+    @IBAction func editButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "EditFlight", sender: nil)
+    }
+    
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        var randString = flights[indexPath.row]
+//        
+//        randString.append("\n\n\n\n")
+//        
+//        flights[indexPath.row] = randString
+//        
+//        tableView.reloadData()
+//    }
     
 
     /*
