@@ -208,9 +208,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRF-oH-1av">
-                                                    <rect key="frame" x="298" y="5" width="40" height="60"/>
+                                                    <rect key="frame" x="298" y="5" width="40" height="64.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="4Jw-h3-q6C"/>
                                                         <constraint firstAttribute="width" constant="40" id="xOp-cy-RKr"/>
                                                     </constraints>
                                                     <state key="normal" title="Edit"/>
@@ -219,7 +218,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Info Here" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdM-cW-7k9">
-                                                    <rect key="frame" x="8" y="5" width="282" height="60"/>
+                                                    <rect key="frame" x="8" y="5" width="282" height="64.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

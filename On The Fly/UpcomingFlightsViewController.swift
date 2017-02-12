@@ -150,16 +150,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         
         let flight = flights[indexPath.row]
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yy"
-        
-        guard let date = dateFormatter.date(from: flight.date) else {
-            print("oops")
-            return cell
-        }
-        
-        
-        cell.infoLabel.text = "\(dateFormatter.string(from: date))          \(flight.departAirport)                  \(flight.arriveAirport)"
+        cell.infoLabel.text = self.generateLabelShort(flight: flight)
         
         cell.editButton.tag = indexPath.row
         
@@ -178,16 +169,21 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = false
-        let oldLabelText = cell.infoLabel.text!
-        UserDefaults.standard.set(oldLabelText, forKey: "oldLabelText")
-        cell.infoLabel.text! += "\n\n\n"
+        tableView.headerView(forSection: 0)?.isHidden = true
+        cell.infoLabel.attributedText = self.generateLabelLong(flight: flights[indexPath.row])
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         if cell.isSelected {
             cell.editButton.isHidden = true
+            tableView.headerView(forSection: 0)?.isHidden = false
             tableView.deselectRow(at: indexPath, animated: true)
+            cell.infoLabel.text! = self.generateLabelShort(flight: flights[indexPath.row])
+            tableView.beginUpdates()
+            tableView.endUpdates()
             return nil
         } else {
             return indexPath
@@ -198,8 +194,10 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = true
-        cell.infoLabel.text = (UserDefaults.standard.value(forKey: "oldLabelText") as! String)
-        UserDefaults.standard.removeObject(forKey: "oldLabelText")
+        tableView.headerView(forSection: 0)?.isHidden = false
+        cell.infoLabel.text! = self.generateLabelShort(flight: flights[indexPath.row])
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -211,6 +209,37 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
             let flight = flights[indexPath.row]
             flight.fireRef?.removeValue()
         }
+    }
+    
+    // MARK: - Cell Label Generation Functions
+    
+    func generateLabelShort(flight: Flight) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yy"
+        
+        guard let date = dateFormatter.date(from: flight.date) else {
+            print("oops")
+            return ""
+        }
+        
+        
+        return "\n\(dateFormatter.string(from: date))          \(flight.departAirport)                  \(flight.arriveAirport)\n"
+    }
+    
+    func generateLabelLong(flight: Flight) -> NSAttributedString {
+        return makeAttributedString(flight: flight)
+    }
+    
+    func makeAttributedString(flight: Flight) -> NSAttributedString {
+        let titleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .headline), NSForegroundColorAttributeName: UIColor.black]
+        let subtitleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .subheadline)]
+        
+        let titleString = NSMutableAttributedString(string: "\nDept Time      Arr Arpt      A/C Reg No\n", attributes: titleAttributes)
+        let subtitleString = NSAttributedString(string: "\n\(flight.time )          \(flight.arriveAirport)          \(flight.plane)\n", attributes: subtitleAttributes)
+        
+        titleString.append(subtitleString)
+        
+        return titleString
     }
     
     
