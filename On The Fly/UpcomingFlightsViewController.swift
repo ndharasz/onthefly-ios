@@ -21,6 +21,12 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     
     var flightToEdit: Flight?
     
+    var messageView: UIView = UIView()
+    let messageLabel: UILabel = UILabel()
+    var loadingView: UIView = UIView()
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +75,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     func fetchUserFlights() {
         GlobalVariables.sharedInstance.flightArray = []
         
+        self.showActivityIndicatory()
+        
         flightsRef.queryOrdered(byChild: "date").observe(.value, with: { (snapshot) in
             var newFlights: [Flight] = []
             
@@ -82,10 +90,46 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
             self.flights = newFlights
             self.tableView.reloadData()
             
+            if self.flights.count == 0 {
+                
+                self.presentNoFlightMessage()
+                
+            } else {
+                
+                self.removeNoFlightMessage()
+                
+            }
+            
+            self.hideActivityIndicator()
+            
         }) { (error) in
             print(error.localizedDescription)
         }
         
+    }
+    
+    func presentNoFlightMessage() {
+        self.messageView.frame = CGRect(x: 0, y: 0, width: 300, height: 80)
+        self.messageView.center = self.view.center
+        self.messageView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        self.messageView.clipsToBounds = true
+        self.messageView.layer.cornerRadius = 10
+        
+        self.messageLabel.frame = CGRect(x: 0, y: 0, width: 300, height: 45)
+        self.messageLabel.numberOfLines = 0
+        self.messageLabel.textColor = UIColor.white
+        self.messageLabel.text = "No flights for this user"
+        self.messageLabel.textAlignment = NSTextAlignment.center
+        self.messageView.addSubview(messageLabel)
+        self.messageLabel.center = self.messageView.center
+        
+        self.view.addSubview(self.messageView)
+        self.view.addSubview(self.messageLabel)
+    }
+    
+    func removeNoFlightMessage() {
+        self.messageView.removeFromSuperview()
+        self.messageLabel.removeFromSuperview()
     }
     
     // MARK: - TableView Functions
@@ -135,6 +179,9 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = false
+        let oldLabelText = cell.infoLabel.text!
+        UserDefaults.standard.set(oldLabelText, forKey: "oldLabelText")
+        cell.infoLabel.text! += "\n\n\n"
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -152,6 +199,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = true
+        cell.infoLabel.text = (UserDefaults.standard.value(forKey: "oldLabelText") as! String)
+        UserDefaults.standard.removeObject(forKey: "oldLabelText")
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -184,5 +233,32 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
             editFlightScene.flight = self.flightToEdit!
         }
     }
+    
+    // MARK: - Activity Indicator functions
+    
+    // Set up a spinning activity indicator with a black background (in shape of rounded rectangle)
+    func showActivityIndicatory() {
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        loadingView.center = self.view.center
+        loadingView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2,
+                                           y: loadingView.frame.size.height / 2)
+        loadingView.addSubview(activityIndicator)
+        self.view.addSubview(loadingView)
+        activityIndicator.startAnimating()
+    }
+    
+    // Stop animating activity indicator, and remove the black background that surrounds it
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+        self.loadingView.removeFromSuperview()
+    }
+
 
 }
