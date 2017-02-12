@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--LoginPage-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginPage" title="LoginPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="-153" y="7"/>
         </scene>
-        <!--Upcoming Flights View Controller-->
+        <!--HomePage-->
         <scene sceneID="p5t-Ns-cej">
             <objects>
-                <viewController id="RIX-6T-wnz" customClass="UpcomingFlightsViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomePage" title="HomePage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RIX-6T-wnz" customClass="UpcomingFlightsViewController" customModule="On_The_Fly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kzi-pX-X37"/>
                         <viewControllerLayoutGuide type="bottom" id="wOl-5n-g16"/>
@@ -996,6 +996,6 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w7Z-Mi-zfh"/>
+        <segue reference="9Nc-cD-QYA"/>
     </inferredMetricsTieBreakers>
 </document>

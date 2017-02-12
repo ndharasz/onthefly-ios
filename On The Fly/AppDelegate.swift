@@ -13,11 +13,21 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var storyboard: UIStoryboard?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
+        
+        // Secondary option for skipping login for a user previously authenticated with "remember me"
+//        self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let currentUser = FIRAuth.auth()?.currentUser!
+//        if currentUser != nil {
+//            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePage")
+//        } else {
+//            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginScreen")
+//        }
         
         return true
     }
