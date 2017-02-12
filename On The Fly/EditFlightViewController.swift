@@ -20,9 +20,17 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var rearCargoView: UIView!
     @IBOutlet weak var createReportButton: UIButton!
     
+    var flight: Flight?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        // Example of updating and saving to Firebase from this "EditFlight" screen
+//        if let thisFlight = flight {
+//            let updates = ["departAirport":"SLC"]
+//            thisFlight.fireRef?.updateChildValues(updates)
+//        }
         
         passengerCollectionView.isHidden = false
         

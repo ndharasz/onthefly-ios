@@ -19,6 +19,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     
     let flightsRef = FIRDatabase.database().reference(withPath: "flights")
     
+    var flightToEdit: Flight?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -163,15 +165,24 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
+    
+    // MARK: - Edit Button Coding
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        self.flightToEdit = flights[sender.tag]
+        self.performSegue(withIdentifier: "EditFlight", sender: nil)
+    }
+    
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "EditFlight" {
+            let editFlightScene = segue.destination as! EditFlightViewController
+            editFlightScene.flight = self.flightToEdit!
+        }
     }
-    */
 
 }
