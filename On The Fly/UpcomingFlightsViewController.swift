@@ -27,8 +27,6 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.layer.cornerRadius = 8
-        
         createFlightButton.addBlackBorder()
         
         fetchUserFlights()
@@ -234,12 +232,17 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         let titleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .headline), NSForegroundColorAttributeName: UIColor.black]
         let subtitleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .subheadline)]
         
-        let titleString = NSMutableAttributedString(string: "\nDept Time      Arr Arpt      A/C Reg No\n", attributes: titleAttributes)
-        let subtitleString = NSAttributedString(string: "\n\(flight.time )          \(flight.arriveAirport)          \(flight.plane)\n", attributes: subtitleAttributes)
+        let titleString1 = NSMutableAttributedString(string: "   Date            Dpt Arpt         Arr Arpt", attributes: titleAttributes)
+        let subtitleString1 = NSAttributedString(string: "\n   02-15-17         \(flight.departAirport)" + "                  \(flight.arriveAirport)\n", attributes: subtitleAttributes)
         
-        titleString.append(subtitleString)
+        let titleString2 = NSAttributedString(string: "\nDept Time     Arr Time        A/C No\n", attributes: titleAttributes)
+        let subtitleString2 = NSAttributedString(string: "   \(flight.time )            12:00" + "              N736X\n", attributes: subtitleAttributes)
         
-        return titleString
+        titleString1.append(subtitleString1)
+        titleString1.append(titleString2)
+        titleString1.append(subtitleString2)
+        
+        return titleString1
     }
     
     
