@@ -9,13 +9,14 @@
 import UIKit
 import Firebase
 
-class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var planePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     
     @IBOutlet weak var departureArptTextfield: PaddedTextField!
@@ -26,10 +27,18 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     var selectedPlane: String?
     
     var flightToPass: Flight?
+    
+    var autoCompletePossibilities = GlobalVariables.sharedInstance.airports
+    var autoComplete = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
+        self.tableView.isHidden = true
 
 //        pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
         pickerData = GlobalVariables.sharedInstance.planeArray
@@ -130,6 +139,69 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
             let editFlightScene = segue.destination as! EditFlightViewController
             editFlightScene.flight = self.flightToPass!
         }
+    }
+    
+    // MARK: - Auto Complete Code
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        tableView.isHidden = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        tableView.isHidden = true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        searchAutocompleteEntriesWithSubstring(substring: substring)
+        
+        return true
+    }
+    
+    func searchAutocompleteEntriesWithSubstring(substring: String) {
+        
+        autoComplete.removeAll(keepingCapacity: false)
+        
+        for key in autoCompletePossibilities {
+            let myString: String! = key as String
+            
+            if myString.range(of: substring) != nil {
+                autoComplete.append(key)
+            }
+        }
+        
+        tableView.reloadData()
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
+        
+        let index = indexPath.row
+        
+        cell.textLabel!.text = autoComplete[index]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return autoComplete.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.departureArptTextfield.text = autoComplete[indexPath.row]
+        
+        self.autoComplete = []
+        
+        self.tableView.reloadData()
+        
+        self.tableView.isHidden = true
     }
 
 }

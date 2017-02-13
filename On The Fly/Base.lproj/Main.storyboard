@@ -562,7 +562,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. DFW" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. DFW" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
                                 <rect key="frame" x="16" y="346" width="343" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -621,7 +621,7 @@
                                     <action selector="cancelButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="TVa-Tz-huR"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. ATL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. ATL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
                                 <rect key="frame" x="16" y="245" width="343" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -629,13 +629,38 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sYD-sc-Y89" id="hOP-YZ-i8g"/>
+                                </connections>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-q3-xYu">
+                                <rect key="frame" x="16" y="294" width="343" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="ftz-xO-X07"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="AIv-n5-lgV">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AIv-n5-lgV" id="dZf-AR-pux">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="sYD-sc-Y89" id="znc-zE-FWS"/>
+                                    <outlet property="delegate" destination="sYD-sc-Y89" id="Ji4-UC-2Tk"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ajp-EB-u8P" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="17" id="1yK-8H-8Di"/>
                             <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="leading" secondItem="ajp-EB-u8P" secondAttribute="leading" id="6a4-nd-Yio"/>
+                            <constraint firstItem="c7X-q3-xYu" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="6nF-FG-SGs"/>
                             <constraint firstItem="efV-l6-HPJ" firstAttribute="leading" secondItem="5Y4-Ee-Ywo" secondAttribute="leading" id="7Fy-Rt-Iei"/>
                             <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="QUK-dV-23c" secondAttribute="trailing" id="7g9-YJ-fuX"/>
                             <constraint firstItem="QUK-dV-23c" firstAttribute="trailing" secondItem="5Y4-Ee-Ywo" secondAttribute="trailing" id="9lg-DU-Cqj"/>
@@ -648,6 +673,7 @@
                             <constraint firstItem="VTT-AN-9kf" firstAttribute="top" secondItem="ajp-EB-u8P" secondAttribute="bottom" constant="8" symbolic="YES" id="HtO-cG-76U"/>
                             <constraint firstItem="y1s-B0-w6M" firstAttribute="top" secondItem="lLZ-cw-jzt" secondAttribute="bottom" constant="40" id="JuC-4I-iac"/>
                             <constraint firstItem="VTT-AN-9kf" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="MBg-hV-Nwq"/>
+                            <constraint firstItem="c7X-q3-xYu" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="NIB-cy-Vb0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZR5-qQ-kWU" secondAttribute="trailing" constant="26" id="Oaq-HD-FR5"/>
                             <constraint firstItem="ZR5-qQ-kWU" firstAttribute="baseline" secondItem="lLZ-cw-jzt" secondAttribute="firstBaseline" id="Sms-sT-Gbs"/>
                             <constraint firstItem="lLZ-cw-jzt" firstAttribute="top" secondItem="ZR5-qQ-kWU" secondAttribute="top" id="UVy-Jk-S53"/>
@@ -663,6 +689,7 @@
                             <constraint firstItem="ZR5-qQ-kWU" firstAttribute="leading" secondItem="lLZ-cw-jzt" secondAttribute="trailing" constant="85" id="in8-Bb-07f"/>
                             <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="centerX" secondItem="VTT-AN-9kf" secondAttribute="centerX" id="mUM-1G-pr5"/>
                             <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="myH-Pw-O5I"/>
+                            <constraint firstItem="c7X-q3-xYu" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="4" id="rCd-j4-gOn"/>
                             <constraint firstItem="s2k-Od-bzu" firstAttribute="leading" secondItem="QUK-dV-23c" secondAttribute="leading" id="vfB-rg-wTW"/>
                             <constraint firstItem="lLZ-cw-jzt" firstAttribute="baseline" secondItem="ZR5-qQ-kWU" secondAttribute="firstBaseline" id="wSM-96-Wil"/>
                         </constraints>
@@ -674,12 +701,13 @@
                         <outlet property="departureArptTextfield" destination="QUK-dV-23c" id="2yb-b5-4tg"/>
                         <outlet property="planePicker" destination="Vfc-vO-T5T" id="jVW-LP-EBq"/>
                         <outlet property="submitButton" destination="ZR5-qQ-kWU" id="RDO-sD-LcH"/>
+                        <outlet property="tableView" destination="c7X-q3-xYu" id="sDX-F1-Mpj"/>
                         <segue destination="wDc-Yu-kR2" kind="show" identifier="createFlightToEditFlight" id="ACs-8Z-TM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dg-eE-p0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1458" y="788"/>
+            <point key="canvasLocation" x="1456.8" y="787.55622188905556"/>
         </scene>
         <!--Edit Flight View Controller-->
         <scene sceneID="o6q-Eq-SKo">
