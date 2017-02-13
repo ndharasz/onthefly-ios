@@ -34,6 +34,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.registerForKeyboardNotifications()
+        
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
@@ -195,13 +197,74 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.departureArptTextfield.text = autoComplete[indexPath.row]
+        let selectedText = autoComplete[indexPath.row]
+        
+        let regex = "\\(.*?\\)"
+        let matches = matchesForRegexInText(regex: regex, text: selectedText)
+        
+        if matches.count > 0 {
+            self.departureArptTextfield.text = matches[0].trimmingCharacters(in: .punctuationCharacters)
+        } else {
+            self.departureArptTextfield.text = "Error, please try again"
+        }
+        
         
         self.autoComplete = []
         
         self.tableView.reloadData()
         
         self.tableView.isHidden = true
+    }
+    
+    func matchesForRegexInText(regex: String!, text: String!) -> [String] {
+        
+        do {
+            
+            let regex = try NSRegularExpression(pattern: regex, options: [])
+            let nsString = text as NSString
+            
+            let results = regex.matches(in: text,
+                                        options: [], range: NSMakeRange(0, nsString.length))
+            return results.map { nsString.substring(with: $0.range)}
+            
+        } catch let error as NSError {
+            
+            print("invalid regex: \(error.localizedDescription)")
+            
+            return []
+        }}
+    
+    
+    // MARK: - Keyboard Appear/Disappear Handler
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if self.arrivalArptTextfield.isEditing {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0{
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if self.arrivalArptTextfield.isEditing {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y != 0{
+                    self.view.frame.origin.y += keyboardSize.height
+                }
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
