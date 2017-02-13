@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 
 class ForgotPasswordViewController: UIViewController {
 
@@ -23,7 +23,6 @@ class ForgotPasswordViewController: UIViewController {
         emailTextfield.roundCorners()
         resetPswdButton.addBlackBorder()
         cancelButton.addBlackBorder()
-
     }
 
     override func didReceiveMemoryWarning() {

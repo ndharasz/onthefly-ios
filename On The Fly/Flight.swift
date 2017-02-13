@@ -46,7 +46,7 @@ struct Flight {
             "departAirport": departAirport,
             "arriveAirport": arriveAirport,
             "date": date,
-            "time:": time,
+            "time": time,
             "userid": userid
         ]
     }

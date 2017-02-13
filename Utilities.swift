@@ -38,6 +38,7 @@ extension UIViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
     }
+
 }
 
 // Auto-round the corner of the TextField boxes
@@ -56,6 +57,13 @@ extension String {
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
+    }
+    
+    
+    mutating func trimTrailingWhitespace() {
+        if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
+            self.replaceSubrange(trailingWs, with: "")
+        }
     }
 }
 

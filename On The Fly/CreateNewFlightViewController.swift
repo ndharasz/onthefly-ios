@@ -24,12 +24,15 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     var pickerData: [String] = [String]()
     
     var selectedPlane: String?
+    
+    var flightToPass: Flight?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
 
-        pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
+//        pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
+        pickerData = GlobalVariables.sharedInstance.planeArray
         
         departureArptTextfield.roundCorners()
         arrivalArptTextfield.roundCorners()
@@ -70,6 +73,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         selectedPlane = pickerData[row]
     }
     
+    // MARK: - Button Functionality
+    
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -79,7 +84,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         if let p = selectedPlane {
             plane = p
         } else {
-            plane = "Plane 1"
+            plane = pickerData[0]
         }
         let dptArpt = departureArptTextfield.text!
         let arvArpt = arrivalArptTextfield.text!
@@ -101,22 +106,30 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         
         let fireRef = FIRDatabase.database().reference()
         let flightRef = fireRef.child("flights")
-        flightRef.childByAutoId().setValue(newFlight.toAnyObject())
+        let newFlightRef = flightRef.childByAutoId()
+        newFlightRef.setValue(newFlight.toAnyObject())
         
-        self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
+        newFlightRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let flightToEdit = Flight(snapshot: (snapshot))
+            self.flightToPass = flightToEdit
+            self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
+        })
+        
+//        self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
     }
     
     
-    
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "createFlightToEditFlight" {
+            let editFlightScene = segue.destination as! EditFlightViewController
+            editFlightScene.flight = self.flightToPass!
+        }
     }
-    */
 
 }
