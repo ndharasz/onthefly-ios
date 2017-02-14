@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var checkBoxButton: CheckboxButton!
@@ -28,8 +28,6 @@ class LoginViewController: UIViewController {
         loginButton.addBlackBorder()
         
         rememberMeLogin()
-        syncPlaneList()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -150,19 +148,15 @@ class LoginViewController: UIViewController {
         
     }
     
-    func syncPlaneList() {
-        GlobalVariables.sharedInstance.planeArray = []
-        let fireRef = FIRDatabase.database().reference()
-        let planeRef = fireRef.child("planes")
-        planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            for each in snapshot.children {
-//                print((each as! FIRDataSnapshot).key)
-                GlobalVariables.sharedInstance.planeArray.append((each as! FIRDataSnapshot).key)
-            }
-            
-        }) { (error) in
-            print(error.localizedDescription)
+    // MARK: - Text Field Delegate Functionality
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
         }
+        return false
     }
     
 

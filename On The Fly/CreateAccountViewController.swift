@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameTextField: PaddedTextField!
     @IBOutlet weak var lastNameTextField: PaddedTextField!
@@ -161,6 +161,17 @@ class CreateAccountViewController: UIViewController {
     func hideActivityIndicator() {
         activityIndicator.stopAnimating()
         self.loadingView.removeFromSuperview()
+    }
+    
+    // MARK: - Text Field Delegate Functionality
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
 
     /*

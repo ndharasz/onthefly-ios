@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
+        syncPlaneList()
+        
         // Secondary option for skipping login for a user previously authenticated with "remember me"
 //        self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 //        let currentUser = FIRAuth.auth()?.currentUser!
@@ -30,6 +32,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
         return true
+    }
+    
+    func syncPlaneList() {
+        GlobalVariables.sharedInstance.planeArray = []
+        let fireRef = FIRDatabase.database().reference()
+        let planeRef = fireRef.child("planes")
+        planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            for each in snapshot.children {
+                //                print((each as! FIRDataSnapshot).key)
+                GlobalVariables.sharedInstance.planeArray.append((each as! FIRDataSnapshot).key)
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
