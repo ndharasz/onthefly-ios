@@ -161,6 +161,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.passwordTextfield {
+            self.view.frame.origin.y -= 20
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.passwordTextfield {
+            self.view.frame.origin.y += 20
+        }
+    }
+    
     // MARK: - UITextField Navigation Keyboard Toolbar
     
     func addKeyboardToolBar(textField: UITextField) {
@@ -213,8 +225,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func cancelPressed() {
         self.view.endEditing(true) // or do something
     }
-
-    
 
 
 }
