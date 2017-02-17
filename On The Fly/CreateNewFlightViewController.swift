@@ -80,44 +80,67 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     @IBAction func submitButtonPressed(_ sender: Any) {
-        var plane = ""
-        if let p = selectedPlane {
-            plane = p
-        } else {
-            plane = pickerData[0]
+        if let dptArpt = departureArptTextfield.text, let arvArpt = arrivalArptTextfield.text {
+            if (checkValidAirports(departure: dptArpt, arrival: arvArpt)) {
+                var plane = ""
+                if let p = selectedPlane {
+                    plane = p
+                } else {
+                    plane = pickerData[0]
+                }
+                
+                //question: what is the bang here for
+//                let dptArpt = departureArptTextfield.text!
+//                let arvArpt = arrivalArptTextfield.text!
+                let currDate = NSDate()
+                //making it so that they can't create a flight on a date or time that has passed already
+                if (datePicker.date >= currDate as Date) {
+                    //question: should we stop them from putting in past dates/times?
+                    let dateFormatter = DateFormatter()
+                    // Now we specify the display format, e.g. "08-27-2017"
+                    dateFormatter.dateFormat = "MM-dd-YYYY"
+                    // Now we get the date from the UIDatePicker and convert it to a string
+                    let strDate = dateFormatter.string(from: datePicker.date)
+                    // Finally we set the text of the label to our new string with the date
+                    let date = strDate
+                    
+                    dateFormatter.timeStyle = .short
+                    let strTime = dateFormatter.string(from: datePicker.date)
+                    let time = strTime
+                    let uid = FIRAuth.auth()?.currentUser?.uid
+                    
+                    let newFlight = Flight(plane: plane, dptArpt: dptArpt, arvArpt: arvArpt, date: date, time: time, uid: uid!)
+                    
+                    let fireRef = FIRDatabase.database().reference()
+                    let flightRef = fireRef.child("flights")
+                    let newFlightRef = flightRef.childByAutoId()
+                    newFlightRef.setValue(newFlight.toAnyObject())
+                    
+                    newFlightRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                        let flightToEdit = Flight(snapshot: (snapshot))
+                        self.flightToPass = flightToEdit
+                        self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
+                    })
+                    
+                    //        self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
+                } else {
+                    alert(message: "You cannot create a flight on a date that has passed.", title: "Invalid date")
+                }
+            } else {
+                alert(message: "Please enter valid airport codes.", title: "Invalid airport codes")
+            }
         }
-        let dptArpt = departureArptTextfield.text!
-        let arvArpt = arrivalArptTextfield.text!
-        
-        let dateFormatter = DateFormatter()
-        // Now we specify the display format, e.g. "08-27-2017"
-        dateFormatter.dateFormat = "MM-dd-YYYY"
-        // Now we get the date from the UIDatePicker and convert it to a string
-        let strDate = dateFormatter.string(from: datePicker.date)
-        // Finally we set the text of the label to our new string with the date
-        let date = strDate
-        
-        dateFormatter.timeStyle = .short
-        let strTime = dateFormatter.string(from: datePicker.date)
-        let time = strTime
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        let newFlight = Flight(plane: plane, dptArpt: dptArpt, arvArpt: arvArpt, date: date, time: time, uid: uid!)
-        
-        let fireRef = FIRDatabase.database().reference()
-        let flightRef = fireRef.child("flights")
-        let newFlightRef = flightRef.childByAutoId()
-        newFlightRef.setValue(newFlight.toAnyObject())
-        
-        newFlightRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let flightToEdit = Flight(snapshot: (snapshot))
-            self.flightToPass = flightToEdit
-            self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
-        })
-        
-//        self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
     }
     
+    
+    // checking for valid airport codes and making sure they were put in
+    private func checkValidAirports(departure: String, arrival: String) -> Bool {
+        //for the moment, just making sure that it is a 3 letter code
+        if (departure.characters.count > 3 || departure.characters.count < 3 || arrival.characters.count > 3 || arrival.characters.count < 3) {
+            return false;
+        }
+        return true
+    }
     
 
     // MARK: - Navigation
