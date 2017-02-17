@@ -68,19 +68,27 @@ class UpcomingFlightTableViewCell: UITableViewCell {
     // MARK: - Label Text Creation Functions
     
     func showSimpleLabel() {
-        self.detailedStackView.isHidden = true
+        //        self.detailedStackView.isHidden = true
+        UIView.animate(withDuration: 0.08, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            self.detailedStackView.alpha = 0
+        }) { (finished) in
+            self.detailedStackView.isHidden = true
+        }
         self.firstHeaderStackView.isHidden = true
         self.secondHeaderStackView.isHidden = true
         self.firstEditableStackView.isHidden = true
         self.secondEditableStackView.isHidden = true
         self.simpleStackView.isHidden = false
-//        let curWidth = simpleStackView.frame.width
-//        self.simpleStackView.frame.size = CGSize(width: curWidth, height: 100)
         self.contentView.frame.size = CGSize(width: 40, height: 80)
     }
     
     func showDetailedLabel() {
-        self.detailedStackView.isHidden = false
+        //        self.detailedStackView.isHidden = false
+        UIView.animate(withDuration: 0.07, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.detailedStackView.alpha = 1
+        }) { (finished) in
+            self.detailedStackView.isHidden = false
+        }
         self.firstHeaderStackView.isHidden = false
         self.secondHeaderStackView.isHidden = false
         self.firstEditableStackView.isHidden = false
