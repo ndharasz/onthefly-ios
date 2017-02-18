@@ -21,9 +21,9 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var departureArptTextfield: PaddedTextField!
     @IBOutlet weak var arrivalArptTextfield: PaddedTextField!
     
-    var pickerData: [String] = [String]()
+    var pickerData: [Plane] = [Plane]()
     
-    var selectedPlane: String?
+    var selectedPlane: Plane?
     
     var flightToPass: Flight?
 
@@ -60,11 +60,11 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+        return pickerData[row].longName()
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let titleData = pickerData[row]
+        let titleData = pickerData[row].longName()
         let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName:UIColor.white])
         return myTitle
     }
@@ -82,7 +82,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBAction func submitButtonPressed(_ sender: Any) {
         if let dptArpt = departureArptTextfield.text, let arvArpt = arrivalArptTextfield.text {
             if (checkValidAirports(departure: dptArpt, arrival: arvArpt)) {
-                var plane = ""
+                var plane: Plane!
                 if let p = selectedPlane {
                     plane = p
                 } else {
@@ -109,7 +109,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     let time = strTime
                     let uid = FIRAuth.auth()?.currentUser?.uid
                     
-                    let newFlight = Flight(plane: plane, dptArpt: dptArpt, arvArpt: arvArpt, date: date, time: time, uid: uid!)
+                    let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt, arvArpt: arvArpt, date: date, time: time, uid: uid!)
                     
                     let fireRef = FIRDatabase.database().reference()
                     let flightRef = fireRef.child("flights")
