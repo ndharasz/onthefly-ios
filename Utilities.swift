@@ -65,10 +65,12 @@ extension String {
         return emailTest.evaluate(with: self)
     }
     
-    
     mutating func trimTrailingWhitespace() {
         if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
             self.replaceSubrange(trailingWs, with: "")
+        }
+        if let leadingWs = self.range(of: "\\s+^", options: .regularExpression) {
+            self.replaceSubrange(leadingWs, with: "")
         }
     }
 }
