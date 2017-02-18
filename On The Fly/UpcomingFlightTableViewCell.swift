@@ -138,6 +138,7 @@ class UpcomingFlightTableViewCell: UITableViewCell {
             self.actualDeptTimeLabel.attributedText = makeSubtitleText(string: flight.time)
             // MARK: - ToDO: Replace with actual value, modify flight data model first
             self.actualArrTimeLabel.attributedText = makeSubtitleText(string: "12:00 PM")
+            // MARK: - ToDO: Replace with the tailnumber from the plane object
             let random = Int(arc4random_uniform(UInt32(277)))
             self.actualAcNoLabel.attributedText = makeSubtitleText(string: "N\(random + 276)")
 

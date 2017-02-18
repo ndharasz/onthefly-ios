@@ -43,7 +43,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
             cell.editButton.isHidden = true
         }
         
-            }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

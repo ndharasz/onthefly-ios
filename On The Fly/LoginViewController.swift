@@ -245,8 +245,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let planeRef = fireRef.child("planes")
         
         planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            for plane in snapshot.children {
-                GlobalVariables.sharedInstance.planeArray.append((plane as! FIRDataSnapshot).key)
+            for value in snapshot.children {
+                GlobalVariables.sharedInstance.planeArray.append(Plane(snapshot: (value as! FIRDataSnapshot)))
             }
         }) { (error) in
             print(error.localizedDescription)
