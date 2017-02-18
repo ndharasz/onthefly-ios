@@ -225,6 +225,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func cancelPressed() {
         self.view.endEditing(true) // or do something
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "HomePage" {
+            self.syncPlanes()
+        }
+    }
+    
+    // MARK: - Plane Sync Function
+    
+    func syncPlanes() {
+        // Sync the planes to the Global Database file
+        GlobalVariables.sharedInstance.planeArray.removeAll(keepingCapacity: false)
+        let fireRef = FIRDatabase.database().reference()
+        let planeRef = fireRef.child("planes")
+        
+        planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            for plane in snapshot.children {
+                GlobalVariables.sharedInstance.planeArray.append((plane as! FIRDataSnapshot).key)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
 
 
 }

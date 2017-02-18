@@ -20,33 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        syncPlaneList()
-        
-        // Secondary option for skipping login for a user previously authenticated with "remember me"
-//        self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let currentUser = FIRAuth.auth()?.currentUser!
-//        if currentUser != nil {
-//            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePage")
-//        } else {
-//            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginScreen")
-//        }
+//        in order to use, import TouchVisualizer above
+//        var config = Configuration()
+//        config.color = UIColor.red
+//        config.showsTimer = false
+//        Visualizer.start(config)
         
         return true
-    }
-    
-    func syncPlaneList() {
-        GlobalVariables.sharedInstance.planeArray = []
-        let fireRef = FIRDatabase.database().reference()
-        let planeRef = fireRef.child("planes")
-        planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            for each in snapshot.children {
-                //                print((each as! FIRDataSnapshot).key)
-                GlobalVariables.sharedInstance.planeArray.append((each as! FIRDataSnapshot).key)
-            }
-            
-        }) { (error) in
-            print(error.localizedDescription)
-        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
