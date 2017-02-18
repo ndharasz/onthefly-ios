@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var checkBoxButton: CheckboxButton!
@@ -24,12 +24,12 @@ class LoginViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         
         usernameTextfield.roundCorners()
+        addKeyboardToolBar(textField: usernameTextfield)
         passwordTextfield.roundCorners()
+        addKeyboardToolBar(textField: passwordTextfield)
         loginButton.addBlackBorder()
         
         rememberMeLogin()
-        syncPlaneList()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -150,21 +150,108 @@ class LoginViewController: UIViewController {
         
     }
     
-    func syncPlaneList() {
-        GlobalVariables.sharedInstance.planeArray = []
+    // MARK: - Text Field Delegate Functionality
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.passwordTextfield {
+            self.view.frame.origin.y -= 20
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.passwordTextfield {
+            self.view.frame.origin.y += 20
+        }
+    }
+    
+    // MARK: - UITextField Navigation Keyboard Toolbar
+    
+    func addKeyboardToolBar(textField: UITextField) {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = Style.darkBlueAccentColor
+        
+        if textField.tag != 0 {
+            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
+            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
+            nextButton.isEnabled = false
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
+        } else {
+            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
+            previousButton.isEnabled = false
+            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
+        }
+        
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        // either make the call "extension UIViewController: UITextFieldDelegate {" or manually set text
+        // field delegate
+        //        textField.delegate = self
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func previousPressed() {
+        if self.passwordTextfield.isFirstResponder {
+            self.usernameTextfield.becomeFirstResponder()
+        }
+    }
+    
+    func nextPressed() {
+        if self.usernameTextfield.isFirstResponder {
+            self.passwordTextfield.becomeFirstResponder()
+        }
+    }
+    
+    func donePressed() {
+        self.view.endEditing(true)
+    }
+    
+    func cancelPressed() {
+        self.view.endEditing(true) // or do something
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "HomePage" {
+            self.syncPlanes()
+        }
+    }
+    
+    // MARK: - Plane Sync Function
+    
+    func syncPlanes() {
+        // Sync the planes to the Global Database file
+        GlobalVariables.sharedInstance.planeArray.removeAll(keepingCapacity: false)
         let fireRef = FIRDatabase.database().reference()
         let planeRef = fireRef.child("planes")
+        
         planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            for each in snapshot.children {
-//                print((each as! FIRDataSnapshot).key)
-                GlobalVariables.sharedInstance.planeArray.append((each as! FIRDataSnapshot).key)
+            for value in snapshot.children {
+                GlobalVariables.sharedInstance.planeArray.append(Plane(snapshot: (value as! FIRDataSnapshot)))
             }
-            
         }) { (error) in
             print(error.localizedDescription)
         }
     }
-    
 
 
 }

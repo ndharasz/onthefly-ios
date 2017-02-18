@@ -12,7 +12,7 @@ class GlobalVariables {
     
     var tripName = "Trip Name"
     var gallonsOfFeul = 0.0      // in gallons
-    var planeArray: [String] = []
+    var planeArray: [Plane] = []
     var flightArray: [Flight] = []
     
     let airports: [String] = ["Aberdeen, SD (ABR) ","Abilene, TX (ABI)","Adak Island, AK (ADK)",

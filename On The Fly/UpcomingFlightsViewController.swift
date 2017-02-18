@@ -23,6 +23,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     let messageLabel: UILabel = UILabel()
     var loadingView: UIView = UIView()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    let tableHeaderTitle: String = "    Date           Dpt Arpt        Arr Arpt"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
             cell.editButton.isHidden = true
         }
         
-            }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -140,15 +142,15 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Date            Dpt Arpt          Arr Arpt"
+        return self.tableHeaderTitle
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UpcomingFlightTableViewCell
         
-        let flight = flights[indexPath.row]
+        cell.flightForCell = flights[indexPath.row]
         
-        cell.infoLabel.text = self.generateLabelShort(flight: flight)
+        cell.setSimpleLabel()
         
         cell.editButton.tag = indexPath.row
         
@@ -168,7 +170,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = false
         tableView.headerView(forSection: 0)?.isHidden = true
-        cell.infoLabel.attributedText = self.generateLabelLong(flight: flights[indexPath.row])
+        cell.setDetailedLabel()
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -179,7 +181,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
             cell.editButton.isHidden = true
             tableView.headerView(forSection: 0)?.isHidden = false
             tableView.deselectRow(at: indexPath, animated: true)
-            cell.infoLabel.text! = self.generateLabelShort(flight: flights[indexPath.row])
+            cell.setSimpleLabel()
             tableView.beginUpdates()
             tableView.endUpdates()
             return nil
@@ -193,7 +195,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = true
         tableView.headerView(forSection: 0)?.isHidden = false
-        cell.infoLabel.text! = self.generateLabelShort(flight: flights[indexPath.row])
+        cell.setSimpleLabel()
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -209,50 +211,12 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    // MARK: - Cell Label Generation Functions
-    
-    func generateLabelShort(flight: Flight) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yy"
-        
-        guard let date = dateFormatter.date(from: flight.date) else {
-            print("oops")
-            return ""
-        }
-        
-        
-        return "\n\(dateFormatter.string(from: date))          \(flight.departAirport)                  \(flight.arriveAirport)\n"
-    }
-    
-    func generateLabelLong(flight: Flight) -> NSAttributedString {
-        return makeAttributedString(flight: flight)
-    }
-    
-    func makeAttributedString(flight: Flight) -> NSAttributedString {
-        let titleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .headline), NSForegroundColorAttributeName: UIColor.black]
-        let subtitleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .subheadline)]
-        
-        let titleString1 = NSMutableAttributedString(string: "   Date            Dpt Arpt         Arr Arpt", attributes: titleAttributes)
-        let subtitleString1 = NSAttributedString(string: "\n   02-15-17         \(flight.departAirport)" + "                  \(flight.arriveAirport)\n", attributes: subtitleAttributes)
-        
-        let titleString2 = NSAttributedString(string: "\nDept Time     Arr Time        A/C No\n", attributes: titleAttributes)
-        let subtitleString2 = NSAttributedString(string: "   \(flight.time )            12:00" + "              N736X\n", attributes: subtitleAttributes)
-        
-        titleString1.append(subtitleString1)
-        titleString1.append(titleString2)
-        titleString1.append(subtitleString2)
-        
-        return titleString1
-    }
-    
-    
     // MARK: - Edit Button Coding
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
         self.flightToEdit = flights[sender.tag]
         self.performSegue(withIdentifier: "EditFlight", sender: nil)
     }
-    
 
     // MARK: - Navigation
 

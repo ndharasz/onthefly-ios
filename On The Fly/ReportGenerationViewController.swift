@@ -42,16 +42,20 @@ class ReportGenerationViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
-        
-        let alert = UIAlertController(title: "Report Sent!", message: "Your weight and balance report has been send to the email address above.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK. Return to Home", style: UIAlertActionStyle.default, handler: {action in
-        
-            self.performSegue(withIdentifier: "homeAfterReportSegue", sender: nil)
-        
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-        
+        if let regEmail = emailTextfield.text {
+            if (regEmail.isValidEmail()) {
+                let alert = UIAlertController(title: "Report Sent!", message: "Your weight and balance report has been send to the email address above.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK. Return to Home", style: UIAlertActionStyle.default, handler: {action in
+                    
+                    self.performSegue(withIdentifier: "homeAfterReportSegue", sender: nil)
+                    
+                }))
+                
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                alert(message: "The email you entered is not valid, please check the email and try again", title: "Invalid email address")
+            }
+        }
     }
     
     

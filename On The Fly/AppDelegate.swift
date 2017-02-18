@@ -20,14 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        // Secondary option for skipping login for a user previously authenticated with "remember me"
-//        self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let currentUser = FIRAuth.auth()?.currentUser!
-//        if currentUser != nil {
-//            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePage")
-//        } else {
-//            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginScreen")
-//        }
+//        in order to use, import TouchVisualizer above
+//        var config = Configuration()
+//        config.color = UIColor.red
+//        config.showsTimer = false
+//        Visualizer.start(config)
         
         return true
     }

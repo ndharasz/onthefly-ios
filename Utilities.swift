@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: - UIViewController Extensions
+
 // Allows the project to enable feature of dismissing keyboard whenever the user taps the screen anywhere
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
@@ -41,6 +43,8 @@ extension UIViewController {
 
 }
 
+// MARK: - UITextField Extensions
+
 // Auto-round the corner of the TextField boxes
 extension UITextField {
     func roundCorners() {
@@ -48,6 +52,8 @@ extension UITextField {
         self.layer.cornerRadius = 8.0
     }
 }
+
+//MARK: - String Extensions
 
 // Use regular expression matching to check for a valid email
 extension String {
@@ -66,6 +72,8 @@ extension String {
         }
     }
 }
+
+// MARK: - UIButton Extensions
 
 extension UIButton {
     
@@ -88,12 +96,16 @@ extension UIButton {
     }
 }
 
+// MARK: - UILabel Extensions
+
 extension UILabel {
     func setSizeFont (sizeFont: Double) {
         self.font =  UIFont(name: self.font.fontName, size: CGFloat(sizeFont))!
         self.sizeToFit()
     }
 }
+
+// MARK: - UIColor Extensions
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -108,6 +120,8 @@ extension UIColor {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
 }
+
+// MARK: - Style struct
 
 struct Style{
     
