@@ -16,6 +16,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -36,11 +37,10 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         
         self.registerForKeyboardNotifications()
         
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        tap.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tap)
-        
         self.tableView.isHidden = true
+        self.tableView.layer.cornerRadius = 8
+        
+        departureArptTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
 //        pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
         pickerData = GlobalVariables.sharedInstance.planeArray
@@ -168,9 +168,9 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     // MARK: - Auto Complete Code
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        tableView.isHidden = false
-    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        tableView.isHidden = false
+//    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         tableView.isHidden = true
@@ -194,15 +194,24 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         autoComplete.removeAll(keepingCapacity: false)
         
         for key in autoCompletePossibilities {
-            let myString: String! = key as String
+            let myString: String! = (key as String).lowercased()
             
-            if myString.range(of: substring) != nil {
+            if myString.range(of: substring.lowercased()) != nil {
                 autoComplete.append(key)
             }
         }
         
         tableView.reloadData()
         
+    }
+    
+    // MARK: - ToDO Verify that this is correct
+    func textFieldDidChange(_ textField: UITextField) {
+        if textField.text?.characters.count == 0 {
+            self.tableView.isHidden = true
+        } else {
+            self.tableView.isHidden = false
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
