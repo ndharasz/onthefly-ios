@@ -900,9 +900,9 @@
                                     <outlet property="delegate" destination="sYD-sc-Y89" id="4Qx-VS-1tb"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhr-ot-BVb">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhr-ot-BVb">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="barTintColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -1016,15 +1016,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View and Edit Flight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Oo-U7-NaC">
-                                <rect key="frame" x="65" y="28" width="245" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="fRB-wV-n7P"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Information" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWk-Pu-QVv">
                                 <rect key="frame" x="132" y="70" width="111" height="52"/>
                                 <constraints>
@@ -1117,30 +1108,34 @@
                                     <action selector="cargoViewButtonSelected:" destination="wDc-Yu-kR2" eventType="touchUpInside" id="x6k-y9-abL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9T-SL-0cL">
-                                <rect key="frame" x="0.0" y="20" width="48" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="5ah-rh-LUC"/>
-                                    <constraint firstAttribute="height" constant="30" id="Ipo-ij-mjh"/>
-                                </constraints>
-                                <state key="normal" title="&lt; Back">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RIX-6T-wnz" kind="show" id="w7Z-Mi-zfh"/>
-                                </connections>
-                            </button>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-nI-9G4">
+                                <rect key="frame" x="0.0" y="23" width="375" height="44"/>
+                                <color key="barTintColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="View / Edit Flight" id="MTl-ZS-mmN">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="5NV-kB-hg2">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="RIX-6T-wnz" kind="show" id="YwN-Ik-6gk"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Oo-U7-NaC" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="0KN-lr-24t"/>
-                            <constraint firstItem="I9T-SL-0cL" firstAttribute="top" secondItem="nm7-ll-iYW" secondAttribute="bottom" id="0hW-jv-nhp"/>
                             <constraint firstItem="SWk-Pu-QVv" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="2kI-Dw-Dzi"/>
+                            <constraint firstAttribute="trailing" secondItem="ZH2-nI-9G4" secondAttribute="trailing" id="61s-MM-BTc"/>
                             <constraint firstItem="erA-nP-hW5" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="Ecz-xB-oDp"/>
-                            <constraint firstItem="6Oo-U7-NaC" firstAttribute="top" secondItem="nm7-ll-iYW" secondAttribute="bottom" constant="8" id="MM0-QR-yYp"/>
-                            <constraint firstItem="SWk-Pu-QVv" firstAttribute="top" secondItem="6Oo-U7-NaC" secondAttribute="bottom" constant="8" id="PHu-CB-D9g"/>
-                            <constraint firstItem="I9T-SL-0cL" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leading" id="PSC-ZK-lkI"/>
+                            <constraint firstItem="ZH2-nI-9G4" firstAttribute="top" secondItem="nm7-ll-iYW" secondAttribute="bottom" constant="3" id="ItL-Ia-UXd"/>
                             <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="erA-nP-hW5" secondAttribute="bottom" constant="48" id="Q2b-6Z-Ae5"/>
+                            <constraint firstItem="SWk-Pu-QVv" firstAttribute="top" secondItem="ZH2-nI-9G4" secondAttribute="bottom" constant="3" id="VzU-B5-TQu"/>
+                            <constraint firstItem="ZH2-nI-9G4" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leading" id="hFE-E4-oaK"/>
                             <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="15" id="rOF-3q-6Jh"/>
                             <constraint firstItem="gXp-bj-j7s" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="tFw-3r-zpp"/>
                         </constraints>
@@ -1297,7 +1292,7 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Nc-cD-QYA"/>
-        <segue reference="ACs-8Z-TM7"/>
+        <segue reference="OiL-Td-JFQ"/>
+        <segue reference="YwN-Ik-6gk"/>
     </inferredMetricsTieBreakers>
 </document>

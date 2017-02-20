@@ -124,7 +124,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     let time = strTime
                     let uid = FIRAuth.auth()?.currentUser?.uid
                     
-                    let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt, arvArpt: arvArpt, date: date, time: time, uid: uid!)
+                    let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(), arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!)
                     
                     let fireRef = FIRDatabase.database().reference()
                     let flightRef = fireRef.child("flights")
