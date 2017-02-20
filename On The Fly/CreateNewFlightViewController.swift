@@ -18,6 +18,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var cancelButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var autoCompleteTable2: UITableView!
+    
     
     
     @IBOutlet weak var departureArptTextfield: PaddedTextField!
@@ -39,10 +41,15 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         
         self.tableView.isHidden = true
         self.tableView.layer.cornerRadius = 8
+        self.autoCompleteTable2.isHidden = true
+        self.autoCompleteTable2.layer.cornerRadius = 8
         
         departureArptTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        arrivalArptTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        addKeyboardToolBar(textField: departureArptTextfield)
+        addKeyboardToolBar(textField: arrivalArptTextfield)
 
-//        pickerData = ["Piper Saratoga N736X", "King Air N799F", "Cessna Citation N899O"]
         pickerData = GlobalVariables.sharedInstance.planeArray
         
         departureArptTextfield.roundCorners()
@@ -173,7 +180,11 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
 //    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        tableView.isHidden = true
+        if textField == self.departureArptTextfield {
+            tableView.isHidden = true
+        } else if textField == self.arrivalArptTextfield {
+            autoCompleteTable2.isHidden = true
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -184,12 +195,12 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
-        searchAutocompleteEntriesWithSubstring(substring: substring)
+        searchAutocompleteEntriesWithSubstring(tag: textField.tag, substring: substring)
         
         return true
     }
     
-    func searchAutocompleteEntriesWithSubstring(substring: String) {
+    func searchAutocompleteEntriesWithSubstring(tag: Int, substring: String) {
         
         autoComplete.removeAll(keepingCapacity: false)
         
@@ -201,17 +212,29 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
             }
         }
         
-        tableView.reloadData()
-        
+        if tag == 0 {
+            tableView.reloadData()
+        } else {
+            autoCompleteTable2.reloadData()
+        }
     }
     
     // MARK: - ToDO Verify that this is correct
     func textFieldDidChange(_ textField: UITextField) {
-        if textField.text?.characters.count == 0 {
-            self.tableView.isHidden = true
+        if textField.tag == 0 {
+            if textField.text?.characters.count == 0 {
+                self.tableView.isHidden = true
+            } else {
+                self.tableView.isHidden = false
+            }
         } else {
-            self.tableView.isHidden = false
+            if textField.text?.characters.count == 0 {
+                self.autoCompleteTable2.isHidden = true
+            } else {
+                self.autoCompleteTable2.isHidden = false
+            }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -222,8 +245,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         cell.textLabel?.numberOfLines = 0
         
         cell.textLabel!.text = autoComplete[index]
-        
-        
         
         return cell
     }
@@ -246,18 +267,32 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         let regex = "\\(.*?\\)"
         let matches = matchesForRegexInText(regex: regex, text: selectedText)
         
-        if matches.count > 0 {
-            self.departureArptTextfield.text = matches[0].trimmingCharacters(in: .punctuationCharacters)
+        if tableView.tag == 0 {
+            if matches.count > 0 {
+                self.departureArptTextfield.text = matches[0].trimmingCharacters(in: .punctuationCharacters)
+            } else {
+                self.departureArptTextfield.text = "Error, please try again"
+            }
         } else {
-            self.departureArptTextfield.text = "Error, please try again"
+            if matches.count > 0 {
+                self.arrivalArptTextfield.text = matches[0].trimmingCharacters(in: .punctuationCharacters)
+            } else {
+                self.arrivalArptTextfield.text = "Error, please try again"
+            }
         }
-        
         
         self.autoComplete = []
         
-        self.tableView.reloadData()
+        if tableView.tag == 0 {
+            self.tableView.reloadData()
+            self.tableView.isHidden = true
+            self.departureArptTextfield.endEditing(true)
+        } else {
+            self.autoCompleteTable2.reloadData()
+            self.autoCompleteTable2.isHidden = true
+            self.arrivalArptTextfield.endEditing(true)
+        }
         
-        self.tableView.isHidden = true
     }
     
     func matchesForRegexInText(regex: String!, text: String!) -> [String] {
@@ -279,6 +314,66 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         }}
     
     
+    // MARK: - UITextField Navigation Keyboard Toolbar
+    
+    func addKeyboardToolBar(textField: UITextField) {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = Style.darkBlueAccentColor
+        
+        if textField.tag == 0 {
+            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
+            previousButton.isEnabled = false
+            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
+        } else {
+            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
+            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
+            nextButton.isEnabled = false
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
+        }
+        
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func previousPressed() {
+        if self.arrivalArptTextfield.isFirstResponder {
+            self.view.frame.origin.y = 0
+            self.departureArptTextfield.becomeFirstResponder()
+        }
+    }
+    
+    func nextPressed() {
+        if self.departureArptTextfield.isFirstResponder {
+            self.arrivalArptTextfield.becomeFirstResponder()
+        }
+    }
+    
+    func donePressed() {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+        if self.departureArptTextfield.isEditing {
+            self.departureArptTextfield.endEditing(false)
+        } else {
+            self.arrivalArptTextfield.endEditing(false)
+        }
+        
+    }
+    
+    func cancelPressed() {
+        self.view.endEditing(true) // or do something
+    }
+    
+    
     // MARK: - Keyboard Appear/Disappear Handler
     
     func registerForKeyboardNotifications() {
@@ -288,22 +383,40 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     func keyboardWillShow(notification: NSNotification) {
         
+        if self.departureArptTextfield.isEditing {
+//            if self.view.frame.origin.y == 0 {
+//                self.view.frame.origin.y -= 25
+//                print("keyboard appears, thinks departure is editing, was 0 before")
+//            } else {
+//                print("keyboard appears, thinks departure is editing, was not 0 before")
+//                self.view.frame.origin.y = -25
+//            }
+            self.view.frame.origin.y = 0
+            self.view.frame.origin.y -= 40
+            
+        }
+        
         if self.arrivalArptTextfield.isEditing {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0{
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
+//                if self.view.frame.origin.y == 0{
+//                    self.view.frame.origin.y -= keyboardSize.height
+//                    print("keyboard appears, thinks arrival and frame y was 0")
+//                } else {
+//                    self.view.frame.origin.y = -(keyboardSize.height)
+//                    print("keyboard appears, thinks arrival and frame y != 0")
+//                }
+                self.view.frame.origin.y = 0
+                self.view.frame.origin.y -= (keyboardSize.height - 80)
             }
         }
+        
+        print(self.view.frame.origin.y)
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if self.arrivalArptTextfield.isEditing {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y != 0{
-                    self.view.frame.origin.y += keyboardSize.height
-                }
-            }
+        print("keyboard will hide")
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
     }
     

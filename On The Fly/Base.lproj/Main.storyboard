@@ -793,7 +793,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. DFW" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. DFW" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
                                 <rect key="frame" x="16" y="346" width="343" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -801,7 +801,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sYD-sc-Y89" id="Qxd-FE-DzV"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the arrival airport:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efV-l6-HPJ">
                                 <rect key="frame" x="16" y="308" width="209" height="24"/>
@@ -860,12 +863,12 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes"/>
                                 <connections>
                                     <outlet property="delegate" destination="sYD-sc-Y89" id="hOP-YZ-i8g"/>
                                 </connections>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-q3-xYu">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-q3-xYu">
                                 <rect key="frame" x="16" y="294" width="343" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -886,10 +889,33 @@
                                     <outlet property="delegate" destination="sYD-sc-Y89" id="Ji4-UC-2Tk"/>
                                 </connections>
                             </tableView>
+                            <tableView hidden="YES" clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7iS-EB-dVF">
+                                <rect key="frame" x="16" y="395" width="343" height="130"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="naD-dQ-E8C"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Twq-5v-RzV">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Twq-5v-RzV" id="hfL-TY-Jvm">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="sYD-sc-Y89" id="qrh-CH-Ii8"/>
+                                    <outlet property="delegate" destination="sYD-sc-Y89" id="4Qx-VS-1tb"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ajp-EB-u8P" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="17" id="1yK-8H-8Di"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7iS-EB-dVF" secondAttribute="trailing" id="4ex-pf-LFJ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="7iS-EB-dVF" secondAttribute="leading" id="5Ge-92-OmH"/>
                             <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="leading" secondItem="ajp-EB-u8P" secondAttribute="leading" id="6a4-nd-Yio"/>
                             <constraint firstItem="c7X-q3-xYu" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="6nF-FG-SGs"/>
                             <constraint firstItem="efV-l6-HPJ" firstAttribute="leading" secondItem="5Y4-Ee-Ywo" secondAttribute="leading" id="7Fy-Rt-Iei"/>
@@ -903,6 +929,7 @@
                             <constraint firstItem="s2k-Od-bzu" firstAttribute="top" secondItem="Vfc-vO-T5T" secondAttribute="bottom" constant="20" id="Hst-a3-osa"/>
                             <constraint firstItem="VTT-AN-9kf" firstAttribute="top" secondItem="ajp-EB-u8P" secondAttribute="bottom" constant="8" symbolic="YES" id="HtO-cG-76U"/>
                             <constraint firstItem="y1s-B0-w6M" firstAttribute="top" secondItem="lLZ-cw-jzt" secondAttribute="bottom" constant="40" id="JuC-4I-iac"/>
+                            <constraint firstItem="7iS-EB-dVF" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="4" id="M1g-AK-pEP"/>
                             <constraint firstItem="VTT-AN-9kf" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="MBg-hV-Nwq"/>
                             <constraint firstItem="c7X-q3-xYu" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="NIB-cy-Vb0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZR5-qQ-kWU" secondAttribute="trailing" constant="26" id="Oaq-HD-FR5"/>
@@ -927,6 +954,7 @@
                     </view>
                     <connections>
                         <outlet property="arrivalArptTextfield" destination="5Y4-Ee-Ywo" id="Urz-XI-BLW"/>
+                        <outlet property="autoCompleteTable2" destination="7iS-EB-dVF" id="AjL-qs-oCy"/>
                         <outlet property="cancelButton" destination="lLZ-cw-jzt" id="lxS-BL-4Te"/>
                         <outlet property="datePicker" destination="VTT-AN-9kf" id="ugV-Eo-JJM"/>
                         <outlet property="departureArptTextfield" destination="QUK-dV-23c" id="2yb-b5-4tg"/>
