@@ -219,13 +219,25 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         
         let index = indexPath.row
         
+        cell.textLabel?.numberOfLines = 0
+        
         cell.textLabel!.text = autoComplete[index]
+        
+        
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return autoComplete.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
