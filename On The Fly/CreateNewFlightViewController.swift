@@ -107,9 +107,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     plane = pickerData[0]
                 }
                 
-                //question: what is the bang here for
-//                let dptArpt = departureArptTextfield.text!
-//                let arvArpt = arrivalArptTextfield.text!
                 let currDate = NSDate()
                 //making it so that they can't create a flight on a date or time that has passed already
                 if (datePicker.date >= currDate as Date) {
@@ -140,7 +137,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                         self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
                     })
                     
-                    //        self.performSegue(withIdentifier: "createFlightToEditFlight", sender: nil)
                 } else {
                     alert(message: "You cannot create a flight on a date that has passed.", title: "Invalid date")
                 }
@@ -153,8 +149,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     // checking for valid airport codes and making sure they were put in
     private func checkValidAirports(departure: String, arrival: String) -> Bool {
-        //for the moment, just making sure that it is a 3 letter code
-        if (departure.characters.count > 3 || departure.characters.count < 3 || arrival.characters.count > 3 || arrival.characters.count < 3) {
+        //for the moment, just making sure that it is a 3-4 letter code
+        if (departure.characters.count > 4 || departure.characters.count < 3 || arrival.characters.count > 4 || arrival.characters.count < 3) {
             return false;
         }
         return true
@@ -165,8 +161,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if segue.identifier == "createFlightToEditFlight" {
             let editFlightScene = segue.destination as! EditFlightViewController
             editFlightScene.flight = self.flightToPass!
@@ -174,10 +168,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     // MARK: - Auto Complete Code
-    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        tableView.isHidden = false
-//    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.departureArptTextfield {
@@ -219,7 +209,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         }
     }
     
-    // MARK: - ToDO Verify that this is correct
     func textFieldDidChange(_ textField: UITextField) {
         if textField.tag == 0 {
             if textField.text?.characters.count == 0 {
@@ -384,13 +373,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     func keyboardWillShow(notification: NSNotification) {
         
         if self.departureArptTextfield.isEditing {
-//            if self.view.frame.origin.y == 0 {
-//                self.view.frame.origin.y -= 25
-//                print("keyboard appears, thinks departure is editing, was 0 before")
-//            } else {
-//                print("keyboard appears, thinks departure is editing, was not 0 before")
-//                self.view.frame.origin.y = -25
-//            }
             self.view.frame.origin.y = 0
             self.view.frame.origin.y -= 40
             
@@ -398,23 +380,14 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         
         if self.arrivalArptTextfield.isEditing {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//                if self.view.frame.origin.y == 0{
-//                    self.view.frame.origin.y -= keyboardSize.height
-//                    print("keyboard appears, thinks arrival and frame y was 0")
-//                } else {
-//                    self.view.frame.origin.y = -(keyboardSize.height)
-//                    print("keyboard appears, thinks arrival and frame y != 0")
-//                }
                 self.view.frame.origin.y = 0
                 self.view.frame.origin.y -= (keyboardSize.height - 80)
             }
         }
-        
-        print(self.view.frame.origin.y)
+
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        print("keyboard will hide")
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
