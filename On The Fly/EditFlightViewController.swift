@@ -16,11 +16,14 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var segmentControlHeightConstant: NSLayoutConstraint!
     
+    @IBOutlet weak var cargoContainerView: UIView!
+    
     
     var flight: Flight?
     var plane: Plane?
     var passengers: [(name: String, weight: Int)] = []
     var initialSelectedIndexPath: IndexPath?
+    var testVariable: String = "nope"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,27 +58,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 //            thisFlight.fireRef?.updateChildValues(updates)
 //        }
 
-        
-//        let addButton1 = UIButton(type: .custom)
-//        addButton1.frame = CGRect(x: 130, y: 80, width: 60, height: 60)
-//        addButton1.layer.cornerRadius = 0.5 * addButton1.bounds.size.width
-//        addButton1.clipsToBounds = true
-//        addButton1.setTitle("+", for: .normal)
-//        addButton1.titleLabel?.setSizeFont(sizeFont: 40)
-//        addButton1.setTitleColor(UIColor.black, for: .normal)
-//        addButton1.layer.backgroundColor = UIColor.white.cgColor
-//        frontCargoView.addSubview(addButton1)
-//        
-//        let addButton2 = UIButton(type: .custom)
-//        addButton2.frame = CGRect(x: 130, y: 80, width: 60, height: 60)
-//        addButton2.layer.cornerRadius = 0.5 * addButton1.bounds.size.width
-//        addButton2.clipsToBounds = true
-//        addButton2.setTitle("+", for: .normal)
-//        addButton2.titleLabel?.setSizeFont(sizeFont: 40)
-//        addButton2.setTitleColor(UIColor.black, for: .normal)
-//        addButton2.layer.backgroundColor = UIColor.white.cgColor
-//        rearCargoView.addSubview(addButton2)
-        
+
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
 
@@ -83,7 +66,13 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBAction func segmentControlChanged(_ sender: Any) {
         let control = sender as! UISegmentedControl
-        print(control.selectedSegmentIndex)
+        if control.selectedSegmentIndex == 0 {
+            self.passengerCollectionView.isHidden = false
+            self.cargoContainerView.isHidden = true
+        } else {
+            self.passengerCollectionView.isHidden = true
+            self.cargoContainerView.isHidden = false
+        }
     }
     
 
@@ -169,7 +158,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func applyUserInterfaceChanges() {
         self.passengerCollectionView.layer.cornerRadius = 8
-        self.passengerCollectionView.isHidden = false
         let font = UIFont.systemFont(ofSize: 22)
         self.segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         self.segmentControlHeightConstant.constant = 50
@@ -178,17 +166,18 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.segmentControl.layer.cornerRadius = 6
         self.segmentControl.backgroundColor = Style.darkBlueAccentColor
         self.createReportButton.addBlackBorder()
+        self.passengerCollectionView.isHidden = false
+        self.cargoContainerView.isHidden = true
     }
     
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "embedCargoView" {
+            let cargoVC = segue.destination as! CargoViewController
+            cargoVC.editFlightVC = self
+        }
+        
     }
-    */
-
+    
 }
