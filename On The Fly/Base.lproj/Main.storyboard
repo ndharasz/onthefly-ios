@@ -1088,7 +1088,7 @@
                                 </items>
                             </navigationBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NHA-bS-nRC">
-                                <rect key="frame" x="26" y="130" width="323" height="29"/>
+                                <rect key="frame" x="19" y="130" width="337" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="tVA-Nz-acF"/>
                                 </constraints>
@@ -1116,8 +1116,8 @@
                             <constraint firstItem="gXp-bj-j7s" firstAttribute="top" secondItem="QE9-BZ-01j" secondAttribute="bottom" constant="20" id="etd-vL-LNV"/>
                             <constraint firstItem="ZH2-nI-9G4" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leading" id="g9T-PL-mMm"/>
                             <constraint firstAttribute="trailing" secondItem="ZH2-nI-9G4" secondAttribute="trailing" id="gn2-WD-dQm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NHA-bS-nRC" secondAttribute="trailing" constant="10" id="gsG-6A-HRa"/>
-                            <constraint firstItem="NHA-bS-nRC" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="10" id="jYh-EA-54L"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NHA-bS-nRC" secondAttribute="trailing" constant="3" id="gsG-6A-HRa"/>
+                            <constraint firstItem="NHA-bS-nRC" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="3" id="jYh-EA-54L"/>
                             <constraint firstItem="gXp-bj-j7s" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="7" id="lgw-Za-yMc"/>
                             <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="15" id="m5G-pI-H0S"/>
                             <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="15" id="t3g-Na-h4b"/>

@@ -36,7 +36,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
         
-        self.passengerCollectionView.layer.cornerRadius = 8
+        self.applyUserInterfaceChanges()
 
         
         // FOR TESTING ONLY!!!!!
@@ -54,19 +54,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 //            let updates = ["departAirport":"SLC"]
 //            thisFlight.fireRef?.updateChildValues(updates)
 //        }
-        
-        passengerCollectionView.isHidden = false
-        
-//        segmentControl.frame = CGRect(x: segmentControl.frame.origin.x, y: segmentControl.frame.origin.y, width: segmentControl.frame.size.width, height: 80)
-        
-        let font = UIFont.systemFont(ofSize: 22)
-        segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
-        segmentControlHeightConstant.constant = 50
 
-        segmentControl.layer.borderWidth = 2
-        segmentControl.layer.borderColor = UIColor.white.cgColor
-//        segmentControl.layer.cornerRadius = 8
-        segmentControl.backgroundColor = Style.darkBlueAccentColor
         
 //        let addButton1 = UIButton(type: .custom)
 //        addButton1.frame = CGRect(x: 130, y: 80, width: 60, height: 60)
@@ -87,8 +75,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 //        addButton2.setTitleColor(UIColor.black, for: .normal)
 //        addButton2.layer.backgroundColor = UIColor.white.cgColor
 //        rearCargoView.addSubview(addButton2)
-        
-        createReportButton.addBlackBorder()
         
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
@@ -142,8 +128,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let hght = Double(self.passengerCollectionView.frame.height) / (Double(self.passengers.count)/2.0) - 15
-        return CGSize(width: 125, height: hght)
+        let numRows = Double(self.passengers.count) / 2.0
+        let availableHeight = Double(self.passengerCollectionView.frame.height) - 20.0 - 10.0 * (numRows - 1.0)
+        let cellHeight = Double(availableHeight) / numRows
+        return CGSize(width: 125, height: cellHeight)
     }
     
     func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
@@ -164,7 +152,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         
         case UIGestureRecognizerState.ended:
             guard let selectedIndexPath = self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) else {
-                print("\noops alert")
                 let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
                 cell?.backgroundColor = UIColor.blue
                 self.passengerCollectionView.endInteractiveMovement()
@@ -178,7 +165,20 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    // MARK: - UI Stylistic Changes
     
+    func applyUserInterfaceChanges() {
+        self.passengerCollectionView.layer.cornerRadius = 8
+        self.passengerCollectionView.isHidden = false
+        let font = UIFont.systemFont(ofSize: 22)
+        self.segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+        self.segmentControlHeightConstant.constant = 50
+        self.segmentControl.layer.borderWidth = 2
+        self.segmentControl.layer.borderColor = UIColor.white.cgColor
+        self.segmentControl.layer.cornerRadius = 6
+        self.segmentControl.backgroundColor = Style.darkBlueAccentColor
+        self.createReportButton.addBlackBorder()
+    }
     
 
     /*
