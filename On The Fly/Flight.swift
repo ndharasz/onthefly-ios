@@ -12,19 +12,37 @@ import Firebase
 struct Flight {
     
     var plane: String
-    let departAirport: String
-    let arriveAirport: String
-    let date: String
-    let time: String
+    var departAirport: String
+    var arriveAirport: String
+    var date: String
+    var time: String
+    
+    var startFuel: Double
+    var flightTime: Int
+    var fuelFlow: Double
+    var seatWeights: [String:Double]
+    var frontBaggageWeight: Int
+    var aftBaggageWeight: Int
+    var taxiFuelBurn: Int
+    
     let userid: String
     let fireRef: FIRDatabaseReference?
     
-    init(plane: String, dptArpt: String, arvArpt: String, date: String, time: String, uid: String) {
+    init(plane: String, dptArpt: String, arvArpt: String, date: String, time: String, uid: String,
+         startFuel: Double, flightTime: Int, fuelFlow: Double, seatWeights: [String:Double],
+         frontBagWeight: Int, aftBagWeight: Int, taxiBurn: Int) {
         self.plane = plane
         self.departAirport = dptArpt
         self.arriveAirport = arvArpt
         self.date = date
         self.time = time
+        self.startFuel = startFuel
+        self.flightTime = flightTime
+        self.fuelFlow = fuelFlow
+        self.seatWeights = seatWeights
+        self.frontBaggageWeight = frontBagWeight
+        self.aftBaggageWeight = aftBagWeight
+        self.taxiFuelBurn = taxiBurn
         self.userid = uid
         self.fireRef = nil
     }
@@ -36,6 +54,13 @@ struct Flight {
         self.arriveAirport = snapshotValue["arriveAirport"] as! String
         self.date = snapshotValue["date"] as! String
         self.time = snapshotValue["time"] as! String
+        self.startFuel = snapshotValue["startFuel"] as! Double
+        self.flightTime = snapshotValue["flightTime"] as! Int
+        self.fuelFlow = snapshotValue["fuelFlow"] as! Double
+        self.seatWeights = snapshotValue["seatWeights"] as! [String:Double]
+        self.frontBaggageWeight = snapshotValue["frontBaggageWeight"] as! Int
+        self.aftBaggageWeight = snapshotValue["aftBaggageWeight"] as! Int
+        self.taxiFuelBurn = snapshotValue["taxiFuelBurn"] as! Int
         self.userid = snapshotValue["userid"] as! String
         self.fireRef = snapshot.ref
     }
@@ -47,6 +72,13 @@ struct Flight {
             "arriveAirport": arriveAirport,
             "date": date,
             "time": time,
+            "startFuel": startFuel,
+            "flightTime": flightTime,
+            "fuelFlow": fuelFlow,
+            "seatWeights": seatWeights,
+            "frontBaggageWeight": frontBaggageWeight,
+            "aftBaggageWeight": aftBaggageWeight,
+            "taxiFuelBurn": taxiFuelBurn,
             "userid": userid
         ]
     }

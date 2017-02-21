@@ -13,42 +13,53 @@ struct Plane {
     
     let name: String
     let tailNumber: String
-    let dryWeight: Double
-    let frontBaggageArm: Double
-    let rearBaggageArm: Double
-    let wingBaggageArm: Double
+    let maxRampWeight: Int
+    let maxTakeoffWeight: Int
+    let emptyWeight: Int
+    let emptyWeightArm: Double
     let pilotSeatsArm: Double
     let rowArms: [Double]
+    let frontBaggageArm: Double
+    let aftBaggageArm: Double
     let fuelArm: Double
-    let auxTankArm: Double
+    let numSeats: Int
+    let centerOfGravityEnvelope: [String:[Double]]
     let fireRef: FIRDatabaseReference?
     
-    init(name: String, tailNumber: String, dryWeight: Double, frontBagArm: Double, rearBagArm: Double, wingBagArm: Double, pilotArm: Double, rowArms: [Double], fuelArm: Double, auxTankArm: Double) {
+    init(name: String, tailNumber: String, maxRampWeight: Int, maxTakeoffWeight: Int, emptyWeight: Int,
+         emptyWeightArm: Double, pilotSeatsArm: Double, rowArms: [Double], frontBagArm: Double, aftBagArm: Double,
+         fuelArm: Double, numSeats: Int, cogEnvelope: [String:[Double]]) {
         self.name = name
         self.tailNumber = tailNumber
-        self.dryWeight = dryWeight
-        self.frontBaggageArm = frontBagArm
-        self.rearBaggageArm = rearBagArm
-        self.wingBaggageArm = wingBagArm
-        self.pilotSeatsArm = pilotArm
+        self.maxRampWeight = maxRampWeight
+        self.maxTakeoffWeight = maxTakeoffWeight
+        self.emptyWeight = emptyWeight
+        self.emptyWeightArm = emptyWeightArm
+        self.pilotSeatsArm = pilotSeatsArm
         self.rowArms = rowArms
+        self.frontBaggageArm = frontBagArm
+        self.aftBaggageArm = aftBagArm
         self.fuelArm = fuelArm
-        self.auxTankArm = auxTankArm
+        self.numSeats = numSeats
+        self.centerOfGravityEnvelope = cogEnvelope
         fireRef = nil
     }
     
     init(snapshot: FIRDataSnapshot) {
         let snapshotValue = snapshot.value as! [String: Any]
-        self.dryWeight = snapshotValue["dryWeight"] as! Double
-        self.frontBaggageArm = snapshotValue["frontBaggageArm"] as! Double
-        self.rearBaggageArm = snapshotValue["rearBaggageArm"] as! Double
-        self.wingBaggageArm = snapshotValue["wingBaggageArm"] as! Double
-        self.pilotSeatsArm = snapshotValue["pilotSeatsArm"] as! Double
-        self.rowArms = snapshotValue["rowArms"] as! [Double]
-        self.fuelArm = snapshotValue["fuelArm"] as! Double
-        self.auxTankArm = snapshotValue["auxTankArm"] as! Double
         self.name = snapshotValue["name"] as! String
         self.tailNumber = snapshotValue["tailNumber"] as! String
+        self.maxRampWeight = snapshotValue["maxRampWeight"] as! Int
+        self.maxTakeoffWeight = snapshotValue["maxTakeoffWeight"] as! Int
+        self.emptyWeight = snapshotValue["emptyWeight"] as! Int
+        self.emptyWeightArm = snapshotValue["emptyWeightArm"] as! Double
+        self.pilotSeatsArm = snapshotValue["pilotSeatsArm"] as! Double
+        self.rowArms = snapshotValue["rowArms"] as! [Double]
+        self.frontBaggageArm = snapshotValue["frontBaggageArm"] as! Double
+        self.aftBaggageArm = snapshotValue["aftBaggageArm"] as! Double
+        self.fuelArm = snapshotValue["fuelArm"] as! Double
+        self.numSeats = snapshotValue["numSeats"] as! Int
+        self.centerOfGravityEnvelope = snapshotValue["centerOfGravityEnvelope"] as! [String:[Double]]
         self.fireRef = snapshot.ref
     }
     
@@ -56,14 +67,17 @@ struct Plane {
         return [
             "name": name,
             "tailNumber": tailNumber,
-            "dryWeight": dryWeight,
-            "frontBaggageArm": frontBaggageArm,
-            "rearBaggageArm": rearBaggageArm,
-            "wingBaggageArm": wingBaggageArm,
+            "maxRampWeight": maxRampWeight,
+            "maxTakeoffWeight": maxTakeoffWeight,
+            "emptyWeight": emptyWeight,
+            "emptyWeightArm": emptyWeightArm,
             "pilotSeatsArm": pilotSeatsArm,
             "rowArms": rowArms,
+            "frontBaggageArm": frontBaggageArm,
+            "aftBaggageArm": aftBaggageArm,
             "fuelArm": fuelArm,
-            "auxTankArm": auxTankArm
+            "numSeats": numSeats,
+            "centerOfGravityEnvelope": centerOfGravityEnvelope
         ]
     }
     

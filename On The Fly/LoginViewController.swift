@@ -242,7 +242,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Sync the planes to the Global Database file
         GlobalVariables.sharedInstance.planeArray.removeAll(keepingCapacity: false)
         let fireRef = FIRDatabase.database().reference()
-        let planeRef = fireRef.child("planes")
+        let planeRef = fireRef.child("newPlanes")
         
         planeRef.observeSingleEvent(of: .value, with: { (snapshot) in
             for value in snapshot.children {

@@ -124,10 +124,22 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     let time = strTime
                     let uid = FIRAuth.auth()?.currentUser?.uid
                     
-                    let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(), arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!)
+                    // MARK: - ToDO Remove this later
+                    let tempFlightNames = ["Moose", "Sami", "Scottie", "Savannah", "Sophia", "LBJ", "Obama", "Rodrigo"]
+                    let tempFlightWeights = [35.0, 115.0, 180.0, 140.0, 140.0, 265.0, 190.0, 210.0]
+                    
+                    var charMen: [String:Double] = [:]
+                    for i in 0...plane.numSeats-1 {
+                        charMen[tempFlightNames[i]] = tempFlightWeights[i]
+                    }
+                    
+                    let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(),
+                                           arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!,
+                                           startFuel: 0, flightTime: 0, fuelFlow: 0, seatWeights: charMen,
+                                           frontBagWeight: 15, aftBagWeight: 25, taxiBurn: -12)
                     
                     let fireRef = FIRDatabase.database().reference()
-                    let flightRef = fireRef.child("flights")
+                    let flightRef = fireRef.child("newFlights")
                     let newFlightRef = flightRef.childByAutoId()
                     newFlightRef.setValue(newFlight.toAnyObject())
                     
