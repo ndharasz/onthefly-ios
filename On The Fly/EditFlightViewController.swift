@@ -8,19 +8,19 @@
 
 import UIKit
 
-class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var passengerCollectionView: UICollectionView!
-    @IBOutlet weak var passengerViewButton: UIButton!
-    @IBOutlet weak var cargoViewButton: UIButton!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var frontCargoView: UIView!
-    @IBOutlet weak var rearCargoView: UIView!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var createReportButton: UIButton!
+    
+    @IBOutlet weak var segmentControlHeightConstant: NSLayoutConstraint!
+    
     
     var flight: Flight?
     var plane: Plane?
     var passengers: [(name: String, weight: Int)] = []
+    var initialSelectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +37,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         self.passengerCollectionView.layer.cornerRadius = 8
-        self.passengerCollectionView.delegate = self
-        self.passengerCollectionView.dataSource = self
 
         
         // FOR TESTING ONLY!!!!!
@@ -48,6 +46,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         passengers.append((name: "Sophia", weight: 150))
         passengers.append((name: "Sami", weight: 115))
         passengers.append((name: "Scottie", weight: 180))
+//        passengers.append((name: "Empty", weight: 0))
+//        passengers.append((name: "Purse", weight: 3))
         
         // Example of updating and saving to Firebase from this "EditFlight" screen
 //        if let thisFlight = flight {
@@ -57,12 +57,16 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         
         passengerCollectionView.isHidden = false
         
-        let buttons: [UIButton] = [passengerViewButton, cargoViewButton]
-        for each in buttons {
-            each.layer.borderWidth = 2
-            each.layer.borderColor = UIColor.white.cgColor
-        }
-        passengerViewButton.backgroundColor = Style.darkBlueAccentColor
+//        segmentControl.frame = CGRect(x: segmentControl.frame.origin.x, y: segmentControl.frame.origin.y, width: segmentControl.frame.size.width, height: 80)
+        
+        let font = UIFont.systemFont(ofSize: 22)
+        segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+        segmentControlHeightConstant.constant = 50
+
+        segmentControl.layer.borderWidth = 2
+        segmentControl.layer.borderColor = UIColor.white.cgColor
+//        segmentControl.layer.cornerRadius = 8
+        segmentControl.backgroundColor = Style.darkBlueAccentColor
         
 //        let addButton1 = UIButton(type: .custom)
 //        addButton1.frame = CGRect(x: 130, y: 80, width: 60, height: 60)
@@ -90,6 +94,12 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
 
     }
+    
+    @IBAction func segmentControlChanged(_ sender: Any) {
+        let control = sender as! UISegmentedControl
+        print(control.selectedSegmentIndex)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -121,13 +131,19 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+        let passenger = self.passengers[indexPath.row]
+        print(passenger.name)
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let temp = passengers.remove(at: sourceIndexPath.item)
         passengers.insert(temp, at: destinationIndexPath.item)
         self.passengerCollectionView.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let hght = Double(self.passengerCollectionView.frame.height) / (Double(self.passengers.count)/2.0) - 15
+        return CGSize(width: 125, height: hght)
     }
     
     func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
@@ -138,6 +154,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             guard let selectedIndexPath = self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) else {
                 break
             }
+            self.initialSelectedIndexPath = selectedIndexPath
             let cell = self.passengerCollectionView.cellForItem(at: selectedIndexPath)
             cell?.backgroundColor = UIColor.red
             self.passengerCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
@@ -147,6 +164,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         
         case UIGestureRecognizerState.ended:
             guard let selectedIndexPath = self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) else {
+                print("\noops alert")
+                let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
+                cell?.backgroundColor = UIColor.blue
+                self.passengerCollectionView.endInteractiveMovement()
                 break
             }
             let cell = self.passengerCollectionView.cellForItem(at: selectedIndexPath)
@@ -155,30 +176,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         default:
             self.passengerCollectionView.cancelInteractiveMovement()
         }
-    }
-    
-    
-    // MARK: - Passenger and Cargo View Button Actions
-    
-    @IBAction func passengerViewButtonSelected(_ sender: AnyObject) {
-        passengerViewButton.backgroundColor = Style.darkBlueAccentColor
-        cargoViewButton.backgroundColor = Style.mainBackgroundColor
-        passengerCollectionView.isHidden = false
-        frontCargoView.isHidden = true
-        rearCargoView.isHidden = true
-        containerView.isHidden = true
-        
-    }
-    
-    
-    @IBAction func cargoViewButtonSelected(_ sender: AnyObject) {
-        passengerViewButton.backgroundColor = Style.mainBackgroundColor
-        cargoViewButton.backgroundColor = Style.darkBlueAccentColor
-        passengerCollectionView.isHidden = true
-        frontCargoView.isHidden = false
-        rearCargoView.isHidden = false
-        containerView.isHidden = false
-        self.view.sendSubview(toBack: containerView)
     }
     
     

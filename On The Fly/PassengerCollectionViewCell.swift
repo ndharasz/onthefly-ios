@@ -13,5 +13,4 @@ class PassengerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     
-    
 }
