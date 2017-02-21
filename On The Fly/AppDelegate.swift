@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        config.showsTimer = false
 //        Visualizer.start(config)
         
-        print("\n\n" , GlobalVariables.sharedInstance.airports.count , "\n\n")
-        
         return true
     }
 

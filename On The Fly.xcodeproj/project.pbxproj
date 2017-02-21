@@ -11,6 +11,8 @@
 		83FE4927AA4B87730C1FD220 /* Pods_On_The_FlyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165258976A76E9DAAB156DE2 /* Pods_On_The_FlyUITests.framework */; };
 		C302D8A21E3721F100CB2B54 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302D8A11E3721F100CB2B54 /* Utilities.swift */; };
 		C30757901E501E0700DFD493 /* UpcomingFlightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307578F1E501E0700DFD493 /* UpcomingFlightTableViewCell.swift */; };
+		C3174EF81E5B931F009C2545 /* PassengerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3174EF71E5B931F009C2545 /* PassengerCollectionViewCell.swift */; };
+		C3174EFF1E5BCF5C009C2545 /* CargoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3174EFE1E5BCF5C009C2545 /* CargoViewController.swift */; };
 		C33B9CA61E38671500AF47A6 /* CreateNewFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */; };
 		C35D35351E42880E0047962C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C35D35341E42880E0047962C /* GoogleService-Info.plist */; };
 		C35FBA3E1E3AED3700A53888 /* ReportGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FBA3D1E3AED3700A53888 /* ReportGenerationViewController.swift */; };
@@ -62,6 +64,8 @@
 		9626DE2D45498C5E6EC5474B /* Pods_On_The_FlyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_On_The_FlyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C302D8A11E3721F100CB2B54 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ../Utilities.swift; sourceTree = "<group>"; };
 		C307578F1E501E0700DFD493 /* UpcomingFlightTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingFlightTableViewCell.swift; sourceTree = "<group>"; };
+		C3174EF71E5B931F009C2545 /* PassengerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassengerCollectionViewCell.swift; sourceTree = "<group>"; };
+		C3174EFE1E5BCF5C009C2545 /* CargoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CargoViewController.swift; sourceTree = "<group>"; };
 		C33B9CA51E38671500AF47A6 /* CreateNewFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewFlightViewController.swift; sourceTree = "<group>"; };
 		C34899A51E4918B2006EEEC1 /* On The Fly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "On The Fly.entitlements"; sourceTree = "<group>"; };
 		C35D35341E42880E0047962C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 				C35FBA3F1E3AF97700A53888 /* CheckboxButton.swift */,
 				C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */,
 				C307578F1E501E0700DFD493 /* UpcomingFlightTableViewCell.swift */,
+				C3174EF71E5B931F009C2545 /* PassengerCollectionViewCell.swift */,
 			);
 			name = "Custom Support Files";
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				C36CAD121E390E9F008C685E /* EditFlightViewController.swift */,
 				C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */,
 				C35FBA3D1E3AED3700A53888 /* ReportGenerationViewController.swift */,
+				C3174EFE1E5BCF5C009C2545 /* CargoViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -527,8 +533,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C35FBA401E3AF97700A53888 /* CheckboxButton.swift in Sources */,
+				C3174EFF1E5BCF5C009C2545 /* CargoViewController.swift in Sources */,
 				C36CAD151E39A470008C685E /* ForgotPasswordViewController.swift in Sources */,
 				C36CAD131E390E9F008C685E /* EditFlightViewController.swift in Sources */,
+				C3174EF81E5B931F009C2545 /* PassengerCollectionViewCell.swift in Sources */,
 				C3FF5AC91E3EE6ED00D1A96E /* PaddedTextField.swift in Sources */,
 				C37090061E4F716A00AB3B8B /* GlobalVariables.swift in Sources */,
 				C36CAD111E3906EC008C685E /* CreateAccountViewController.swift in Sources */,

@@ -11,7 +11,7 @@ import Firebase
 
 struct Flight {
     
-    let plane: String
+    var plane: String
     let departAirport: String
     let arriveAirport: String
     let date: String
