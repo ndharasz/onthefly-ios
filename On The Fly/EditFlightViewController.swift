@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -21,7 +22,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var flight: Flight?
     var plane: Plane?
-    var passengers: [(name: String, weight: Int)] = []
+    var passengers: [(name: String, weight: Double)] = []
     var initialSelectedIndexPath: IndexPath?
     var testVariable: String = "nope"
     
@@ -40,17 +41,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         self.applyUserInterfaceChanges()
-
         
-        // FOR TESTING ONLY!!!!!
-        passengers.append((name: "Scott", weight: 180))
-        passengers.append((name: "Moose", weight: 35))
-        passengers.append((name: "Traci", weight: 150))
-        passengers.append((name: "Sophia", weight: 150))
-        passengers.append((name: "Sami", weight: 115))
-        passengers.append((name: "Scottie", weight: 180))
-//        passengers.append((name: "Empty", weight: 0))
-//        passengers.append((name: "Purse", weight: 3))
+        self.loadPassengers()
         
         // Example of updating and saving to Firebase from this "EditFlight" screen
 //        if let thisFlight = flight {
@@ -62,6 +54,31 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
 
+    }
+    
+    func loadPassengers() {
+        if let thisFlight = flight {
+            let seatCongif = thisFlight.seatWeights.sorted(by: { $0.0 < $1.0 })
+            for (_, seatData) in seatCongif {
+                for (name, weight) in seatData {
+                    let newPassenger = (name: name, weight: weight)
+                    passengers.append(newPassenger)
+                }
+            }
+        }
+    }
+    
+    func saveNewSeatConfig() {
+        if let thisFlight = flight {
+            let flightref = thisFlight.fireRef
+            var newConfig: [String:[String:Double]] = [:]
+            for i in 0...passengers.count-1 {
+                let seat = passengers[i]
+                newConfig["seat\(i+1)"] = [seat.name: seat.weight]
+            }
+            let updates = ["seatWeights":newConfig]
+            flightref?.updateChildValues(updates)
+        }
     }
     
     @IBAction func segmentControlChanged(_ sender: Any) {
@@ -144,11 +161,14 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
                 cell?.backgroundColor = UIColor.blue
                 self.passengerCollectionView.endInteractiveMovement()
+                self.saveNewSeatConfig()
                 break
             }
             let cell = self.passengerCollectionView.cellForItem(at: selectedIndexPath)
             cell?.backgroundColor = UIColor.blue
             self.passengerCollectionView.endInteractiveMovement()
+            // Update firebase with new configuration
+            self.saveNewSeatConfig()
         default:
             self.passengerCollectionView.cancelInteractiveMovement()
         }

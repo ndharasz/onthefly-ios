@@ -20,7 +20,7 @@ struct Flight {
     var startFuel: Double
     var flightTime: Int
     var fuelFlow: Double
-    var seatWeights: [String:Double]
+    var seatWeights: [String:[String:Double]]
     var frontBaggageWeight: Int
     var aftBaggageWeight: Int
     var taxiFuelBurn: Int
@@ -29,7 +29,7 @@ struct Flight {
     let fireRef: FIRDatabaseReference?
     
     init(plane: String, dptArpt: String, arvArpt: String, date: String, time: String, uid: String,
-         startFuel: Double, flightTime: Int, fuelFlow: Double, seatWeights: [String:Double],
+         startFuel: Double, flightTime: Int, fuelFlow: Double, seatWeights: [String:[String:Double]],
          frontBagWeight: Int, aftBagWeight: Int, taxiBurn: Int) {
         self.plane = plane
         self.departAirport = dptArpt
@@ -57,7 +57,7 @@ struct Flight {
         self.startFuel = snapshotValue["startFuel"] as! Double
         self.flightTime = snapshotValue["flightTime"] as! Int
         self.fuelFlow = snapshotValue["fuelFlow"] as! Double
-        self.seatWeights = snapshotValue["seatWeights"] as! [String:Double]
+        self.seatWeights = snapshotValue["seatWeights"] as! [String:[String:Double]]
         self.frontBaggageWeight = snapshotValue["frontBaggageWeight"] as! Int
         self.aftBaggageWeight = snapshotValue["aftBaggageWeight"] as! Int
         self.taxiFuelBurn = snapshotValue["taxiFuelBurn"] as! Int
