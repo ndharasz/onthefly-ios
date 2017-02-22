@@ -83,4 +83,14 @@ struct Flight {
         ]
     }
     
+    func updateFrontBaggageWeight() {
+        let update = ["frontBaggageWeight": frontBaggageWeight]
+        fireRef?.updateChildValues(update)
+    }
+    
+    func updateAftBaggageWeight() {
+        let update = ["aftBaggageWeight": aftBaggageWeight]
+        fireRef?.updateChildValues(update)
+    }
+    
 }
