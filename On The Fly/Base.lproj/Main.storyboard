@@ -6,8 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12074.1"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -755,9 +753,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-vO-T5T">
-                                <rect key="frame" x="16" y="108" width="343" height="82"/>
+                                <rect key="frame" x="16" y="108" width="343" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="boo-8m-oiw"/>
+                                    <constraint firstAttribute="height" constant="70" id="6bB-GW-bXU"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="sYD-sc-Y89" id="Hrv-0T-79N"/>
@@ -767,27 +765,18 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the aircraft:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-pR-03W">
                                 <rect key="frame" x="16" y="79" width="164" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="UFS-vn-T55"/>
-                                    <constraint firstAttribute="width" constant="163.5" id="f0Y-0x-Y7A"/>
+                                    <constraint firstAttribute="height" constant="24" id="5dL-ZH-VcC"/>
+                                    <constraint firstAttribute="width" constant="164" id="ePz-iO-pwX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the departure airport:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2k-Od-bzu">
-                                <rect key="frame" x="16" y="210" width="242" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="6vy-mE-abT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. DFW" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="343" width="343" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Arrival Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                <rect key="frame" x="16" y="239" width="343" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Pj3-xy-duJ"/>
+                                    <constraint firstAttribute="height" constant="45" id="LEG-ht-bWm"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -796,33 +785,32 @@
                                     <outlet property="delegate" destination="sYD-sc-Y89" id="Qxd-FE-DzV"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the arrival airport:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efV-l6-HPJ">
-                                <rect key="frame" x="16" y="305" width="209" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="JKI-x8-3WJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-AN-9kf">
-                                <rect key="frame" x="0.0" y="437" width="375" height="131"/>
+                                <rect key="frame" x="0.0" y="321" width="375" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="z1S-5i-wY1"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="507013899.48793203">
                                     <!--2017-01-25 05:11:39 +0000-->
                                 </date>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the date and time of the flight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajp-EB-u8P">
-                                <rect key="frame" x="16" y="405" width="332" height="24"/>
+                                <rect key="frame" x="16" y="292" width="332" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="f9C-T2-JMT"/>
+                                    <constraint firstAttribute="height" constant="24" id="hPi-XA-gsq"/>
+                                    <constraint firstAttribute="width" constant="332" id="x9v-OM-kir"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZR5-qQ-kWU">
-                                <rect key="frame" x="233" y="584" width="100" height="43"/>
+                                <rect key="frame" x="224" y="582" width="100" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Eu8-8A-Esy"/>
+                                    <constraint firstAttribute="width" constant="100" id="SXb-dP-URh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -832,10 +820,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLZ-cw-jzt">
-                                <rect key="frame" x="48" y="584" width="100" height="43"/>
+                                <rect key="frame" x="51" y="582" width="100" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="vcS-hu-oRX"/>
+                                    <constraint firstAttribute="height" constant="45" id="9md-9y-95K"/>
+                                    <constraint firstAttribute="width" constant="100" id="zXJ-M5-3sc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Cancel">
@@ -845,11 +834,11 @@
                                     <action selector="cancelButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="TVa-Tz-huR"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. ATL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="242" width="343" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Departure Airport " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                <rect key="frame" x="16" y="186" width="343" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Mr7-Gx-pHO"/>
+                                    <constraint firstAttribute="height" constant="45" id="qmy-9u-HeO"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -859,10 +848,10 @@
                                 </connections>
                             </textField>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-q3-xYu">
-                                <rect key="frame" x="16" y="291" width="343" height="130"/>
+                                <rect key="frame" x="16" y="235" width="343" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="ftz-xO-X07"/>
+                                    <constraint firstAttribute="height" constant="130" id="CUO-dl-ykK"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="AIv-n5-lgV">
@@ -880,10 +869,10 @@
                                 </connections>
                             </tableView>
                             <tableView hidden="YES" clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7iS-EB-dVF">
-                                <rect key="frame" x="16" y="392" width="343" height="130"/>
+                                <rect key="frame" x="16" y="288" width="343" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="naD-dQ-E8C"/>
+                                    <constraint firstAttribute="height" constant="130" id="xTw-Mf-FJF"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Twq-5v-RzV">
@@ -902,6 +891,9 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhr-ot-BVb">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="crS-j9-38J"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="barTintColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
@@ -912,58 +904,119 @@
                                     <navigationItem title="Create New Flight" id="0lL-ZR-dx2"/>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flight Duration (min)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EJ5-bB-wQH" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                <rect key="frame" x="16" y="419" width="343" height="45"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="0qr-ml-jVS"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sYD-sc-Y89" id="LiB-gy-SEj"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Starting Fuel (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DUy-Ea-VFS" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                <rect key="frame" x="16" y="472" width="343" height="45"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Ge1-qP-af5"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sYD-sc-Y89" id="0ju-qp-6Iy"/>
+                                </connections>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XK5-2C-OFs">
+                                <rect key="frame" x="16" y="525" width="343" height="45"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flow Rate (gal/hr)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4K9-EO-M8f" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="169" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="Lnd-Le-eqg"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Taxi Fuel Usage" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TSo-5f-8wE" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="174" y="0.0" width="169" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="uwF-5W-hhc"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="gS6-97-cQ2"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ajp-EB-u8P" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="17" id="1yK-8H-8Di"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7iS-EB-dVF" secondAttribute="trailing" id="4ex-pf-LFJ"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="7iS-EB-dVF" secondAttribute="leading" id="5Ge-92-OmH"/>
-                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="leading" secondItem="ajp-EB-u8P" secondAttribute="leading" id="6a4-nd-Yio"/>
-                            <constraint firstItem="c7X-q3-xYu" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="6nF-FG-SGs"/>
-                            <constraint firstItem="efV-l6-HPJ" firstAttribute="leading" secondItem="5Y4-Ee-Ywo" secondAttribute="leading" id="7Fy-Rt-Iei"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="QUK-dV-23c" secondAttribute="trailing" id="7g9-YJ-fuX"/>
-                            <constraint firstItem="QUK-dV-23c" firstAttribute="trailing" secondItem="5Y4-Ee-Ywo" secondAttribute="trailing" id="9lg-DU-Cqj"/>
-                            <constraint firstItem="QUK-dV-23c" firstAttribute="leading" secondItem="efV-l6-HPJ" secondAttribute="leading" id="Awh-QA-TMh"/>
-                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" constant="32" id="CUq-i5-D0o"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="leading" secondItem="s2k-Od-bzu" secondAttribute="leading" id="CdC-eK-uX8"/>
-                            <constraint firstItem="efV-l6-HPJ" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="18" id="Gf3-TP-5qF"/>
-                            <constraint firstItem="s2k-Od-bzu" firstAttribute="top" secondItem="Vfc-vO-T5T" secondAttribute="bottom" constant="20" id="Hst-a3-osa"/>
-                            <constraint firstItem="VTT-AN-9kf" firstAttribute="top" secondItem="ajp-EB-u8P" secondAttribute="bottom" constant="8" symbolic="YES" id="HtO-cG-76U"/>
-                            <constraint firstItem="y1s-B0-w6M" firstAttribute="top" secondItem="lLZ-cw-jzt" secondAttribute="bottom" constant="40" id="JuC-4I-iac"/>
-                            <constraint firstItem="PwZ-pR-03W" firstAttribute="top" secondItem="Lhr-ot-BVb" secondAttribute="bottom" constant="15" id="LJa-he-Ric"/>
-                            <constraint firstItem="7iS-EB-dVF" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="4" id="M1g-AK-pEP"/>
-                            <constraint firstItem="VTT-AN-9kf" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="MBg-hV-Nwq"/>
-                            <constraint firstItem="c7X-q3-xYu" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="NIB-cy-Vb0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZR5-qQ-kWU" secondAttribute="trailing" constant="26" id="Oaq-HD-FR5"/>
-                            <constraint firstItem="ZR5-qQ-kWU" firstAttribute="baseline" secondItem="lLZ-cw-jzt" secondAttribute="firstBaseline" id="Sms-sT-Gbs"/>
-                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="top" secondItem="ZR5-qQ-kWU" secondAttribute="top" id="UVy-Jk-S53"/>
-                            <constraint firstAttribute="trailing" secondItem="Lhr-ot-BVb" secondAttribute="trailing" id="UdH-YN-lYE"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="WIa-xq-843"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="top" secondItem="PwZ-pR-03W" secondAttribute="bottom" constant="5" id="Yt4-8n-Chm"/>
-                            <constraint firstItem="PwZ-pR-03W" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="bHm-hc-nuB"/>
-                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="top" secondItem="VTT-AN-9kf" secondAttribute="bottom" constant="16" id="bPW-Gw-jRw"/>
-                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="centerX" secondItem="PwZ-pR-03W" secondAttribute="centerX" id="hAy-Wi-Bqx"/>
-                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="top" secondItem="efV-l6-HPJ" secondAttribute="bottom" constant="14" id="hdy-6E-VJb"/>
-                            <constraint firstItem="QUK-dV-23c" firstAttribute="top" secondItem="s2k-Od-bzu" secondAttribute="bottom" constant="8" symbolic="YES" id="huS-VR-Ewm"/>
-                            <constraint firstItem="ZR5-qQ-kWU" firstAttribute="leading" secondItem="lLZ-cw-jzt" secondAttribute="trailing" constant="85" id="in8-Bb-07f"/>
-                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="centerX" secondItem="VTT-AN-9kf" secondAttribute="centerX" id="mUM-1G-pr5"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="myH-Pw-O5I"/>
-                            <constraint firstItem="Lhr-ot-BVb" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="qSF-sS-agH"/>
-                            <constraint firstItem="c7X-q3-xYu" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="4" id="rCd-j4-gOn"/>
-                            <constraint firstItem="s2k-Od-bzu" firstAttribute="leading" secondItem="QUK-dV-23c" secondAttribute="leading" id="vfB-rg-wTW"/>
-                            <constraint firstItem="Lhr-ot-BVb" firstAttribute="top" secondItem="qnT-nu-bTC" secondAttribute="bottom" id="vyM-UV-2UQ"/>
-                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="baseline" secondItem="ZR5-qQ-kWU" secondAttribute="firstBaseline" id="wSM-96-Wil"/>
+                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" constant="35" id="1uz-qd-08d"/>
+                            <constraint firstItem="QUK-dV-23c" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="2FC-XT-PLt"/>
+                            <constraint firstItem="c7X-q3-xYu" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="75u-Fm-RXe"/>
+                            <constraint firstAttribute="trailing" secondItem="XK5-2C-OFs" secondAttribute="trailing" constant="16" id="9al-tI-AJG"/>
+                            <constraint firstItem="VTT-AN-9kf" firstAttribute="top" secondItem="ajp-EB-u8P" secondAttribute="bottom" constant="5" id="A0e-fE-Syn"/>
+                            <constraint firstAttribute="trailing" secondItem="Lhr-ot-BVb" secondAttribute="trailing" id="AKX-Ua-iiM"/>
+                            <constraint firstItem="EJ5-bB-wQH" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="Cxr-Kl-JFE"/>
+                            <constraint firstItem="XK5-2C-OFs" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="DDh-Jf-qeq"/>
+                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="DpV-EL-vaT"/>
+                            <constraint firstItem="XK5-2C-OFs" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="Fqy-kc-EWL"/>
+                            <constraint firstItem="ZR5-qQ-kWU" firstAttribute="top" secondItem="TSo-5f-8wE" secondAttribute="bottom" constant="12" id="G1P-2U-0N9"/>
+                            <constraint firstItem="7iS-EB-dVF" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="GNP-UP-ZXL"/>
+                            <constraint firstItem="XK5-2C-OFs" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" constant="16" id="H5E-N3-EDi"/>
+                            <constraint firstItem="7iS-EB-dVF" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="4" id="Me9-lF-pKr"/>
+                            <constraint firstItem="PwZ-pR-03W" firstAttribute="top" secondItem="Lhr-ot-BVb" secondAttribute="bottom" constant="15" id="QLp-hV-KCm"/>
+                            <constraint firstItem="c7X-q3-xYu" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="4" id="Qon-Vq-jIB"/>
+                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="top" secondItem="4K9-EO-M8f" secondAttribute="bottom" constant="12" id="UuE-Oe-yF5"/>
+                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="W2x-9H-6Sn"/>
+                            <constraint firstItem="ajp-EB-u8P" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="8" id="Wpa-xx-TJj"/>
+                            <constraint firstItem="7iS-EB-dVF" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="Xvq-14-qqI"/>
+                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="Y9V-jV-bL2"/>
+                            <constraint firstItem="PwZ-pR-03W" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="Zci-Dz-VLS"/>
+                            <constraint firstItem="EJ5-bB-wQH" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="aB2-Bv-33r"/>
+                            <constraint firstItem="EJ5-bB-wQH" firstAttribute="top" secondItem="VTT-AN-9kf" secondAttribute="bottom" constant="8" id="add-S8-Bln"/>
+                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="top" secondItem="PwZ-pR-03W" secondAttribute="bottom" constant="5" id="bgu-qG-Y9N"/>
+                            <constraint firstItem="c7X-q3-xYu" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="f4k-G3-oF7"/>
+                            <constraint firstAttribute="trailing" secondItem="VTT-AN-9kf" secondAttribute="trailing" id="gF6-XS-RGm"/>
+                            <constraint firstItem="QUK-dV-23c" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="hFp-6L-55j"/>
+                            <constraint firstItem="DUy-Ea-VFS" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="mDU-QL-DKi"/>
+                            <constraint firstItem="XK5-2C-OFs" firstAttribute="top" secondItem="DUy-Ea-VFS" secondAttribute="bottom" constant="8" id="mvI-1H-Y3B"/>
+                            <constraint firstItem="Lhr-ot-BVb" firstAttribute="top" secondItem="qnT-nu-bTC" secondAttribute="bottom" id="qwc-ct-UJS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZR5-qQ-kWU" secondAttribute="trailing" constant="35" id="rZZ-de-Dsr"/>
+                            <constraint firstItem="ajp-EB-u8P" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="rpl-sx-LZO"/>
+                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="ryW-wC-Itq"/>
+                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="8" id="snB-eU-Ul6"/>
+                            <constraint firstItem="VTT-AN-9kf" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="tWa-z2-hKL"/>
+                            <constraint firstItem="DUy-Ea-VFS" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="u75-Cr-GyN"/>
+                            <constraint firstItem="Lhr-ot-BVb" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="vbA-Y9-F3P"/>
+                            <constraint firstItem="DUy-Ea-VFS" firstAttribute="top" secondItem="EJ5-bB-wQH" secondAttribute="bottom" constant="8" id="w4S-qy-HrS"/>
+                            <constraint firstItem="QUK-dV-23c" firstAttribute="top" secondItem="Vfc-vO-T5T" secondAttribute="bottom" constant="8" id="zvv-3Y-ecg"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arrivalArptTextfield" destination="5Y4-Ee-Ywo" id="Urz-XI-BLW"/>
                         <outlet property="autoCompleteTable2" destination="7iS-EB-dVF" id="AjL-qs-oCy"/>
+                        <outlet property="bottomStackView" destination="XK5-2C-OFs" id="NG6-1a-hsg"/>
                         <outlet property="cancelButton" destination="lLZ-cw-jzt" id="lxS-BL-4Te"/>
                         <outlet property="datePicker" destination="VTT-AN-9kf" id="ugV-Eo-JJM"/>
                         <outlet property="departureArptTextfield" destination="QUK-dV-23c" id="2yb-b5-4tg"/>
+                        <outlet property="durationTextfield" destination="EJ5-bB-wQH" id="kA8-pI-4yK"/>
+                        <outlet property="flowRateTextfield" destination="4K9-EO-M8f" id="a1c-7K-ivF"/>
                         <outlet property="planePicker" destination="Vfc-vO-T5T" id="jVW-LP-EBq"/>
+                        <outlet property="startingFuelTextfield" destination="DUy-Ea-VFS" id="ll1-ts-S4X"/>
                         <outlet property="submitButton" destination="ZR5-qQ-kWU" id="RDO-sD-LcH"/>
                         <outlet property="tableView" destination="c7X-q3-xYu" id="sDX-F1-Mpj"/>
+                        <outlet property="taxiFuelUsageTextfield" destination="TSo-5f-8wE" id="AcZ-s3-rgg"/>
                         <segue destination="wDc-Yu-kR2" kind="show" identifier="createFlightToEditFlight" id="ACs-8Z-TM7"/>
                     </connections>
                 </viewController>

@@ -23,11 +23,21 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var departureArptTextfield: PaddedTextField!
     @IBOutlet weak var arrivalArptTextfield: PaddedTextField!
     
+    @IBOutlet weak var durationTextfield: PaddedTextField!
+    @IBOutlet weak var startingFuelTextfield: PaddedTextField!
+    
+    @IBOutlet weak var flowRateTextfield: PaddedTextField!
+    @IBOutlet weak var taxiFuelUsageTextfield: PaddedTextField!
+    
+    @IBOutlet weak var bottomStackView: UIStackView!
+    
     var pickerData: [Plane] = [Plane]()
     
     var selectedPlane: Plane?
     
     var flightToPass: Flight?
+    
+    var activeTextfield: PaddedTextField = PaddedTextField()
     
     var autoCompletePossibilities = GlobalVariables.sharedInstance.airports
     var autoComplete = [String]()
@@ -45,13 +55,15 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         departureArptTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         arrivalArptTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        addKeyboardToolBar(textField: departureArptTextfield)
-        addKeyboardToolBar(textField: arrivalArptTextfield)
+        let textFields: [PaddedTextField] = [departureArptTextfield, arrivalArptTextfield, durationTextfield,
+                                             startingFuelTextfield, flowRateTextfield, taxiFuelUsageTextfield]
+        
+        for textfield in textFields {
+            addKeyboardToolBar(textField: textfield)
+            textfield.roundCorners()
+        }
 
         pickerData = GlobalVariables.sharedInstance.planeArray
-        
-        departureArptTextfield.roundCorners()
-        arrivalArptTextfield.roundCorners()
         
         datePicker.setValue(UIColor.white, forKey: "textColor")
         datePicker.setValue(true, forKey: "highlightsToday")
@@ -329,11 +341,17 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
             let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
             let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
-        } else {
+        } else if textField.tag == 5 {
             let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
             let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
             let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
             nextButton.isEnabled = false
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
+        } else {
+            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
+            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
             let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
         }
@@ -345,15 +363,33 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     func previousPressed() {
+        
         if self.arrivalArptTextfield.isFirstResponder {
-            self.view.frame.origin.y = 0
             self.departureArptTextfield.becomeFirstResponder()
+        } else if self.durationTextfield.isFirstResponder {
+            self.arrivalArptTextfield.becomeFirstResponder()
+        } else if self.startingFuelTextfield.isFirstResponder {
+            self.durationTextfield.becomeFirstResponder()
+        } else if self.flowRateTextfield.isFirstResponder {
+            self.startingFuelTextfield.becomeFirstResponder()
+        } else if self.taxiFuelUsageTextfield.isFirstResponder {
+            self.flowRateTextfield.becomeFirstResponder()
         }
+        
     }
     
     func nextPressed() {
+        
         if self.departureArptTextfield.isFirstResponder {
             self.arrivalArptTextfield.becomeFirstResponder()
+        } else if self.arrivalArptTextfield.isFirstResponder {
+            self.durationTextfield.becomeFirstResponder()
+        } else if self.durationTextfield.isFirstResponder {
+            self.startingFuelTextfield.becomeFirstResponder()
+        } else if self.startingFuelTextfield.isFirstResponder {
+            self.flowRateTextfield.becomeFirstResponder()
+        } else {
+            self.taxiFuelUsageTextfield.becomeFirstResponder()
         }
     }
     
@@ -361,16 +397,29 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
+        
         if self.departureArptTextfield.isEditing {
             self.departureArptTextfield.endEditing(false)
-        } else {
+        } else if self.arrivalArptTextfield.isEditing {
             self.arrivalArptTextfield.endEditing(false)
+        } else if self.durationTextfield.isEditing {
+            self.durationTextfield.endEditing(false)
+        } else if self.taxiFuelUsageTextfield.isEditing {
+            self.taxiFuelUsageTextfield.endEditing(false)
+        } else if self.startingFuelTextfield.isEditing {
+            self.startingFuelTextfield.endEditing(false)
+        } else {
+            self.flowRateTextfield.endEditing(false)
         }
         
     }
     
     func cancelPressed() {
-        self.view.endEditing(true) // or do something
+        self.activeTextfield.endEditing(true) // or do something
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextfield = textField as! PaddedTextField
     }
     
     
@@ -383,23 +432,32 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     func keyboardWillShow(notification: NSNotification) {
         
-        if self.departureArptTextfield.isEditing {
-            self.view.frame.origin.y = 0
-            self.view.frame.origin.y -= 40
-            
-        }
+        self.view.frame.origin.y = 0
+        
+        print(self.activeTextfield.tag)
         
         if self.arrivalArptTextfield.isEditing {
+            self.view.frame.origin.y = -15
+        } else if self.durationTextfield.isEditing {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                self.view.frame.origin.y = 0
-                self.view.frame.origin.y -= (keyboardSize.height - 80)
+                self.view.frame.origin.y -= (keyboardSize.height - 20)
+            }
+        } else if self.startingFuelTextfield.isEditing {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y = -(keyboardSize.height - 20)
+            }
+        } else if self.flowRateTextfield.isEditing || self.taxiFuelUsageTextfield.isEditing {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y = -(keyboardSize.height - 20)
             }
         }
-
+        
+        print("keyboard will show with frame: ", self.view.frame.origin)
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
+            
             self.view.frame.origin.y = 0
         }
     }
