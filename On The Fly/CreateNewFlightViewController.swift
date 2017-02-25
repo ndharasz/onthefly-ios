@@ -20,8 +20,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var autoCompleteTable2: UITableView!
     
-    
-    
     @IBOutlet weak var departureArptTextfield: PaddedTextField!
     @IBOutlet weak var arrivalArptTextfield: PaddedTextField!
     
@@ -136,7 +134,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     
                     let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(),
                                            arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!,
-                                           startFuel: 0, flightTime: 0, fuelFlow: 0, seatWeights: emptySeatConfig,
+                                           startFuel: 0, flightDuration: 0, fuelFlow: 0, seatWeights: emptySeatConfig,
                                            frontBagWeight: 0, aftBagWeight: 0, taxiBurn: -12)
                     
                     let fireRef = FIRDatabase.database().reference()

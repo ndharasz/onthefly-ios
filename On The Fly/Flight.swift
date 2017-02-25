@@ -16,20 +16,18 @@ struct Flight {
     var arriveAirport: String
     var date: String
     var time: String
-    
     var startFuel: Double
-    var flightTime: Int
+    var flightDuration: Int
     var fuelFlow: Double
     var seatWeights: [String:[String:Double]]
     var frontBaggageWeight: Int
     var aftBaggageWeight: Int
     var taxiFuelBurn: Int
-    
     let userid: String
     let fireRef: FIRDatabaseReference?
     
     init(plane: String, dptArpt: String, arvArpt: String, date: String, time: String, uid: String,
-         startFuel: Double, flightTime: Int, fuelFlow: Double, seatWeights: [String:[String:Double]],
+         startFuel: Double, flightDuration: Int, fuelFlow: Double, seatWeights: [String:[String:Double]],
          frontBagWeight: Int, aftBagWeight: Int, taxiBurn: Int) {
         self.plane = plane
         self.departAirport = dptArpt
@@ -37,7 +35,7 @@ struct Flight {
         self.date = date
         self.time = time
         self.startFuel = startFuel
-        self.flightTime = flightTime
+        self.flightDuration = flightDuration
         self.fuelFlow = fuelFlow
         self.seatWeights = seatWeights
         self.frontBaggageWeight = frontBagWeight
@@ -55,7 +53,7 @@ struct Flight {
         self.date = snapshotValue["date"] as! String
         self.time = snapshotValue["time"] as! String
         self.startFuel = snapshotValue["startFuel"] as! Double
-        self.flightTime = snapshotValue["flightTime"] as! Int
+        self.flightDuration = snapshotValue["flightDuration"] as! Int
         self.fuelFlow = snapshotValue["fuelFlow"] as! Double
         self.seatWeights = snapshotValue["seatWeights"] as! [String:[String:Double]]
         self.frontBaggageWeight = snapshotValue["frontBaggageWeight"] as! Int
@@ -73,7 +71,7 @@ struct Flight {
             "date": date,
             "time": time,
             "startFuel": startFuel,
-            "flightTime": flightTime,
+            "flightDuration": flightDuration,
             "fuelFlow": fuelFlow,
             "seatWeights": seatWeights,
             "frontBaggageWeight": frontBaggageWeight,
@@ -91,6 +89,14 @@ struct Flight {
     func updateAftBaggageWeight() {
         let update = ["aftBaggageWeight": aftBaggageWeight]
         fireRef?.updateChildValues(update)
+    }
+    
+    func calcArrivalTime() -> String {
+        let dateformatter = DateFormatter()
+        dateformatter.timeStyle = .short
+        let departureTime = dateformatter.date(from: self.time)
+        let time2 = departureTime!.addingTimeInterval(Double(self.flightDuration) * 60.0)
+        return dateformatter.string(from: time2)
     }
     
 }

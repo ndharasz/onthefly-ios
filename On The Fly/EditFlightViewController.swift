@@ -27,7 +27,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     var plane: Plane?
     var passengers: [(name: String, weight: Double)] = []
     var initialSelectedIndexPath: IndexPath?
-    var testVariable: String = "nope"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +95,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -150,8 +148,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 break
             }
             self.initialSelectedIndexPath = selectedIndexPath
-//            let cell = self.passengerCollectionView.cellForItem(at: selectedIndexPath)
-//            cell?.backgroundColor = UIColor.red
             _ = self.passengerCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         
         case UIGestureRecognizerState.changed:
@@ -171,12 +167,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 break
             }
             
-            
-            
             self.initialSelectedIndexPath = selectedIndexPath
         
         case UIGestureRecognizerState.ended:
-            guard let selectedIndexPath = self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) else {
+            guard self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) != nil else {
                 let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
                 cell?.backgroundColor = UIColor.blue
                 self.passengerCollectionView.endInteractiveMovement()
@@ -194,10 +188,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 break
             }
             
-            
-//            let cell = self.passengerCollectionView.cellForItem(at: selectedIndexPath)
-//            cell?.backgroundColor = UIColor.blue
             self.passengerCollectionView.endInteractiveMovement()
+            
             // Update firebase with new configuration
             self.saveNewSeatConfig()
         default:
