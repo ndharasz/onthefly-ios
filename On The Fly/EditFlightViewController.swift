@@ -177,7 +177,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.saveNewSeatConfig()
                 
                 if self.trashLabel.frame.contains(gesture.location(in: self.view)) {
-                    print("trash drop")
                     let newby = (name: "Empty", weight: 0.0)
                     passengers[(initialSelectedIndexPath?.row)!] = newby
                 }

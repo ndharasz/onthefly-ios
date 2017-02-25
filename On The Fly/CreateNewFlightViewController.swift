@@ -144,10 +144,31 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                         
                     }
                     
+                    guard let duration = Int(self.durationTextfield.text!) else {
+                        self.alert(message: "Must enter a valid value for trip duration.", title: "Input Error")
+                        return
+                    }
+                    
+                    guard let startingFuel = Double(self.startingFuelTextfield.text!) else {
+                        self.alert(message: "Must enter a valid value for starting fuel.", title: "Input Error")
+                        return
+                    }
+                    
+                    guard let fuelFlowRate = Double(self.flowRateTextfield.text!) else {
+                        self.alert(message: "Must enter a valid value for fuel flow rate.", title: "Input Error")
+                        return
+                    }
+                    
+                    guard let taxiBurn = Int(self.taxiFuelUsageTextfield.text!) else {
+                        self.alert(message: "Must enter a valid value for taxi fuel burn.", title: "Input Error")
+                        return
+                    }
+                    
                     let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(),
                                            arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!,
-                                           startFuel: 0, flightDuration: 0, fuelFlow: 0, seatWeights: emptySeatConfig,
-                                           frontBagWeight: 0, aftBagWeight: 0, taxiBurn: -12)
+                                           startFuel: startingFuel, flightDuration: duration, fuelFlow: fuelFlowRate,
+                                           seatWeights: emptySeatConfig, frontBagWeight: 0, aftBagWeight: 0,
+                                           taxiBurn: -taxiBurn)
                     
                     let fireRef = FIRDatabase.database().reference()
                     let flightRef = fireRef.child("newFlights")
@@ -334,27 +355,9 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         toolBar.isTranslucent = true
         toolBar.tintColor = Style.darkBlueAccentColor
         
-        if textField.tag == 0 {
-            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
-            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
-            previousButton.isEnabled = false
-            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
-        } else if textField.tag == 5 {
-            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
-            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
-            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
-            nextButton.isEnabled = false
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
-        } else {
-            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
-            let previousButton = UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousPressed))
-            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextPressed))
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            toolBar.setItems([previousButton, nextButton, spaceButton, doneButton], animated: true)
-        }
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([spaceButton, doneButton], animated: true)
         
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
@@ -362,55 +365,15 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         textField.inputAccessoryView = toolBar
     }
     
-    func previousPressed() {
-        
-        if self.arrivalArptTextfield.isFirstResponder {
-            self.departureArptTextfield.becomeFirstResponder()
-        } else if self.durationTextfield.isFirstResponder {
-            self.arrivalArptTextfield.becomeFirstResponder()
-        } else if self.startingFuelTextfield.isFirstResponder {
-            self.durationTextfield.becomeFirstResponder()
-        } else if self.flowRateTextfield.isFirstResponder {
-            self.startingFuelTextfield.becomeFirstResponder()
-        } else if self.taxiFuelUsageTextfield.isFirstResponder {
-            self.flowRateTextfield.becomeFirstResponder()
-        }
-        
-    }
-    
-    func nextPressed() {
-        
-        if self.departureArptTextfield.isFirstResponder {
-            self.arrivalArptTextfield.becomeFirstResponder()
-        } else if self.arrivalArptTextfield.isFirstResponder {
-            self.durationTextfield.becomeFirstResponder()
-        } else if self.durationTextfield.isFirstResponder {
-            self.startingFuelTextfield.becomeFirstResponder()
-        } else if self.startingFuelTextfield.isFirstResponder {
-            self.flowRateTextfield.becomeFirstResponder()
-        } else {
-            self.taxiFuelUsageTextfield.becomeFirstResponder()
-        }
-    }
     
     func donePressed() {
         if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.frame.origin.y = 0
+            })
         }
         
-        if self.departureArptTextfield.isEditing {
-            self.departureArptTextfield.endEditing(false)
-        } else if self.arrivalArptTextfield.isEditing {
-            self.arrivalArptTextfield.endEditing(false)
-        } else if self.durationTextfield.isEditing {
-            self.durationTextfield.endEditing(false)
-        } else if self.taxiFuelUsageTextfield.isEditing {
-            self.taxiFuelUsageTextfield.endEditing(false)
-        } else if self.startingFuelTextfield.isEditing {
-            self.startingFuelTextfield.endEditing(false)
-        } else {
-            self.flowRateTextfield.endEditing(false)
-        }
+        self.activeTextfield.endEditing(true)
         
     }
     
@@ -432,15 +395,11 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     func keyboardWillShow(notification: NSNotification) {
         
-        self.view.frame.origin.y = 0
-        
-        print(self.activeTextfield.tag)
-        
         if self.arrivalArptTextfield.isEditing {
             self.view.frame.origin.y = -15
         } else if self.durationTextfield.isEditing {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                self.view.frame.origin.y -= (keyboardSize.height - 20)
+                self.view.frame.origin.y = -(keyboardSize.height - 20)
             }
         } else if self.startingFuelTextfield.isEditing {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -451,14 +410,13 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                 self.view.frame.origin.y = -(keyboardSize.height - 20)
             }
         }
-        
-        print("keyboard will show with frame: ", self.view.frame.origin)
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
-            
-            self.view.frame.origin.y = 0
+            UIView.animate(withDuration: 0.2, animations: { 
+                self.view.frame.origin.y = 0
+            })
         }
     }
     
