@@ -136,8 +136,7 @@ class UpcomingFlightTableViewCell: UITableViewCell {
             self.actualArrArptLabel.attributedText = makeSubtitleText(string: flight.arriveAirport)
             
             self.actualDeptTimeLabel.attributedText = makeSubtitleText(string: flight.time)
-            // MARK: - ToDO: Replace with actual value, modify flight data model first
-            self.actualArrTimeLabel.attributedText = makeSubtitleText(string: "12:00 PM")
+            self.actualArrTimeLabel.attributedText = makeSubtitleText(string: flight.calcArrivalTime())
             var tempNum = ""
             for each in GlobalVariables.sharedInstance.planeArray {
                 if each.longName() == flight.plane {

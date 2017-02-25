@@ -11,7 +11,7 @@ import Firebase
 
 class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var passengerCollectionView: UICollectionView!
+    @IBOutlet weak var passengerCollectionView: WiggleUICollectionView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var createReportButton: UIButton!
     
@@ -19,19 +19,19 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var cargoContainerView: UIView!
     
+    @IBOutlet weak var trashLabel: UIImageView!
+    
+    
     
     var flight: Flight?
     var plane: Plane?
     var passengers: [(name: String, weight: Double)] = []
     var initialSelectedIndexPath: IndexPath?
-    var testVariable: String = "nope"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let thisFlight = flight {
-            print(thisFlight.toAnyObject())
-            
             // Assign a plane object to this field for ease in calculations
             for each in GlobalVariables.sharedInstance.planeArray {
                 if each.longName() == thisFlight.plane {
@@ -95,7 +95,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -149,24 +148,48 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 break
             }
             self.initialSelectedIndexPath = selectedIndexPath
-            let cell = self.passengerCollectionView.cellForItem(at: selectedIndexPath)
-            cell?.backgroundColor = UIColor.red
-            self.passengerCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            _ = self.passengerCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         
         case UIGestureRecognizerState.changed:
             self.passengerCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            
+            guard let selectedIndexPath = self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) else {
+                
+                if self.trashLabel.frame.contains(gesture.location(in: self.view)) {
+                    let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
+                    cell?.backgroundColor = UIColor.red
+                    
+                } else {
+                    let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
+                    cell?.backgroundColor = UIColor.blue
+                }
+                
+                break
+            }
+            
+            self.initialSelectedIndexPath = selectedIndexPath
         
         case UIGestureRecognizerState.ended:
-            guard let selectedIndexPath = self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) else {
+            guard self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) != nil else {
                 let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
                 cell?.backgroundColor = UIColor.blue
                 self.passengerCollectionView.endInteractiveMovement()
                 self.saveNewSeatConfig()
+                
+                if self.trashLabel.frame.contains(gesture.location(in: self.view)) {
+                    print("trash drop")
+                    let newby = (name: "Empty", weight: 0.0)
+                    passengers[(initialSelectedIndexPath?.row)!] = newby
+                }
+                
+                self.passengerCollectionView.reloadData()
+                self.saveNewSeatConfig()
+                
                 break
             }
-            let cell = self.passengerCollectionView.cellForItem(at: selectedIndexPath)
-            cell?.backgroundColor = UIColor.blue
+            
             self.passengerCollectionView.endInteractiveMovement()
+            
             // Update firebase with new configuration
             self.saveNewSeatConfig()
         default:
@@ -180,7 +203,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.passengerCollectionView.layer.cornerRadius = 8
         let font = UIFont.systemFont(ofSize: 22)
         self.segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
-        self.segmentControlHeightConstant.constant = 50
+        self.segmentControlHeightConstant.constant = 40
         self.segmentControl.layer.borderWidth = 2
         self.segmentControl.layer.borderColor = UIColor.white.cgColor
         self.segmentControl.layer.cornerRadius = 6
