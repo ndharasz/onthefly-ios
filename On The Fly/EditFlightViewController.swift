@@ -38,6 +38,18 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                     self.plane = each
                 }
             }
+            
+            
+            // Example error handling for verifying the plane's status
+            // @Callie: see the Utilities file for an enumeration of plane errors, 
+            // more can be added
+            do {
+                try thisFlight.checkValidFlight(plane: plane!)
+            } catch FlightErrors.tooHeavyOnRamp {
+                print("flight is too heavy to take off")
+            } catch {
+                print("Some other error")
+            }
         }
         
         self.applyUserInterfaceChanges()

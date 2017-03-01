@@ -81,6 +81,100 @@ struct Flight {
         ]
     }
     
+    func isRampWeightOkay(plane: Plane) -> Bool {
+        return (calcZeroFuelWeight(plane: plane) + startFuel * 6.0) < Double(plane.maxRampWeight)
+    }
+    
+    func isTakeoffWeightOkay(plane: Plane) -> Bool {
+        return calcTakeoffWeight(plane: plane) < Double(plane.maxTakeoffWeight)
+    }
+    
+    func calcZeroFuelWeight(plane: Plane) -> Double {
+        var weight = Double(plane.emptyWeight)
+        for (_, dict) in self.seatWeights {
+            for (_, number) in dict {
+                weight += number
+            }
+        }
+        weight += Double(frontBaggageWeight)
+        weight += Double(aftBaggageWeight)
+        return weight
+    }
+    
+    func calcTakeoffWeight(plane: Plane) -> Double {
+        return (calcZeroFuelWeight(plane: plane) + startFuel * 6.0 - Double(taxiFuelBurn) * 6.0)
+    }
+    
+    func calcLandingWeight(plane: Plane) -> Double {
+        return (calcTakeoffWeight(plane: plane) - Double(fuelFlow * Double(flightDuration) / 10.0))
+    }
+    
+    func calcTakeoffCenterOfGravity(plane: Plane) -> Double {
+        let weight = calcTakeoffWeight(plane: plane)
+        var moment = 0.0
+        
+        moment += Double(plane.emptyWeight) * plane.emptyWeightArm
+        
+        for i in 0...(plane.numSeats - 1) {
+            let row = i / 2
+            if row == 0 {
+                moment += weightForSeatIndex(index: i) * plane.pilotSeatsArm
+            } else {
+                moment += weightForSeatIndex(index: i) * plane.rowArms[row - 1]
+            }
+        }
+        
+        moment += (startFuel - Double(taxiFuelBurn)) * 6.0 * plane.fuelArm
+        
+        moment += Double(frontBaggageWeight) * plane.frontBaggageArm
+        
+        moment += Double(aftBaggageWeight) * plane.aftBaggageArm
+        
+        print("moment: ", moment)
+        print("weight: ", weight)
+        
+        return moment / weight
+    }
+    
+    func calcLandingCenterOfGravity(plane: Plane) -> Double {
+        let weight = calcLandingWeight(plane: plane)
+        var moment = 0.0
+        
+        moment += Double(plane.emptyWeight) * plane.emptyWeightArm
+        
+        for i in 0...(plane.numSeats - 1) {
+            let row = i / 2
+            if row == 0 {
+                moment += weightForSeatIndex(index: i) * plane.pilotSeatsArm
+            } else {
+                moment += weightForSeatIndex(index: i) * plane.rowArms[row - 1]
+            }
+        }
+        
+        moment += (startFuel - Double(taxiFuelBurn)) * 6.0 * plane.fuelArm
+        
+        moment += Double(frontBaggageWeight) * plane.frontBaggageArm
+        
+        moment += Double(aftBaggageWeight) * plane.aftBaggageArm
+        
+        moment -= (Double(flightDuration) * fuelFlow / 10.0) * plane.fuelArm
+        
+        print("moment: ", moment)
+        print("weight: ", weight)
+        
+        return moment / weight
+    }
+    
+    func weightForSeatIndex(index: Int) -> Double {
+        let key = "seat\(index + 1)"
+        let weightDict = seatWeights[key]!
+        var weightToReturn = 0.0
+        for (_, weight) in weightDict {
+            weightToReturn = weight
+        }
+        return weightToReturn
+    }
+    
     func updateFrontBaggageWeight() {
         let update = ["frontBaggageWeight": frontBaggageWeight]
         fireRef?.updateChildValues(update)
@@ -97,6 +191,12 @@ struct Flight {
         let departureTime = dateformatter.date(from: self.time)
         let time2 = departureTime!.addingTimeInterval(Double(self.flightDuration) * 60.0)
         return dateformatter.string(from: time2)
+    }
+    
+    func checkValidFlight(plane: Plane) throws {
+        if calcTakeoffWeight(plane: plane) > Double(plane.maxTakeoffWeight) {
+            throw FlightErrors.tooHeavyOnRamp
+        }
     }
     
 }

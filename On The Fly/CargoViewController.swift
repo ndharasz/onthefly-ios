@@ -32,7 +32,7 @@ class CargoViewController: UIViewController {
         applyUserInterfaceChanges()
         
         self.frontCargoLabel.text = "Front Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
-        self.aftCargoLabel.text = "Aft Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
+        self.aftCargoLabel.text = "Aft Cargo: \(self.editFlightVC.flight!.aftBaggageWeight) lbs"
 
     }
 
