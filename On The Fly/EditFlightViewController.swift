@@ -123,6 +123,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let passenger = self.passengers[indexPath.row]
+        passengerSelected()
         print(passenger.name)
     }
     
@@ -137,6 +138,38 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         let availableHeight = Double(self.passengerCollectionView.frame.height) - 20.0 - 10.0 * (numRows - 1.0)
         let cellHeight = Double(availableHeight) / numRows
         return CGSize(width: 125, height: cellHeight)
+    }
+    
+    func passengerSelected() {
+//        let editPassenger = UIAlertController(title: "Edit Passenger", message: "Enter Passenger Info", preferredStyle: UIAlertControllerStyle.alert)
+//        editPassenger.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+//        editPassenger.addTextField(configurationHandler: <#T##((UITextField) -> Void)?##((UITextField) -> Void)?##(UITextField) -> Void#>)
+        
+        let editPassenger = UIAlertController(title: "Add New Name", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            let firstTextField = editPassenger.textFields![0] as UITextField
+            let secondTextField = editPassenger.textFields![1] as UITextField
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Name"
+        }
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Weight"
+        }
+        
+        editPassenger.addAction(saveAction)
+        editPassenger.addAction(cancelAction)
+        self.present(editPassenger, animated: true, completion: nil)
     }
     
     func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
