@@ -16,14 +16,17 @@ class CargoViewController: UIViewController {
     @IBOutlet weak var frontCargoView: UIView!
     @IBOutlet weak var frontCargoLabel: UILabel!
     @IBOutlet weak var frontAddButton: UIButton!
-    
-    
+    var frontClearButton: UIButton!
+
+    @IBOutlet weak var frontSubtractButton: UIButton!
     @IBOutlet weak var aftCargoView: UIView!
     @IBOutlet weak var aftCargoLabel: UILabel!
     @IBOutlet weak var aftAddButton: UIButton!
+    var aftSubtractButton: UIButton!
+    var aftClearButton: UIButton!
     
     
-    let btnDiameter: CGFloat = 60
+    let btnDiameter: CGFloat = 50
     
     
     override func viewDidLoad() {
@@ -47,7 +50,7 @@ class CargoViewController: UIViewController {
         self.view.layer.cornerRadius = 8
         self.aftCargoView.layer.borderWidth = 2
         self.aftCargoView.layer.borderColor = UIColor.black.cgColor
-        self.aftCargoView.backgroundColor = UIColor.red
+        self.aftCargoView.backgroundColor = UIColor.gray
         self.frontCargoView.layer.borderWidth = 2
         self.frontCargoView.layer.borderColor = UIColor.black.cgColor
         self.frontCargoView.backgroundColor = UIColor.gray
@@ -59,7 +62,13 @@ class CargoViewController: UIViewController {
         frontAddButton.titleLabel?.setSizeFont(sizeFont: 40)
         frontAddButton.setTitleColor(UIColor.black, for: .normal)
         frontAddButton.layer.backgroundColor = UIColor.white.cgColor
-        
+
+        frontSubtractButton.layer.cornerRadius = 0.5 * btnDiameter
+        frontSubtractButton.clipsToBounds = true
+        frontSubtractButton.setTitle("-", for: .normal)
+        frontSubtractButton.titleLabel?.setSizeFont(sizeFont: 40)
+        frontSubtractButton.setTitleColor(UIColor.black, for: .normal)
+        frontSubtractButton.layer.backgroundColor = UIColor.white.cgColor
         
         aftAddButton.layer.cornerRadius = 0.5 * btnDiameter
         aftAddButton.clipsToBounds = true
@@ -67,6 +76,14 @@ class CargoViewController: UIViewController {
         aftAddButton.titleLabel?.setSizeFont(sizeFont: 40)
         aftAddButton.setTitleColor(UIColor.black, for: .normal)
         aftAddButton.layer.backgroundColor = UIColor.white.cgColor
+        
+        aftSubtractButton = UIButton()
+        aftSubtractButton.layer.cornerRadius = 0.5 * btnDiameter
+        aftSubtractButton.clipsToBounds = true
+        aftSubtractButton.setTitle("-", for: .normal)
+        aftSubtractButton.titleLabel?.setSizeFont(sizeFont: 40)
+        aftSubtractButton.setTitleColor(UIColor.black, for: .normal)
+        aftSubtractButton.layer.backgroundColor = UIColor.white.cgColor
     }
 
 }
