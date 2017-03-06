@@ -1370,6 +1370,11 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nV-33-jE7">
+                                        <rect key="frame" x="57" y="86" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1430,6 +1435,7 @@
                         <outlet property="frontAddButton" destination="Euh-vh-14f" id="ZXB-cz-nwG"/>
                         <outlet property="frontCargoLabel" destination="PRv-fl-byk" id="sir-tu-1zj"/>
                         <outlet property="frontCargoView" destination="ADT-bk-eYT" id="UnT-Tf-cw0"/>
+                        <outlet property="frontSubtractButton" destination="5nV-33-jE7" id="C8m-8g-caT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MTt-37-pk7" userLabel="First Responder" sceneMemberID="firstResponder"/>

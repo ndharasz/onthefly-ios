@@ -123,7 +123,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let passenger = self.passengers[indexPath.row]
-        passengerSelected()
+        passengerSelected(passengerIndex: indexPath.row)
         print(passenger.name)
     }
     
@@ -140,10 +140,9 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         return CGSize(width: 125, height: cellHeight)
     }
     
-    func passengerSelected() {
-//        let editPassenger = UIAlertController(title: "Edit Passenger", message: "Enter Passenger Info", preferredStyle: UIAlertControllerStyle.alert)
-//        editPassenger.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-//        editPassenger.addTextField(configurationHandler: <#T##((UITextField) -> Void)?##((UITextField) -> Void)?##(UITextField) -> Void#>)
+    //passing in an integer that is the indexPath.row of the selected passenger?? dont actually 
+    //know if that's allowed.
+    func passengerSelected(passengerIndex: Int) {
         
         let editPassenger = UIAlertController(title: "Add New Name", message: "", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -151,7 +150,16 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             alert -> Void in
             
             let firstTextField = editPassenger.textFields![0] as UITextField
+            let name = firstTextField.text!
+            //make only numbers keyboard show up here?
             let secondTextField = editPassenger.textFields![1] as UITextField
+            //need to add error handling
+            let weight :Double? = Double(secondTextField.text!)
+            let passenger = (name: name, weight: weight)
+            
+            //@scott- what is this error here? sigabrt is just a general error code? 
+            //think it might be something to do with how i'm calling the index?
+            self.passengers[passengerIndex] = passenger as! (name: String, weight: Double)
             
         })
         
@@ -159,7 +167,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             (action : UIAlertAction!) -> Void in
             
         })
-        
         editPassenger.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Passenger Name"
         }
