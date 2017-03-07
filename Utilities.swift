@@ -123,6 +123,24 @@ extension UIColor {
     }
 }
 
+// MARK: - Double Extensions
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
+// MARK: - Flight Validation Errors
+
+enum FlightErrors: Error {
+    case tooMuchFuel(maxFuel: Int)
+    case tooHeavyOnRamp
+    // Incomplete, more need to be added
+}
+
 // MARK: - Style struct
 
 struct Style{
