@@ -159,11 +159,11 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                         return
                     }
                     
-                    let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(),
+                    let newFlight = Flight(plane: plane.tailNumber, dptArpt: dptArpt.uppercased(),
                                            arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!,
                                            startFuel: startingFuel, flightDuration: duration, fuelFlow: fuelFlowRate,
                                            passengers: emptySeatConfig, frontBagWeight: 0, aftBagWeight: 0,
-                                           taxiBurn: -taxiBurn)
+                                           taxiBurn: taxiBurn)
                     
                     let fireRef = FIRDatabase.database().reference()
                     let flightRef = fireRef.child("flights")

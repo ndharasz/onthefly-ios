@@ -14,14 +14,11 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var passengerCollectionView: WiggleUICollectionView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var createReportButton: UIButton!
-    
     @IBOutlet weak var segmentControlHeightConstant: NSLayoutConstraint!
-    
     @IBOutlet weak var cargoContainerView: UIView!
-    
     @IBOutlet weak var trashLabel: UIImageView!
-    
-    
+    @IBOutlet weak var flightDetailsContainerView: UIView!
+    @IBOutlet weak var flightInfoLabel: UILabel!
     
     var flight: Flight?
     var plane: Plane?
@@ -34,7 +31,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         if let thisFlight = flight {
             // Assign a plane object to this field for ease in calculations
             for each in GlobalVariables.sharedInstance.planeArray {
-                if each.longName() == thisFlight.plane {
+                if each.tailNumber == thisFlight.plane {
                     self.plane = each
                 }
             }
@@ -53,7 +50,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.applyUserInterfaceChanges()
         
         self.loadPassengers()
-
+        
+        self.updateTitleLabel()
 
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
@@ -80,6 +78,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    func updateTitleLabel() {
+        self.flightInfoLabel.text = "\(flight!.departAirport) --> \(flight!.arriveAirport)"
+    }
+    
     func saveNewSeatConfig() {
         if let thisFlight = flight {
             let flightref = thisFlight.fireRef
@@ -98,11 +100,23 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func segmentControlChanged(_ sender: Any) {
         let control = sender as! UISegmentedControl
         if control.selectedSegmentIndex == 0 {
+            // Flight Details view
+            self.flightDetailsContainerView.isHidden = false
+            self.passengerCollectionView.isHidden = true
+            self.cargoContainerView.isHidden = true
+            self.trashLabel.isHidden = true
+        } else if control.selectedSegmentIndex == 1 {
+            // Passenger seat view
+            self.flightDetailsContainerView.isHidden = true
             self.passengerCollectionView.isHidden = false
             self.cargoContainerView.isHidden = true
+            self.trashLabel.isHidden = false
         } else {
+            // Cargo View
+            self.flightDetailsContainerView.isHidden = true
             self.passengerCollectionView.isHidden = true
             self.cargoContainerView.isHidden = false
+            self.trashLabel.isHidden = true
         }
     }
     
@@ -274,7 +288,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func applyUserInterfaceChanges() {
         self.passengerCollectionView.layer.cornerRadius = 8
-        let font = UIFont.systemFont(ofSize: 22)
+        let font = UIFont.systemFont(ofSize: 18)
         self.segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         self.segmentControlHeightConstant.constant = 40
         self.segmentControl.layer.borderWidth = 2
@@ -292,6 +306,9 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "embedCargoView" {
             let cargoVC = segue.destination as! CargoViewController
             cargoVC.editFlightVC = self
+        } else if segue.identifier == "embedFlightDetailsView" {
+            let flightDetailsVC = segue.destination as! FlightDetailsViewController
+            flightDetailsVC.editFlightVC = self
         }
         
     }

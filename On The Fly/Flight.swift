@@ -192,6 +192,26 @@ struct Flight {
         fireRef?.updateChildValues(update)
     }
     
+    func updateDateAndTime() {
+        let updates = ["date": date,
+                      "time": time]
+        fireRef?.updateChildValues(updates)
+    }
+    
+    func updateAirports() {
+        let updates = ["departAirport": departAirport,
+                       "arriveAirport": arriveAirport]
+        fireRef?.updateChildValues(updates)
+    }
+    
+    func updateFlightParameters() {
+        let updates = ["startFuel": startFuel,
+                       "flightDuration": flightDuration,
+                       "fuelFlow": fuelFlow,
+                       "taxiFuelBurn": taxiFuelBurn] as [String : Any]
+        fireRef?.updateChildValues(updates)
+    }
+    
     func calcArrivalTime() -> String {
         let dateformatter = DateFormatter()
         dateformatter.timeStyle = .short
