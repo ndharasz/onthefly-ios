@@ -50,7 +50,7 @@ class CargoViewController: UIViewController {
     
     func updateLabels() {
         self.frontCargoLabel.text = "Front Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
-        self.aftCargoLabel.text = "Aft Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
+        self.aftCargoLabel.text = "Aft Cargo: \(self.editFlightVC.flight!.aftBaggageWeight) lbs"
     }
     
     @IBAction func frontAddPressed(_ sender: Any) {
@@ -153,12 +153,101 @@ class CargoViewController: UIViewController {
     }
     
     @IBAction func aftAddPressed(_ sender: Any) {
+        let addToAft = UIAlertController(title: "Add weight", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            // need to add error handling
+            let firstTextField = addToAft.textFields![0] as UITextField
+            guard let newWeight = Int(firstTextField.text!) else {
+                print("invalid weight")
+                return
+            }
+            
+            self.aftWeight += newWeight
+            
+            //firebase call
+            self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
+            self.editFlightVC.flight?.updateAftBaggageWeight()
+            
+            self.updateLabels()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            addToAft.dismiss(animated: true, completion: nil)
+        })
+        
+        addToAft.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Baggage Weight (lbs)"
+            textField.keyboardType = UIKeyboardType.numberPad
+        }
+        
+        addToAft.addAction(saveAction)
+        addToAft.addAction(cancelAction)
+        self.present(addToAft, animated: true, completion: nil)
     }
     
     @IBAction func aftClearPressed(_ sender: Any) {
+        let subtractFromAft = UIAlertController(title: "Clear Weight", message: "Are you sure you want to delete all weight?", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            self.aftWeight = 0
+            
+            //firebase call
+            self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
+            self.editFlightVC.flight?.updateAftBaggageWeight()
+            
+            self.updateLabels()
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        subtractFromAft.addAction(saveAction)
+        subtractFromAft.addAction(cancelAction)
+        self.present(subtractFromAft, animated: true, completion: nil)
     }
     
     @IBAction func aftSubtractPressed(_ sender: Any) {
+        let subtractFromAft = UIAlertController(title: "Subtract weight", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            // need to add error handling
+            let firstTextField = subtractFromAft.textFields![0] as UITextField
+            guard let newWeight = Int(firstTextField.text!) else {
+                print("invalid weight")
+                return
+            }
+            
+            self.aftWeight -= newWeight
+            
+            //firebase call
+            self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
+            self.editFlightVC.flight?.updateAftBaggageWeight()
+            
+            self.updateLabels()
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            subtractFromAft.dismiss(animated: true, completion: nil)
+        })
+        
+        subtractFromAft.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Baggage Weight to be removed(lbs)"
+            textField.keyboardType = UIKeyboardType.decimalPad
+        }
+        
+        subtractFromAft.addAction(saveAction)
+        subtractFromAft.addAction(cancelAction)
+        self.present(subtractFromAft, animated: true, completion: nil)
     }
     
     // MARK: - UI Style Changes
