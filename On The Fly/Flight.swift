@@ -19,7 +19,7 @@ struct Flight {
     var startFuel: Double
     var flightDuration: Int
     var fuelFlow: Double
-    var seatWeights: [String:[String:Double]]
+    var passengers: [String:[String:Any]]?
     var frontBaggageWeight: Int
     var aftBaggageWeight: Int
     var taxiFuelBurn: Int
@@ -27,7 +27,7 @@ struct Flight {
     let fireRef: FIRDatabaseReference?
     
     init(plane: String, dptArpt: String, arvArpt: String, date: String, time: String, uid: String,
-         startFuel: Double, flightDuration: Int, fuelFlow: Double, seatWeights: [String:[String:Double]],
+         startFuel: Double, flightDuration: Int, fuelFlow: Double, passengers: [String:[String:Any]],
          frontBagWeight: Int, aftBagWeight: Int, taxiBurn: Int) {
         self.plane = plane
         self.departAirport = dptArpt
@@ -37,7 +37,7 @@ struct Flight {
         self.startFuel = startFuel
         self.flightDuration = flightDuration
         self.fuelFlow = fuelFlow
-        self.seatWeights = seatWeights
+        self.passengers = passengers
         self.frontBaggageWeight = frontBagWeight
         self.aftBaggageWeight = aftBagWeight
         self.taxiFuelBurn = taxiBurn
@@ -55,7 +55,7 @@ struct Flight {
         self.startFuel = snapshotValue["startFuel"] as! Double
         self.flightDuration = snapshotValue["flightDuration"] as! Int
         self.fuelFlow = snapshotValue["fuelFlow"] as! Double
-        self.seatWeights = snapshotValue["seatWeights"] as! [String:[String:Double]]
+        self.passengers = snapshotValue["passengers"] as? [String:[String:Any]]
         self.frontBaggageWeight = snapshotValue["frontBaggageWeight"] as! Int
         self.aftBaggageWeight = snapshotValue["aftBaggageWeight"] as! Int
         self.taxiFuelBurn = snapshotValue["taxiFuelBurn"] as! Int
@@ -73,7 +73,7 @@ struct Flight {
             "startFuel": startFuel,
             "flightDuration": flightDuration,
             "fuelFlow": fuelFlow,
-            "seatWeights": seatWeights,
+            "passengers": passengers ?? [:],
             "frontBaggageWeight": frontBaggageWeight,
             "aftBaggageWeight": aftBaggageWeight,
             "taxiFuelBurn": taxiFuelBurn,
@@ -91,9 +91,13 @@ struct Flight {
     
     func calcZeroFuelWeight(plane: Plane) -> Double {
         var weight = Double(plane.emptyWeight)
-        for (_, dict) in self.seatWeights {
-            for (_, number) in dict {
-                weight += number
+        if self.passengers != nil {
+            for (_, dict) in self.passengers! {
+                for (key, value) in dict {
+                    if key == "weight" {
+                        weight += (value as! Double)
+                    }
+                }
             }
         }
         weight += Double(frontBaggageWeight)
@@ -167,10 +171,13 @@ struct Flight {
     
     func weightForSeatIndex(index: Int) -> Double {
         let key = "seat\(index + 1)"
-        let weightDict = seatWeights[key]!
         var weightToReturn = 0.0
-        for (_, weight) in weightDict {
-            weightToReturn = weight
+        if let weightDict = passengers?[key] {
+            for (key, value) in weightDict {
+                if key == "weight" {
+                    weightToReturn = (value as! Double)
+                }
+            }
         }
         return weightToReturn
     }

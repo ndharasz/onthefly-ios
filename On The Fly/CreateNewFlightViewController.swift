@@ -134,15 +134,10 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     let time = strTime
                     let uid = FIRAuth.auth()?.currentUser?.uid
                     
-                    var emptySeatConfig: [String:[String:Double]] = [:]
-                    for i in 0...plane.numSeats-1 {
-                        if i == 0 {
-                            emptySeatConfig["seat1"] = ["Pilot": 0.0]
-                        } else {
-                            emptySeatConfig["seat\(i+1)"] = ["Empty": 0.0]
-                        }
-                        
-                    }
+                    let emptySeatConfig: [String:[String:Double]] = [:]
+//                    for i in 0...plane.numSeats-1 {
+//                        emptySeatConfig["seat\(i+1)"] = ["Add Passenger": 0.0]
+//                    }
                     
                     guard let duration = Int(self.durationTextfield.text!) else {
                         self.alert(message: "Must enter a valid value for trip duration.", title: "Input Error")
@@ -167,11 +162,11 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(),
                                            arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!,
                                            startFuel: startingFuel, flightDuration: duration, fuelFlow: fuelFlowRate,
-                                           seatWeights: emptySeatConfig, frontBagWeight: 0, aftBagWeight: 0,
+                                           passengers: emptySeatConfig, frontBagWeight: 0, aftBagWeight: 0,
                                            taxiBurn: -taxiBurn)
                     
                     let fireRef = FIRDatabase.database().reference()
-                    let flightRef = fireRef.child("newFlights")
+                    let flightRef = fireRef.child("flights")
                     let newFlightRef = flightRef.childByAutoId()
                     newFlightRef.setValue(newFlight.toAnyObject())
                     

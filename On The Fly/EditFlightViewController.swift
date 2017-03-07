@@ -41,8 +41,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             
             
             // Example error handling for verifying the plane's status
-            // @Callie: see the Utilities file for an enumeration of plane errors, 
-            // more can be added
             do {
                 try thisFlight.checkValidFlight(plane: plane!)
             } catch FlightErrors.tooHeavyOnRamp {
@@ -55,12 +53,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.applyUserInterfaceChanges()
         
         self.loadPassengers()
-        
-        // Example of updating and saving to Firebase from this "EditFlight" screen
-//        if let thisFlight = flight {
-//            let updates = ["departAirport":"SLC"]
-//            thisFlight.fireRef?.updateChildValues(updates)
-//        }
 
 
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
@@ -70,11 +62,19 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func loadPassengers() {
         if let thisFlight = flight {
-            let seatCongif = thisFlight.seatWeights.sorted(by: { $0.0 < $1.0 })
-            for (_, seatData) in seatCongif {
-                for (name, weight) in seatData {
-                    let newPassenger = (name: name, weight: weight)
-                    passengers.append(newPassenger)
+            
+            for _ in 0...(plane!.numSeats - 1) {
+                let emptySeat = (name: "Empty", weight: 0.0)
+                passengers.append(emptySeat)
+            }
+            
+            if thisFlight.passengers != nil {
+                let seatCongif = thisFlight.passengers!.sorted(by: { $0.0 < $1.0 })
+                for (seatKey, seatData) in seatCongif {
+                    let index = Int(seatKey.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())! - 1
+                    let newPassenger = (name: seatData["name"], weight: seatData["weight"] as! Double)
+                    passengers.remove(at: index)
+                    passengers.insert(newPassenger as! (name: String, weight: Double), at: index)
                 }
             }
         }
@@ -83,12 +83,14 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     func saveNewSeatConfig() {
         if let thisFlight = flight {
             let flightref = thisFlight.fireRef
-            var newConfig: [String:[String:Double]] = [:]
+            var newConfig: [String:[String:Any]] = [:]
             for i in 0...passengers.count-1 {
                 let seat = passengers[i]
-                newConfig["seat\(i+1)"] = [seat.name: seat.weight]
+                if seat.name != "Empty" {
+                    newConfig["seat\(i+1)"] = ["name": seat.name, "weight": seat.weight]
+                }
             }
-            let updates = ["seatWeights":newConfig]
+            let updates = ["passengers": newConfig]
             flightref?.updateChildValues(updates)
         }
     }
@@ -124,10 +126,15 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = passengerCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PassengerCollectionViewCell
         cell.backgroundColor = Style.darkBlueAccentColor
         let cellPassenger = self.passengers[indexPath.row]
-        cell.nameLabel.text = cellPassenger.name
         cell.nameLabel.textColor = UIColor.white
-        cell.weightLabel.text = "\(cellPassenger.weight)"
         cell.weightLabel.textColor = UIColor.white
+        if cellPassenger.name == "Empty" {
+            cell.nameLabel.text = "Add Passenger"
+            cell.weightLabel.text = ""
+        } else {
+            cell.nameLabel.text = cellPassenger.name
+            cell.weightLabel.text = "\(cellPassenger.weight)"
+        }
         cell.layer.cornerRadius = 7
         
         return cell
@@ -187,7 +194,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         editPassenger.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Passenger Name"
             let tempPass = self.passengers[passengerIndex]
-            if tempPass.name != "Empty" || tempPass.weight != 0.0 {
+            if tempPass.name != "Empty" {
                 textField.text = tempPass.name
             }
         }
@@ -196,7 +203,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             textField.placeholder = "Enter Passenger Weight"
             textField.keyboardType = UIKeyboardType.decimalPad
             let tempPass = self.passengers[passengerIndex]
-            if tempPass.name != "Empty" || tempPass.weight != 0.0 {
+            if tempPass.name != "Empty" {
                 textField.text = "\(tempPass.weight)"
             }
         }
