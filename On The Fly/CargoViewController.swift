@@ -30,8 +30,6 @@ class CargoViewController: UIViewController {
     var frontWeight = 0
     var aftWeight = 0
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +43,6 @@ class CargoViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func updateLabels() {
