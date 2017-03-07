@@ -29,8 +29,8 @@ class CargoViewController: UIViewController {
     
     var flight: Flight?
     var plane: Plane?
-    var frontWeight = 0.0
-    var aftWeight = 0.0
+    var frontWeight = 0
+    var aftWeight = 0
     
     
     
@@ -56,7 +56,7 @@ class CargoViewController: UIViewController {
             
             // need to add error handling
             let firstTextField = addToFront.textFields![0] as UITextField
-            guard let newWeight = Double(firstTextField.text!) else {
+            guard let newWeight = Int(firstTextField.text!) else {
                 print("invalid weight")
                 return
             }
@@ -75,10 +75,6 @@ class CargoViewController: UIViewController {
         addToFront.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Baggage Weight (lbs)"
             textField.keyboardType = UIKeyboardType.decimalPad
-//            let tempPass = self.passengers[passengerIndex]
-//            if tempPass.weight != 0.0 {
-//                textField.text = "\(tempPass.weight)"
-//            }
         }
         
         addToFront.addAction(saveAction)
@@ -173,10 +169,13 @@ class CargoViewController: UIViewController {
     func saveFrontWeight() {
         if let thisFlight = flight {
             let flightref = thisFlight.fireRef
-//            var frontBaggageWeight: Double
-            let updates = ["frontBaggageWeight": frontWeight]
-            flightref?.updateChildValues(updates)
+            flightref?.frontBaggageWeight = frontWeight
+            flightref?.updateFrontBaggageWeight()
         }
+//
+//        let flightref = thisFlight.fireRef
+//        flightref?.frontBaggageWeight = frontWeight
+//        flightref?.updateFrontBaggageWeight()
     }
     
     // MARK: - UI Style Changes
