@@ -135,6 +135,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let passenger = self.passengers[indexPath.row]
+        passengerSelected(passengerIndex: indexPath.row)
         print(passenger.name)
     }
     
@@ -149,6 +150,45 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         let availableHeight = Double(self.passengerCollectionView.frame.height) - 20.0 - 10.0 * (numRows - 1.0)
         let cellHeight = Double(availableHeight) / numRows
         return CGSize(width: 125, height: cellHeight)
+    }
+    
+    //passing in an integer that is the indexPath.row of the selected passenger?? dont actually 
+    //know if that's allowed.
+    func passengerSelected(passengerIndex: Int) {
+        
+        let editPassenger = UIAlertController(title: "Add New Name", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            let firstTextField = editPassenger.textFields![0] as UITextField
+            let name = firstTextField.text!
+            //make only numbers keyboard show up here?
+            let secondTextField = editPassenger.textFields![1] as UITextField
+            //need to add error handling
+            let weight :Double? = Double(secondTextField.text!)
+            let passenger = (name: name, weight: weight)
+            
+            //@scott- what is this error here? sigabrt is just a general error code? 
+            //think it might be something to do with how i'm calling the index?
+            self.passengers[passengerIndex] = passenger as! (name: String, weight: Double)
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Name"
+        }
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Weight"
+        }
+        
+        editPassenger.addAction(saveAction)
+        editPassenger.addAction(cancelAction)
+        self.present(editPassenger, animated: true, completion: nil)
     }
     
     func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
