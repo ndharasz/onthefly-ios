@@ -27,6 +27,10 @@ class CargoViewController: UIViewController {
     
     let btnDiameter: CGFloat = 50
     
+    var frontWeight = 0
+    var aftWeight = 0
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +47,53 @@ class CargoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    @IBAction func addButtonAction(_ sender: Any) {
-//        self.alert(message: "this works")
-//    }
+    @IBAction func frontAddPressed(_ sender: Any) {
+        let addToFront = UIAlertController(title: "Add weight to Front Cargo Hold", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            //numbers keyboard only here
+            let firstTextField = addToFront.textFields![0] as UITextField
+            //need to add error handling
+            let weight :Double? = Double(secondTextField.text!)
+            let passenger = (name: name, weight: weight)
+            
+            //@scott- what is this error here? sigabrt is just a general error code?
+            //think it might be something to do with how i'm calling the index?
+            self.passengers[passengerIndex] = passenger as! (name: String, weight: Double)
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Name"
+        }
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Weight"
+        }
+        
+        editPassenger.addAction(saveAction)
+        editPassenger.addAction(cancelAction)
+        self.present(editPassenger, animated: true, completion: nil)
+        
+    }
     
+    @IBAction func frontSubtractPressed(_ sender: Any) {
+    }
     
+    @IBAction func frontClearPressed(_ sender: Any) {
+    }
+    
+    @IBAction func aftAddPressed(_ sender: Any) {
+    }
+    
+    @IBAction func aftClearPressed(_ sender: Any) {
+    }
+    
+    @IBAction func aftSubtractPressed(_ sender: Any) {
+    }
     
     // MARK: - UI Style Changes
     

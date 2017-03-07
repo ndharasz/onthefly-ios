@@ -1368,12 +1368,18 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <state key="normal" title="Front Add"/>
+                                        <connections>
+                                            <action selector="frontAddPressed:" destination="ZEK-ft-YW3" eventType="touchDown" id="BWM-nS-bYE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYe-gX-fWf">
                                         <rect key="frame" x="222" y="87" width="80" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Front Clear"/>
+                                        <connections>
+                                            <action selector="frontClearPressed:" destination="ZEK-ft-YW3" eventType="touchDown" id="BRv-7C-2Is"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nV-33-jE7">
                                         <rect key="frame" x="32" y="70" width="60.000000000000227" height="60.000000000000114"/>
@@ -1381,6 +1387,9 @@
                                         <state key="normal" title="front Subtract">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="frontSubtractPressed:" destination="ZEK-ft-YW3" eventType="touchDown" id="uwu-TB-Iso"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1408,17 +1417,26 @@
                                             <constraint firstAttribute="height" constant="60" id="NyH-Vv-0xc"/>
                                         </constraints>
                                         <state key="normal" title="aft add"/>
+                                        <connections>
+                                            <action selector="aftAddPressed:" destination="ZEK-ft-YW3" eventType="touchDown" id="u8o-sO-z7q"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wtd-4K-c6L">
                                         <rect key="frame" x="222" y="87" width="80" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="aft clear"/>
+                                        <connections>
+                                            <action selector="aftClearPressed:" destination="ZEK-ft-YW3" eventType="touchDown" id="zJ9-vb-hcW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73H-aC-ycg">
                                         <rect key="frame" x="32" y="70.5" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="aft subtract"/>
+                                        <connections>
+                                            <action selector="aftSubtractPressed:" destination="ZEK-ft-YW3" eventType="touchDown" id="g9N-WF-smm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1466,7 +1484,7 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ELt-yp-pXI"/>
+        <segue reference="YwN-Ik-6gk"/>
         <segue reference="ACs-8Z-TM7"/>
     </inferredMetricsTieBreakers>
 </document>
