@@ -134,8 +134,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let passenger = self.passengers[indexPath.row]
-        print(passenger.name)
+        passengerSelected(passengerIndex: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -149,6 +148,62 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         let availableHeight = Double(self.passengerCollectionView.frame.height) - 20.0 - 10.0 * (numRows - 1.0)
         let cellHeight = Double(availableHeight) / numRows
         return CGSize(width: 125, height: cellHeight)
+    }
+    
+    func passengerSelected(passengerIndex: Int) {
+        
+        let editPassenger = UIAlertController(title: "Add New Name", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            // need to add error handling
+            let firstTextField = editPassenger.textFields![0] as UITextField
+            guard let newName = firstTextField.text else {
+                print("invalid name")
+                return
+            }
+            
+            let secondTextField = editPassenger.textFields![1] as UITextField
+            guard let newWeight = Double(secondTextField.text!) else {
+                print("invalid weight")
+                return
+            }
+            let passenger = (name: newName, weight: newWeight)
+
+            self.passengers[passengerIndex] = passenger
+            self.passengerCollectionView.reloadData()
+            
+            // Update firebase with new configuration
+            self.saveNewSeatConfig()
+
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Name"
+            let tempPass = self.passengers[passengerIndex]
+            if tempPass.name != "Empty" || tempPass.weight != 0.0 {
+                textField.text = tempPass.name
+            }
+        }
+        
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Weight"
+            textField.keyboardType = UIKeyboardType.decimalPad
+            let tempPass = self.passengers[passengerIndex]
+            if tempPass.name != "Empty" || tempPass.weight != 0.0 {
+                textField.text = "\(tempPass.weight)"
+            }
+        }
+        
+        editPassenger.addAction(saveAction)
+        editPassenger.addAction(cancelAction)
+        self.present(editPassenger, animated: true, completion: nil)
     }
     
     func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
