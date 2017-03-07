@@ -27,8 +27,10 @@ class CargoViewController: UIViewController {
     
     let btnDiameter: CGFloat = 50
     
-    var frontWeight = 0
-    var aftWeight = 0
+    var flight: Flight?
+    var plane: Plane?
+    var frontWeight = 0.0
+    var aftWeight = 0.0
     
     
     
@@ -48,18 +50,62 @@ class CargoViewController: UIViewController {
     }
     
     @IBAction func frontAddPressed(_ sender: Any) {
-        let addToFront = UIAlertController(title: "Add weight to Front Cargo Hold", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let addToFront = UIAlertController(title: "Add weight", message: "", preferredStyle: UIAlertControllerStyle.alert)
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
-            //numbers keyboard only here
-            let firstTextField = addToFront.textFields![0] as UITextField
-            //need to add error handling
-            let weight :Double? = Double(secondTextField.text!)
-            let passenger = (name: name, weight: weight)
             
-            //@scott- what is this error here? sigabrt is just a general error code?
-            //think it might be something to do with how i'm calling the index?
-            self.passengers[passengerIndex] = passenger as! (name: String, weight: Double)
+            // need to add error handling
+            let firstTextField = addToFront.textFields![0] as UITextField
+            guard let newWeight = Double(firstTextField.text!) else {
+                print("invalid weight")
+                return
+            }
+            
+            let cargo = (weight: newWeight)
+            self.frontWeight += cargo
+            //firebase call
+            self.saveFrontWeight()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        addToFront.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Baggage Weight (lbs)"
+            textField.keyboardType = UIKeyboardType.decimalPad
+//            let tempPass = self.passengers[passengerIndex]
+//            if tempPass.weight != 0.0 {
+//                textField.text = "\(tempPass.weight)"
+//            }
+        }
+        
+        addToFront.addAction(saveAction)
+        addToFront.addAction(cancelAction)
+        self.present(addToFront, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func frontSubtractPressed(_ sender: Any) {
+        let subtractFromFront = UIAlertController(title: "Subtract weight", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            // need to add error handling
+            let firstTextField = subtractFromFront.textFields![0] as UITextField
+            guard let newWeight = Double(firstTextField.text!) else {
+                print("invalid weight")
+                return
+            }
+            
+            let cargo = (weight: newWeight)
+            
+            //            self.passengers[passengerIndex] = passenger
+            //            self.passengerCollectionView.reloadData()
+            
+            // Update firebase with new configuration
+            //            self.saveNewSeatConfig()
             
         })
         
@@ -67,23 +113,51 @@ class CargoViewController: UIViewController {
             (action : UIAlertAction!) -> Void in
             
         })
-        editPassenger.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Enter Passenger Name"
-        }
-        editPassenger.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Enter Passenger Weight"
+        
+        subtractFromFront.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Baggage Weight to be removed(lbs)"
+            textField.keyboardType = UIKeyboardType.decimalPad
+            //            let tempPass = self.passengers[passengerIndex]
+            //            if tempPass.weight != 0.0 {
+            //                textField.text = "\(tempPass.weight)"
+            //            }
         }
         
-        editPassenger.addAction(saveAction)
-        editPassenger.addAction(cancelAction)
-        self.present(editPassenger, animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func frontSubtractPressed(_ sender: Any) {
+        subtractFromFront.addAction(saveAction)
+        subtractFromFront.addAction(cancelAction)
+        self.present(subtractFromFront, animated: true, completion: nil)
     }
     
     @IBAction func frontClearPressed(_ sender: Any) {
+        let subtractFromFront = UIAlertController(title: "Clear Weight", message: "Are you sure you want to delete all weight?", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            // need to add error handling
+//            let firstTextField = subtractFromFront.textFields![0] as UITextField
+//            guard let newWeight = Double(firstTextField.text!) else {
+//                print("invalid weight")
+//                return
+//            }
+            
+//            let cargo = (weight: newWeight)
+            
+            //            self.passengers[passengerIndex] = passenger
+            //            self.passengerCollectionView.reloadData()
+            
+            // Update firebase with new configuration
+            //            self.saveNewSeatConfig()
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        subtractFromFront.addAction(saveAction)
+        subtractFromFront.addAction(cancelAction)
+        self.present(subtractFromFront, animated: true, completion: nil)
     }
     
     @IBAction func aftAddPressed(_ sender: Any) {
@@ -93,6 +167,16 @@ class CargoViewController: UIViewController {
     }
     
     @IBAction func aftSubtractPressed(_ sender: Any) {
+    }
+    
+    
+    func saveFrontWeight() {
+        if let thisFlight = flight {
+            let flightref = thisFlight.fireRef
+//            var frontBaggageWeight: Double
+            let updates = ["frontBaggageWeight": frontWeight]
+            flightref?.updateChildValues(updates)
+        }
     }
     
     // MARK: - UI Style Changes
