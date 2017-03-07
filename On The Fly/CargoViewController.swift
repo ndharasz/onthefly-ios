@@ -27,8 +27,6 @@ class CargoViewController: UIViewController {
     
     let btnDiameter: CGFloat = 50
     
-    var flight: Flight?
-    var plane: Plane?
     var frontWeight = 0
     var aftWeight = 0
     
@@ -39,14 +37,20 @@ class CargoViewController: UIViewController {
         
         applyUserInterfaceChanges()
         
-        self.frontCargoLabel.text = "Front Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
-        self.aftCargoLabel.text = "Aft Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
-
+        self.frontWeight = self.editFlightVC.flight!.frontBaggageWeight
+        self.aftWeight = self.editFlightVC.flight!.aftBaggageWeight
+        
+        self.updateLabels()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateLabels() {
+        self.frontCargoLabel.text = "Front Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
+        self.aftCargoLabel.text = "Aft Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
     }
     
     @IBAction func frontAddPressed(_ sender: Any) {
@@ -61,20 +65,23 @@ class CargoViewController: UIViewController {
                 return
             }
             
-            let cargo = (weight: newWeight)
-            self.frontWeight += cargo
+            self.frontWeight += newWeight
+            
             //firebase call
-            self.saveFrontWeight()
+            self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
+            self.editFlightVC.flight?.updateFrontBaggageWeight()
+            
+            self.updateLabels()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
-            
+            addToFront.dismiss(animated: true, completion: nil)
         })
         
         addToFront.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Baggage Weight (lbs)"
-            textField.keyboardType = UIKeyboardType.decimalPad
+            textField.keyboardType = UIKeyboardType.numberPad
         }
         
         addToFront.addAction(saveAction)
@@ -90,33 +97,29 @@ class CargoViewController: UIViewController {
             
             // need to add error handling
             let firstTextField = subtractFromFront.textFields![0] as UITextField
-            guard let newWeight = Double(firstTextField.text!) else {
+            guard let newWeight = Int(firstTextField.text!) else {
                 print("invalid weight")
                 return
             }
             
-            let cargo = (weight: newWeight)
+            self.frontWeight -= newWeight
             
-            //            self.passengers[passengerIndex] = passenger
-            //            self.passengerCollectionView.reloadData()
+            //firebase call
+            self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
+            self.editFlightVC.flight?.updateFrontBaggageWeight()
             
-            // Update firebase with new configuration
-            //            self.saveNewSeatConfig()
+            self.updateLabels()
             
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
-            
+            subtractFromFront.dismiss(animated: true, completion: nil)
         })
         
         subtractFromFront.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Baggage Weight to be removed(lbs)"
             textField.keyboardType = UIKeyboardType.decimalPad
-            //            let tempPass = self.passengers[passengerIndex]
-            //            if tempPass.weight != 0.0 {
-            //                textField.text = "\(tempPass.weight)"
-            //            }
         }
         
         subtractFromFront.addAction(saveAction)
@@ -129,20 +132,13 @@ class CargoViewController: UIViewController {
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             
-            // need to add error handling
-//            let firstTextField = subtractFromFront.textFields![0] as UITextField
-//            guard let newWeight = Double(firstTextField.text!) else {
-//                print("invalid weight")
-//                return
-//            }
+            self.frontWeight = 0
             
-//            let cargo = (weight: newWeight)
+            //firebase call
+            self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
+            self.editFlightVC.flight?.updateFrontBaggageWeight()
             
-            //            self.passengers[passengerIndex] = passenger
-            //            self.passengerCollectionView.reloadData()
-            
-            // Update firebase with new configuration
-            //            self.saveNewSeatConfig()
+            self.updateLabels()
             
         })
         
@@ -163,19 +159,6 @@ class CargoViewController: UIViewController {
     }
     
     @IBAction func aftSubtractPressed(_ sender: Any) {
-    }
-    
-    
-    func saveFrontWeight() {
-        if let thisFlight = flight {
-            let flightref = thisFlight.fireRef
-            flightref?.frontBaggageWeight = frontWeight
-            flightref?.updateFrontBaggageWeight()
-        }
-//
-//        let flightref = thisFlight.fireRef
-//        flightref?.frontBaggageWeight = frontWeight
-//        flightref?.updateFrontBaggageWeight()
     }
     
     // MARK: - UI Style Changes
