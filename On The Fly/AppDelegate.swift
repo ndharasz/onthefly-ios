@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
+        IQKeyboardManager.sharedManager().enable = true
+        
 //        in order to use, import TouchVisualizer above
 //        var config = Configuration()
 //        config.color = UIColor.red
