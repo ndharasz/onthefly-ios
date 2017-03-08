@@ -26,6 +26,8 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var flightDatePicker: UIDatePicker!
     
+    var activeTextfield: PaddedTextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +86,10 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
             thisFlight.time = selectedTime
             thisFlight.updateDateAndTime()
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextfield = textField as! PaddedTextField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -164,8 +170,10 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
         toolBar.tintColor = Style.darkBlueAccentColor
         
         let doneButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(donePressed))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self,
+                                           action: #selector(FlightDetailsViewController.cancelPressed))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([spaceButton, doneButton], animated: true)
+        toolBar.setItems([spaceButton, cancelButton, doneButton], animated: true)
         
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
@@ -174,6 +182,37 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func donePressed() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func cancelPressed() {
+        if self.activeTextfield == departAirportTextfield {
+            
+            self.activeTextfield.text = editFlightVC.flight!.departAirport
+            
+        } else if self.activeTextfield == arriveAirportTextfield {
+            
+            self.activeTextfield.text = editFlightVC.flight!.arriveAirport
+            
+        } else if self.activeTextfield == durationTextfield {
+            
+            self.activeTextfield.text = "\(editFlightVC.flight!.flightDuration)"
+            
+        } else if self.activeTextfield == startingFuelTextfield {
+            
+            self.activeTextfield.text = "\(editFlightVC.flight!.startFuel)"
+            
+        } else if self.activeTextfield == flowRateTextfield {
+            
+            self.activeTextfield.text = "\(editFlightVC.flight!.fuelFlow)"
+            
+        } else {
+            // taxi
+            
+            self.activeTextfield.text = "\(editFlightVC.flight!.taxiFuelBurn)"
+            
+        }
+        
         self.view.endEditing(true)
     }
 
