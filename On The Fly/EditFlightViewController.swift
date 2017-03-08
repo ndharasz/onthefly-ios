@@ -55,6 +55,14 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(EditFlightViewController.swipedRight(_:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(EditFlightViewController.swipedLeft(_:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
 
     }
     
@@ -97,15 +105,44 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    // MARK: - Segment View Control
+    
     @IBAction func segmentControlChanged(_ sender: Any) {
-        let control = sender as! UISegmentedControl
-        if control.selectedSegmentIndex == 0 {
+        updateVisibleViews()
+    }
+    
+    func swipedLeft(_ gesture: UIGestureRecognizer) {
+        switch self.segmentControl.selectedSegmentIndex {
+            case 0:
+                segmentControl.selectedSegmentIndex = 1
+            case 1:
+                segmentControl.selectedSegmentIndex = 2
+            default:
+                break
+        }
+        updateVisibleViews()
+    }
+    
+    func swipedRight(_ gesture: UIGestureRecognizer) {
+        switch self.segmentControl.selectedSegmentIndex {
+        case 2:
+            segmentControl.selectedSegmentIndex = 1
+        case 1:
+            segmentControl.selectedSegmentIndex = 0
+        default:
+            break
+        }
+        updateVisibleViews()
+    }
+    
+    func updateVisibleViews() {
+        if segmentControl.selectedSegmentIndex == 0 {
             // Flight Details view
             self.flightDetailsContainerView.isHidden = false
             self.passengerCollectionView.isHidden = true
             self.cargoContainerView.isHidden = true
             self.trashLabel.isHidden = true
-        } else if control.selectedSegmentIndex == 1 {
+        } else if segmentControl.selectedSegmentIndex == 1 {
             // Passenger seat view
             self.flightDetailsContainerView.isHidden = true
             self.passengerCollectionView.isHidden = false
