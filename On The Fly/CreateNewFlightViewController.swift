@@ -45,7 +45,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.registerForKeyboardNotifications()
+//        self.registerForKeyboardNotifications()
         
         self.tableView.isHidden = true
         self.tableView.layer.cornerRadius = 8
@@ -134,15 +134,10 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     let time = strTime
                     let uid = FIRAuth.auth()?.currentUser?.uid
                     
-                    var emptySeatConfig: [String:[String:Double]] = [:]
-                    for i in 0...plane.numSeats-1 {
-                        if i == 0 {
-                            emptySeatConfig["seat1"] = ["Pilot": 0.0]
-                        } else {
-                            emptySeatConfig["seat\(i+1)"] = ["Empty": 0.0]
-                        }
-                        
-                    }
+                    let emptySeatConfig: [String:[String:Double]] = [:]
+//                    for i in 0...plane.numSeats-1 {
+//                        emptySeatConfig["seat\(i+1)"] = ["Add Passenger": 0.0]
+//                    }
                     
                     guard let duration = Int(self.durationTextfield.text!) else {
                         self.alert(message: "Must enter a valid value for trip duration.", title: "Input Error")
@@ -164,14 +159,14 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                         return
                     }
                     
-                    let newFlight = Flight(plane: plane.longName(), dptArpt: dptArpt.uppercased(),
+                    let newFlight = Flight(plane: plane.tailNumber, dptArpt: dptArpt.uppercased(),
                                            arvArpt: arvArpt.uppercased(), date: date, time: time, uid: uid!,
                                            startFuel: startingFuel, flightDuration: duration, fuelFlow: fuelFlowRate,
-                                           seatWeights: emptySeatConfig, frontBagWeight: 0, aftBagWeight: 0,
-                                           taxiBurn: -taxiBurn)
+                                           passengers: emptySeatConfig, frontBagWeight: 0, aftBagWeight: 0,
+                                           taxiBurn: taxiBurn)
                     
                     let fireRef = FIRDatabase.database().reference()
-                    let flightRef = fireRef.child("newFlights")
+                    let flightRef = fireRef.child("flights")
                     let newFlightRef = flightRef.childByAutoId()
                     newFlightRef.setValue(newFlight.toAnyObject())
                     
@@ -388,40 +383,40 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     // MARK: - Keyboard Appear/Disappear Handler
     
-    func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        
-        if self.arrivalArptTextfield.isEditing {
-            self.view.frame.origin.y = -15
-        } else if self.durationTextfield.isEditing {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                self.view.frame.origin.y = -(keyboardSize.height - 20)
-            }
-        } else if self.startingFuelTextfield.isEditing {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                self.view.frame.origin.y = -(keyboardSize.height - 20)
-            }
-        } else if self.flowRateTextfield.isEditing || self.taxiFuelUsageTextfield.isEditing {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                self.view.frame.origin.y = -(keyboardSize.height - 20)
-            }
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            UIView.animate(withDuration: 0.2, animations: { 
-                self.view.frame.origin.y = 0
-            })
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+//    func registerForKeyboardNotifications() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//    }
+//    
+//    func keyboardWillShow(notification: NSNotification) {
+//        
+//        if self.arrivalArptTextfield.isEditing {
+//            self.view.frame.origin.y = -15
+//        } else if self.durationTextfield.isEditing {
+//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//                self.view.frame.origin.y = -(keyboardSize.height - 20)
+//            }
+//        } else if self.startingFuelTextfield.isEditing {
+//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//                self.view.frame.origin.y = -(keyboardSize.height - 20)
+//            }
+//        } else if self.flowRateTextfield.isEditing || self.taxiFuelUsageTextfield.isEditing {
+//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//                self.view.frame.origin.y = -(keyboardSize.height - 20)
+//            }
+//        }
+//    }
+//    
+//    func keyboardWillHide(notification: NSNotification) {
+//        if self.view.frame.origin.y != 0 {
+//            UIView.animate(withDuration: 0.2, animations: { 
+//                self.view.frame.origin.y = 0
+//            })
+//        }
+//    }
+//    
+//    deinit {
+//        NotificationCenter.default.removeObserver(self)
+//    }
 
 }

@@ -14,14 +14,11 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var passengerCollectionView: WiggleUICollectionView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var createReportButton: UIButton!
-    
     @IBOutlet weak var segmentControlHeightConstant: NSLayoutConstraint!
-    
     @IBOutlet weak var cargoContainerView: UIView!
-    
     @IBOutlet weak var trashLabel: UIImageView!
-    
-    
+    @IBOutlet weak var flightDetailsContainerView: UIView!
+    @IBOutlet weak var flightInfoLabel: UILabel!
     
     var flight: Flight?
     var plane: Plane?
@@ -34,15 +31,13 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         if let thisFlight = flight {
             // Assign a plane object to this field for ease in calculations
             for each in GlobalVariables.sharedInstance.planeArray {
-                if each.longName() == thisFlight.plane {
+                if each.tailNumber == thisFlight.plane {
                     self.plane = each
                 }
             }
             
             
             // Example error handling for verifying the plane's status
-            // @Callie: see the Utilities file for an enumeration of plane errors, 
-            // more can be added
             do {
                 try thisFlight.checkValidFlight(plane: plane!)
             } catch FlightErrors.tooHeavyOnRamp {
@@ -56,51 +51,109 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         
         self.loadPassengers()
         
-        // Example of updating and saving to Firebase from this "EditFlight" screen
-//        if let thisFlight = flight {
-//            let updates = ["departAirport":"SLC"]
-//            thisFlight.fireRef?.updateChildValues(updates)
-//        }
-
+        self.updateTitleLabel()
 
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(EditFlightViewController.swipedRight(_:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(EditFlightViewController.swipedLeft(_:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
 
     }
     
     func loadPassengers() {
         if let thisFlight = flight {
-            let seatCongif = thisFlight.seatWeights.sorted(by: { $0.0 < $1.0 })
-            for (_, seatData) in seatCongif {
-                for (name, weight) in seatData {
-                    let newPassenger = (name: name, weight: weight)
-                    passengers.append(newPassenger)
+            
+            for _ in 0...(plane!.numSeats - 1) {
+                let emptySeat = (name: "Empty", weight: 0.0)
+                passengers.append(emptySeat)
+            }
+            
+            if thisFlight.passengers != nil {
+                let seatCongif = thisFlight.passengers!.sorted(by: { $0.0 < $1.0 })
+                for (seatKey, seatData) in seatCongif {
+                    let index = Int(seatKey.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())! - 1
+                    let newPassenger = (name: seatData["name"], weight: seatData["weight"] as! Double)
+                    passengers.remove(at: index)
+                    passengers.insert(newPassenger as! (name: String, weight: Double), at: index)
                 }
             }
         }
     }
     
+    func updateTitleLabel() {
+        self.flightInfoLabel.text = "\(flight!.departAirport) --> \(flight!.arriveAirport)"
+    }
+    
     func saveNewSeatConfig() {
         if let thisFlight = flight {
             let flightref = thisFlight.fireRef
-            var newConfig: [String:[String:Double]] = [:]
+            var newConfig: [String:[String:Any]] = [:]
             for i in 0...passengers.count-1 {
                 let seat = passengers[i]
-                newConfig["seat\(i+1)"] = [seat.name: seat.weight]
+                if seat.name != "Empty" {
+                    newConfig["seat\(i+1)"] = ["name": seat.name, "weight": seat.weight]
+                }
             }
-            let updates = ["seatWeights":newConfig]
+            let updates = ["passengers": newConfig]
             flightref?.updateChildValues(updates)
         }
     }
     
+    // MARK: - Segment View Control
+    
     @IBAction func segmentControlChanged(_ sender: Any) {
-        let control = sender as! UISegmentedControl
-        if control.selectedSegmentIndex == 0 {
+        updateVisibleViews()
+    }
+    
+    func swipedLeft(_ gesture: UIGestureRecognizer) {
+        switch self.segmentControl.selectedSegmentIndex {
+            case 0:
+                segmentControl.selectedSegmentIndex = 1
+            case 1:
+                segmentControl.selectedSegmentIndex = 2
+            default:
+                break
+        }
+        updateVisibleViews()
+    }
+    
+    func swipedRight(_ gesture: UIGestureRecognizer) {
+        switch self.segmentControl.selectedSegmentIndex {
+        case 2:
+            segmentControl.selectedSegmentIndex = 1
+        case 1:
+            segmentControl.selectedSegmentIndex = 0
+        default:
+            break
+        }
+        updateVisibleViews()
+    }
+    
+    func updateVisibleViews() {
+        if segmentControl.selectedSegmentIndex == 0 {
+            // Flight Details view
+            self.flightDetailsContainerView.isHidden = false
+            self.passengerCollectionView.isHidden = true
+            self.cargoContainerView.isHidden = true
+            self.trashLabel.isHidden = true
+        } else if segmentControl.selectedSegmentIndex == 1 {
+            // Passenger seat view
+            self.flightDetailsContainerView.isHidden = true
             self.passengerCollectionView.isHidden = false
             self.cargoContainerView.isHidden = true
+            self.trashLabel.isHidden = false
         } else {
+            // Cargo View
+            self.flightDetailsContainerView.isHidden = true
             self.passengerCollectionView.isHidden = true
             self.cargoContainerView.isHidden = false
+            self.trashLabel.isHidden = true
         }
     }
     
@@ -124,10 +177,15 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = passengerCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PassengerCollectionViewCell
         cell.backgroundColor = Style.darkBlueAccentColor
         let cellPassenger = self.passengers[indexPath.row]
-        cell.nameLabel.text = cellPassenger.name
         cell.nameLabel.textColor = UIColor.white
-        cell.weightLabel.text = "\(cellPassenger.weight)"
         cell.weightLabel.textColor = UIColor.white
+        if cellPassenger.name == "Empty" {
+            cell.nameLabel.text = "Add Passenger"
+            cell.weightLabel.text = ""
+        } else {
+            cell.nameLabel.text = cellPassenger.name
+            cell.weightLabel.text = "\(cellPassenger.weight)"
+        }
         cell.layer.cornerRadius = 7
         
         return cell
@@ -187,7 +245,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         editPassenger.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Passenger Name"
             let tempPass = self.passengers[passengerIndex]
-            if tempPass.name != "Empty" || tempPass.weight != 0.0 {
+            if tempPass.name != "Empty" {
                 textField.text = tempPass.name
             }
         }
@@ -196,7 +254,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             textField.placeholder = "Enter Passenger Weight"
             textField.keyboardType = UIKeyboardType.decimalPad
             let tempPass = self.passengers[passengerIndex]
-            if tempPass.name != "Empty" || tempPass.weight != 0.0 {
+            if tempPass.name != "Empty" {
                 textField.text = "\(tempPass.weight)"
             }
         }
@@ -267,7 +325,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func applyUserInterfaceChanges() {
         self.passengerCollectionView.layer.cornerRadius = 8
-        let font = UIFont.systemFont(ofSize: 22)
+        let font = UIFont.systemFont(ofSize: 18)
         self.segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         self.segmentControlHeightConstant.constant = 40
         self.segmentControl.layer.borderWidth = 2
@@ -285,6 +343,9 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "embedCargoView" {
             let cargoVC = segue.destination as! CargoViewController
             cargoVC.editFlightVC = self
+        } else if segue.identifier == "embedFlightDetailsView" {
+            let flightDetailsVC = segue.destination as! FlightDetailsViewController
+            flightDetailsVC.editFlightVC = self
         }
         
     }

@@ -139,7 +139,7 @@ class UpcomingFlightTableViewCell: UITableViewCell {
             self.actualArrTimeLabel.attributedText = makeSubtitleText(string: flight.calcArrivalTime())
             var tempNum = ""
             for each in GlobalVariables.sharedInstance.planeArray {
-                if each.longName() == flight.plane {
+                if each.tailNumber == flight.plane {
                     tempNum = each.tailNumber
                 }
             }

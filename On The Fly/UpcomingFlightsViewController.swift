@@ -16,7 +16,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var logoutButton: UIButton!
     
     var flights:[Flight] = [Flight]()
-    let flightsRef = FIRDatabase.database().reference(withPath: "newFlights")
+    let flightsRef = FIRDatabase.database().reference(withPath: "flights")
     var flightToEdit: Flight?
     
     var messageView: UIView = UIView()
