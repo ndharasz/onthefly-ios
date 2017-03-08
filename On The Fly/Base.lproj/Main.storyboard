@@ -1618,11 +1618,23 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1h-yI-gMg">
+                                <rect key="frame" x="118" y="383" width="100" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.25933883480708353" blue="0.24876956949253004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Delete Flight">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteFlightPressed:" destination="c6U-AA-971" eventType="touchUpInside" id="NVp-Hx-6P3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="arriveAirportTextfield" destination="kkp-Js-3PM" id="7Yj-38-R2Y"/>
+                        <outlet property="deleteFlightButton" destination="Y1h-yI-gMg" id="bwi-r3-Tsz"/>
                         <outlet property="departAirportTextfield" destination="rup-cq-BxG" id="zNc-wt-dYm"/>
                         <outlet property="durationTextfield" destination="FHS-YE-U8r" id="AZW-wY-3U9"/>
                         <outlet property="flightDatePicker" destination="Dci-db-Gg6" id="zdW-fv-d7M"/>
