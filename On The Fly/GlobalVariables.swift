@@ -14,6 +14,7 @@ class GlobalVariables {
     var gallonsOfFeul = 0.0      // in gallons
     var planeArray: [Plane] = []
     var flightArray: [Flight] = []
+    let collectionViewSpacing = 15.0
     
     let airports: [String] = ["Lowell Field, AK (00AK)", "Epps Airpark, AL (00AL)", "Cordes Airport, AZ (00AZ)", "Goldstone /Gts/ Airport, CA (00CA)", "Cass Field, CO (00CO)", "Grass Patch Airport, FL (00FA)", "River Oak Airport, FL (00FL)", "Lt World Airport, GA (00GA)", "Delta Shores Airport, ID (00ID)", "Hammer Airport, IL (00IL)", "Hayenga's Cant Find Farms Airport, IL (00IS)", "Hayden Farm Airport, KS (00KS)", "Robbins Roost Airport, KY (00KY)", "Lejeune Airport, LA (00LS)",
           "Slater Field, MD (00MD)", "Battle Lake Municipal Airport, MN (00MN)", "Cooper Flying Service Airport, MO (00MO)", "Sands Ranch Airport, MT (00MT)", "Bucks Airport, NJ (00N)", "North Raleigh Airport, NC (00NC)", "Weiss Airfield, NY (00NY)", "Exit 3 Airport, OH (00OH)", "Ferrell Field, PA (00PN)", "Thomas Field, PA (00PS)", "Mc Kenzie Bridge State Airport, OR (00S)", "Flying O Airport, SC (00SC)", "Ragsdale Road Airport, TN (00TN)", "Alpine Range Airport, TX (00TS)", "Vaughan Airport, VA (00VA)",

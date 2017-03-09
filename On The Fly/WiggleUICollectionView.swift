@@ -78,5 +78,19 @@ class WiggleUICollectionView: UICollectionView {
         let random = (Double(arc4random_uniform(1000)) - 500.0) / 500.0
         return interval + variance * random
     }
+    
+    override func draw(_ rect: CGRect)
+    {
+        let context = UIGraphicsGetCurrentContext()
+        context?.setLineWidth(3.0)
+        context?.setStrokeColor(UIColor.white.cgColor)
+        let numRows = Double(self.numberOfItems(inSection: 0)) / 2.0
+        let availableHeight = Double(self.frame.height) - 2 * GlobalVariables.sharedInstance.collectionViewSpacing -
+            GlobalVariables.sharedInstance.collectionViewSpacing * (numRows - 1.0)
+        let cellHeight = Double(availableHeight) / numRows
+        context?.move(to: CGPoint(x: 0, y: 22.5 + cellHeight))
+        context?.addLine(to: CGPoint(x: self.frame.width, y: 22.5 + CGFloat(cellHeight)))
+        context?.strokePath()
+    }
 
 }

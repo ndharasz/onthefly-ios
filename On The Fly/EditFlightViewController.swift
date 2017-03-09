@@ -203,7 +203,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numRows = Double(self.passengers.count) / 2.0
-        let availableHeight = Double(self.passengerCollectionView.frame.height) - 20.0 - 10.0 * (numRows - 1.0)
+        let availableHeight = Double(self.passengerCollectionView.frame.height) - 2 * GlobalVariables.sharedInstance.collectionViewSpacing - GlobalVariables.sharedInstance.collectionViewSpacing * (numRows - 1.0)
         let cellHeight = Double(availableHeight) / numRows
         return CGSize(width: 125, height: cellHeight)
     }
