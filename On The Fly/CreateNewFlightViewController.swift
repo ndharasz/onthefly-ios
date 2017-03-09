@@ -135,9 +135,6 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
                     let uid = FIRAuth.auth()?.currentUser?.uid
                     
                     let emptySeatConfig: [String:[String:Double]] = [:]
-//                    for i in 0...plane.numSeats-1 {
-//                        emptySeatConfig["seat\(i+1)"] = ["Add Passenger": 0.0]
-//                    }
                     
                     guard let duration = Int(self.durationTextfield.text!) else {
                         self.alert(message: "Must enter a valid value for trip duration.", title: "Input Error")

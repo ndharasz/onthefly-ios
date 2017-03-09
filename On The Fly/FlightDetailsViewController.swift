@@ -26,6 +26,9 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var flightDatePicker: UIDatePicker!
     
+    @IBOutlet weak var deleteFlightButton: UIButton!
+    
+    
     var activeTextfield: PaddedTextField!
     
     
@@ -215,6 +218,21 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
         
         self.view.endEditing(true)
     }
+    
+    @IBAction func deleteFlightPressed(_ sender: Any) {
+        
+        if let flightToDelete = editFlightVC.flight {
+            
+            flightToDelete.fireRef?.removeValue()
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "HomePage")
+            self.present(controller, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
 
     
 
