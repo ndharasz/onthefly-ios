@@ -104,7 +104,14 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            editFlightVC.flight!.departAirport = newDepartAirport
+            if newDepartAirport.characters.count > 4 || newDepartAirport.characters.count < 3 {
+                alert(message: "Invalid Airport Code", title: "Please enter a valid airport code.")
+                textField.text = editFlightVC.flight!.departAirport
+                return
+            }
+            
+            editFlightVC.flight!.departAirport = newDepartAirport.uppercased()
+            textField.text = newDepartAirport.uppercased()
             editFlightVC.flight!.updateAirports()
             editFlightVC.updateTitleLabel()
             
@@ -116,7 +123,14 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            editFlightVC.flight!.arriveAirport = newArriveAirport
+            if newArriveAirport.characters.count > 4 || newArriveAirport.characters.count < 3 {
+                alert(message: "Invalid Airport Code", title: "Please enter a valid airport code.")
+                textField.text = editFlightVC.flight!.arriveAirport
+                return
+            }
+            
+            editFlightVC.flight!.arriveAirport = newArriveAirport.uppercased()
+            textField.text = newArriveAirport.uppercased()
             editFlightVC.flight!.updateAirports()
             editFlightVC.updateTitleLabel()
 
@@ -128,8 +142,21 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            editFlightVC.flight!.flightDuration = Int(newDuration)!
-            editFlightVC.flight!.updateFlightParameters()
+            if let newDurationNumber = Int(newDuration) {
+                if newDurationNumber < 0 {
+                    alert(message: "Invalid Duration", title: "Please enter a valid duration.")
+                    textField.text = "\(editFlightVC.flight!.flightDuration)"
+                    return
+                } else {
+                    editFlightVC.flight!.flightDuration = newDurationNumber
+                    editFlightVC.flight!.updateFlightParameters()
+                }
+            } else {
+                alert(message: "Invalid Duration", title: "Please enter a valid duration.")
+                textField.text = "\(editFlightVC.flight!.flightDuration)"
+                return
+            }
+            
         } else if textField == startingFuelTextfield {
             
             guard let newStartingFuel = textField.text else {
@@ -138,8 +165,21 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            editFlightVC.flight!.startFuel = Double(newStartingFuel)!
-            editFlightVC.flight!.updateFlightParameters()
+            if let newStartingFuelNumber = Double(newStartingFuel) {
+                if newStartingFuelNumber < 0 {
+                    alert(message: "Invalid Starting Fuel", title: "Please enter a valid starting fuel amount.")
+                    textField.text = "\(editFlightVC.flight!.startFuel)"
+                    return
+                } else {
+                    editFlightVC.flight!.startFuel = newStartingFuelNumber
+                    editFlightVC.flight!.updateFlightParameters()
+                }
+            } else {
+                alert(message: "Invalid Starting Fuel", title: "Please enter a valid starting fuel amount.")
+                textField.text = "\(editFlightVC.flight!.startFuel)"
+                return
+            }
+            
         } else if textField == flowRateTextfield {
             
             guard let newFlowRate = textField.text else {
@@ -148,8 +188,20 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            editFlightVC.flight!.fuelFlow = Double(newFlowRate)!
-            editFlightVC.flight!.updateFlightParameters()
+            if let newFlowRateNumber = Double(newFlowRate) {
+                if newFlowRateNumber < 0 {
+                    alert(message: "Invalid Flow Rate", title: "Please enter a valid flow rate.")
+                    textField.text = "\(editFlightVC.flight!.fuelFlow)"
+                    return
+                } else {
+                    editFlightVC.flight!.fuelFlow = newFlowRateNumber
+                    editFlightVC.flight!.updateFlightParameters()
+                }
+            } else {
+                alert(message: "Invalid Flow Rate", title: "Please enter a valid flow rate.")
+                textField.text = "\(editFlightVC.flight!.fuelFlow)"
+                return
+            }
             
         } else {
             // taxi
@@ -160,9 +212,20 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            editFlightVC.flight!.flightDuration = Int(newTaxiBurn)!
-            editFlightVC.flight!.updateFlightParameters()
-            
+            if let newTaxiBurnNumber = Int(newTaxiBurn) {
+                if newTaxiBurnNumber < 0 {
+                    editFlightVC.flight!.taxiFuelBurn = (0 - newTaxiBurnNumber)
+                    textField.text = "\(editFlightVC.flight!.taxiFuelBurn)"
+                    editFlightVC.flight!.updateFlightParameters()
+                } else {
+                    editFlightVC.flight!.taxiFuelBurn = newTaxiBurnNumber
+                    editFlightVC.flight!.updateFlightParameters()
+                }
+            } else {
+                alert(message: "Invalid Taxi Burn", title: "Please enter a valid taxi burn.")
+                textField.text = "\(editFlightVC.flight!.taxiFuelBurn)"
+                return
+            }
         }
     }
     
@@ -176,7 +239,11 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self,
                                            action: #selector(FlightDetailsViewController.cancelPressed))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([spaceButton, cancelButton, doneButton], animated: true)
+        
+        let titleButton = UIBarButtonItem(title: textField.placeholder, style: .plain, target: nil, action: nil)
+        titleButton.isEnabled = false
+        
+        toolBar.setItems([spaceButton, titleButton, spaceButton, cancelButton, doneButton], animated: true)
         
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
