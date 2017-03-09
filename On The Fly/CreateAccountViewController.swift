@@ -190,11 +190,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldDidChange(textField : UITextField){
+    func textFieldDidChange(textField : UITextField) {
         if textField == self.passwordTextField {
             if textField.text!.characters.count < 8 {
                 textField.textColor = UIColor.red
-                userFeedback(message: "Password too short")
+                userFeedback(message: "Password is too short")
             } else {
                 textField.textColor = UIColor.black
                 hideUserFeedback()
