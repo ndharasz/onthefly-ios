@@ -46,8 +46,8 @@ class CargoViewController: UIViewController {
     }
     
     func updateLabels() {
-        self.frontCargoLabel.text = "Front Cargo: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
-        self.aftCargoLabel.text = "Aft Cargo: \(self.editFlightVC.flight!.aftBaggageWeight) lbs"
+        self.frontCargoLabel.text = "Front Cargo Hold: \(self.editFlightVC.flight!.frontBaggageWeight) lbs"
+        self.aftCargoLabel.text = "Aft Cargo Hold: \(self.editFlightVC.flight!.aftBaggageWeight) lbs"
     }
     
     @IBAction func frontAddPressed(_ sender: Any) {
@@ -64,7 +64,7 @@ class CargoViewController: UIViewController {
             
             self.frontWeight += newWeight
             
-            //firebase call
+            // firebase call
             self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
             self.editFlightVC.flight?.updateFrontBaggageWeight()
             
@@ -101,7 +101,7 @@ class CargoViewController: UIViewController {
             
             self.frontWeight -= newWeight
             
-            //firebase call
+            // firebase call
             self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
             self.editFlightVC.flight?.updateFrontBaggageWeight()
             
@@ -125,13 +125,13 @@ class CargoViewController: UIViewController {
     }
     
     @IBAction func frontClearPressed(_ sender: Any) {
-        let subtractFromFront = UIAlertController(title: "Clear Weight", message: "Are you sure you want to delete all weight?", preferredStyle: UIAlertControllerStyle.alert)
-        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+        let subtractFromFront = UIAlertController(title: "Clear Weight", message: "Are you sure you want to delete all cargo from the forward baggage hold?", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             
             self.frontWeight = 0
             
-            //firebase call
+            // firebase call
             self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
             self.editFlightVC.flight?.updateFrontBaggageWeight()
             
@@ -139,7 +139,7 @@ class CargoViewController: UIViewController {
             
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+        let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
             
         })
@@ -163,7 +163,7 @@ class CargoViewController: UIViewController {
             
             self.aftWeight += newWeight
             
-            //firebase call
+            // firebase call
             self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
             self.editFlightVC.flight?.updateAftBaggageWeight()
             
@@ -186,13 +186,13 @@ class CargoViewController: UIViewController {
     }
     
     @IBAction func aftClearPressed(_ sender: Any) {
-        let subtractFromAft = UIAlertController(title: "Clear Weight", message: "Are you sure you want to delete all weight?", preferredStyle: UIAlertControllerStyle.alert)
-        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+        let subtractFromAft = UIAlertController(title: "Clear Weight", message: "Are you sure you want to delete all cargo from the aft baggage hold?", preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             
             self.aftWeight = 0
             
-            //firebase call
+            // firebase call
             self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
             self.editFlightVC.flight?.updateAftBaggageWeight()
             
@@ -200,7 +200,7 @@ class CargoViewController: UIViewController {
             
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+        let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
             
         })
@@ -224,7 +224,7 @@ class CargoViewController: UIViewController {
             
             self.aftWeight -= newWeight
             
-            //firebase call
+            // firebase call
             self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
             self.editFlightVC.flight?.updateAftBaggageWeight()
             
@@ -253,10 +253,10 @@ class CargoViewController: UIViewController {
         self.view.layer.cornerRadius = 8
         self.aftCargoView.layer.borderWidth = 2
         self.aftCargoView.layer.borderColor = UIColor.black.cgColor
-        self.aftCargoView.backgroundColor = UIColor.gray
+        self.aftCargoView.backgroundColor = Style.mainBackgroundColor
         self.frontCargoView.layer.borderWidth = 2
         self.frontCargoView.layer.borderColor = UIColor.black.cgColor
-        self.frontCargoView.backgroundColor = UIColor.gray
+        self.frontCargoView.backgroundColor = Style.mainBackgroundColor
         
         frontAddButton.layer.cornerRadius = 0.5 * btnDiameter
         frontAddButton.clipsToBounds = true
@@ -272,9 +272,7 @@ class CargoViewController: UIViewController {
         frontSubtractButton.setTitleColor(UIColor.black, for: .normal)
         frontSubtractButton.layer.backgroundColor = UIColor.white.cgColor
        
-        frontClearButton.setTitle("Clear", for: .normal)
-        frontClearButton.titleLabel?.setSizeFont(sizeFont: 30)
-//        frontClearButton.setTitleColor(UIColor.black, for: .normal)
+        frontClearButton.titleLabel?.setSizeFont(sizeFont: 18)
         
         aftAddButton.layer.cornerRadius = 0.5 * btnDiameter
         aftAddButton.clipsToBounds = true
@@ -290,12 +288,7 @@ class CargoViewController: UIViewController {
         aftSubtractButton.setTitleColor(UIColor.black, for: .normal)
         aftSubtractButton.layer.backgroundColor = UIColor.white.cgColor
 
-//        aftClearButton.layer.cornerRadius = 0.5 * btnDiameter
-//        aftClearButton.clipsToBounds = true
-        aftClearButton.setTitle("Clear", for: .normal)
-        aftClearButton.titleLabel?.setSizeFont(sizeFont: 30)
-//        aftClearButton.setTitleColor(UIColor.black, for: .normal)
-//        aftClearButton.layer.backgroundColor = UIColor.white.cgColor
+        aftClearButton.titleLabel?.setSizeFont(sizeFont: 18)
     }
 
 }

@@ -17,6 +17,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: PaddedTextField!
     @IBOutlet weak var confirmPasswordTextField: PaddedTextField!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var userFeedbackLabel: UILabel!
+    
     
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     
@@ -132,6 +134,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             eachTextField.roundCorners()
         }
         
+        passwordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+        confirmPasswordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+        
         cancelButton.addBlackBorder()
     }
 
@@ -177,6 +182,39 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if passwordTextField.text! == "" || confirmPasswordTextField.text! == "" {
+            hideUserFeedback()
+        }
+    }
+    
+    func textFieldDidChange(textField : UITextField){
+        if textField == self.passwordTextField {
+            if textField.text!.characters.count < 8 {
+                textField.textColor = UIColor.red
+                userFeedback(message: "Password too short")
+            } else {
+                textField.textColor = UIColor.black
+                hideUserFeedback()
+            }
+        } else if textField == self.confirmPasswordTextField {
+            if textField.text! != self.passwordTextField.text! {
+                userFeedback(message: "Passwords do not match")
+            } else {
+                hideUserFeedback()
+            }
+        }
+    }
+    
+    func userFeedback(message: String) {
+        self.userFeedbackLabel.text = message
+        self.userFeedbackLabel.isHidden = false
+    }
+    
+    func hideUserFeedback() {
+        self.userFeedbackLabel.isHidden = true
     }
 
 }
