@@ -348,8 +348,12 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         toolBar.tintColor = Style.darkBlueAccentColor
         
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+        let spacer = UIBarButtonItem(title: "    ", style: .done, target: nil, action: nil)
+        spacer.isEnabled = false
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([spaceButton, doneButton], animated: true)
+        let titleButton = UIBarButtonItem(title: textField.placeholder, style: .plain, target: nil, action: nil)
+        titleButton.isEnabled = false
+        toolBar.setItems([spacer, spaceButton, titleButton, spaceButton, doneButton], animated: true)
         
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
@@ -369,51 +373,8 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         
     }
     
-    func cancelPressed() {
-        self.activeTextfield.endEditing(true) // or do something
-    }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.activeTextfield = textField as! PaddedTextField
     }
-    
-    
-    // MARK: - Keyboard Appear/Disappear Handler
-    
-//    func registerForKeyboardNotifications() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(CreateNewFlightViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-//    }
-//    
-//    func keyboardWillShow(notification: NSNotification) {
-//        
-//        if self.arrivalArptTextfield.isEditing {
-//            self.view.frame.origin.y = -15
-//        } else if self.durationTextfield.isEditing {
-//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//                self.view.frame.origin.y = -(keyboardSize.height - 20)
-//            }
-//        } else if self.startingFuelTextfield.isEditing {
-//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//                self.view.frame.origin.y = -(keyboardSize.height - 20)
-//            }
-//        } else if self.flowRateTextfield.isEditing || self.taxiFuelUsageTextfield.isEditing {
-//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//                self.view.frame.origin.y = -(keyboardSize.height - 20)
-//            }
-//        }
-//    }
-//    
-//    func keyboardWillHide(notification: NSNotification) {
-//        if self.view.frame.origin.y != 0 {
-//            UIView.animate(withDuration: 0.2, animations: { 
-//                self.view.frame.origin.y = 0
-//            })
-//        }
-//    }
-//    
-//    deinit {
-//        NotificationCenter.default.removeObserver(self)
-//    }
 
 }

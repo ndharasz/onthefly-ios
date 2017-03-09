@@ -72,7 +72,7 @@
                                     <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xvk-2G-EJ8"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Remember Me" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KVc-Qd-fF3">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Remember Me" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVc-Qd-fF3">
                                 <rect key="frame" x="49" y="375" width="143" height="37"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -1698,7 +1698,7 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YwN-Ik-6gk"/>
+        <segue reference="9Nc-cD-QYA"/>
         <segue reference="OiL-Td-JFQ"/>
     </inferredMetricsTieBreakers>
 </document>
