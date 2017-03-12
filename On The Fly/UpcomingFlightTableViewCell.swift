@@ -39,7 +39,6 @@ class UpcomingFlightTableViewCell: UITableViewCell {
     // MARK: - Condensed View UI Elements
     
     @IBOutlet weak var simpleStackView: UIStackView!
-    
     @IBOutlet weak var simpleDateLabel: UILabel!
     @IBOutlet weak var simpleDptArptLabel: UILabel!
     @IBOutlet weak var simpleArrArptLabel: UILabel!
@@ -68,7 +67,6 @@ class UpcomingFlightTableViewCell: UITableViewCell {
     // MARK: - Label Text Creation Functions
     
     func showSimpleLabel() {
-        //        self.detailedStackView.isHidden = true
         UIView.animate(withDuration: 0.08, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.detailedStackView.alpha = 0
         }) { (finished) in
@@ -83,7 +81,6 @@ class UpcomingFlightTableViewCell: UITableViewCell {
     }
     
     func showDetailedLabel() {
-        //        self.detailedStackView.isHidden = false
         UIView.animate(withDuration: 0.07, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.detailedStackView.alpha = 1
         }) { (finished) in

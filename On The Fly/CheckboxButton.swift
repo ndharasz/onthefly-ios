@@ -9,14 +9,6 @@
 import UIKit
 
 class CheckboxButton: UIButton {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
     var checkedImage = UIImage(named: "checkbox_checked")
     var uncheckedImage = UIImage(named: "checkbox_unchecked")
