@@ -147,7 +147,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2,
                                            y: loadingView.frame.size.height / 2)
         loadingView.addSubview(activityIndicator)
-        self.view.addSubview(loadingView)
+        self.scrollView.addSubview(loadingView)
         activityIndicator.startAnimating()
     }
     
