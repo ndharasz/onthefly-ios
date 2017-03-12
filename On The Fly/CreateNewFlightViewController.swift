@@ -31,13 +31,16 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     
     @IBOutlet weak var bottomStackView: UIStackView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     var pickerData: [Plane] = [Plane]()
     
     var selectedPlane: Plane?
     
     var flightToPass: Flight?
     
-    var activeTextfield: PaddedTextField = PaddedTextField()
+    var activeField: PaddedTextField?
     
     var autoCompletePossibilities = GlobalVariables.sharedInstance.airports
     var autoComplete = [String]()
@@ -45,7 +48,7 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.registerForKeyboardNotifications()
+        self.registerForKeyboardNotifications()
         
         self.tableView.isHidden = true
         self.tableView.layer.cornerRadius = 8
@@ -74,6 +77,10 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
     }
     
     
@@ -338,43 +345,131 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
             return []
         }}
     
-    
     // MARK: - UITextField Navigation Keyboard Toolbar
     
-    func addKeyboardToolBar(textField: UITextField) {
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = Style.darkBlueAccentColor
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
-        let spacer = UIBarButtonItem(title: "    ", style: .done, target: nil, action: nil)
-        spacer.isEnabled = false
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let titleButton = UIBarButtonItem(title: textField.placeholder, style: .plain, target: nil, action: nil)
-        titleButton.isEnabled = false
-        toolBar.setItems([spacer, spaceButton, titleButton, spaceButton, doneButton], animated: true)
-        
-        toolBar.isUserInteractionEnabled = true
-        toolBar.sizeToFit()
-        
-        textField.inputAccessoryView = toolBar
+    func registerForKeyboardNotifications(){
+        // Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    func deregisterFromKeyboardNotifications(){
+        // Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
     
-    func donePressed() {
-        if self.view.frame.origin.y != 0 {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.frame.origin.y = 0
-            })
+    func keyboardWasShown(notification: NSNotification){
+        
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let point2 = CGPoint(x: 0, y: activeField!.frame.origin.y + activeField!.frame.height)
+        
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if activeField == flowRateTextfield || activeField == taxiFuelUsageTextfield {
+                let yOffset = abs(aRect.origin.y + aRect.height - (bottomStackView.frame.height +
+                    bottomStackView.frame.origin.y)) + 5
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+                return
+            }
+            if (!aRect.contains(activeField.frame.origin) || !aRect.contains(point2)){
+                print("part of view at least covered")
+                let yOffset = abs(aRect.origin.y + aRect.height - point2.y) + 5
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+            } else {
+                print("nothing covered")
+                self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+            }
+        } else {
+            print("invalid active field")
         }
         
-        self.activeTextfield.endEditing(true)
-        
     }
     
+    func keyboardWillBeHidden(notification: NSNotification){
+        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func addKeyboardToolBar(textField: UITextField) {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        keyboardToolbar.barStyle = .default
+        keyboardToolbar.isTranslucent = true
+        
+        let kbPrevBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "LeftArrow"), style: .plain, target: self, action: #selector(previousPressed))
+        let kbNextBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "RightArrow"), style: .plain, target: self, action: #selector(nextPressed))
+        let kbDoneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        let fixedSpace15 = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace15.width = 15
+        let fixedSpace10 = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace10.width = 10
+        let flexiSpacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let kbTitleBtn = UIBarButtonItem(title: "Title", style: .plain, target: nil, action: nil)
+        kbTitleBtn.isEnabled = false
+        
+        keyboardToolbar.setItems([kbPrevBtn, fixedSpace15, kbNextBtn, flexiSpacer, kbTitleBtn, flexiSpacer, fixedSpace10, kbDoneBtn], animated: true)
+        
+        let textPlaceholderLabel = UILabel()
+        textPlaceholderLabel.sizeToFit()
+        textPlaceholderLabel.backgroundColor = UIColor.clear
+        textPlaceholderLabel.textAlignment = .center
+        kbTitleBtn.customView = textPlaceholderLabel
+        
+        textPlaceholderLabel.text = textField.placeholder!
+        textPlaceholderLabel.sizeToFit()
+        
+        keyboardToolbar.isUserInteractionEnabled = true
+        keyboardToolbar.sizeToFit()
+        
+        textField.inputAccessoryView = keyboardToolbar
+    }
+    
+    func previousPressed() {
+        switch activeField! {
+        case taxiFuelUsageTextfield:
+            flowRateTextfield.becomeFirstResponder()
+        case flowRateTextfield:
+            startingFuelTextfield.becomeFirstResponder()
+        case startingFuelTextfield:
+            durationTextfield.becomeFirstResponder()
+        case durationTextfield:
+            arrivalArptTextfield.becomeFirstResponder()
+        case arrivalArptTextfield:
+            departureArptTextfield.becomeFirstResponder()
+        default:
+            print("no previous field")
+        }
+    }
+    
+    func nextPressed() {
+        switch activeField! {
+        case departureArptTextfield:
+            arrivalArptTextfield.becomeFirstResponder()
+        case arrivalArptTextfield:
+            durationTextfield.becomeFirstResponder()
+        case durationTextfield:
+            startingFuelTextfield.becomeFirstResponder()
+        case startingFuelTextfield:
+            flowRateTextfield.becomeFirstResponder()
+        case flowRateTextfield:
+            taxiFuelUsageTextfield.becomeFirstResponder()
+        default:
+            print("no next field")
+        }
+    }
+    
+    func donePressed() {
+        self.view.endEditing(true)
+    }
+    
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.activeTextfield = textField as! PaddedTextField
+        self.activeField = textField as? PaddedTextField
     }
 
 }

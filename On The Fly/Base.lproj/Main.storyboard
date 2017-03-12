@@ -819,255 +819,268 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-vO-T5T">
-                                <rect key="frame" x="16" y="108" width="343" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="6bB-GW-bXU"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="sYD-sc-Y89" id="Hrv-0T-79N"/>
-                                    <outlet property="delegate" destination="sYD-sc-Y89" id="B2h-tL-YBA"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the aircraft:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-pR-03W">
-                                <rect key="frame" x="16" y="79" width="164" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="5dL-ZH-VcC"/>
-                                    <constraint firstAttribute="width" constant="164" id="ePz-iO-pwX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Arrival Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="239" width="343" height="45"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="LEG-ht-bWm"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes"/>
-                                <connections>
-                                    <outlet property="delegate" destination="sYD-sc-Y89" id="Qxd-FE-DzV"/>
-                                </connections>
-                            </textField>
-                            <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-AN-9kf">
-                                <rect key="frame" x="0.0" y="321" width="375" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="z1S-5i-wY1"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="507013899.48793203">
-                                    <!--2017-01-25 05:11:39 +0000-->
-                                </date>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the date and time of the flight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajp-EB-u8P">
-                                <rect key="frame" x="16" y="292" width="332" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="hPi-XA-gsq"/>
-                                    <constraint firstAttribute="width" constant="332" id="x9v-OM-kir"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZR5-qQ-kWU">
-                                <rect key="frame" x="224" y="582" width="100" height="45"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Eu8-8A-Esy"/>
-                                    <constraint firstAttribute="width" constant="100" id="SXb-dP-URh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="submitButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="UNz-TA-bKp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLZ-cw-jzt">
-                                <rect key="frame" x="51" y="582" width="100" height="45"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="9md-9y-95K"/>
-                                    <constraint firstAttribute="width" constant="100" id="zXJ-M5-3sc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="TVa-Tz-huR"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Departure Airport " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="186" width="343" height="45"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="qmy-9u-HeO"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes"/>
-                                <connections>
-                                    <outlet property="delegate" destination="sYD-sc-Y89" id="hOP-YZ-i8g"/>
-                                </connections>
-                            </textField>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-q3-xYu">
-                                <rect key="frame" x="16" y="235" width="343" height="130"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="CUO-dl-ykK"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="AIv-n5-lgV">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AIv-n5-lgV" id="dZf-AR-pux">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="sYD-sc-Y89" id="znc-zE-FWS"/>
-                                    <outlet property="delegate" destination="sYD-sc-Y89" id="Ji4-UC-2Tk"/>
-                                </connections>
-                            </tableView>
-                            <tableView hidden="YES" clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7iS-EB-dVF">
-                                <rect key="frame" x="16" y="288" width="343" height="130"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="xTw-Mf-FJF"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Twq-5v-RzV">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Twq-5v-RzV" id="hfL-TY-Jvm">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="sYD-sc-Y89" id="qrh-CH-Ii8"/>
-                                    <outlet property="delegate" destination="sYD-sc-Y89" id="4Qx-VS-1tb"/>
-                                </connections>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhr-ot-BVb">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="crS-j9-38J"/>
-                                </constraints>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="barTintColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Create New Flight" id="0lL-ZR-dx2"/>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flight Duration (min)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EJ5-bB-wQH" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="419" width="343" height="45"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="0qr-ml-jVS"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="sYD-sc-Y89" id="LiB-gy-SEj"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Starting Fuel (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DUy-Ea-VFS" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="472" width="343" height="45"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Ge1-qP-af5"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="sYD-sc-Y89" id="0ju-qp-6Iy"/>
-                                </connections>
-                            </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XK5-2C-OFs">
-                                <rect key="frame" x="16" y="525" width="343" height="45"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aub-rq-JtA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flow Rate (gal/hr)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4K9-EO-M8f" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="169" height="45"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-vO-T5T">
+                                        <rect key="frame" x="36" y="108" width="303" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="6bB-GW-bXU"/>
+                                        </constraints>
                                         <connections>
-                                            <outlet property="delegate" destination="sYD-sc-Y89" id="Lnd-Le-eqg"/>
+                                            <outlet property="dataSource" destination="sYD-sc-Y89" id="Hrv-0T-79N"/>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="B2h-tL-YBA"/>
+                                        </connections>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the aircraft:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-pR-03W">
+                                        <rect key="frame" x="36" y="79" width="164" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="5dL-ZH-VcC"/>
+                                            <constraint firstAttribute="width" constant="164" id="ePz-iO-pwX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Arrival Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-Ee-Ywo" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="36" y="239" width="303" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="LEG-ht-bWm"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="Qxd-FE-DzV"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Taxi Fuel Usage (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TSo-5f-8wE" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="174" y="0.0" width="169" height="45"/>
+                                    <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-AN-9kf">
+                                        <rect key="frame" x="20" y="321" width="335" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="z1S-5i-wY1"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="507013899.48793203">
+                                            <!--2017-01-25 05:11:39 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the date and time of the flight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajp-EB-u8P">
+                                        <rect key="frame" x="36" y="292" width="332" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="hPi-XA-gsq"/>
+                                            <constraint firstAttribute="width" constant="332" id="x9v-OM-kir"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZR5-qQ-kWU">
+                                        <rect key="frame" x="204" y="582" width="100" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Eu8-8A-Esy"/>
+                                            <constraint firstAttribute="width" constant="100" id="SXb-dP-URh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <outlet property="delegate" destination="sYD-sc-Y89" id="uwF-5W-hhc"/>
+                                            <action selector="submitButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="UNz-TA-bKp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLZ-cw-jzt">
+                                        <rect key="frame" x="71" y="582" width="100" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="9md-9y-95K"/>
+                                            <constraint firstAttribute="width" constant="100" id="zXJ-M5-3sc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="sYD-sc-Y89" eventType="touchUpInside" id="TVa-Tz-huR"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Departure Airport " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dV-23c" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="36" y="186" width="303" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="qmy-9u-HeO"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="hOP-YZ-i8g"/>
                                         </connections>
                                     </textField>
+                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-q3-xYu">
+                                        <rect key="frame" x="36" y="235" width="303" height="130"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="130" id="CUO-dl-ykK"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="AIv-n5-lgV">
+                                                <rect key="frame" x="0.0" y="28" width="303" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AIv-n5-lgV" id="dZf-AR-pux">
+                                                    <rect key="frame" x="0.0" y="0.0" width="303" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="sYD-sc-Y89" id="znc-zE-FWS"/>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="Ji4-UC-2Tk"/>
+                                        </connections>
+                                    </tableView>
+                                    <tableView hidden="YES" clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7iS-EB-dVF">
+                                        <rect key="frame" x="36" y="288" width="303" height="130"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="130" id="xTw-Mf-FJF"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Twq-5v-RzV">
+                                                <rect key="frame" x="0.0" y="28" width="303" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Twq-5v-RzV" id="hfL-TY-Jvm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="303" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="sYD-sc-Y89" id="qrh-CH-Ii8"/>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="4Qx-VS-1tb"/>
+                                        </connections>
+                                    </tableView>
+                                    <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhr-ot-BVb">
+                                        <rect key="frame" x="20" y="20" width="335" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="crS-j9-38J"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="barTintColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textAttributes key="titleTextAttributes">
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </textAttributes>
+                                        <items>
+                                            <navigationItem title="Create New Flight" id="0lL-ZR-dx2"/>
+                                        </items>
+                                    </navigationBar>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flight Duration (min)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EJ5-bB-wQH" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="36" y="419" width="303" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="0qr-ml-jVS"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="LiB-gy-SEj"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Starting Fuel (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DUy-Ea-VFS" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="36" y="472" width="303" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Ge1-qP-af5"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="sYD-sc-Y89" id="0ju-qp-6Iy"/>
+                                        </connections>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XK5-2C-OFs">
+                                        <rect key="frame" x="36" y="525" width="303" height="45"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flow Rate (gal/hr)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4K9-EO-M8f" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="149" height="45"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="sYD-sc-Y89" id="Lnd-Le-eqg"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Taxi Fuel Usage (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TSo-5f-8wE" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                                <rect key="frame" x="154" y="0.0" width="149" height="45"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardType="numberPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="sYD-sc-Y89" id="uwF-5W-hhc"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="gS6-97-cQ2"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="gS6-97-cQ2"/>
+                                    <constraint firstItem="QUK-dV-23c" firstAttribute="top" secondItem="Vfc-vO-T5T" secondAttribute="bottom" constant="8" id="0iQ-CP-Vk1"/>
+                                    <constraint firstItem="XK5-2C-OFs" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leading" constant="36" id="66s-hl-buw"/>
+                                    <constraint firstItem="VTT-AN-9kf" firstAttribute="top" secondItem="ajp-EB-u8P" secondAttribute="bottom" constant="5" id="7V3-pd-NON"/>
+                                    <constraint firstItem="PwZ-pR-03W" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="7kJ-zn-W8N"/>
+                                    <constraint firstItem="7iS-EB-dVF" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="4" id="9Rj-Cw-aOM"/>
+                                    <constraint firstItem="7iS-EB-dVF" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="BJM-C6-NPs"/>
+                                    <constraint firstItem="lLZ-cw-jzt" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="63" id="C6h-eT-c8v"/>
+                                    <constraint firstItem="c7X-q3-xYu" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="E0T-AO-qKU"/>
+                                    <constraint firstItem="XK5-2C-OFs" firstAttribute="top" secondItem="DUy-Ea-VFS" secondAttribute="bottom" constant="8" id="FEY-Tz-FvP"/>
+                                    <constraint firstItem="EJ5-bB-wQH" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="G5d-em-xYG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lhr-ot-BVb" secondAttribute="trailing" constant="20" id="Gzb-aZ-WQI"/>
+                                    <constraint firstItem="VTT-AN-9kf" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leading" constant="20" id="MIF-Zm-AnH"/>
+                                    <constraint firstItem="Lhr-ot-BVb" firstAttribute="centerX" secondItem="Aub-rq-JtA" secondAttribute="centerX" id="Oue-OI-KK0"/>
+                                    <constraint firstItem="DUy-Ea-VFS" firstAttribute="top" secondItem="EJ5-bB-wQH" secondAttribute="bottom" constant="8" id="QTl-6I-BIO"/>
+                                    <constraint firstItem="QUK-dV-23c" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="Skf-Cm-REK"/>
+                                    <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="WGL-FV-hyA"/>
+                                    <constraint firstItem="lLZ-cw-jzt" firstAttribute="top" secondItem="4K9-EO-M8f" secondAttribute="bottom" constant="12" id="WrY-Rd-vum"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="ZR5-qQ-kWU" secondAttribute="trailing" constant="63" id="YxT-7K-BWg"/>
+                                    <constraint firstItem="DUy-Ea-VFS" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="c98-WH-gXE"/>
+                                    <constraint firstItem="DUy-Ea-VFS" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="g1m-by-BUi"/>
+                                    <constraint firstItem="ajp-EB-u8P" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="8" id="hwt-O3-fry"/>
+                                    <constraint firstItem="ajp-EB-u8P" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="i2x-WX-isJ"/>
+                                    <constraint firstItem="Vfc-vO-T5T" firstAttribute="top" secondItem="PwZ-pR-03W" secondAttribute="bottom" constant="5" id="j8g-c1-koh"/>
+                                    <constraint firstItem="QUK-dV-23c" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="jkM-H1-dDm"/>
+                                    <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="8" id="k5K-X6-6Lq"/>
+                                    <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="l1V-5i-S4N"/>
+                                    <constraint firstItem="PwZ-pR-03W" firstAttribute="top" secondItem="Lhr-ot-BVb" secondAttribute="bottom" constant="15" id="lar-bp-qaN"/>
+                                    <constraint firstItem="Lhr-ot-BVb" firstAttribute="top" secondItem="Aub-rq-JtA" secondAttribute="top" constant="20" id="mot-PS-oSg"/>
+                                    <constraint firstItem="XK5-2C-OFs" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="nL3-z9-VQJ"/>
+                                    <constraint firstItem="ZR5-qQ-kWU" firstAttribute="top" secondItem="TSo-5f-8wE" secondAttribute="bottom" constant="12" id="pnY-zt-WgN"/>
+                                    <constraint firstItem="Vfc-vO-T5T" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="pqb-2Q-FVg"/>
+                                    <constraint firstItem="Lhr-ot-BVb" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leading" constant="20" id="qmB-v1-PSd"/>
+                                    <constraint firstItem="7iS-EB-dVF" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="sqv-he-dYh"/>
+                                    <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="wR2-Q4-294"/>
+                                    <constraint firstAttribute="bottom" secondItem="lLZ-cw-jzt" secondAttribute="bottom" constant="20" id="x3l-cy-1LK"/>
+                                    <constraint firstAttribute="trailing" secondItem="VTT-AN-9kf" secondAttribute="trailing" constant="20" id="xBb-5g-Dcm"/>
+                                    <constraint firstItem="EJ5-bB-wQH" firstAttribute="top" secondItem="VTT-AN-9kf" secondAttribute="bottom" constant="8" id="xpX-Bi-vVg"/>
+                                    <constraint firstItem="c7X-q3-xYu" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="yWQ-Sg-sKq"/>
+                                    <constraint firstItem="EJ5-bB-wQH" firstAttribute="leading" secondItem="Aub-rq-JtA" secondAttribute="leadingMargin" constant="28" id="ysE-TX-PAh"/>
+                                    <constraint firstItem="c7X-q3-xYu" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="4" id="z5q-5A-81k"/>
+                                    <constraint firstItem="XK5-2C-OFs" firstAttribute="trailing" secondItem="Aub-rq-JtA" secondAttribute="trailingMargin" constant="-28" id="zIZ-3p-jpJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="XK5-2C-OFs" secondAttribute="trailing" constant="36" id="zUB-rs-mEL"/>
                                 </constraints>
-                            </stackView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" constant="35" id="1uz-qd-08d"/>
-                            <constraint firstItem="QUK-dV-23c" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="2FC-XT-PLt"/>
-                            <constraint firstItem="c7X-q3-xYu" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="75u-Fm-RXe"/>
-                            <constraint firstAttribute="trailing" secondItem="XK5-2C-OFs" secondAttribute="trailing" constant="16" id="9al-tI-AJG"/>
-                            <constraint firstItem="VTT-AN-9kf" firstAttribute="top" secondItem="ajp-EB-u8P" secondAttribute="bottom" constant="5" id="A0e-fE-Syn"/>
-                            <constraint firstAttribute="trailing" secondItem="Lhr-ot-BVb" secondAttribute="trailing" id="AKX-Ua-iiM"/>
-                            <constraint firstItem="EJ5-bB-wQH" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="Cxr-Kl-JFE"/>
-                            <constraint firstItem="XK5-2C-OFs" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="DDh-Jf-qeq"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="DpV-EL-vaT"/>
-                            <constraint firstItem="XK5-2C-OFs" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="Fqy-kc-EWL"/>
-                            <constraint firstItem="ZR5-qQ-kWU" firstAttribute="top" secondItem="TSo-5f-8wE" secondAttribute="bottom" constant="12" id="G1P-2U-0N9"/>
-                            <constraint firstItem="7iS-EB-dVF" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="GNP-UP-ZXL"/>
-                            <constraint firstItem="XK5-2C-OFs" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" constant="16" id="H5E-N3-EDi"/>
-                            <constraint firstItem="7iS-EB-dVF" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="4" id="Me9-lF-pKr"/>
-                            <constraint firstItem="PwZ-pR-03W" firstAttribute="top" secondItem="Lhr-ot-BVb" secondAttribute="bottom" constant="15" id="QLp-hV-KCm"/>
-                            <constraint firstItem="c7X-q3-xYu" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="4" id="Qon-Vq-jIB"/>
-                            <constraint firstItem="lLZ-cw-jzt" firstAttribute="top" secondItem="4K9-EO-M8f" secondAttribute="bottom" constant="12" id="UuE-Oe-yF5"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="W2x-9H-6Sn"/>
-                            <constraint firstItem="ajp-EB-u8P" firstAttribute="top" secondItem="5Y4-Ee-Ywo" secondAttribute="bottom" constant="8" id="Wpa-xx-TJj"/>
-                            <constraint firstItem="7iS-EB-dVF" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="Xvq-14-qqI"/>
-                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="Y9V-jV-bL2"/>
-                            <constraint firstItem="PwZ-pR-03W" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="Zci-Dz-VLS"/>
-                            <constraint firstItem="EJ5-bB-wQH" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="aB2-Bv-33r"/>
-                            <constraint firstItem="EJ5-bB-wQH" firstAttribute="top" secondItem="VTT-AN-9kf" secondAttribute="bottom" constant="8" id="add-S8-Bln"/>
-                            <constraint firstItem="Vfc-vO-T5T" firstAttribute="top" secondItem="PwZ-pR-03W" secondAttribute="bottom" constant="5" id="bgu-qG-Y9N"/>
-                            <constraint firstItem="c7X-q3-xYu" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="f4k-G3-oF7"/>
-                            <constraint firstAttribute="trailing" secondItem="VTT-AN-9kf" secondAttribute="trailing" id="gF6-XS-RGm"/>
-                            <constraint firstItem="QUK-dV-23c" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="hFp-6L-55j"/>
-                            <constraint firstItem="DUy-Ea-VFS" firstAttribute="trailing" secondItem="MpA-6i-W6N" secondAttribute="trailingMargin" id="mDU-QL-DKi"/>
-                            <constraint firstItem="XK5-2C-OFs" firstAttribute="top" secondItem="DUy-Ea-VFS" secondAttribute="bottom" constant="8" id="mvI-1H-Y3B"/>
-                            <constraint firstItem="Lhr-ot-BVb" firstAttribute="top" secondItem="qnT-nu-bTC" secondAttribute="bottom" id="qwc-ct-UJS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZR5-qQ-kWU" secondAttribute="trailing" constant="35" id="rZZ-de-Dsr"/>
-                            <constraint firstItem="ajp-EB-u8P" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="rpl-sx-LZO"/>
-                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="ryW-wC-Itq"/>
-                            <constraint firstItem="5Y4-Ee-Ywo" firstAttribute="top" secondItem="QUK-dV-23c" secondAttribute="bottom" constant="8" id="snB-eU-Ul6"/>
-                            <constraint firstItem="VTT-AN-9kf" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="tWa-z2-hKL"/>
-                            <constraint firstItem="DUy-Ea-VFS" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leadingMargin" id="u75-Cr-GyN"/>
-                            <constraint firstItem="Lhr-ot-BVb" firstAttribute="leading" secondItem="MpA-6i-W6N" secondAttribute="leading" id="vbA-Y9-F3P"/>
-                            <constraint firstItem="DUy-Ea-VFS" firstAttribute="top" secondItem="EJ5-bB-wQH" secondAttribute="bottom" constant="8" id="w4S-qy-HrS"/>
-                            <constraint firstItem="QUK-dV-23c" firstAttribute="top" secondItem="Vfc-vO-T5T" secondAttribute="bottom" constant="8" id="zvv-3Y-ecg"/>
+                            <constraint firstItem="Aub-rq-JtA" firstAttribute="centerX" secondItem="MpA-6i-W6N" secondAttribute="centerX" id="6JK-XQ-mGZ"/>
+                            <constraint firstItem="Aub-rq-JtA" firstAttribute="width" secondItem="MpA-6i-W6N" secondAttribute="width" id="9fQ-92-ftG"/>
+                            <constraint firstItem="Aub-rq-JtA" firstAttribute="centerY" secondItem="MpA-6i-W6N" secondAttribute="centerY" id="IyD-6G-sYj"/>
+                            <constraint firstItem="Aub-rq-JtA" firstAttribute="height" secondItem="MpA-6i-W6N" secondAttribute="height" id="ekZ-6H-U0z"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1080,6 +1093,7 @@
                         <outlet property="durationTextfield" destination="EJ5-bB-wQH" id="kA8-pI-4yK"/>
                         <outlet property="flowRateTextfield" destination="4K9-EO-M8f" id="a1c-7K-ivF"/>
                         <outlet property="planePicker" destination="Vfc-vO-T5T" id="jVW-LP-EBq"/>
+                        <outlet property="scrollView" destination="Aub-rq-JtA" id="59D-nu-ULL"/>
                         <outlet property="startingFuelTextfield" destination="DUy-Ea-VFS" id="ll1-ts-S4X"/>
                         <outlet property="submitButton" destination="ZR5-qQ-kWU" id="RDO-sD-LcH"/>
                         <outlet property="tableView" destination="c7X-q3-xYu" id="sDX-F1-Mpj"/>
