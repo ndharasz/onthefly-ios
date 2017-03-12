@@ -20,6 +20,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userFeedbackLabel: UILabel!
     
     
+    
+    
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     
     var loadingView: UIView = UIView()

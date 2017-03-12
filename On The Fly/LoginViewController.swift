@@ -41,13 +41,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
 
         loginButton.addBlackBorder()
+        scrollView.isScrollEnabled = false
         
         rememberMeLogin()
-        
-        registerForKeyboardNotifications()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        registerForKeyboardNotifications()
         if let checkboxShouldBeChecked = UserDefaults.standard.value(forKey: "rememberMeChecked") {
             if checkboxShouldBeChecked as! Bool {
                 self.checkBoxButton.checkYes()
@@ -55,6 +55,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.checkBoxButton.checkNo()
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
     }
     
     @IBAction func loginAction(_ sender: Any) {
@@ -229,6 +233,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardWillBeHidden(notification: NSNotification){
         self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+        self.scrollView.isScrollEnabled = false
     }
     
     func addKeyboardToolBar(textField: UITextField) {
