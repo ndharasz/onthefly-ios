@@ -21,6 +21,7 @@ class ForgotPasswordViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         
         emailTextfield.roundCorners()
+        addKeyboardToolBar(textField: emailTextfield)
         resetPswdButton.addBlackBorder()
         cancelButton.addBlackBorder()
     }
@@ -62,6 +63,43 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - UITextField Navigation Keyboard Toolbar
+    
+    func addKeyboardToolBar(textField: UITextField) {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        keyboardToolbar.barStyle = .default
+        keyboardToolbar.isTranslucent = true
+        
+        
+        
+        let kbDoneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        let blankSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        blankSpacer.width = kbDoneBtn.width
+        let flexiSpacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let kbTitleBtn = UIBarButtonItem(title: "Title", style: .plain, target: nil, action: nil)
+        kbTitleBtn.isEnabled = false
+        keyboardToolbar.setItems([blankSpacer, flexiSpacer, kbTitleBtn, flexiSpacer, kbDoneBtn], animated: true)
+        
+        let textPlaceholderLabel = UILabel()
+        textPlaceholderLabel.sizeToFit()
+        textPlaceholderLabel.backgroundColor = UIColor.clear
+        textPlaceholderLabel.textAlignment = .center
+        kbTitleBtn.customView = textPlaceholderLabel
+        
+        textPlaceholderLabel.text = textField.placeholder!
+        textPlaceholderLabel.sizeToFit()
+        
+        keyboardToolbar.isUserInteractionEnabled = true
+        keyboardToolbar.sizeToFit()
+        
+        textField.inputAccessoryView = keyboardToolbar
+    }
+    
+    func donePressed() {
+        self.view.endEditing(true)
     }
 
 }

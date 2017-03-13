@@ -19,6 +19,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var userFeedbackLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
+    var activeField: PaddedTextField?
     
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     
@@ -26,6 +30,32 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     var textFieldArray: [UITextField] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        
+        textFieldArray = [firstNameTextField, lastNameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
+        
+        for eachTextField in textFieldArray {
+            eachTextField.roundCorners()
+            addKeyboardToolBar(textField: eachTextField)
+        }
+        
+        passwordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+        confirmPasswordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+        
+        cancelButton.addBlackBorder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
     
     @IBAction func createAccountButtonPressed(_ sender: UIButton) {
         // dismiss the keyboard if it is still up
@@ -124,26 +154,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
-        
-        textFieldArray = [firstNameTextField, lastNameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
-        
-        for eachTextField in textFieldArray {
-            eachTextField.roundCorners()
-        }
-        
-        passwordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
-        confirmPasswordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
-        
-        cancelButton.addBlackBorder()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
+    
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -173,6 +184,123 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         self.loadingView.removeFromSuperview()
     }
     
+    // MARK: - UITextField Navigation Keyboard Toolbar
+    
+    func registerForKeyboardNotifications(){
+        // Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        // Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let point2 = CGPoint(x: 0, y: activeField!.frame.origin.y + activeField!.frame.height)
+        
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin) || !aRect.contains(point2)){
+                print("part of view at least covered")
+                let yOffset = abs(aRect.origin.y + aRect.height - point2.y) + 5
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+            } else {
+                self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+            }
+        }
+        
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func addKeyboardToolBar(textField: UITextField) {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        keyboardToolbar.barStyle = .default
+        keyboardToolbar.isTranslucent = true
+
+        let kbPrevBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "LeftArrow"), style: .plain, target: self, action: #selector(previousPressed))
+        let kbNextBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "RightArrow"), style: .plain, target: self, action: #selector(nextPressed))
+        let kbDoneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        let fixedSpace15 = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace15.width = 15
+        let fixedSpace10 = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace10.width = 10
+        let flexiSpacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let kbTitleBtn = UIBarButtonItem(title: "Title", style: .plain, target: nil, action: nil)
+        kbTitleBtn.isEnabled = false
+        
+        if textField == firstNameTextField {
+            kbPrevBtn.isEnabled = false
+        }
+        
+        if textField == confirmPasswordTextField {
+            kbNextBtn.isEnabled = false
+        }
+        
+        keyboardToolbar.setItems([kbPrevBtn, fixedSpace15, kbNextBtn, flexiSpacer, kbTitleBtn, flexiSpacer, fixedSpace10, kbDoneBtn], animated: true)
+        
+        let textPlaceholderLabel = UILabel()
+        textPlaceholderLabel.sizeToFit()
+        textPlaceholderLabel.backgroundColor = UIColor.clear
+        textPlaceholderLabel.textAlignment = .center
+        kbTitleBtn.customView = textPlaceholderLabel
+        
+        textPlaceholderLabel.text = textField.placeholder!
+        textPlaceholderLabel.sizeToFit()
+        
+        keyboardToolbar.isUserInteractionEnabled = true
+        keyboardToolbar.sizeToFit()
+        
+        textField.inputAccessoryView = keyboardToolbar
+    }
+    
+    func previousPressed() {
+        switch activeField! {
+        case confirmPasswordTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            firstNameTextField.becomeFirstResponder()
+        default:
+            print("no previous field")
+        }
+    }
+    
+    func nextPressed() {
+        switch activeField! {
+        case firstNameTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            confirmPasswordTextField.becomeFirstResponder()
+        default:
+            print("no next field")
+        }
+    }
+    
+    func donePressed() {
+        self.view.endEditing(true)
+    }
+    
     // MARK: - Text Field Delegate Functionality
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -184,10 +312,15 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeField = textField as? PaddedTextField
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if passwordTextField.text! == "" || confirmPasswordTextField.text! == "" {
             hideUserFeedback()
         }
+        activeField = nil
     }
     
     func textFieldDidChange(textField : UITextField) {
