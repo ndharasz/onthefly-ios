@@ -28,8 +28,12 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var deleteFlightButton: UIButton!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
-    var activeTextfield: PaddedTextField!
+    
+    var activeField: PaddedTextField?
+    
+    var textFields: [PaddedTextField]!
     
     
     override func viewDidLoad() {
@@ -37,13 +41,21 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
         
         self.applyUserInterfaceChanges()
         self.loadFlightDetails()
+        registerForKeyboardNotifications()
         
         flightDatePicker.addTarget(self, action: #selector(FlightDetailsViewController.datePickerValueChanged(_:)), for: UIControlEvents.valueChanged)
+        
+        textFields = [departAirportTextfield, arriveAirportTextfield, durationTextfield,
+                      startingFuelTextfield, flowRateTextfield, taxiFuelUsageTextfield]
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
     }
     
     func applyUserInterfaceChanges() {
@@ -92,7 +104,7 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.activeTextfield = textField as! PaddedTextField
+        self.activeField = textField as? PaddedTextField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -229,63 +241,6 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func addKeyboardToolBar(textField: UITextField) {
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = Style.darkBlueAccentColor
-        
-        let doneButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(donePressed))
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self,
-                                           action: #selector(FlightDetailsViewController.cancelPressed))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        let titleButton = UIBarButtonItem(title: textField.placeholder, style: .plain, target: nil, action: nil)
-        titleButton.isEnabled = false
-        
-        toolBar.setItems([spaceButton, titleButton, spaceButton, cancelButton, doneButton], animated: true)
-        
-        toolBar.isUserInteractionEnabled = true
-        toolBar.sizeToFit()
-        
-        textField.inputAccessoryView = toolBar
-    }
-    
-    func donePressed() {
-        self.view.endEditing(true)
-    }
-    
-    @objc func cancelPressed() {
-        if self.activeTextfield == departAirportTextfield {
-            
-            self.activeTextfield.text = editFlightVC.flight!.departAirport
-            
-        } else if self.activeTextfield == arriveAirportTextfield {
-            
-            self.activeTextfield.text = editFlightVC.flight!.arriveAirport
-            
-        } else if self.activeTextfield == durationTextfield {
-            
-            self.activeTextfield.text = "\(editFlightVC.flight!.flightDuration)"
-            
-        } else if self.activeTextfield == startingFuelTextfield {
-            
-            self.activeTextfield.text = "\(editFlightVC.flight!.startFuel)"
-            
-        } else if self.activeTextfield == flowRateTextfield {
-            
-            self.activeTextfield.text = "\(editFlightVC.flight!.fuelFlow)"
-            
-        } else {
-            // taxi
-            
-            self.activeTextfield.text = "\(editFlightVC.flight!.taxiFuelBurn)"
-            
-        }
-        
-        self.view.endEditing(true)
-    }
-    
     @IBAction func deleteFlightPressed(_ sender: Any) {
         
         if let flightToDelete = editFlightVC.flight {
@@ -300,7 +255,117 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // MARK: - UITextField Navigation Keyboard Toolbar
+    
+    func registerForKeyboardNotifications(){
+        // Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        // Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        
+        if self.textFields.contains(activeField!) {
+            self.scrollView.isScrollEnabled = true
+            var info = notification.userInfo!
+            let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+            let point2 = CGPoint(x: 0, y: activeField!.frame.origin.y + activeField!.frame.height)
+            let bottomOffset = editFlightVC.flightDetailsContainerView.frame.origin.y + editFlightVC.flightDetailsContainerView.frame.height
+            let totalOffset = editFlightVC.view.frame.height - bottomOffset
+            
+            var aRect : CGRect = self.view.frame
+            aRect.size.height -= keyboardSize!.height
+            if let activeField = self.activeField {
+                if (!aRect.contains(activeField.frame.origin) || !aRect.contains(point2)){
+                    print("part of view at least covered")
+                    let yOffset = abs(aRect.origin.y + aRect.height - point2.y) - 3 - totalOffset
+                    self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+                } else {
+                    self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+                }
+            }
+        }
+        
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func addKeyboardToolBar(textField: UITextField) {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        keyboardToolbar.barStyle = .default
+        keyboardToolbar.isTranslucent = true
+        
+        let flexiSpacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let kbTitleBtn = UIBarButtonItem(title: "Title", style: .plain, target: nil, action: nil)
+        kbTitleBtn.isEnabled = false
+        
+        let kbSaveBtn = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(donePressed))
+        let kbCancelBtn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        
+        keyboardToolbar.setItems([flexiSpacer, kbTitleBtn, flexiSpacer, kbCancelBtn, kbSaveBtn], animated: true)
+        
+        let textPlaceholderLabel = UILabel()
+        textPlaceholderLabel.sizeToFit()
+        textPlaceholderLabel.backgroundColor = UIColor.clear
+        textPlaceholderLabel.textAlignment = .center
+        kbTitleBtn.customView = textPlaceholderLabel
+        
+        textPlaceholderLabel.text = textField.placeholder!
+        textPlaceholderLabel.sizeToFit()
+        
+        keyboardToolbar.isUserInteractionEnabled = true
+        keyboardToolbar.sizeToFit()
+        
+        textField.inputAccessoryView = keyboardToolbar
+    }
+    
+    func cancelPressed() {
+        if let activeTextField = self.activeField {
+            if activeTextField == departAirportTextfield {
+                
+                activeTextField.text = editFlightVC.flight!.departAirport
+                
+            } else if activeTextField == arriveAirportTextfield {
+                
+                activeTextField.text = editFlightVC.flight!.arriveAirport
+                
+            } else if activeTextField == durationTextfield {
+                
+                activeTextField.text = "\(editFlightVC.flight!.flightDuration)"
+                
+            } else if activeTextField == startingFuelTextfield {
+                
+                activeTextField.text = "\(editFlightVC.flight!.startFuel)"
+                
+            } else if activeTextField == flowRateTextfield {
+                
+                activeTextField.text = "\(editFlightVC.flight!.fuelFlow)"
+                
+            } else {
+                // taxi
+                
+                activeTextField.text = "\(editFlightVC.flight!.taxiFuelBurn)"
+                
+            }
+        }
+        
+        self.view.endEditing(true)
+    }
 
+    
+    func donePressed() {
+        self.view.endEditing(true)
+    }
     
 
 }

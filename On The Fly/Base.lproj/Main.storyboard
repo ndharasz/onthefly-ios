@@ -1631,134 +1631,221 @@
                         <rect key="frame" x="0.0" y="0.0" width="337" height="435"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Departure Airport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8T-wg-C8a">
-                                <rect key="frame" x="16" y="11" width="135" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Arrival Airport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUL-sg-RSV">
-                                <rect key="frame" x="172" y="10" width="107" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dci-db-Gg6">
-                                <rect key="frame" x="0.0" y="104" width="337" height="95"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <date key="date" timeIntervalSinceReferenceDate="510618038.33624399">
-                                    <!--2017-03-07 22:20:38 +0000-->
-                                </date>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starting Fuel (gal)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgi-G3-1nf">
-                                <rect key="frame" x="173" y="214" width="136" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flow Rate (gal/hr)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFk-HV-Bpt">
-                                <rect key="frame" x="16" y="301" width="135" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Taxi Fuel Usage (gal)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-je-M8s">
-                                <rect key="frame" x="173" y="301" width="159" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Departure Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rup-cq-BxG" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="44" width="135" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <outlet property="delegate" destination="c6U-AA-971" id="07w-c4-Y1t"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Arrival Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kkp-Js-3PM" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="172" y="44" width="135" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <outlet property="delegate" destination="c6U-AA-971" id="hF4-aw-mRo"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Duration (min)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FHS-YE-U8r" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="243" width="135" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="c6U-AA-971" id="LcV-Lf-2G8"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Starting Fuel (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CSk-tH-NNY" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="173" y="243" width="135" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="c6U-AA-971" id="fQo-wO-CyQ"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flow Rate (gal/hr)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qA1-LK-U5n" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="16" y="330" width="135" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="c6U-AA-971" id="0LP-qA-11d"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Taxi Fuel Usage (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JZW-lz-VGm" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                <rect key="frame" x="173" y="330" width="135" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="c6U-AA-971" id="R2H-Ua-qWe"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Duration (min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhS-ra-9Cv">
-                                <rect key="frame" x="16" y="216" width="135" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1h-yI-gMg">
-                                <rect key="frame" x="118" y="383" width="100" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.25933883480708353" blue="0.24876956949253004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Delete Flight">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteFlightPressed:" destination="c6U-AA-971" eventType="touchUpInside" id="NVp-Hx-6P3"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egY-9u-BLj">
+                                <rect key="frame" x="0.0" y="-10" width="337" height="435"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure Airport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8T-wg-C8a">
+                                        <rect key="frame" x="16" y="21" width="135" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="135" id="cRe-wg-Mq5"/>
+                                            <constraint firstAttribute="height" constant="21" id="oGO-9u-cap"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival Airport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUL-sg-RSV">
+                                        <rect key="frame" x="181" y="20" width="107" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="K04-zz-QGp"/>
+                                            <constraint firstAttribute="width" constant="107" id="K2R-Jy-8ZO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dci-db-Gg6">
+                                        <rect key="frame" x="20" y="114" width="297" height="102"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="102" id="bp5-Lk-u4l"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="510618038.33624399">
+                                            <!--2017-03-07 22:20:38 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Fuel (gal)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgi-G3-1nf">
+                                        <rect key="frame" x="181" y="224" width="136" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="iak-4f-ZcD"/>
+                                            <constraint firstAttribute="width" constant="136" id="sfv-qg-dqx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flow Rate (gal/hr)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFk-HV-Bpt">
+                                        <rect key="frame" x="16" y="311" width="135" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="135" id="hyn-k0-ojm"/>
+                                            <constraint firstAttribute="height" constant="21" id="kk2-nC-SG9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxi Fuel Usage (gal)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-je-M8s">
+                                        <rect key="frame" x="170" y="311" width="159" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="DJu-ne-1rs"/>
+                                            <constraint firstAttribute="width" constant="159" id="YUD-qG-dx2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Departure Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rup-cq-BxG" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="54" width="140" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="S4L-5W-KSN"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="c6U-AA-971" id="07w-c4-Y1t"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Arrival Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kkp-Js-3PM" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="181" y="54" width="140" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="MD7-Zs-PYE"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="c6U-AA-971" id="hF4-aw-mRo"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Duration (min)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FHS-YE-U8r" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="253" width="140" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="0JT-26-Pkz"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="c6U-AA-971" id="LcV-Lf-2G8"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Starting Fuel (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CSk-tH-NNY" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="181" y="253" width="140" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="ljQ-nh-ob9"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="c6U-AA-971" id="fQo-wO-CyQ"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flow Rate (gal/hr)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qA1-LK-U5n" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="340" width="140" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="yXn-rg-eTP"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="c6U-AA-971" id="0LP-qA-11d"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Taxi Fuel Usage (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JZW-lz-VGm" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                        <rect key="frame" x="181" y="340" width="140" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Ekv-Ix-c86"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="c6U-AA-971" id="R2H-Ua-qWe"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration (min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhS-ra-9Cv">
+                                        <rect key="frame" x="16" y="226" width="135" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="tdN-H3-OEr"/>
+                                            <constraint firstAttribute="width" constant="135" id="zH2-JP-h4g"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1h-yI-gMg">
+                                        <rect key="frame" x="118" y="393" width="100" height="35"/>
+                                        <color key="backgroundColor" red="1" green="0.25933883480708353" blue="0.24876956949253004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="YxT-5v-7gl"/>
+                                            <constraint firstAttribute="height" constant="35" id="l3p-Jp-dC1"/>
+                                        </constraints>
+                                        <state key="normal" title="Delete Flight">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteFlightPressed:" destination="c6U-AA-971" eventType="touchUpInside" id="NVp-Hx-6P3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rFk-HV-Bpt" firstAttribute="leading" secondItem="qA1-LK-U5n" secondAttribute="leading" id="0ON-z8-uSl"/>
+                                    <constraint firstItem="rup-cq-BxG" firstAttribute="width" secondItem="kkp-Js-3PM" secondAttribute="width" id="10W-uJ-K5v"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="JZW-lz-VGm" secondAttribute="trailing" constant="8" id="1Bf-m4-dei"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="kkp-Js-3PM" secondAttribute="trailing" constant="8" id="2G1-QP-3jx"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="CSk-tH-NNY" secondAttribute="trailing" constant="8" id="3HX-Qq-aMg"/>
+                                    <constraint firstItem="Y1h-yI-gMg" firstAttribute="centerX" secondItem="egY-9u-BLj" secondAttribute="centerX" id="3pm-bM-vPh"/>
+                                    <constraint firstItem="Y1h-yI-gMg" firstAttribute="top" secondItem="qA1-LK-U5n" secondAttribute="bottom" constant="8" id="5vn-TP-ZHv"/>
+                                    <constraint firstItem="rup-cq-BxG" firstAttribute="top" secondItem="u8T-wg-C8a" secondAttribute="bottom" constant="12" id="6LA-Er-auS"/>
+                                    <constraint firstItem="WhS-ra-9Cv" firstAttribute="top" secondItem="Dci-db-Gg6" secondAttribute="bottom" constant="10" id="7d4-3c-Y5j"/>
+                                    <constraint firstItem="JZW-lz-VGm" firstAttribute="leading" secondItem="qA1-LK-U5n" secondAttribute="trailing" constant="25" id="Acx-cN-m2k"/>
+                                    <constraint firstItem="TUL-sg-RSV" firstAttribute="top" secondItem="egY-9u-BLj" secondAttribute="top" constant="20" id="CWg-ae-cvm"/>
+                                    <constraint firstItem="JZW-lz-VGm" firstAttribute="top" secondItem="AhG-je-M8s" secondAttribute="bottom" constant="8" symbolic="YES" id="DkF-w0-aoT"/>
+                                    <constraint firstItem="rup-cq-BxG" firstAttribute="baseline" secondItem="kkp-Js-3PM" secondAttribute="baseline" id="FQp-fm-3PI"/>
+                                    <constraint firstItem="CSk-tH-NNY" firstAttribute="leading" secondItem="FHS-YE-U8r" secondAttribute="trailing" constant="25" id="Fgh-ke-qpf"/>
+                                    <constraint firstItem="WhS-ra-9Cv" firstAttribute="leading" secondItem="FHS-YE-U8r" secondAttribute="leading" id="IjA-Vp-aJH"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y1h-yI-gMg" secondAttribute="bottom" constant="20" id="JGY-kt-8xg"/>
+                                    <constraint firstItem="FHS-YE-U8r" firstAttribute="top" secondItem="WhS-ra-9Cv" secondAttribute="bottom" constant="6" id="Rig-pa-EEX"/>
+                                    <constraint firstItem="qA1-LK-U5n" firstAttribute="top" secondItem="rFk-HV-Bpt" secondAttribute="bottom" constant="8" id="SvO-Ir-vKZ"/>
+                                    <constraint firstItem="Dci-db-Gg6" firstAttribute="centerX" secondItem="Y1h-yI-gMg" secondAttribute="centerX" id="Ti9-V0-sjC"/>
+                                    <constraint firstItem="u8T-wg-C8a" firstAttribute="leading" secondItem="rup-cq-BxG" secondAttribute="leading" id="Usa-DU-mea"/>
+                                    <constraint firstItem="AhG-je-M8s" firstAttribute="baseline" secondItem="rFk-HV-Bpt" secondAttribute="baseline" id="WZG-VF-te5"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Dci-db-Gg6" secondAttribute="trailing" constant="12" id="WxY-Rt-Vze"/>
+                                    <constraint firstItem="kkp-Js-3PM" firstAttribute="top" secondItem="TUL-sg-RSV" secondAttribute="bottom" constant="13" id="ZdN-uu-2J9"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="FHS-YE-U8r" secondAttribute="leading" constant="-8" id="dfD-fr-lRt"/>
+                                    <constraint firstItem="Dci-db-Gg6" firstAttribute="leading" secondItem="egY-9u-BLj" secondAttribute="leadingMargin" constant="12" id="dgr-id-7P6"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="rup-cq-BxG" secondAttribute="leading" constant="-8" id="dwG-ki-Blo"/>
+                                    <constraint firstItem="qA1-LK-U5n" firstAttribute="width" secondItem="JZW-lz-VGm" secondAttribute="width" id="emF-ZU-2MD"/>
+                                    <constraint firstItem="TUL-sg-RSV" firstAttribute="leading" secondItem="kkp-Js-3PM" secondAttribute="leading" id="fd5-C7-joI"/>
+                                    <constraint firstItem="Dci-db-Gg6" firstAttribute="top" secondItem="rup-cq-BxG" secondAttribute="bottom" constant="15" id="glH-Vi-cAA"/>
+                                    <constraint firstItem="xgi-G3-1nf" firstAttribute="leading" secondItem="CSk-tH-NNY" secondAttribute="leading" id="mvq-E7-Sas"/>
+                                    <constraint firstItem="AhG-je-M8s" firstAttribute="top" secondItem="CSk-tH-NNY" secondAttribute="bottom" constant="13" id="nip-xc-rqH"/>
+                                    <constraint firstItem="kkp-Js-3PM" firstAttribute="leading" secondItem="rup-cq-BxG" secondAttribute="trailing" constant="25" id="obB-HI-EOe"/>
+                                    <constraint firstItem="xgi-G3-1nf" firstAttribute="top" secondItem="Dci-db-Gg6" secondAttribute="bottom" constant="8" symbolic="YES" id="ppm-4w-nie"/>
+                                    <constraint firstItem="rFk-HV-Bpt" firstAttribute="top" secondItem="FHS-YE-U8r" secondAttribute="bottom" constant="13" id="rWb-Rt-Lwd"/>
+                                    <constraint firstItem="Y1h-yI-gMg" firstAttribute="centerX" secondItem="egY-9u-BLj" secondAttribute="centerX" id="sud-Hx-E1o"/>
+                                    <constraint firstItem="FHS-YE-U8r" firstAttribute="width" secondItem="CSk-tH-NNY" secondAttribute="width" id="teP-2s-23z"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="AhG-je-M8s" secondAttribute="trailing" id="wQo-lX-l7s"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="qA1-LK-U5n" secondAttribute="leading" constant="-8" id="x1F-2s-NFx"/>
+                                    <constraint firstItem="FHS-YE-U8r" firstAttribute="top" secondItem="WhS-ra-9Cv" secondAttribute="bottom" constant="6" id="zgO-Bt-Kf4"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="egY-9u-BLj" firstAttribute="width" secondItem="dac-m3-OhO" secondAttribute="width" id="7f1-Q4-ghT"/>
+                            <constraint firstItem="egY-9u-BLj" firstAttribute="height" secondItem="dac-m3-OhO" secondAttribute="height" id="GC3-dz-e1I"/>
+                            <constraint firstItem="egY-9u-BLj" firstAttribute="centerX" secondItem="dac-m3-OhO" secondAttribute="centerX" id="bes-HR-4jA"/>
+                            <constraint firstItem="egY-9u-BLj" firstAttribute="top" secondItem="dac-m3-OhO" secondAttribute="topMargin" constant="-10" id="ffr-Eb-hBZ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="arriveAirportTextfield" destination="kkp-Js-3PM" id="7Yj-38-R2Y"/>
@@ -1767,6 +1854,7 @@
                         <outlet property="durationTextfield" destination="FHS-YE-U8r" id="AZW-wY-3U9"/>
                         <outlet property="flightDatePicker" destination="Dci-db-Gg6" id="zdW-fv-d7M"/>
                         <outlet property="flowRateTextfield" destination="qA1-LK-U5n" id="K33-2g-xX8"/>
+                        <outlet property="scrollView" destination="egY-9u-BLj" id="9Xb-hh-bHy"/>
                         <outlet property="startingFuelTextfield" destination="CSk-tH-NNY" id="x8r-PK-g89"/>
                         <outlet property="taxiFuelUsageTextfield" destination="JZW-lz-VGm" id="Dqh-G5-dqc"/>
                     </connections>
