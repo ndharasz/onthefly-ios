@@ -271,23 +271,25 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardWasShown(notification: NSNotification){
         
-        if self.textFields.contains(activeField!) {
-            self.scrollView.isScrollEnabled = true
-            var info = notification.userInfo!
-            let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-            let point2 = CGPoint(x: 0, y: activeField!.frame.origin.y + activeField!.frame.height)
-            let bottomOffset = editFlightVC.flightDetailsContainerView.frame.origin.y + editFlightVC.flightDetailsContainerView.frame.height
-            let totalOffset = editFlightVC.view.frame.height - bottomOffset
-            
-            var aRect : CGRect = self.view.frame
-            aRect.size.height -= keyboardSize!.height
-            if let activeField = self.activeField {
-                if (!aRect.contains(activeField.frame.origin) || !aRect.contains(point2)){
-                    print("part of view at least covered")
-                    let yOffset = abs(aRect.origin.y + aRect.height - point2.y) - 3 - totalOffset
-                    self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
-                } else {
-                    self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+        if activeField != nil {
+            if self.textFields.contains(activeField!) {
+                self.scrollView.isScrollEnabled = true
+                var info = notification.userInfo!
+                let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+                let point2 = CGPoint(x: 0, y: activeField!.frame.origin.y + activeField!.frame.height)
+                let bottomOffset = editFlightVC.flightDetailsContainerView.frame.origin.y + editFlightVC.flightDetailsContainerView.frame.height
+                let totalOffset = editFlightVC.view.frame.height - bottomOffset
+                
+                var aRect : CGRect = self.view.frame
+                aRect.size.height -= keyboardSize!.height
+                if let activeField = self.activeField {
+                    if (!aRect.contains(activeField.frame.origin) || !aRect.contains(point2)){
+                        print("part of view at least covered")
+                        let yOffset = abs(aRect.origin.y + aRect.height - point2.y) - 3 - totalOffset
+                        self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+                    } else {
+                        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+                    }
                 }
             }
         }

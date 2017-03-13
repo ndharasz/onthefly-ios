@@ -210,23 +210,24 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func passengerSelected(passengerIndex: Int) {
         
-        let editPassenger = UIAlertController(title: "Add New Name", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let editPassenger = UIAlertController(title: "Add New Passenger", message: "", preferredStyle: UIAlertControllerStyle.alert)
         
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             
             // need to add error handling
             let firstTextField = editPassenger.textFields![0] as UITextField
-            guard let newName = firstTextField.text else {
-                print("invalid name")
+            guard let newWeight = Double(firstTextField.text!) else {
+                print("invalid weight")
                 return
             }
             
             let secondTextField = editPassenger.textFields![1] as UITextField
-            guard let newWeight = Double(secondTextField.text!) else {
-                print("invalid weight")
+            guard let newName = secondTextField.text else {
+                print("invalid name")
                 return
             }
+            
             let passenger = (name: newName, weight: newWeight)
 
             self.passengers[passengerIndex] = passenger
@@ -243,19 +244,28 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         })
         
         editPassenger.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Enter Passenger Name"
-            let tempPass = self.passengers[passengerIndex]
-            if tempPass.name != "Empty" {
-                textField.text = tempPass.name
-            }
-        }
-        
-        editPassenger.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Passenger Weight"
             textField.keyboardType = UIKeyboardType.decimalPad
             let tempPass = self.passengers[passengerIndex]
             if tempPass.name != "Empty" {
                 textField.text = "\(tempPass.weight)"
+            }
+        }
+        
+        editPassenger.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Passenger Name"
+            let tempPass = self.passengers[passengerIndex]
+            if tempPass.name != "Empty" {
+                textField.text = tempPass.name
+            } else {
+                switch passengerIndex {
+                case 0:
+                    textField.text = "Pilot"
+                case 1:
+                    textField.text = "Co-Pilot"
+                default:
+                    textField.text = "Pax\(passengerIndex - 1)"
+                }
             }
         }
         
