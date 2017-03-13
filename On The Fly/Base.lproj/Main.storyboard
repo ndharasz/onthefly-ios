@@ -1635,7 +1635,7 @@
                                 <rect key="frame" x="0.0" y="-10" width="337" height="435"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure Airport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8T-wg-C8a">
-                                        <rect key="frame" x="16" y="21" width="135" height="21"/>
+                                        <rect key="frame" x="16" y="20" width="135" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="135" id="cRe-wg-Mq5"/>
                                             <constraint firstAttribute="height" constant="21" id="oGO-9u-cap"/>
@@ -1655,7 +1655,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dci-db-Gg6">
-                                        <rect key="frame" x="20" y="114" width="297" height="102"/>
+                                        <rect key="frame" x="14" y="102" width="309" height="102"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="102" id="bp5-Lk-u4l"/>
                                         </constraints>
@@ -1664,7 +1664,7 @@
                                         </date>
                                     </datePicker>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Fuel (gal)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgi-G3-1nf">
-                                        <rect key="frame" x="181" y="224" width="136" height="21"/>
+                                        <rect key="frame" x="181" y="212" width="136" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="iak-4f-ZcD"/>
                                             <constraint firstAttribute="width" constant="136" id="sfv-qg-dqx"/>
@@ -1674,7 +1674,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flow Rate (gal/hr)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFk-HV-Bpt">
-                                        <rect key="frame" x="16" y="311" width="135" height="21"/>
+                                        <rect key="frame" x="16" y="299" width="135" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="135" id="hyn-k0-ojm"/>
                                             <constraint firstAttribute="height" constant="21" id="kk2-nC-SG9"/>
@@ -1684,7 +1684,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxi Fuel Usage (gal)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-je-M8s">
-                                        <rect key="frame" x="170" y="311" width="159" height="21"/>
+                                        <rect key="frame" x="170" y="299" width="159" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="DJu-ne-1rs"/>
                                             <constraint firstAttribute="width" constant="159" id="YUD-qG-dx2"/>
@@ -1694,7 +1694,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Departure Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rup-cq-BxG" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="54" width="140" height="45"/>
+                                        <rect key="frame" x="16" y="49" width="140" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="S4L-5W-KSN"/>
@@ -1707,7 +1707,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Arrival Airport" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kkp-Js-3PM" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="181" y="54" width="140" height="45"/>
+                                        <rect key="frame" x="181" y="49" width="140" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="MD7-Zs-PYE"/>
@@ -1720,7 +1720,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Duration (min)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FHS-YE-U8r" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="253" width="140" height="45"/>
+                                        <rect key="frame" x="16" y="241" width="140" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="0JT-26-Pkz"/>
@@ -1733,7 +1733,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Starting Fuel (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CSk-tH-NNY" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="181" y="253" width="140" height="45"/>
+                                        <rect key="frame" x="181" y="241" width="140" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ljQ-nh-ob9"/>
@@ -1746,7 +1746,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Flow Rate (gal/hr)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qA1-LK-U5n" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="340" width="140" height="45"/>
+                                        <rect key="frame" x="16" y="328" width="140" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="yXn-rg-eTP"/>
@@ -1759,7 +1759,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Taxi Fuel Usage (gal)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JZW-lz-VGm" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="181" y="340" width="140" height="45"/>
+                                        <rect key="frame" x="181" y="328" width="140" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Ekv-Ix-c86"/>
@@ -1772,7 +1772,7 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration (min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhS-ra-9Cv">
-                                        <rect key="frame" x="16" y="226" width="135" height="21"/>
+                                        <rect key="frame" x="16" y="214" width="135" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="tdN-H3-OEr"/>
                                             <constraint firstAttribute="width" constant="135" id="zH2-JP-h4g"/>
@@ -1782,11 +1782,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1h-yI-gMg">
-                                        <rect key="frame" x="118" y="393" width="100" height="35"/>
+                                        <rect key="frame" x="118" y="381" width="100" height="45"/>
                                         <color key="backgroundColor" red="1" green="0.25933883480708353" blue="0.24876956949253004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="YxT-5v-7gl"/>
-                                            <constraint firstAttribute="height" constant="35" id="l3p-Jp-dC1"/>
+                                            <constraint firstAttribute="height" constant="45" id="l3p-Jp-dC1"/>
                                         </constraints>
                                         <state key="normal" title="Delete Flight">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1804,7 +1804,7 @@
                                     <constraint firstAttribute="trailingMargin" secondItem="CSk-tH-NNY" secondAttribute="trailing" constant="8" id="3HX-Qq-aMg"/>
                                     <constraint firstItem="Y1h-yI-gMg" firstAttribute="centerX" secondItem="egY-9u-BLj" secondAttribute="centerX" id="3pm-bM-vPh"/>
                                     <constraint firstItem="Y1h-yI-gMg" firstAttribute="top" secondItem="qA1-LK-U5n" secondAttribute="bottom" constant="8" id="5vn-TP-ZHv"/>
-                                    <constraint firstItem="rup-cq-BxG" firstAttribute="top" secondItem="u8T-wg-C8a" secondAttribute="bottom" constant="12" id="6LA-Er-auS"/>
+                                    <constraint firstItem="rup-cq-BxG" firstAttribute="top" secondItem="u8T-wg-C8a" secondAttribute="bottom" constant="8" id="6LA-Er-auS"/>
                                     <constraint firstItem="WhS-ra-9Cv" firstAttribute="top" secondItem="Dci-db-Gg6" secondAttribute="bottom" constant="10" id="7d4-3c-Y5j"/>
                                     <constraint firstItem="JZW-lz-VGm" firstAttribute="leading" secondItem="qA1-LK-U5n" secondAttribute="trailing" constant="25" id="Acx-cN-m2k"/>
                                     <constraint firstItem="TUL-sg-RSV" firstAttribute="top" secondItem="egY-9u-BLj" secondAttribute="top" constant="20" id="CWg-ae-cvm"/>
@@ -1812,20 +1812,20 @@
                                     <constraint firstItem="rup-cq-BxG" firstAttribute="baseline" secondItem="kkp-Js-3PM" secondAttribute="baseline" id="FQp-fm-3PI"/>
                                     <constraint firstItem="CSk-tH-NNY" firstAttribute="leading" secondItem="FHS-YE-U8r" secondAttribute="trailing" constant="25" id="Fgh-ke-qpf"/>
                                     <constraint firstItem="WhS-ra-9Cv" firstAttribute="leading" secondItem="FHS-YE-U8r" secondAttribute="leading" id="IjA-Vp-aJH"/>
-                                    <constraint firstAttribute="bottom" secondItem="Y1h-yI-gMg" secondAttribute="bottom" constant="20" id="JGY-kt-8xg"/>
                                     <constraint firstItem="FHS-YE-U8r" firstAttribute="top" secondItem="WhS-ra-9Cv" secondAttribute="bottom" constant="6" id="Rig-pa-EEX"/>
                                     <constraint firstItem="qA1-LK-U5n" firstAttribute="top" secondItem="rFk-HV-Bpt" secondAttribute="bottom" constant="8" id="SvO-Ir-vKZ"/>
                                     <constraint firstItem="Dci-db-Gg6" firstAttribute="centerX" secondItem="Y1h-yI-gMg" secondAttribute="centerX" id="Ti9-V0-sjC"/>
                                     <constraint firstItem="u8T-wg-C8a" firstAttribute="leading" secondItem="rup-cq-BxG" secondAttribute="leading" id="Usa-DU-mea"/>
                                     <constraint firstItem="AhG-je-M8s" firstAttribute="baseline" secondItem="rFk-HV-Bpt" secondAttribute="baseline" id="WZG-VF-te5"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Dci-db-Gg6" secondAttribute="trailing" constant="12" id="WxY-Rt-Vze"/>
-                                    <constraint firstItem="kkp-Js-3PM" firstAttribute="top" secondItem="TUL-sg-RSV" secondAttribute="bottom" constant="13" id="ZdN-uu-2J9"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Dci-db-Gg6" secondAttribute="trailing" constant="6" id="WxY-Rt-Vze"/>
+                                    <constraint firstItem="kkp-Js-3PM" firstAttribute="top" secondItem="TUL-sg-RSV" secondAttribute="bottom" constant="8" id="ZdN-uu-2J9"/>
                                     <constraint firstAttribute="leadingMargin" secondItem="FHS-YE-U8r" secondAttribute="leading" constant="-8" id="dfD-fr-lRt"/>
-                                    <constraint firstItem="Dci-db-Gg6" firstAttribute="leading" secondItem="egY-9u-BLj" secondAttribute="leadingMargin" constant="12" id="dgr-id-7P6"/>
+                                    <constraint firstItem="Dci-db-Gg6" firstAttribute="leading" secondItem="egY-9u-BLj" secondAttribute="leadingMargin" constant="6" id="dgr-id-7P6"/>
                                     <constraint firstAttribute="leadingMargin" secondItem="rup-cq-BxG" secondAttribute="leading" constant="-8" id="dwG-ki-Blo"/>
                                     <constraint firstItem="qA1-LK-U5n" firstAttribute="width" secondItem="JZW-lz-VGm" secondAttribute="width" id="emF-ZU-2MD"/>
                                     <constraint firstItem="TUL-sg-RSV" firstAttribute="leading" secondItem="kkp-Js-3PM" secondAttribute="leading" id="fd5-C7-joI"/>
-                                    <constraint firstItem="Dci-db-Gg6" firstAttribute="top" secondItem="rup-cq-BxG" secondAttribute="bottom" constant="15" id="glH-Vi-cAA"/>
+                                    <constraint firstItem="Dci-db-Gg6" firstAttribute="top" secondItem="rup-cq-BxG" secondAttribute="bottom" constant="8" id="glH-Vi-cAA"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y1h-yI-gMg" secondAttribute="bottom" constant="7" id="ldT-4k-dg6"/>
                                     <constraint firstItem="xgi-G3-1nf" firstAttribute="leading" secondItem="CSk-tH-NNY" secondAttribute="leading" id="mvq-E7-Sas"/>
                                     <constraint firstItem="AhG-je-M8s" firstAttribute="top" secondItem="CSk-tH-NNY" secondAttribute="bottom" constant="13" id="nip-xc-rqH"/>
                                     <constraint firstItem="kkp-Js-3PM" firstAttribute="leading" secondItem="rup-cq-BxG" secondAttribute="trailing" constant="25" id="obB-HI-EOe"/>
@@ -1871,7 +1871,7 @@
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ELt-yp-pXI"/>
+        <segue reference="YwN-Ik-6gk"/>
         <segue reference="ACs-8Z-TM7"/>
     </inferredMetricsTieBreakers>
 </document>
