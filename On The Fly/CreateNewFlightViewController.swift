@@ -412,6 +412,14 @@ class CreateNewFlightViewController: UIViewController, UIPickerViewDelegate, UIP
         let kbTitleBtn = UIBarButtonItem(title: "Title", style: .plain, target: nil, action: nil)
         kbTitleBtn.isEnabled = false
         
+        if textField == departureArptTextfield {
+            kbPrevBtn.isEnabled = false
+        }
+        
+        if textField == taxiFuelUsageTextfield {
+            kbNextBtn.isEnabled = false
+        }
+        
         keyboardToolbar.setItems([kbPrevBtn, fixedSpace15, kbNextBtn, flexiSpacer, kbTitleBtn, flexiSpacer, fixedSpace10, kbDoneBtn], animated: true)
         
         let textPlaceholderLabel = UILabel()

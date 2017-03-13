@@ -242,6 +242,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         let kbTitleBtn = UIBarButtonItem(title: "Title", style: .plain, target: nil, action: nil)
         kbTitleBtn.isEnabled = false
         
+        if textField == firstNameTextField {
+            kbPrevBtn.isEnabled = false
+        }
+        
+        if textField == confirmPasswordTextField {
+            kbNextBtn.isEnabled = false
+        }
+        
         keyboardToolbar.setItems([kbPrevBtn, fixedSpace15, kbNextBtn, flexiSpacer, kbTitleBtn, flexiSpacer, fixedSpace10, kbDoneBtn], animated: true)
         
         let textPlaceholderLabel = UILabel()
