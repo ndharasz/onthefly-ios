@@ -102,7 +102,11 @@ class CargoViewController: UIViewController {
             self.frontWeight -= newWeight
             
             // firebase call
-            self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
+            if self.frontWeight < 0 {
+                self.editFlightVC.flight?.frontBaggageWeight = 0
+            } else {
+                self.editFlightVC.flight?.frontBaggageWeight = self.frontWeight
+            }
             self.editFlightVC.flight?.updateFrontBaggageWeight()
             
             self.updateLabels()
@@ -225,7 +229,11 @@ class CargoViewController: UIViewController {
             self.aftWeight -= newWeight
             
             // firebase call
-            self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
+            if self.aftWeight < 0 {
+                self.editFlightVC.flight?.aftBaggageWeight = 0
+            } else {
+                self.editFlightVC.flight?.aftBaggageWeight = self.aftWeight
+            }
             self.editFlightVC.flight?.updateAftBaggageWeight()
             
             self.updateLabels()
