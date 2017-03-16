@@ -17,7 +17,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var segmentControlHeightConstant: NSLayoutConstraint!
     @IBOutlet weak var cargoContainerView: UIView!
     @IBOutlet weak var flightDetailsContainerView: UIView!
-    @IBOutlet weak var flightInfoLabel: UILabel!
+    @IBOutlet weak var departureAirportLabel: UILabel!
+    @IBOutlet weak var arrivalAirportLabel: UILabel!
     
     var flight: Flight?
     var plane: Plane?
@@ -86,7 +87,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func updateTitleLabel() {
-        self.flightInfoLabel.text = "\(flight!.departAirport) --> \(flight!.arriveAirport)"
+        self.departureAirportLabel.text = "\(flight!.departAirport)"
+        self.departureAirportLabel.sizeToFit()
+        self.arrivalAirportLabel.text = "\(flight!.arriveAirport)"
+        self.arrivalAirportLabel.sizeToFit()
     }
     
     func saveNewSeatConfig() {
