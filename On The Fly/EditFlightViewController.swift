@@ -16,7 +16,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var createReportButton: UIButton!
     @IBOutlet weak var segmentControlHeightConstant: NSLayoutConstraint!
     @IBOutlet weak var cargoContainerView: UIView!
-    @IBOutlet weak var trashLabel: UIImageView!
     @IBOutlet weak var flightDetailsContainerView: UIView!
     @IBOutlet weak var flightInfoLabel: UILabel!
     
@@ -141,19 +140,16 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             self.flightDetailsContainerView.isHidden = false
             self.passengerCollectionView.isHidden = true
             self.cargoContainerView.isHidden = true
-            self.trashLabel.isHidden = true
         } else if segmentControl.selectedSegmentIndex == 1 {
             // Passenger seat view
             self.flightDetailsContainerView.isHidden = true
             self.passengerCollectionView.isHidden = false
             self.cargoContainerView.isHidden = true
-            self.trashLabel.isHidden = false
         } else {
             // Cargo View
             self.flightDetailsContainerView.isHidden = true
             self.passengerCollectionView.isHidden = true
             self.cargoContainerView.isHidden = false
-            self.trashLabel.isHidden = true
         }
     }
     
@@ -210,19 +206,25 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func passengerSelected(passengerIndex: Int) {
         
-        let editPassenger = UIAlertController(title: "Add New Passenger", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        var alertController = UIAlertController()
+        
+        if isSeatEmpty(index: passengerIndex) {
+            alertController = UIAlertController(title: "Add New Passenger", message: "", preferredStyle: .alert)
+        } else {
+            alertController = UIAlertController(title: "Edit Passenger", message: "", preferredStyle: .alert)
+        }
         
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             
             // need to add error handling
-            let firstTextField = editPassenger.textFields![0] as UITextField
+            let firstTextField = alertController.textFields![0] as UITextField
             guard let newWeight = Double(firstTextField.text!) else {
                 print("invalid weight")
                 return
             }
             
-            let secondTextField = editPassenger.textFields![1] as UITextField
+            let secondTextField = alertController.textFields![1] as UITextField
             guard let newName = secondTextField.text else {
                 print("invalid name")
                 return
@@ -238,12 +240,16 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
-            (action : UIAlertAction!) -> Void in
-            
-        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        editPassenger.addTextField { (textField : UITextField!) -> Void in
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            let newby = (name: "Empty", weight: 0.0)
+            self.passengers[passengerIndex] = newby
+            self.passengerCollectionView.reloadData()
+            self.saveNewSeatConfig()
+        }
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Passenger Weight"
             textField.keyboardType = UIKeyboardType.decimalPad
             let tempPass = self.passengers[passengerIndex]
@@ -252,7 +258,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
         
-        editPassenger.addTextField { (textField : UITextField!) -> Void in
+        alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter Passenger Name"
             let tempPass = self.passengers[passengerIndex]
             if tempPass.name != "Empty" {
@@ -269,9 +275,20 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
         
-        editPassenger.addAction(saveAction)
-        editPassenger.addAction(cancelAction)
-        self.present(editPassenger, animated: true, completion: nil)
+        if isSeatEmpty(index: passengerIndex) {
+            alertController.addAction(saveAction)
+            alertController.addAction(cancelAction)
+        } else {
+            alertController.addAction(saveAction)
+            alertController.addAction(deleteAction)
+        }
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func isSeatEmpty(index: Int) -> Bool {
+        let seatToCheck = self.passengers[index]
+        return (seatToCheck.name == "Empty" && seatToCheck.weight == 0)
     }
     
     func handleLongGesture(_ gesture: UILongPressGestureRecognizer) {
@@ -290,14 +307,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             
             guard let selectedIndexPath = self.passengerCollectionView.indexPathForItem(at: gesture.location(in: self.passengerCollectionView)) else {
                 
-                if self.trashLabel.frame.contains(gesture.location(in: self.view)) {
-                    let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
-                    cell?.backgroundColor = UIColor.red
-                    
-                } else {
-                    let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
-                    cell?.backgroundColor = UIColor.blue
-                }
+                let cell = self.passengerCollectionView.cellForItem(at: initialSelectedIndexPath!)
+                cell?.backgroundColor = UIColor.blue
                 
                 break
             }
@@ -310,14 +321,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 cell?.backgroundColor = UIColor.blue
                 self.passengerCollectionView.endInteractiveMovement()
                 self.saveNewSeatConfig()
-                
-                if self.trashLabel.frame.contains(gesture.location(in: self.view)) {
-                    let newby = (name: "Empty", weight: 0.0)
-                    passengers[(initialSelectedIndexPath?.row)!] = newby
-                }
-                
                 self.passengerCollectionView.reloadData()
-                self.saveNewSeatConfig()
                 
                 break
             }
