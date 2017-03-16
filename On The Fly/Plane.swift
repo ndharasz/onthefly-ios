@@ -23,12 +23,12 @@ struct Plane {
     let aftBaggageArm: Double
     let fuelArm: Double
     let numSeats: Int
-    let centerOfGravityEnvelope: [String:[Double]]
+    let centerOfGravityEnvelope: [[String:Double]]
     let fireRef: FIRDatabaseReference?
     
     init(name: String, tailNumber: String, maxRampWeight: Int, maxTakeoffWeight: Int, emptyWeight: Int,
          emptyWeightArm: Double, pilotSeatsArm: Double, rowArms: [Double], frontBagArm: Double, aftBagArm: Double,
-         fuelArm: Double, numSeats: Int, cogEnvelope: [String:[Double]]) {
+         fuelArm: Double, numSeats: Int, cogEnvelope: [[String:Double]]) {
         self.name = name
         self.tailNumber = tailNumber
         self.maxRampWeight = maxRampWeight
@@ -59,7 +59,7 @@ struct Plane {
         self.aftBaggageArm = snapshotValue["aftBaggageArm"] as! Double
         self.fuelArm = snapshotValue["fuelArm"] as! Double
         self.numSeats = snapshotValue["numSeats"] as! Int
-        self.centerOfGravityEnvelope = snapshotValue["centerOfGravityEnvelope"] as! [String:[Double]]
+        self.centerOfGravityEnvelope = snapshotValue["centerOfGravityEnvelope"] as! [[String:Double]]
         self.fireRef = snapshot.ref
     }
     
