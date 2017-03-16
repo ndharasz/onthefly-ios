@@ -1131,13 +1131,12 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXp-bj-j7s">
-                                <rect key="frame" x="23" y="602" width="260" height="50"/>
+                                <rect key="frame" x="23" y="602" width="329" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dyO-1a-J8L"/>
-                                    <constraint firstAttribute="width" constant="260" id="ldP-Xy-z9J"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Generate Weight &amp; Balance Report">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1239,9 +1238,6 @@
                                     <action selector="segmentControlChanged:" destination="wDc-Yu-kR2" eventType="valueChanged" id="lSJ-40-JJM"/>
                                 </connections>
                             </segmentedControl>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trashcan" translatesAutoresizingMaskIntoConstraints="NO" id="3je-F5-Ueu">
-                                <rect key="frame" x="291" y="602" width="65" height="50"/>
-                            </imageView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naj-Kd-yz8">
                                 <rect key="frame" x="19" y="152" width="337" height="435"/>
                                 <connections>
@@ -1259,7 +1255,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="A6G-aK-8Ua" secondAttribute="trailing" constant="3" id="Mg5-fC-D5O"/>
                             <constraint firstItem="QE9-BZ-01j" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="3" id="Nl7-nG-hvT"/>
                             <constraint firstItem="NHA-bS-nRC" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="PQn-sQ-hr8"/>
-                            <constraint firstItem="3je-F5-Ueu" firstAttribute="bottom" secondItem="gXp-bj-j7s" secondAttribute="bottom" id="S9R-T5-u4d"/>
                             <constraint firstItem="SWk-Pu-QVv" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="VB1-zz-Vt8"/>
                             <constraint firstItem="naj-Kd-yz8" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="3" id="bNZ-7H-ayx"/>
                             <constraint firstItem="QE9-BZ-01j" firstAttribute="centerX" secondItem="lBC-Cd-P8x" secondAttribute="centerX" id="byc-JR-hGu"/>
@@ -1269,16 +1264,14 @@
                             <constraint firstItem="ZH2-nI-9G4" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leading" id="g9T-PL-mMm"/>
                             <constraint firstAttribute="trailing" secondItem="ZH2-nI-9G4" secondAttribute="trailing" id="gn2-WD-dQm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NHA-bS-nRC" secondAttribute="trailing" constant="3" id="gsG-6A-HRa"/>
-                            <constraint firstItem="3je-F5-Ueu" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="top" id="hst-TL-D59"/>
                             <constraint firstItem="NHA-bS-nRC" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="3" id="jYh-EA-54L"/>
                             <constraint firstItem="naj-Kd-yz8" firstAttribute="top" secondItem="NHA-bS-nRC" secondAttribute="bottom" constant="8" id="jnu-OQ-ivP"/>
                             <constraint firstItem="A6G-aK-8Ua" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="3" id="k12-qf-5pP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gXp-bj-j7s" secondAttribute="trailing" constant="7" id="lZS-yu-HEi"/>
                             <constraint firstItem="gXp-bj-j7s" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="7" id="lgw-Za-yMc"/>
                             <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="15" id="m5G-pI-H0S"/>
-                            <constraint firstItem="3je-F5-Ueu" firstAttribute="leading" secondItem="gXp-bj-j7s" secondAttribute="trailing" constant="8" id="pVX-tO-tym"/>
                             <constraint firstItem="gXp-bj-j7s" firstAttribute="top" secondItem="A6G-aK-8Ua" secondAttribute="bottom" constant="15" id="qlc-DD-m2E"/>
                             <constraint firstItem="Bai-eV-ydR" firstAttribute="top" secondItem="gXp-bj-j7s" secondAttribute="bottom" constant="15" id="t3g-Na-h4b"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3je-F5-Ueu" secondAttribute="trailing" constant="3" id="uRV-N1-TGb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QE9-BZ-01j" secondAttribute="trailing" constant="3" id="w6z-Wb-QfR"/>
                             <constraint firstItem="gXp-bj-j7s" firstAttribute="leading" secondItem="lBC-Cd-P8x" secondAttribute="leadingMargin" constant="7" id="yzW-zJ-Kwr"/>
                         </constraints>
@@ -1291,7 +1284,6 @@
                         <outlet property="passengerCollectionView" destination="QE9-BZ-01j" id="39Y-Wx-Eod"/>
                         <outlet property="segmentControl" destination="NHA-bS-nRC" id="rzO-N3-wHt"/>
                         <outlet property="segmentControlHeightConstant" destination="tVA-Nz-acF" id="h4Z-Y3-9nq"/>
-                        <outlet property="trashLabel" destination="3je-F5-Ueu" id="ESU-IW-K7N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvy-4U-wmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1867,7 +1859,6 @@
     <resources>
         <image name="LeftArrow" width="12" height="21"/>
         <image name="RightArrow" width="12" height="21"/>
-        <image name="Trashcan" width="75" height="75"/>
         <image name="checkbox_unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
