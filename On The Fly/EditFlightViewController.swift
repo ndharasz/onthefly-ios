@@ -364,6 +364,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         } else if segue.identifier == "embedFlightDetailsView" {
             let flightDetailsVC = segue.destination as! FlightDetailsViewController
             flightDetailsVC.editFlightVC = self
+        } else if segue.identifier == "generateReportSegue" {
+            let reportVC = segue.destination as! ReportGenerationViewController
+            reportVC.flight = self.flight!
+            reportVC.plane = self.plane!
         }
         
     }

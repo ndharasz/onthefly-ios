@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class ReportGenerationViewController: UIViewController {
 
@@ -20,6 +21,11 @@ class ReportGenerationViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var lineChartView: LineChartView!
+    
+    var flight: Flight?
+    var plane: Plane?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +35,64 @@ class ReportGenerationViewController: UIViewController {
         addKeyboardToolBar(textField: emailTextfield)
         
         sendButton.addBlackBorder()
-        cancelButton.addBlackBorder()        
+        cancelButton.addBlackBorder()
+        
+        lineChartView.noDataText = "No center of gravity envelope data found."
+        lineChartView.noDataTextColor = .blue
+        
+        
+//        var envelopeData: [Double : Double] = [:]
+        
+        var coordArray: [(ChartDataEntry, Int)] = []
+        
+        if let thisPlane = self.plane {
+            let envPoints = thisPlane.centerOfGravityEnvelope
+            for (index, element) in envPoints.enumerated() {
+                let newPoint = ChartDataEntry(x: element["x"]!, y: element["y"]!)
+                coordArray.append((newPoint, index))
+            }
+        }
+        
+        let ySeries = coordArray.map { x, _ in
+            return x
+        }
+        
+//        let ySeries = envelopeData.map { x, y in
+//            return ChartDataEntry(x: Double(x), y: y)
+//        }
+        
+//        let point1 = ChartDataEntry(x: 20.0, y: 23.2)
+//        let point2 = ChartDataEntry(x: 21.1, y: 22.2)
+        
+        ySeries.last!.x += 0.000001
+        
+        let bottomConnectorSeries = [ySeries.first!, ySeries.last!]
+        
+        let data = LineChartData()
+        let dataset = LineChartDataSet(values: ySeries, label: "CoG Envelope")
+        dataset.colors = [NSUIColor.blue]
+        data.addDataSet(dataset)
+        
+        let dataset2 = LineChartDataSet(values: bottomConnectorSeries, label: "")
+        dataset2.colors = [NSUIColor.blue]
+        data.addDataSet(dataset2)
+        
+        self.lineChartView.data = data
+        
+//        self.lineChartView.setVisibleXRangeMinimum(30)
+        
+        self.lineChartView.xAxis.axisMinimum = ySeries.first!.x - 2.0
+        self.lineChartView.xAxis.axisMaximum = ySeries.last!.x + 2.0
+        
+        self.lineChartView.gridBackgroundColor = NSUIColor.white
+        self.lineChartView.xAxis.drawGridLinesEnabled = true;
+        self.lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
+        self.lineChartView.chartDescription?.text = "W & B Graph"
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
     }
 
     override func didReceiveMemoryWarning() {
