@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class ReportGenerationViewController: UIViewController {
+class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var sendReportCheckbox: CheckboxButton!
     @IBOutlet weak var saveLocallyCheckbox: CheckboxButton!
@@ -25,11 +25,13 @@ class ReportGenerationViewController: UIViewController {
     
     var flight: Flight?
     var plane: Plane?
+    var activeField: PaddedTextField?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        
+        registerForKeyboardNotifications()
         
         emailTextfield.roundCorners()
         addKeyboardToolBar(textField: emailTextfield)
@@ -39,9 +41,6 @@ class ReportGenerationViewController: UIViewController {
         
         lineChartView.noDataText = "No center of gravity envelope data found."
         lineChartView.noDataTextColor = .blue
-        
-        
-//        var envelopeData: [Double : Double] = [:]
         
         var coordArray: [(ChartDataEntry, Int)] = []
         
@@ -56,13 +55,6 @@ class ReportGenerationViewController: UIViewController {
         let ySeries = coordArray.map { x, _ in
             return x
         }
-        
-//        let ySeries = envelopeData.map { x, y in
-//            return ChartDataEntry(x: Double(x), y: y)
-//        }
-        
-//        let point1 = ChartDataEntry(x: 20.0, y: 23.2)
-//        let point2 = ChartDataEntry(x: 21.1, y: 22.2)
         
         ySeries.last!.x += 0.000001
         
@@ -79,8 +71,6 @@ class ReportGenerationViewController: UIViewController {
         
         self.lineChartView.data = data
         
-//        self.lineChartView.setVisibleXRangeMinimum(30)
-        
         self.lineChartView.xAxis.axisMinimum = ySeries.first!.x - 2.0
         self.lineChartView.xAxis.axisMaximum = ySeries.last!.x + 2.0
         
@@ -93,6 +83,10 @@ class ReportGenerationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
     }
 
     override func didReceiveMemoryWarning() {
@@ -132,6 +126,47 @@ class ReportGenerationViewController: UIViewController {
     
     // MARK: - UITextField Navigation Keyboard Toolbar
     
+    func registerForKeyboardNotifications(){
+        // Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        // Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let point2 = CGPoint(x: 0, y: activeField!.frame.origin.y + activeField!.frame.height)
+        
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin) || !aRect.contains(point2)){
+                print("part of view at least covered")
+                let yOffset = abs(aRect.origin.y + aRect.height - point2.y) + 30
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+            } else {
+                print("nothing covered")
+                self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+            }
+        } else {
+            print("invalid active field")
+        }
+        
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+    }
+    
     func addKeyboardToolBar(textField: UITextField) {
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
@@ -165,6 +200,14 @@ class ReportGenerationViewController: UIViewController {
     
     func donePressed() {
         self.view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeField = textField as? PaddedTextField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeField = nil
     }
 
 }

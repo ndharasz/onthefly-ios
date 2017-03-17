@@ -196,7 +196,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wOl-5n-g16"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oqQ-ai-pQc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFr-kz-kkM">
@@ -223,7 +223,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sN0-4l-Q2k">
-                                <rect key="frame" x="89.5" y="607" width="196" height="40"/>
+                                <rect key="frame" x="89.5" y="890" width="196" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="O4J-Gg-tg4"/>
@@ -238,7 +238,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BLN-3n-tgK">
-                                <rect key="frame" x="16" y="131" width="343" height="468"/>
+                                <rect key="frame" x="16" y="131" width="343" height="751"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="120" id="Bne-95-hfN" customClass="UpcomingFlightTableViewCell" customModule="On_The_Fly" customModuleProvider="target">
@@ -1323,143 +1323,163 @@
                         <viewControllerLayoutGuide type="bottom" id="kvj-hv-Mzs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y93-lw-xGJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdj-Ng-cRe">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="922"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ij-cw-W61" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="307"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REa-o3-FWM">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="950"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ij-cw-W61" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="425"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="425" id="cYp-yJ-UHH"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success! Report Generated. Please select the method of delivery for the report: " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Y-qc-4WG">
+                                                <rect key="frame" x="10" y="433" width="355" height="65"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="65" id="JB1-wV-Z9f"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send to user registered email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOv-0t-Bta">
+                                                <rect key="frame" x="41" y="647" width="314" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="youremail@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qYs-Vh-D6E" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="567" width="365" height="45"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="7bV-un-8bo"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="osF-aw-xvC" id="ApF-Qt-vaK"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NW-Kn-ZVj" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="646" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="BKl-Hb-L76"/>
+                                                    <constraint firstAttribute="width" constant="25" id="Hof-aW-USQ"/>
+                                                </constraints>
+                                                <state key="normal" image="checkbox_unchecked"/>
+                                                <connections>
+                                                    <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F3J-AL-RkC"/>
+                                                    <action selector="sendReportButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="glB-vy-165"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n56-zD-rkw" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="527" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="4Sh-vd-FIF"/>
+                                                    <constraint firstAttribute="height" constant="25" id="99V-H7-mK9"/>
+                                                </constraints>
+                                                <state key="normal" image="checkbox_unchecked"/>
+                                                <connections>
+                                                    <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tur-wW-Zox"/>
+                                                    <action selector="saveLocallyButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="4Gg-ou-JWp"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save report locally" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juB-51-2QI">
+                                                <rect key="frame" x="40" y="527" width="315" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="SDM-E1-mJN"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4e-c9-8Z2">
+                                                <rect key="frame" x="137" y="760" width="100" height="45"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="0q0-SE-h9q"/>
+                                                    <constraint firstAttribute="height" constant="45" id="a5p-GU-X1g"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="f6P-bV-oZh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTv-mr-RBH">
+                                                <rect key="frame" x="137" y="852" width="100" height="45"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="pHG-wo-I4S"/>
+                                                    <constraint firstAttribute="height" constant="45" id="yli-uC-hDU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="Udc-aq-2rO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="307" id="AOn-Ix-QHg"/>
+                                            <constraint firstItem="kOv-0t-Bta" firstAttribute="bottom" secondItem="7NW-Kn-ZVj" secondAttribute="bottom" id="27j-8d-W5v"/>
+                                            <constraint firstItem="f4e-c9-8Z2" firstAttribute="centerX" secondItem="REa-o3-FWM" secondAttribute="centerX" id="60p-Bh-1oe"/>
+                                            <constraint firstAttribute="trailing" secondItem="qYs-Vh-D6E" secondAttribute="trailing" constant="5" id="6jC-EF-fbM"/>
+                                            <constraint firstItem="Z1Y-qc-4WG" firstAttribute="top" secondItem="5ij-cw-W61" secondAttribute="bottom" constant="8" id="9hx-wn-roL"/>
+                                            <constraint firstAttribute="height" constant="950" id="CgL-27-USm"/>
+                                            <constraint firstItem="Z1Y-qc-4WG" firstAttribute="leading" secondItem="REa-o3-FWM" secondAttribute="leading" constant="10" id="DOq-Zc-XTh"/>
+                                            <constraint firstItem="juB-51-2QI" firstAttribute="centerY" secondItem="n56-zD-rkw" secondAttribute="centerY" id="Ehu-wG-jjU"/>
+                                            <constraint firstItem="n56-zD-rkw" firstAttribute="top" secondItem="Z1Y-qc-4WG" secondAttribute="bottom" constant="29" id="Eu9-5M-F8k"/>
+                                            <constraint firstAttribute="trailing" secondItem="juB-51-2QI" secondAttribute="trailing" constant="20" id="Hh3-Vh-WIN"/>
+                                            <constraint firstItem="qTv-mr-RBH" firstAttribute="centerX" secondItem="REa-o3-FWM" secondAttribute="centerX" id="LAX-vK-dSE"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z1Y-qc-4WG" secondAttribute="trailing" constant="10" id="LEH-L2-eQ9"/>
+                                            <constraint firstAttribute="trailing" secondItem="5ij-cw-W61" secondAttribute="trailing" id="OoP-Ck-Znp"/>
+                                            <constraint firstItem="7NW-Kn-ZVj" firstAttribute="leading" secondItem="n56-zD-rkw" secondAttribute="leading" id="RCo-YV-MU6"/>
+                                            <constraint firstItem="f4e-c9-8Z2" firstAttribute="top" secondItem="7NW-Kn-ZVj" secondAttribute="bottom" constant="89" id="THO-4K-6Vo"/>
+                                            <constraint firstItem="qTv-mr-RBH" firstAttribute="top" secondItem="f4e-c9-8Z2" secondAttribute="bottom" constant="47" id="Whw-mj-tNz"/>
+                                            <constraint firstAttribute="trailing" secondItem="kOv-0t-Bta" secondAttribute="trailing" constant="20" id="YSv-CW-fT3"/>
+                                            <constraint firstItem="7NW-Kn-ZVj" firstAttribute="top" secondItem="qYs-Vh-D6E" secondAttribute="bottom" constant="34" id="YVw-Me-E5J"/>
+                                            <constraint firstItem="juB-51-2QI" firstAttribute="leading" secondItem="n56-zD-rkw" secondAttribute="trailing" constant="5" id="Zaj-xX-OnE"/>
+                                            <constraint firstItem="qYs-Vh-D6E" firstAttribute="top" secondItem="n56-zD-rkw" secondAttribute="bottom" constant="15" id="aor-Il-ecy"/>
+                                            <constraint firstItem="5ij-cw-W61" firstAttribute="top" secondItem="REa-o3-FWM" secondAttribute="top" id="dqu-g7-pqO"/>
+                                            <constraint firstItem="kOv-0t-Bta" firstAttribute="centerY" secondItem="7NW-Kn-ZVj" secondAttribute="centerY" id="q4k-oz-WBh"/>
+                                            <constraint firstItem="5ij-cw-W61" firstAttribute="leading" secondItem="REa-o3-FWM" secondAttribute="leading" id="txh-x6-tal"/>
+                                            <constraint firstItem="n56-zD-rkw" firstAttribute="leading" secondItem="Z1Y-qc-4WG" secondAttribute="leading" id="uqa-ez-Izy"/>
+                                            <constraint firstItem="qYs-Vh-D6E" firstAttribute="leading" secondItem="REa-o3-FWM" secondAttribute="leading" constant="5" id="wNk-X0-0OY"/>
+                                            <constraint firstItem="kOv-0t-Bta" firstAttribute="leading" secondItem="7NW-Kn-ZVj" secondAttribute="trailing" constant="6" id="zZO-xu-431"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success! Report Generated. Please select the method of delivery for the report: " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Y-qc-4WG">
-                                        <rect key="frame" x="0.0" y="322" width="375" height="65"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="65" id="FXk-Qi-o2i"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send to user registered email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOv-0t-Bta">
-                                        <rect key="frame" x="52" y="397" width="298" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="youremail@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qYs-Vh-D6E" customClass="PaddedTextField" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="439" width="185" height="45"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="RUo-O8-QFt"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NW-Kn-ZVj" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="396" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="QI6-FP-Ykg"/>
-                                            <constraint firstAttribute="height" constant="25" id="mgR-XP-Vjq"/>
-                                        </constraints>
-                                        <state key="normal" image="checkbox_unchecked"/>
-                                        <connections>
-                                            <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F3J-AL-RkC"/>
-                                            <action selector="sendReportButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="glB-vy-165"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTv-mr-RBH">
-                                        <rect key="frame" x="138" y="658" width="100" height="45"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="h1n-Oe-89b"/>
-                                            <constraint firstAttribute="height" constant="45" id="hMV-2W-GxY"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="Udc-aq-2rO"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4e-c9-8Z2">
-                                        <rect key="frame" x="138" y="585" width="100" height="45"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="VHn-2m-6hT"/>
-                                            <constraint firstAttribute="height" constant="45" id="m4H-s1-vaO"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Send">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sendButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="f6P-bV-oZh"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save report locally" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juB-51-2QI">
-                                        <rect key="frame" x="51" y="518" width="309" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n56-zD-rkw" customClass="CheckboxButton" customModule="On_The_Fly" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="517" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="81s-JT-Ful"/>
-                                            <constraint firstAttribute="width" constant="25" id="vWN-Zd-jg4"/>
-                                        </constraints>
-                                        <state key="normal" image="checkbox_unchecked"/>
-                                        <connections>
-                                            <action selector="checkboxClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tur-wW-Zox"/>
-                                            <action selector="saveLocallyButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="4Gg-ou-JWp"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="f4e-c9-8Z2" firstAttribute="centerX" secondItem="jdj-Ng-cRe" secondAttribute="centerX" id="7rf-Ln-FLk"/>
-                                    <constraint firstItem="7NW-Kn-ZVj" firstAttribute="top" secondItem="Z1Y-qc-4WG" secondAttribute="bottom" constant="9.5" id="9kD-rM-mnX"/>
-                                    <constraint firstItem="n56-zD-rkw" firstAttribute="bottom" secondItem="juB-51-2QI" secondAttribute="bottom" id="Ctf-Qs-G1a"/>
-                                    <constraint firstAttribute="trailing" secondItem="Z1Y-qc-4WG" secondAttribute="trailing" id="Diq-wR-ggr"/>
-                                    <constraint firstItem="5ij-cw-W61" firstAttribute="leading" secondItem="jdj-Ng-cRe" secondAttribute="leading" id="OO8-H3-Ntm"/>
-                                    <constraint firstItem="5ij-cw-W61" firstAttribute="top" secondItem="jdj-Ng-cRe" secondAttribute="top" id="OSw-QM-scP"/>
-                                    <constraint firstItem="n56-zD-rkw" firstAttribute="leading" secondItem="qYs-Vh-D6E" secondAttribute="leading" id="Od6-Jl-xHu"/>
-                                    <constraint firstItem="7NW-Kn-ZVj" firstAttribute="leading" secondItem="jdj-Ng-cRe" secondAttribute="leading" constant="20" id="RvF-b3-O9P"/>
-                                    <constraint firstItem="7NW-Kn-ZVj" firstAttribute="bottom" secondItem="kOv-0t-Bta" secondAttribute="bottom" id="SQ2-a5-g9J"/>
-                                    <constraint firstAttribute="bottom" secondItem="n56-zD-rkw" secondAttribute="bottom" constant="95" id="WKx-EB-D7Q"/>
-                                    <constraint firstItem="f4e-c9-8Z2" firstAttribute="top" secondItem="juB-51-2QI" secondAttribute="bottom" constant="43" id="Wka-Sm-xXe"/>
-                                    <constraint firstItem="7NW-Kn-ZVj" firstAttribute="leading" secondItem="qYs-Vh-D6E" secondAttribute="leading" id="YYL-ny-04x"/>
-                                    <constraint firstAttribute="trailing" secondItem="5ij-cw-W61" secondAttribute="trailing" id="dE1-U0-heq"/>
-                                    <constraint firstItem="qTv-mr-RBH" firstAttribute="top" secondItem="f4e-c9-8Z2" secondAttribute="bottom" constant="28" id="fQV-Fy-dNi"/>
-                                    <constraint firstItem="juB-51-2QI" firstAttribute="leading" secondItem="n56-zD-rkw" secondAttribute="trailing" constant="6" id="gCL-a6-PmC"/>
-                                    <constraint firstItem="juB-51-2QI" firstAttribute="centerY" secondItem="n56-zD-rkw" secondAttribute="centerY" id="gPi-m6-1Yn"/>
-                                    <constraint firstItem="qYs-Vh-D6E" firstAttribute="top" secondItem="7NW-Kn-ZVj" secondAttribute="bottom" constant="18" id="hZ6-06-zH8"/>
-                                    <constraint firstItem="qTv-mr-RBH" firstAttribute="centerX" secondItem="jdj-Ng-cRe" secondAttribute="centerX" id="kpd-Ts-wAm"/>
-                                    <constraint firstAttribute="trailing" secondItem="kOv-0t-Bta" secondAttribute="trailing" constant="25" id="nAg-Xn-HIg"/>
-                                    <constraint firstItem="n56-zD-rkw" firstAttribute="top" secondItem="qYs-Vh-D6E" secondAttribute="bottom" constant="33" id="pUL-vd-dHy"/>
-                                    <constraint firstItem="Z1Y-qc-4WG" firstAttribute="leading" secondItem="jdj-Ng-cRe" secondAttribute="leading" id="qA7-I6-7Zc"/>
-                                    <constraint firstItem="Z1Y-qc-4WG" firstAttribute="centerX" secondItem="jdj-Ng-cRe" secondAttribute="centerX" id="rWk-Ck-fJ4"/>
-                                    <constraint firstItem="kOv-0t-Bta" firstAttribute="leading" secondItem="7NW-Kn-ZVj" secondAttribute="trailing" constant="7" id="s7S-cG-dYv"/>
-                                    <constraint firstItem="kOv-0t-Bta" firstAttribute="centerY" secondItem="7NW-Kn-ZVj" secondAttribute="centerY" id="uRu-gc-Eby"/>
-                                    <constraint firstItem="Z1Y-qc-4WG" firstAttribute="top" secondItem="5ij-cw-W61" secondAttribute="bottom" constant="15" id="veI-Ds-QWK"/>
-                                    <constraint firstAttribute="trailing" secondItem="juB-51-2QI" secondAttribute="trailing" constant="15" id="wfe-Mj-jfG"/>
+                                    <constraint firstAttribute="bottom" secondItem="REa-o3-FWM" secondAttribute="bottom" id="5DW-Cb-dB4"/>
+                                    <constraint firstItem="REa-o3-FWM" firstAttribute="top" secondItem="jdj-Ng-cRe" secondAttribute="top" id="6qT-XB-aPT"/>
+                                    <constraint firstAttribute="trailing" secondItem="REa-o3-FWM" secondAttribute="trailing" id="pFv-rZ-Uec"/>
+                                    <constraint firstItem="REa-o3-FWM" firstAttribute="leading" secondItem="jdj-Ng-cRe" secondAttribute="leading" id="yck-Hr-HO8"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jdj-Ng-cRe" firstAttribute="width" secondItem="Y93-lw-xGJ" secondAttribute="width" id="VZM-7J-HbN"/>
-                            <constraint firstItem="jdj-Ng-cRe" firstAttribute="centerY" secondItem="Y93-lw-xGJ" secondAttribute="centerY" id="Vov-s1-1gQ"/>
-                            <constraint firstItem="jdj-Ng-cRe" firstAttribute="height" secondItem="Y93-lw-xGJ" secondAttribute="height" id="Wl4-No-KCN"/>
-                            <constraint firstItem="jdj-Ng-cRe" firstAttribute="centerX" secondItem="Y93-lw-xGJ" secondAttribute="centerX" id="Zqa-B5-lfV"/>
+                            <constraint firstItem="jdj-Ng-cRe" firstAttribute="leading" secondItem="Y93-lw-xGJ" secondAttribute="leading" id="1Fg-vc-EJg"/>
+                            <constraint firstItem="REa-o3-FWM" firstAttribute="width" secondItem="Y93-lw-xGJ" secondAttribute="width" id="7cX-mw-bbp"/>
+                            <constraint firstAttribute="trailing" secondItem="jdj-Ng-cRe" secondAttribute="trailing" id="FqM-ob-QCl"/>
+                            <constraint firstItem="jdj-Ng-cRe" firstAttribute="top" secondItem="SPi-Ux-aRx" secondAttribute="bottom" constant="8" id="Grn-4E-h6s"/>
+                            <constraint firstItem="kvj-hv-Mzs" firstAttribute="top" secondItem="jdj-Ng-cRe" secondAttribute="bottom" id="voN-n9-Hgz"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="950"/>
                     <connections>
                         <outlet property="cancelButton" destination="qTv-mr-RBH" id="nxP-rW-VZv"/>
                         <outlet property="emailTextfield" destination="qYs-Vh-D6E" id="7DH-Me-6tN"/>
@@ -1473,7 +1493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8T-R1-tMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2373.5999999999999" y="1534.1829085457273"/>
+            <point key="canvasLocation" x="2373.5999999999999" y="1705.5472263868066"/>
         </scene>
         <!--Cargo View Controller-->
         <scene sceneID="doI-uM-76Z">
