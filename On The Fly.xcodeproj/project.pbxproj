@@ -27,8 +27,8 @@
 		C38FBBD51E4B93470087F9CA /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FBBD41E4B93470087F9CA /* Flight.swift */; };
 		C39B65F91E6F62D100A4CA8A /* FlightDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B65F81E6F62D100A4CA8A /* FlightDetailsViewController.swift */; };
 		C3CAF6111E3132DF00A17817 /* UpcomingFlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */; };
-		C3E202B21E7B2E0D00F2CE69 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E202AD1E7B2DEF00F2CE69 /* Charts.framework */; };
-		C3E202B31E7B2E0D00F2CE69 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E202AD1E7B2DEF00F2CE69 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C3E202D21E7B79A900F2CE69 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E202CD1E7B797900F2CE69 /* Charts.framework */; };
+		C3E202D31E7B79A900F2CE69 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E202CD1E7B797900F2CE69 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3FF5AC91E3EE6ED00D1A96E /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */; };
 		C3FF6FBB1E306C0600C59DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */; };
 		C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF6FBC1E306C0600C59DB3 /* LoginViewController.swift */; };
@@ -41,30 +41,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C3E202AC1E7B2DEF00F2CE69 /* PBXContainerItemProxy */ = {
+		C3E202CC1E7B797900F2CE69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C3E202A61E7B2DEF00F2CE69 /* Charts.xcodeproj */;
+			containerPortal = C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06165F241D8110E600722320;
 			remoteInfo = Charts;
 		};
-		C3E202AE1E7B2DEF00F2CE69 /* PBXContainerItemProxy */ = {
+		C3E202CE1E7B797900F2CE69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C3E202A61E7B2DEF00F2CE69 /* Charts.xcodeproj */;
+			containerPortal = C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06B120D51D811E6200D14B02;
 			remoteInfo = ChartsRealm;
 		};
-		C3E202B01E7B2DEF00F2CE69 /* PBXContainerItemProxy */ = {
+		C3E202D01E7B797900F2CE69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C3E202A61E7B2DEF00F2CE69 /* Charts.xcodeproj */;
+			containerPortal = C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06165F2E1D8110E600722320;
 			remoteInfo = ChartsTests;
 		};
-		C3E202B41E7B2E0D00F2CE69 /* PBXContainerItemProxy */ = {
+		C3E202D41E7B79A900F2CE69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C3E202A61E7B2DEF00F2CE69 /* Charts.xcodeproj */;
+			containerPortal = C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 06165F231D8110E600722320;
 			remoteInfo = Charts;
@@ -86,13 +86,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C3E202B61E7B2E0D00F2CE69 /* Embed Frameworks */ = {
+		C3E202D61E7B79A900F2CE69 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C3E202B31E7B2E0D00F2CE69 /* Charts.framework in Embed Frameworks */,
+				C3E202D31E7B79A900F2CE69 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +128,7 @@
 		C39B65F81E6F62D100A4CA8A /* FlightDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightDetailsViewController.swift; sourceTree = "<group>"; };
 		C3A0A3FA66C71C7A5463191C /* Pods-On The FlyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The FlyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The FlyUITests/Pods-On The FlyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3CAF6101E3132DF00A17817 /* UpcomingFlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingFlightsViewController.swift; sourceTree = "<group>"; };
-		C3E202A61E7B2DEF00F2CE69 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		C3FF5AC81E3EE6ED00D1A96E /* PaddedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		C3FF6FB71E306C0600C59DB3 /* On The Fly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Fly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF54CA7643BEE50FB0699136 /* Pods_On_The_Fly.framework in Frameworks */,
-				C3E202B21E7B2E0D00F2CE69 /* Charts.framework in Frameworks */,
+				C3E202D21E7B79A900F2CE69 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,12 +237,12 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		C3E202A71E7B2DEF00F2CE69 /* Products */ = {
+		C3E202C71E7B797800F2CE69 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3E202AD1E7B2DEF00F2CE69 /* Charts.framework */,
-				C3E202AF1E7B2DEF00F2CE69 /* ChartsRealm.framework */,
-				C3E202B11E7B2DEF00F2CE69 /* ChartsTests.xctest */,
+				C3E202CD1E7B797900F2CE69 /* Charts.framework */,
+				C3E202CF1E7B797900F2CE69 /* ChartsRealm.framework */,
+				C3E202D11E7B797900F2CE69 /* ChartsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 		C3FF6FB91E306C0600C59DB3 /* On The Fly */ = {
 			isa = PBXGroup;
 			children = (
-				C3E202A61E7B2DEF00F2CE69 /* Charts.xcodeproj */,
+				C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */,
 				C34899A51E4918B2006EEEC1 /* On The Fly.entitlements */,
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
 				C38FBBD31E4B92AB0087F9CA /* Model */,
@@ -318,12 +318,12 @@
 				C3FF6FB51E306C0600C59DB3 /* Resources */,
 				4E151328A659D9040784C92E /* [CP] Embed Pods Frameworks */,
 				62B157F7164A5BD4BDEC9CC5 /* [CP] Copy Pods Resources */,
-				C3E202B61E7B2E0D00F2CE69 /* Embed Frameworks */,
+				C3E202D61E7B79A900F2CE69 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C3E202B51E7B2E0D00F2CE69 /* PBXTargetDependency */,
+				C3E202D51E7B79A900F2CE69 /* PBXTargetDependency */,
 			);
 			name = "On The Fly";
 			productName = "On The Fly";
@@ -419,8 +419,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C3E202A71E7B2DEF00F2CE69 /* Products */;
-					ProjectRef = C3E202A61E7B2DEF00F2CE69 /* Charts.xcodeproj */;
+					ProductGroup = C3E202C71E7B797800F2CE69 /* Products */;
+					ProjectRef = C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -433,25 +433,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C3E202AD1E7B2DEF00F2CE69 /* Charts.framework */ = {
+		C3E202CD1E7B797900F2CE69 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = C3E202AC1E7B2DEF00F2CE69 /* PBXContainerItemProxy */;
+			remoteRef = C3E202CC1E7B797900F2CE69 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C3E202AF1E7B2DEF00F2CE69 /* ChartsRealm.framework */ = {
+		C3E202CF1E7B797900F2CE69 /* ChartsRealm.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ChartsRealm.framework;
-			remoteRef = C3E202AE1E7B2DEF00F2CE69 /* PBXContainerItemProxy */;
+			remoteRef = C3E202CE1E7B797900F2CE69 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C3E202B11E7B2DEF00F2CE69 /* ChartsTests.xctest */ = {
+		C3E202D11E7B797900F2CE69 /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = C3E202B01E7B2DEF00F2CE69 /* PBXContainerItemProxy */;
+			remoteRef = C3E202D01E7B797900F2CE69 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -669,10 +669,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C3E202B51E7B2E0D00F2CE69 /* PBXTargetDependency */ = {
+		C3E202D51E7B79A900F2CE69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Charts;
-			targetProxy = C3E202B41E7B2E0D00F2CE69 /* PBXContainerItemProxy */;
+			targetProxy = C3E202D41E7B79A900F2CE69 /* PBXContainerItemProxy */;
 		};
 		C3FF6FCD1E306C0600C59DB3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
