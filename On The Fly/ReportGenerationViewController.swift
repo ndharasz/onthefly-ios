@@ -27,7 +27,6 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     var plane: Plane?
     var activeField: PaddedTextField?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,14 +59,25 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         
         let bottomConnectorSeries = [ySeries.first!, ySeries.last!]
         
+        var cogSeries: [ChartDataEntry] = []
+        
+        cogSeries.append(ChartDataEntry(x: flight!.calcLandingCenterOfGravity(plane: plane!), y: flight!.calcLandingWeight(plane: plane!)))
+        
+        cogSeries.append(ChartDataEntry(x: flight!.calcTakeoffCenterOfGravity(plane: plane!), y: flight!.calcTakeoffWeight(plane: plane!)))
+        
         let data = LineChartData()
+        
         let dataset = LineChartDataSet(values: ySeries, label: "CoG Envelope")
         dataset.colors = [NSUIColor.blue]
         data.addDataSet(dataset)
         
-        let dataset2 = LineChartDataSet(values: bottomConnectorSeries, label: "")
-        dataset2.colors = [NSUIColor.blue]
+        let dataset2 = LineChartDataSet(values: bottomConnectorSeries, label: "Lower Limit")
+        dataset2.colors = [NSUIColor.red]
         data.addDataSet(dataset2)
+        
+        let dataset3 = LineChartDataSet(values: cogSeries, label: "Flight Shift")
+        dataset3.colors = [NSUIColor.darkGray]
+        data.addDataSet(dataset3)
         
         self.lineChartView.data = data
         

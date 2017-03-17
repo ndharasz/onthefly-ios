@@ -290,6 +290,8 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         self.scrollView.setContentOffset(CGPoint.zero, animated: true)
                     }
+                } else {
+                    print("no active field")
                 }
             }
         }
