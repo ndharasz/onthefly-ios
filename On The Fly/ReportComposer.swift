@@ -39,8 +39,6 @@ class ReportComposer: NSObject {
             // The graph itself.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#COG_GRAPH#", with: "file://" + imagePath)
             
-            // "http://www.appcoda.com/wp-content/uploads/2015/12/blog-logo-dark-400.png"
-            
             // Tail number.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TAIL_NUMBER#", with: plane.tailNumber)
             
@@ -70,7 +68,6 @@ class ReportComposer: NSObject {
             HTMLContent = HTMLContent.replacingOccurrences(of: "#ZERO_FUEL_WEIGHT#", with: "\(flight.calcZeroFuelWeight(plane: plane))")
             
             // The HTML code is ready.
-            print(HTMLContent)
             return HTMLContent
             
         }
@@ -82,11 +79,10 @@ class ReportComposer: NSObject {
     }
     
     
-    func exportHTMLContentToPDF(HTMLContent: String) {
+    func exportHTMLContentToPDF(webView: UIWebView) {
         let printPageRenderer = CustomPrintPageRenderer()
-        
-        let printFormatter = UIMarkupTextPrintFormatter(markupText: HTMLContent)
-        printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+
+        printPageRenderer.addPrintFormatter(webView.viewPrintFormatter(), startingAtPageAt: 0)
         
         let pdfData = drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
         

@@ -96,37 +96,19 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
         self.lineChartView.chartDescription?.text = "W & B Graph"
         
         if self.lineChartView.save(to: "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG", format: .png, compressionQuality: 0.5) {
-            print("flight graph saved")
             
             reportCreator.flight = self.flight!
             reportCreator.plane = self.plane!
             
             let graphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG"
             
-            print("graph path: ", graphPath)
-            
             let myData = self.reportCreator.renderReport(imagePath: graphPath)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(15), execute: {
-                print("&&&&&&&&&&&&&&&&&&&& loading websivew")
-                self.webView.loadHTMLString(myData!, baseURL: nil)
-            })
-            
-//            reportCreator.exportHTMLContentToPDF(HTMLContent: reportCreator.renderReport(imagePath: graphPath))
+            self.webView.loadHTMLString(myData!, baseURL: nil)
             
         } else {
             print("flight graph couldn't be saved")
         }
-        
-//        let queue = DispatchQueue(label: "GraphCreation")
-//        
-//        queue.async {
-//            let reportCreator = ReportComposer()
-//            reportCreator.flight = self.flight!
-//            reportCreator.plane = self.plane!
-//            
-//            reportCreator.exportHTMLContentToPDF(HTMLContent: reportCreator.renderReport(imagePath: "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG"))
-//        }
         
     }
     
@@ -273,4 +255,19 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
         self.activeField = nil
     }
 
+}
+
+extension ReportGenerationViewController: UIWebViewDelegate {
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print("finished loading")
+        let graphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG"
+        if (self.reportCreator.renderReport(imagePath: graphPath)) != nil {
+            self.reportCreator.exportHTMLContentToPDF(webView: webView)
+        }
+        
+        
+    }
+    
+    
 }
