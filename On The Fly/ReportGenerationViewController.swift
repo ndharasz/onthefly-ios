@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import MessageUI
+import Firebase
 
 class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
 
@@ -19,6 +20,7 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var saveLocallyButton: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -44,6 +46,7 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         
         sendButton.addBlackBorder()
         cancelButton.addBlackBorder()
+        saveLocallyButton.addBlackBorder()
         
         lineChartView.noDataText = "No center of gravity envelope data found."
         lineChartView.noDataTextColor = .blue
@@ -115,6 +118,14 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         self.lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
+        
+        if let userid = FIRAuth.auth()?.currentUser?.uid {
+            let ref = FIRDatabase.database().reference().child("users")
+            ref.child(userid).observe(FIRDataEventType.value, with: { (snapshot) in
+                let userInfo = snapshot.value as! [String:Any]
+                self.emailTextfield.text = (userInfo["email"] as! String)
+            })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -123,7 +134,6 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func sendReportButtonPressed(_ sender: Any) {
@@ -141,9 +151,8 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         let url = NSURL(string:"itms-books:")
         if UIApplication.shared.canOpenURL(url! as URL) {
             docController!.presentOpenInMenu(from: CGRect.zero, in: self.view, animated: true)
-            print("iBooks is installed")
         }else{
-            print("iBooks is not installed")
+            self.alert(message: "Can't open the PDF in iBooks.", title: "Local Save Error")
         }
     }
     
