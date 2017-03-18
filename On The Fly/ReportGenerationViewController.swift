@@ -30,6 +30,9 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
     
     var reportCreator = ReportComposer()
     
+    @IBOutlet weak var webView: UIWebView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,17 +95,24 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
         self.lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
         self.lineChartView.chartDescription?.text = "W & B Graph"
         
-        if self.lineChartView.save(to: "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG", format: .jpeg, compressionQuality: 4.0) {
+        if self.lineChartView.save(to: "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG", format: .png, compressionQuality: 0.5) {
             print("flight graph saved")
             
             reportCreator.flight = self.flight!
             reportCreator.plane = self.plane!
             
-            let graphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.JPEG"
+            let graphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG"
             
             print("graph path: ", graphPath)
             
-            reportCreator.exportHTMLContentToPDF(HTMLContent: reportCreator.renderReport(imagePath: graphPath))
+            let myData = self.reportCreator.renderReport(imagePath: graphPath)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(15), execute: {
+                print("&&&&&&&&&&&&&&&&&&&& loading websivew")
+                self.webView.loadHTMLString(myData!, baseURL: nil)
+            })
+            
+//            reportCreator.exportHTMLContentToPDF(HTMLContent: reportCreator.renderReport(imagePath: graphPath))
             
         } else {
             print("flight graph couldn't be saved")

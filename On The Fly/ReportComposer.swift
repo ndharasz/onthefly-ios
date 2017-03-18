@@ -37,7 +37,9 @@ class ReportComposer: NSObject {
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TIME_STAMP#", with: timeStamp)
             
             // The graph itself.
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#COG_GRAPH#", with: imagePath)
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#COG_GRAPH#", with: "file://" + imagePath)
+            
+            // "http://www.appcoda.com/wp-content/uploads/2015/12/blog-logo-dark-400.png"
             
             // Tail number.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TAIL_NUMBER#", with: plane.tailNumber)

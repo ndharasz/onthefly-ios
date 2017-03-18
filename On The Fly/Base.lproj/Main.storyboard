@@ -1401,7 +1401,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4e-c9-8Z2">
-                                                <rect key="frame" x="137" y="760" width="100" height="45"/>
+                                                <rect key="frame" x="137" y="801" width="100" height="45"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="0q0-SE-h9q"/>
@@ -1416,7 +1416,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTv-mr-RBH">
-                                                <rect key="frame" x="137" y="852" width="100" height="45"/>
+                                                <rect key="frame" x="137" y="861" width="100" height="45"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="pHG-wo-I4S"/>
@@ -1430,12 +1430,17 @@
                                                     <action selector="cancelButtonPressed:" destination="osF-aw-xvC" eventType="touchUpInside" id="Udc-aq-2rO"/>
                                                 </connections>
                                             </button>
+                                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QW-CE-hzb">
+                                                <rect key="frame" x="0.0" y="673" width="375" height="126"/>
+                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </webView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.2901960784" green="0.45882352939999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="kOv-0t-Bta" firstAttribute="bottom" secondItem="7NW-Kn-ZVj" secondAttribute="bottom" id="27j-8d-W5v"/>
                                             <constraint firstItem="f4e-c9-8Z2" firstAttribute="centerX" secondItem="REa-o3-FWM" secondAttribute="centerX" id="60p-Bh-1oe"/>
                                             <constraint firstAttribute="trailing" secondItem="qYs-Vh-D6E" secondAttribute="trailing" constant="5" id="6jC-EF-fbM"/>
+                                            <constraint firstAttribute="trailing" secondItem="7QW-CE-hzb" secondAttribute="trailing" id="6o2-1b-b5E"/>
                                             <constraint firstItem="Z1Y-qc-4WG" firstAttribute="top" secondItem="5ij-cw-W61" secondAttribute="bottom" constant="8" id="9hx-wn-roL"/>
                                             <constraint firstAttribute="height" constant="950" id="CgL-27-USm"/>
                                             <constraint firstItem="Z1Y-qc-4WG" firstAttribute="leading" secondItem="REa-o3-FWM" secondAttribute="leading" constant="10" id="DOq-Zc-XTh"/>
@@ -1446,13 +1451,16 @@
                                             <constraint firstAttribute="trailing" secondItem="Z1Y-qc-4WG" secondAttribute="trailing" constant="10" id="LEH-L2-eQ9"/>
                                             <constraint firstAttribute="trailing" secondItem="5ij-cw-W61" secondAttribute="trailing" constant="5" id="OoP-Ck-Znp"/>
                                             <constraint firstItem="7NW-Kn-ZVj" firstAttribute="leading" secondItem="n56-zD-rkw" secondAttribute="leading" id="RCo-YV-MU6"/>
-                                            <constraint firstItem="f4e-c9-8Z2" firstAttribute="top" secondItem="7NW-Kn-ZVj" secondAttribute="bottom" constant="89" id="THO-4K-6Vo"/>
-                                            <constraint firstItem="qTv-mr-RBH" firstAttribute="top" secondItem="f4e-c9-8Z2" secondAttribute="bottom" constant="47" id="Whw-mj-tNz"/>
+                                            <constraint firstItem="f4e-c9-8Z2" firstAttribute="top" secondItem="7NW-Kn-ZVj" secondAttribute="bottom" constant="130" id="THO-4K-6Vo"/>
+                                            <constraint firstItem="qTv-mr-RBH" firstAttribute="top" secondItem="f4e-c9-8Z2" secondAttribute="bottom" constant="15" id="Whw-mj-tNz"/>
                                             <constraint firstAttribute="trailing" secondItem="kOv-0t-Bta" secondAttribute="trailing" constant="20" id="YSv-CW-fT3"/>
                                             <constraint firstItem="7NW-Kn-ZVj" firstAttribute="top" secondItem="qYs-Vh-D6E" secondAttribute="bottom" constant="34" id="YVw-Me-E5J"/>
                                             <constraint firstItem="juB-51-2QI" firstAttribute="leading" secondItem="n56-zD-rkw" secondAttribute="trailing" constant="5" id="Zaj-xX-OnE"/>
                                             <constraint firstItem="qYs-Vh-D6E" firstAttribute="top" secondItem="n56-zD-rkw" secondAttribute="bottom" constant="15" id="aor-Il-ecy"/>
                                             <constraint firstItem="5ij-cw-W61" firstAttribute="top" secondItem="REa-o3-FWM" secondAttribute="top" id="dqu-g7-pqO"/>
+                                            <constraint firstItem="f4e-c9-8Z2" firstAttribute="top" secondItem="7QW-CE-hzb" secondAttribute="bottom" constant="2" id="ecP-sk-2Sr"/>
+                                            <constraint firstItem="7QW-CE-hzb" firstAttribute="leading" secondItem="REa-o3-FWM" secondAttribute="leading" id="lFn-LN-Is0"/>
+                                            <constraint firstItem="7QW-CE-hzb" firstAttribute="top" secondItem="7NW-Kn-ZVj" secondAttribute="bottom" constant="2" id="lST-DM-KMW"/>
                                             <constraint firstItem="kOv-0t-Bta" firstAttribute="centerY" secondItem="7NW-Kn-ZVj" secondAttribute="centerY" id="q4k-oz-WBh"/>
                                             <constraint firstItem="5ij-cw-W61" firstAttribute="leading" secondItem="REa-o3-FWM" secondAttribute="leading" constant="5" id="txh-x6-tal"/>
                                             <constraint firstItem="n56-zD-rkw" firstAttribute="leading" secondItem="Z1Y-qc-4WG" secondAttribute="leading" id="uqa-ez-Izy"/>
@@ -1488,6 +1496,7 @@
                         <outlet property="scrollView" destination="jdj-Ng-cRe" id="FU0-cN-wf0"/>
                         <outlet property="sendButton" destination="f4e-c9-8Z2" id="5ik-Gf-NL8"/>
                         <outlet property="sendReportCheckbox" destination="7NW-Kn-ZVj" id="FTM-5S-gV7"/>
+                        <outlet property="webView" destination="7QW-CE-hzb" id="9K5-6T-hhR"/>
                         <segue destination="RIX-6T-wnz" kind="show" identifier="homeAfterReportSegue" id="ELt-yp-pXI"/>
                     </connections>
                 </viewController>
