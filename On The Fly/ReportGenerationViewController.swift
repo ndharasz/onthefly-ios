@@ -8,8 +8,9 @@
 
 import UIKit
 import Charts
+import MessageUI
 
-class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
+class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var sendReportCheckbox: CheckboxButton!
     @IBOutlet weak var saveLocallyCheckbox: CheckboxButton!
@@ -26,6 +27,8 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     var flight: Flight?
     var plane: Plane?
     var activeField: PaddedTextField?
+    
+    var reportCreator = ReportComposer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +92,32 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         self.lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
         self.lineChartView.chartDescription?.text = "W & B Graph"
         
+        if self.lineChartView.save(to: "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG", format: .jpeg, compressionQuality: 4.0) {
+            print("flight graph saved")
+            
+            reportCreator.flight = self.flight!
+            reportCreator.plane = self.plane!
+            
+            let graphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.JPEG"
+            
+            print("graph path: ", graphPath)
+            
+            reportCreator.exportHTMLContentToPDF(HTMLContent: reportCreator.renderReport(imagePath: graphPath))
+            
+        } else {
+            print("flight graph couldn't be saved")
+        }
+        
+//        let queue = DispatchQueue(label: "GraphCreation")
+//        
+//        queue.async {
+//            let reportCreator = ReportComposer()
+//            reportCreator.flight = self.flight!
+//            reportCreator.plane = self.plane!
+//            
+//            reportCreator.exportHTMLContentToPDF(HTMLContent: reportCreator.renderReport(imagePath: "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG"))
+//        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +144,16 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         if let regEmail = emailTextfield.text {
             if (regEmail.isValidEmail()) {
+                
+                if MFMailComposeViewController.canSendMail() {
+                    let mailComposeViewController = MFMailComposeViewController()
+                    mailComposeViewController.mailComposeDelegate = self
+                    mailComposeViewController.setSubject("W & B Report")
+                    mailComposeViewController.setToRecipients([regEmail])
+                    mailComposeViewController.addAttachmentData(NSData(contentsOfFile: reportCreator.pdfFilename)! as Data, mimeType: "application/pdf", fileName: "W & B Report")
+                    present(mailComposeViewController, animated: true, completion: nil)
+                }
+                
                 let alert = UIAlertController(title: "Report Sent!", message: "Your weight and balance report has been send to the email address above.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK. Return to Home", style: UIAlertActionStyle.default, handler: {action in
                     
@@ -127,6 +166,10 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
                 alert(message: "The email you entered is not valid, please check the email and try again", title: "Invalid email address")
             }
         }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
     
     
