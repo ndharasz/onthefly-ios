@@ -288,13 +288,13 @@
 		C3FF6FB91E306C0600C59DB3 /* On The Fly */ = {
 			isa = PBXGroup;
 			children = (
-				C381C31E1E7CCDB9004EA6C9 /* HTML Templates */,
 				C3E202C61E7B797800F2CE69 /* Charts.xcodeproj */,
 				C34899A51E4918B2006EEEC1 /* On The Fly.entitlements */,
 				C3FF6FBA1E306C0600C59DB3 /* AppDelegate.swift */,
 				C38FBBD31E4B92AB0087F9CA /* Model */,
 				C35FBA411E3B041100A53888 /* Custom Support Files */,
 				C3CAF60F1E31260300A17817 /* View Controllers */,
+				C381C31E1E7CCDB9004EA6C9 /* HTML Templates */,
 				C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */,
 				C3FF6FC31E306C0600C59DB3 /* LaunchScreen.storyboard */,
 				C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */,

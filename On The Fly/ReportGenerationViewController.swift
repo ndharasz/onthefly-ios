@@ -174,13 +174,11 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
     func registerForKeyboardNotifications(){
         // Adding notifies on keyboard appearing
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func deregisterFromKeyboardNotifications(){
         // Removing notifies on keyboard appearing
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func keyboardWasShown(notification: NSNotification){
@@ -206,10 +204,6 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
             print("invalid active field")
         }
         
-    }
-    
-    func keyboardWillBeHidden(notification: NSNotification){
-        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
     }
     
     func addKeyboardToolBar(textField: UITextField) {
