@@ -62,7 +62,7 @@ class CustomPrintPageRenderer: UIPrintPageRenderer {
     override func drawFooterForPage(at pageIndex: Int, in footerRect: CGRect) {
         let footerText: NSString = "Fly safely!"
         
-        let font = UIFont(name: "AmericanTypewriter", size: 14.0)
+        let font = UIFont(name: "TimesNewRomanPSMT", size: 14.0)
         let textSize = getTextSize(text: footerText as String, font: font!)
         
         let centerX = footerRect.size.width/2 - textSize.width/2

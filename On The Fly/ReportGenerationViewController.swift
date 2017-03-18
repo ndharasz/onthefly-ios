@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import MessageUI
 
-class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
+class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var sendReportCheckbox: CheckboxButton!
     @IBOutlet weak var saveLocallyCheckbox: CheckboxButton!
@@ -29,6 +29,7 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
     var activeField: PaddedTextField?
     
     var reportCreator = ReportComposer()
+    var docController: UIDocumentInteractionController?
     
     @IBOutlet weak var webView: UIWebView!
     
@@ -133,6 +134,20 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
         saveLocallyCheckbox.checkBox()
     }
     
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        let path = self.reportCreator.pdfFilename!
+        let targetURL = NSURL.fileURL(withPath: path)
+        docController = UIDocumentInteractionController(url: targetURL)
+        let url = NSURL(string:"itms-books:")
+        if UIApplication.shared.canOpenURL(url! as URL) {
+            docController!.presentOpenInMenu(from: CGRect.zero, in: self.view, animated: true)
+            print("iBooks is installed")
+        }else{
+            print("iBooks is not installed")
+        }
+    }
+    
+    
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         if let regEmail = emailTextfield.text {
             if (regEmail.isValidEmail()) {
@@ -158,10 +173,6 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
                 alert(message: "The email you entered is not valid, please check the email and try again", title: "Invalid email address")
             }
         }
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
     }
     
     
@@ -249,6 +260,12 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate, MFM
         self.activeField = nil
     }
 
+}
+
+extension ReportGenerationViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 }
 
 extension ReportGenerationViewController: UIWebViewDelegate {
