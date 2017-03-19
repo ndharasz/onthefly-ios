@@ -30,6 +30,8 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     var plane: Plane?
     var activeField: PaddedTextField?
     
+    var flightGraphPath: String?
+    
     var reportCreator = ReportComposer()
     var docController: UIDocumentInteractionController?
     
@@ -65,8 +67,6 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
             return x
         }
         
-        ySeries.last!.x += 0.000001
-        
         let bottomConnectorSeries = [ySeries.first!, ySeries.last!]
         
         var cogSeries: [ChartDataEntry] = []
@@ -99,14 +99,14 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         self.lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
         self.lineChartView.chartDescription?.text = "W & B Graph"
         
-        if self.lineChartView.save(to: "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG", format: .png, compressionQuality: 0.5) {
+        self.flightGraphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph\(arc4random_uniform(767)).PNG"
+        
+        if self.lineChartView.save(to: flightGraphPath! , format: .png, compressionQuality: 0.5) {
             
             reportCreator.flight = self.flight!
             reportCreator.plane = self.plane!
             
-            let graphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG"
-            
-            let myData = self.reportCreator.renderReport(imagePath: graphPath)
+            let myData = self.reportCreator.renderReport(imagePath: flightGraphPath!)
             
             self.webView.loadHTMLString(myData!, baseURL: nil)
             
@@ -130,6 +130,7 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         deregisterFromKeyboardNotifications()
+        clearTempFiles()
     }
 
     override func didReceiveMemoryWarning() {
@@ -281,13 +282,26 @@ extension ReportGenerationViewController: UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         print("finished loading")
-        let graphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph.PNG"
-        if (self.reportCreator.renderReport(imagePath: graphPath)) != nil {
+        let frame = self.webView.frame
+        self.webView.frame = CGRect.zero
+        self.webView.frame = frame
+        if (self.reportCreator.renderReport(imagePath: self.flightGraphPath!)) != nil {
             self.reportCreator.exportHTMLContentToPDF(webView: webView)
         }
-        
-        
     }
     
+    func clearTempFiles() {
+        let fileManager = FileManager.default
+        let tempFolderPath = (UIApplication.shared.delegate as! AppDelegate).getDocDir()
+        
+        do {
+            var deletePath = self.flightGraphPath!
+            try fileManager.removeItem(atPath: deletePath)
+            deletePath = tempFolderPath.appending("/Report1.pdf")
+            try fileManager.removeItem(atPath: deletePath)
+        } catch let error as NSError {
+            print("Could not clear temp folder: \(error.debugDescription)")
+        }
+    }
     
 }
