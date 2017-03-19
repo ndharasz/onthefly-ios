@@ -8,6 +8,8 @@
 
 import UIKit
 import Charts
+import MessageUI
+import Firebase
 
 class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
 
@@ -18,6 +20,7 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var saveLocallyButton: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -26,6 +29,14 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     var flight: Flight?
     var plane: Plane?
     var activeField: PaddedTextField?
+    
+    var flightGraphPath: String?
+    
+    var reportCreator = ReportComposer()
+    var docController: UIDocumentInteractionController?
+    
+    @IBOutlet weak var webView: UIWebView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +48,7 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         
         sendButton.addBlackBorder()
         cancelButton.addBlackBorder()
+        saveLocallyButton.addBlackBorder()
         
         lineChartView.noDataText = "No center of gravity envelope data found."
         lineChartView.noDataTextColor = .blue
@@ -54,8 +66,6 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         let ySeries = coordArray.map { x, _ in
             return x
         }
-        
-        ySeries.last!.x += 0.000001
         
         let bottomConnectorSeries = [ySeries.first!, ySeries.last!]
         
@@ -89,19 +99,42 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         self.lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
         self.lineChartView.chartDescription?.text = "W & B Graph"
         
+        self.flightGraphPath = "\((UIApplication.shared.delegate as! AppDelegate).getDocDir())/flightGraph\(arc4random_uniform(767)).PNG"
+        
+        if self.lineChartView.save(to: flightGraphPath! , format: .png, compressionQuality: 0.5) {
+            
+            reportCreator.flight = self.flight!
+            reportCreator.plane = self.plane!
+            
+            let myData = self.reportCreator.renderReport(imagePath: flightGraphPath!)
+            
+            self.webView.loadHTMLString(myData!, baseURL: nil)
+            
+        } else {
+            print("flight graph couldn't be saved")
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
+        
+        if let userid = FIRAuth.auth()?.currentUser?.uid {
+            let ref = FIRDatabase.database().reference().child("users")
+            ref.child(userid).observe(FIRDataEventType.value, with: { (snapshot) in
+                let userInfo = snapshot.value as! [String:Any]
+                self.emailTextfield.text = (userInfo["email"] as! String)
+            })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         deregisterFromKeyboardNotifications()
+        clearTempFiles()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func sendReportButtonPressed(_ sender: Any) {
@@ -112,9 +145,32 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         saveLocallyCheckbox.checkBox()
     }
     
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        let path = self.reportCreator.pdfFilename!
+        let targetURL = NSURL.fileURL(withPath: path)
+        docController = UIDocumentInteractionController(url: targetURL)
+        let url = NSURL(string:"itms-books:")
+        if UIApplication.shared.canOpenURL(url! as URL) {
+            docController!.presentOpenInMenu(from: CGRect.zero, in: self.view, animated: true)
+        }else{
+            self.alert(message: "Can't open the PDF in iBooks.", title: "Local Save Error")
+        }
+    }
+    
+    
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         if let regEmail = emailTextfield.text {
             if (regEmail.isValidEmail()) {
+                
+                if MFMailComposeViewController.canSendMail() {
+                    let mailComposeViewController = MFMailComposeViewController()
+                    mailComposeViewController.mailComposeDelegate = self
+                    mailComposeViewController.setSubject("W & B Report")
+                    mailComposeViewController.setToRecipients([regEmail])
+                    mailComposeViewController.addAttachmentData(NSData(contentsOfFile: reportCreator.pdfFilename)! as Data, mimeType: "application/pdf", fileName: "W & B Report")
+                    present(mailComposeViewController, animated: true, completion: nil)
+                }
+                
                 let alert = UIAlertController(title: "Report Sent!", message: "Your weight and balance report has been send to the email address above.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK. Return to Home", style: UIAlertActionStyle.default, handler: {action in
                     
@@ -139,13 +195,11 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
     func registerForKeyboardNotifications(){
         // Adding notifies on keyboard appearing
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func deregisterFromKeyboardNotifications(){
         // Removing notifies on keyboard appearing
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func keyboardWasShown(notification: NSNotification){
@@ -171,10 +225,6 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
             print("invalid active field")
         }
         
-    }
-    
-    func keyboardWillBeHidden(notification: NSNotification){
-        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
     }
     
     func addKeyboardToolBar(textField: UITextField) {
@@ -220,4 +270,38 @@ class ReportGenerationViewController: UIViewController, UITextFieldDelegate {
         self.activeField = nil
     }
 
+}
+
+extension ReportGenerationViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}
+
+extension ReportGenerationViewController: UIWebViewDelegate {
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print("finished loading")
+        let frame = self.webView.frame
+        self.webView.frame = CGRect.zero
+        self.webView.frame = frame
+        if (self.reportCreator.renderReport(imagePath: self.flightGraphPath!)) != nil {
+            self.reportCreator.exportHTMLContentToPDF(webView: webView)
+        }
+    }
+    
+    func clearTempFiles() {
+        let fileManager = FileManager.default
+        let tempFolderPath = (UIApplication.shared.delegate as! AppDelegate).getDocDir()
+        
+        do {
+            var deletePath = self.flightGraphPath!
+            try fileManager.removeItem(atPath: deletePath)
+            deletePath = tempFolderPath.appending("/Report1.pdf")
+            try fileManager.removeItem(atPath: deletePath)
+        } catch let error as NSError {
+            print("Could not clear temp folder: \(error.debugDescription)")
+        }
+    }
+    
 }

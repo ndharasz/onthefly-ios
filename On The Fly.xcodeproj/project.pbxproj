@@ -23,6 +23,9 @@
 		C36CAD151E39A470008C685E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */; };
 		C37090061E4F716A00AB3B8B /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37090051E4F716A00AB3B8B /* GlobalVariables.swift */; };
 		C37090081E4F724100AB3B8B /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37090071E4F724100AB3B8B /* Plane.swift */; };
+		C381C3221E7CCDD4004EA6C9 /* report_template.html in Resources */ = {isa = PBXBuildFile; fileRef = C381C3211E7CCDD4004EA6C9 /* report_template.html */; };
+		C381C3241E7CCF6E004EA6C9 /* ReportComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381C3231E7CCF6E004EA6C9 /* ReportComposer.swift */; };
+		C381C3261E7CD422004EA6C9 /* CustomPrintPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381C3251E7CD422004EA6C9 /* CustomPrintPageRenderer.swift */; };
 		C38FBBD21E4B918B0087F9CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FBBD11E4B918B0087F9CA /* User.swift */; };
 		C38FBBD51E4B93470087F9CA /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FBBD41E4B93470087F9CA /* Flight.swift */; };
 		C39B65F91E6F62D100A4CA8A /* FlightDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B65F81E6F62D100A4CA8A /* FlightDetailsViewController.swift */; };
@@ -123,6 +126,9 @@
 		C36CAD141E39A470008C685E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		C37090051E4F716A00AB3B8B /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		C37090071E4F724100AB3B8B /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		C381C3211E7CCDD4004EA6C9 /* report_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = report_template.html; sourceTree = "<group>"; };
+		C381C3231E7CCF6E004EA6C9 /* ReportComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportComposer.swift; sourceTree = "<group>"; };
+		C381C3251E7CD422004EA6C9 /* CustomPrintPageRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPrintPageRenderer.swift; sourceTree = "<group>"; };
 		C38FBBD11E4B918B0087F9CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C38FBBD41E4B93470087F9CA /* Flight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		C39B65F81E6F62D100A4CA8A /* FlightDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightDetailsViewController.swift; sourceTree = "<group>"; };
@@ -207,8 +213,18 @@
 				C307578F1E501E0700DFD493 /* UpcomingFlightTableViewCell.swift */,
 				C3174EF71E5B931F009C2545 /* PassengerCollectionViewCell.swift */,
 				C303D83C1E62178200A8DBBF /* WiggleUICollectionView.swift */,
+				C381C3231E7CCF6E004EA6C9 /* ReportComposer.swift */,
+				C381C3251E7CD422004EA6C9 /* CustomPrintPageRenderer.swift */,
 			);
 			name = "Custom Support Files";
+			sourceTree = "<group>";
+		};
+		C381C31E1E7CCDB9004EA6C9 /* HTML Templates */ = {
+			isa = PBXGroup;
+			children = (
+				C381C3211E7CCDD4004EA6C9 /* report_template.html */,
+			);
+			name = "HTML Templates";
 			sourceTree = "<group>";
 		};
 		C38FBBD31E4B92AB0087F9CA /* Model */ = {
@@ -278,6 +294,7 @@
 				C38FBBD31E4B92AB0087F9CA /* Model */,
 				C35FBA411E3B041100A53888 /* Custom Support Files */,
 				C3CAF60F1E31260300A17817 /* View Controllers */,
+				C381C31E1E7CCDB9004EA6C9 /* HTML Templates */,
 				C3FF6FBE1E306C0600C59DB3 /* Main.storyboard */,
 				C3FF6FC31E306C0600C59DB3 /* LaunchScreen.storyboard */,
 				C3FF6FC11E306C0600C59DB3 /* Assets.xcassets */,
@@ -461,6 +478,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C381C3221E7CCDD4004EA6C9 /* report_template.html in Resources */,
 				C3FF6FC51E306C0600C59DB3 /* LaunchScreen.storyboard in Resources */,
 				C35D35351E42880E0047962C /* GoogleService-Info.plist in Resources */,
 				C3FF6FC21E306C0600C59DB3 /* Assets.xcassets in Resources */,
@@ -639,7 +657,9 @@
 				C3CAF6111E3132DF00A17817 /* UpcomingFlightsViewController.swift in Sources */,
 				C37090081E4F724100AB3B8B /* Plane.swift in Sources */,
 				C3FF6FBD1E306C0600C59DB3 /* LoginViewController.swift in Sources */,
+				C381C3261E7CD422004EA6C9 /* CustomPrintPageRenderer.swift in Sources */,
 				C302D8A21E3721F100CB2B54 /* Utilities.swift in Sources */,
+				C381C3241E7CCF6E004EA6C9 /* ReportComposer.swift in Sources */,
 				C39B65F91E6F62D100A4CA8A /* FlightDetailsViewController.swift in Sources */,
 				C38FBBD21E4B918B0087F9CA /* User.swift in Sources */,
 				C35FBA3E1E3AED3700A53888 /* ReportGenerationViewController.swift in Sources */,
