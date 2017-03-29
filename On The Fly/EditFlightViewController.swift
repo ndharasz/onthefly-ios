@@ -24,6 +24,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     var plane: Plane?
     var passengers: [(name: String, weight: Double)] = []
     var initialSelectedIndexPath: IndexPath?
+    var isInvalidChart = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +36,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                     self.plane = each
                 }
             }
-            
-            
-            // Example error handling for verifying the plane's status
-            do {
-                try thisFlight.checkValidFlight(plane: plane!)
-            } catch FlightErrors.tooHeavyOnRamp {
-                print("flight is too heavy to take off")
-            } catch {
-                print("Some other error")
-            }
+            //does the try-catch block checking if plane is valid
+            checkPlaneErrors()
         }
         
         self.applyUserInterfaceChanges()
@@ -52,6 +45,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.loadPassengers()
         
         self.updateTitleLabel()
+        
+        self.createWarnings()
 
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
@@ -80,6 +75,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                     let index = Int(seatKey.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())! - 1
                     let newPassenger = (name: seatData["name"] as! String, weight: seatData["weight"] as! Double)
                     passengers.remove(at: index)
+                    //ignore the error on the next line- for some reason its necessary to explicitly cast it
                     passengers.insert(newPassenger as! (name: String, weight: Double), at: index)
                 }
             }
@@ -92,6 +88,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.arrivalAirportLabel.text = "\(flight!.arriveAirport)"
         self.arrivalAirportLabel.sizeToFit()
     }
+    
     
     func saveNewSeatConfig() {
         if let thisFlight = flight {
@@ -106,6 +103,37 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             let updates = ["passengers": newConfig]
             flightref?.updateChildValues(updates)
         }
+    }
+    
+    //does try-catch block to see if plane is overweight
+    func checkPlaneErrors() {
+        let thisFlight = self.flight
+        do {
+            try thisFlight?.checkValidFlight(plane: self.plane!)
+        } catch FlightErrors.tooHeavyOnRamp {
+            isInvalidChart = true
+            print("flight is too heavy to take off")
+        } catch {
+            isInvalidChart = true
+            print("Some other error")
+        }
+        
+    }
+    
+    func createWarnings() {
+        if (isInvalidChart) {
+            print("gets here")
+            self.cargoContainerView.layer.borderColor = UIColor.red.cgColor
+            self.passengerCollectionView.layer.borderColor = UIColor.red.cgColor
+            self.flightDetailsContainerView.layer.borderColor = UIColor.red.cgColor
+        } else {
+            print("is turning borders white")
+            self.cargoContainerView.layer.borderColor = UIColor.white.cgColor
+            self.passengerCollectionView.layer.borderColor = UIColor.white.cgColor
+            self.flightDetailsContainerView.layer.borderColor = UIColor.white.cgColor
+        }
+        //reset variable for next check
+        isInvalidChart = false
     }
     
     // MARK: - Segment View Control
@@ -290,6 +318,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.present(alertController, animated: true, completion: nil)
     }
     
+    
     func isSeatEmpty(index: Int) -> Bool {
         let seatToCheck = self.passengers[index]
         return (seatToCheck.name == "Empty" && seatToCheck.weight == 0)
@@ -350,6 +379,12 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.segmentControl.layer.borderColor = UIColor.white.cgColor
         self.segmentControl.layer.cornerRadius = 6
         self.segmentControl.backgroundColor = Style.darkBlueAccentColor
+        self.passengerCollectionView.layer.borderWidth = 3
+        self.passengerCollectionView.layer.borderColor = UIColor.white.cgColor
+        self.cargoContainerView.layer.borderWidth = 3
+        self.cargoContainerView.layer.borderColor = UIColor.white.cgColor
+        self.flightDetailsContainerView.layer.borderWidth = 3
+        self.flightDetailsContainerView.layer.borderColor = UIColor.white.cgColor
         self.createReportButton.addBlackBorder()
         self.passengerCollectionView.isHidden = false
         self.cargoContainerView.isHidden = true
