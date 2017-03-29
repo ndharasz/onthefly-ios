@@ -78,7 +78,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 let seatCongif = thisFlight.passengers!.sorted(by: { $0.0 < $1.0 })
                 for (seatKey, seatData) in seatCongif {
                     let index = Int(seatKey.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())! - 1
-                    let newPassenger = (name: seatData["name"], weight: seatData["weight"] as! Double)
+                    let newPassenger = (name: seatData["name"] as! String, weight: seatData["weight"] as! Double)
                     passengers.remove(at: index)
                     passengers.insert(newPassenger as! (name: String, weight: Double), at: index)
                 }
