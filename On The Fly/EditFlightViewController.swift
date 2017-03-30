@@ -24,7 +24,12 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     var plane: Plane?
     var passengers: [(name: String, weight: Double)] = []
     var initialSelectedIndexPath: IndexPath?
-    var isInvalidChart = false
+    
+    var issueWithFlight: Bool = false {
+        didSet {
+            self.createWarnings()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +41,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                     self.plane = each
                 }
             }
-            //does the try-catch block checking if plane is valid
-            
         }
         
         self.applyUserInterfaceChanges()
@@ -47,8 +50,8 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.checkPlaneErrors()
         
         self.updateTitleLabel()
-        
-        self.createWarnings()
+
+        self.checkPlaneErrors()
 
         let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditFlightViewController.handleLongGesture(_:)))
         self.passengerCollectionView.addGestureRecognizer(longPressGesture)
@@ -77,8 +80,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                     let index = Int(seatKey.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())! - 1
                     let newPassenger = (name: seatData["name"] as! String, weight: seatData["weight"] as! Double)
                     passengers.remove(at: index)
-                    //ignore the error on the next line- for some reason its necessary to explicitly cast it
-                    passengers.insert(newPassenger as! (name: String, weight: Double), at: index)
+                    passengers.insert(newPassenger , at: index)
                 }
             }
         }
@@ -93,7 +95,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     func saveNewSeatConfig() {
-        isInvalidChart = false
+       // isInvalidChart = false
         if let thisFlight = flight {
             let flightref = thisFlight.fireRef
             var newConfig: [String:[String:Any]] = [:]
@@ -106,38 +108,34 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             let updates = ["passengers": newConfig]
             flightref?.updateChildValues(updates)
 
+            self.flight?.passengers = newConfig
+            self.checkPlaneErrors()
         }
     }
     
-    //does try-catch block to see if plane is overweight
+    // Check if plane is overweight and check for CoG errors
     func checkPlaneErrors() {
-        let thisFlight = self.flight
-        do {
-            try thisFlight?.checkValidFlight(plane: self.plane!)
-        } catch FlightErrors.tooHeavyOnRamp {
-            isInvalidChart = true
-            print("flight is too heavy to take off")
-        } catch {
-            isInvalidChart = true
-            print("Some other error")
+        if self.flight!.checkValidFlight(plane: plane!) {
+            self.issueWithFlight = false
+        } else {
+            self.issueWithFlight = true
         }
         
     }
     
+    // Visual feedback to user that there is something wrong with the flight
     func createWarnings() {
-        if (isInvalidChart) {
-            print("gets here")
+        if (self.issueWithFlight) {
+//            print("is turning borders red")
             self.cargoContainerView.layer.borderColor = UIColor.red.cgColor
             self.passengerCollectionView.layer.borderColor = UIColor.red.cgColor
             self.flightDetailsContainerView.layer.borderColor = UIColor.red.cgColor
         } else {
-            print("is turning borders white")
+//            print("is turning borders white")
             self.cargoContainerView.layer.borderColor = UIColor.white.cgColor
             self.passengerCollectionView.layer.borderColor = UIColor.white.cgColor
             self.flightDetailsContainerView.layer.borderColor = UIColor.white.cgColor
         }
-        //reset variable for next check
-        isInvalidChart = false
     }
     
     // MARK: - Segment View Control

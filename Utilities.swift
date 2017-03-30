@@ -138,6 +138,7 @@ extension Double {
 enum FlightErrors: Error {
     case tooMuchFuel(maxFuel: Int)
     case tooHeavyOnRamp
+    case invalidCenterOfGravity
     // Incomplete, more need to be added
 }
 
