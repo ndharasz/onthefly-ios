@@ -136,10 +136,11 @@ extension Double {
 // MARK: - Flight Validation Errors
 
 enum FlightErrors: Error {
-    case tooMuchFuel(maxFuel: Int)
     case tooHeavyOnRamp
     case invalidCenterOfGravity
-    // Incomplete, more need to be added
+    case invalidTakeoffCog
+    case invalidLandingCog
+    case noStartingFuel
 }
 
 // MARK: - Style struct

@@ -130,9 +130,9 @@ struct Flight {
         
         moment += Double(aftBaggageWeight) * plane.aftBaggageArm
         
-        print("takeoff")
-        print("moment: ", moment)
-        print("weight: ", weight)
+//        print("takeoff")
+//        print("moment: ", moment)
+//        print("weight: ", weight)
         
         return moment / weight
     }
@@ -160,9 +160,9 @@ struct Flight {
         
         moment -= (Double(flightDuration) * fuelFlow / 10.0) * plane.fuelArm
         
-        print("landing")
-        print("moment: ", moment)
-        print("weight: ", weight)
+//        print("landing")
+//        print("moment: ", moment)
+//        print("weight: ", weight)
         
         return moment / weight
     }
@@ -215,10 +215,17 @@ struct Flight {
     }
     
     func checkValidFlight(plane: Plane) throws {
+        // Simple check for the weight of the plane
         if calcTakeoffWeight(plane: plane) > Double(plane.maxTakeoffWeight) {
             throw FlightErrors.tooHeavyOnRamp
         }
         
+        // Is there any fuel?
+        if startFuel == 0.0 {
+            throw FlightErrors.noStartingFuel
+        }
+        
+        // Check if the 2 CoG points are within the acceptable limits
         let p = UIBezierPath()
         var polygon: [CGPoint] = []
         for each in plane.centerOfGravityEnvelope {
@@ -235,8 +242,12 @@ struct Flight {
         let takeoffCogPoint = CGPoint(x: calcTakeoffCenterOfGravity(plane: plane), y: calcTakeoffWeight(plane: plane))
         let landingCogPoint = CGPoint(x: calcLandingCenterOfGravity(plane: plane), y: calcLandingWeight(plane: plane))
         
-        if !(p.contains(takeoffCogPoint) && p.contains(landingCogPoint)) {
+        if !p.contains(takeoffCogPoint) && !p.contains(landingCogPoint) {
             throw FlightErrors.invalidCenterOfGravity
+        } else if !p.contains(takeoffCogPoint){
+            throw FlightErrors.invalidTakeoffCog
+        } else if !p.contains(landingCogPoint) {
+            throw FlightErrors.invalidLandingCog
         }
     }
     

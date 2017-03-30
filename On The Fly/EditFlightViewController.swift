@@ -120,6 +120,15 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         } catch FlightErrors.invalidCenterOfGravity {
             self.issueWithFlight = true
             Toast.showNegativeMessage(message: "Center of Gravity Outside of Bounds")
+        } catch FlightErrors.invalidLandingCog {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Invalid Landing Center of Gravity")
+        } catch FlightErrors.invalidTakeoffCog {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Invalid Takeoff Center of Gravity")
+        } catch FlightErrors.noStartingFuel {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Flight Currently Has No Fuel")
         } catch {
             self.issueWithFlight = true
             Toast.showNegativeMessage(message: "Flight Cannot Fly")
