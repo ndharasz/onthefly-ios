@@ -27,7 +27,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var issueWithFlight: Bool = false {
         didSet {
-            print("Issue with flight: \(issueWithFlight)")
             self.createWarnings()
         }
     }
@@ -148,7 +147,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             self.passengerCollectionView.layer.borderColor = UIColor.white.cgColor
             self.flightDetailsContainerView.layer.borderColor = UIColor.white.cgColor
         }
-        self.checkPlaneErrors()
     }
     
     // MARK: - Segment View Control
