@@ -104,8 +104,9 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             let updates = ["passengers": newConfig]
             flightref?.updateChildValues(updates)
+            self.flight?.passengers = newConfig
+            self.checkPlaneErrors()
         }
-        self.checkPlaneErrors()
     }
     
     // Check if plane is overweight and check for CoG errors
