@@ -134,8 +134,8 @@ struct Flight {
         
         moment += Double(aftBaggageWeight) * plane.aftBaggageArm
         
-        print("moment: ", moment)
-        print("weight: ", weight)
+//        print("moment: ", moment)
+//        print("weight: ", weight)
         
         return moment / weight
     }
@@ -163,8 +163,8 @@ struct Flight {
         
         moment -= (Double(flightDuration) * fuelFlow / 10.0) * plane.fuelArm
         
-        print("moment: ", moment)
-        print("weight: ", weight)
+//        print("moment: ", moment)
+//        print("weight: ", weight)
         
         return moment / weight
     }
@@ -220,10 +220,33 @@ struct Flight {
         return dateformatter.string(from: time2)
     }
     
-    func checkValidFlight(plane: Plane) throws {
+    func checkValidFlight(plane: Plane) -> Bool {
         if calcTakeoffWeight(plane: plane) > Double(plane.maxTakeoffWeight) {
-            throw FlightErrors.tooHeavyOnRamp
+            return false
         }
+        
+        let p = UIBezierPath()
+        var polygon: [CGPoint] = []
+        for each in plane.centerOfGravityEnvelope {
+            polygon.append(CGPoint(x: each["x"]!, y: each["y"]!))
+        }
+        
+        p.move(to: polygon.first!)
+        for index in 1...polygon.count - 1 {
+            p.addLine(to: polygon[index])
+        }
+        
+        p.close()
+        
+        let takeoffCogPoint = CGPoint(x: calcTakeoffCenterOfGravity(plane: plane), y: calcTakeoffWeight(plane: plane))
+        let landingCogPoint = CGPoint(x: calcLandingCenterOfGravity(plane: plane), y: calcLandingWeight(plane: plane))
+        
+        if !(p.contains(takeoffCogPoint) && p.contains(landingCogPoint)) {
+            return false
+        }
+        
+        // No issues, return true
+        return true
     }
     
 }

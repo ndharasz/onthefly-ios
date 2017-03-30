@@ -69,6 +69,7 @@ class CargoViewController: UIViewController {
             self.editFlightVC.flight?.updateFrontBaggageWeight()
             
             self.updateLabels()
+            self.editFlightVC.checkPlaneErrors()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
@@ -110,7 +111,7 @@ class CargoViewController: UIViewController {
             self.editFlightVC.flight?.updateFrontBaggageWeight()
             
             self.updateLabels()
-            
+            self.editFlightVC.checkPlaneErrors()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
@@ -140,7 +141,7 @@ class CargoViewController: UIViewController {
             self.editFlightVC.flight?.updateFrontBaggageWeight()
             
             self.updateLabels()
-            
+            self.editFlightVC.checkPlaneErrors()
         })
         
         let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {
@@ -172,6 +173,7 @@ class CargoViewController: UIViewController {
             self.editFlightVC.flight?.updateAftBaggageWeight()
             
             self.updateLabels()
+            self.editFlightVC.checkPlaneErrors()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
@@ -201,7 +203,7 @@ class CargoViewController: UIViewController {
             self.editFlightVC.flight?.updateAftBaggageWeight()
             
             self.updateLabels()
-            
+            self.editFlightVC.checkPlaneErrors()
         })
         
         let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {
@@ -237,7 +239,7 @@ class CargoViewController: UIViewController {
             self.editFlightVC.flight?.updateAftBaggageWeight()
             
             self.updateLabels()
-            
+            self.editFlightVC.checkPlaneErrors()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
