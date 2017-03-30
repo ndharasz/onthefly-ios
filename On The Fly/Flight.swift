@@ -212,11 +212,18 @@ struct Flight {
         return dateformatter.string(from: time2)
     }
     
-    func checkValidFlight(plane: Plane) -> Bool {
+    func checkValidFlight(plane: Plane) throws {
+        // Simple check for the weight of the plane
         if calcTakeoffWeight(plane: plane) > Double(plane.maxTakeoffWeight) {
-            return false
+            throw FlightErrors.tooHeavyOnRamp
         }
         
+        // Is there any fuel?
+        if startFuel == 0.0 {
+            throw FlightErrors.noStartingFuel
+        }
+        
+        // Check if the 2 CoG points are within the acceptable limits
         let p = UIBezierPath()
         var polygon: [CGPoint] = []
         for each in plane.centerOfGravityEnvelope {
@@ -233,12 +240,13 @@ struct Flight {
         let takeoffCogPoint = CGPoint(x: calcTakeoffCenterOfGravity(plane: plane), y: calcTakeoffWeight(plane: plane))
         let landingCogPoint = CGPoint(x: calcLandingCenterOfGravity(plane: plane), y: calcLandingWeight(plane: plane))
         
-        if !(p.contains(takeoffCogPoint) && p.contains(landingCogPoint)) {
-            return false
+        if !p.contains(takeoffCogPoint) && !p.contains(landingCogPoint) {
+            throw FlightErrors.invalidCenterOfGravity
+        } else if !p.contains(takeoffCogPoint){
+            throw FlightErrors.invalidTakeoffCog
+        } else if !p.contains(landingCogPoint) {
+            throw FlightErrors.invalidLandingCog
         }
-        
-        // No issues, return true
-        return true
     }
     
 }

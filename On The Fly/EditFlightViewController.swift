@@ -151,31 +151,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.checkPlaneErrors()
     }
     
-    // Check if plane is overweight and check for CoG errors
-    func checkPlaneErrors() {
-        if self.flight!.checkValidFlight(plane: plane!) {
-            self.issueWithFlight = false
-        } else {
-            self.issueWithFlight = true
-        }
-        
-    }
-    
-    // Visual feedback to user that there is something wrong with the flight
-    func createWarnings() {
-        if (self.issueWithFlight) {
-//            print("is turning borders red")
-            self.cargoContainerView.layer.borderColor = UIColor.red.cgColor
-            self.passengerCollectionView.layer.borderColor = UIColor.red.cgColor
-            self.flightDetailsContainerView.layer.borderColor = UIColor.red.cgColor
-        } else {
-//            print("is turning borders white")
-            self.cargoContainerView.layer.borderColor = UIColor.white.cgColor
-            self.passengerCollectionView.layer.borderColor = UIColor.white.cgColor
-            self.flightDetailsContainerView.layer.borderColor = UIColor.white.cgColor
-        }
-    }
-    
     // MARK: - Segment View Control
     
     @IBAction func segmentControlChanged(_ sender: Any) {

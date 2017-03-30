@@ -138,7 +138,9 @@ extension Double {
 enum FlightErrors: Error {
     case tooHeavyOnRamp
     case invalidCenterOfGravity
-    // Incomplete, more need to be added
+    case invalidTakeoffCog
+    case invalidLandingCog
+    case noStartingFuel
 }
 
 // MARK: - Style struct
