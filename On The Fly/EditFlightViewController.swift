@@ -270,7 +270,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 
             self.passengers[passengerIndex] = passenger
             self.passengerCollectionView.reloadData()
-            //paste here
             
             // Update firebase with new configuration
             self.saveNewSeatConfig()
