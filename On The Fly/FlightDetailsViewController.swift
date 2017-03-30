@@ -126,6 +126,7 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
             textField.text = newDepartAirport.uppercased()
             editFlightVC.flight!.updateAirports()
             editFlightVC.updateTitleLabel()
+            self.editFlightVC.checkPlaneErrors()
             
         } else if textField == arriveAirportTextfield {
             
@@ -145,6 +146,7 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
             textField.text = newArriveAirport.uppercased()
             editFlightVC.flight!.updateAirports()
             editFlightVC.updateTitleLabel()
+            self.editFlightVC.checkPlaneErrors()
 
         } else if textField == durationTextfield {
             
@@ -162,6 +164,7 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     editFlightVC.flight!.flightDuration = newDurationNumber
                     editFlightVC.flight!.updateFlightParameters()
+                    self.editFlightVC.checkPlaneErrors()
                 }
             } else {
                 alert(message: "Invalid Duration", title: "Please enter a valid duration.")
@@ -185,6 +188,7 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     editFlightVC.flight!.startFuel = newStartingFuelNumber
                     editFlightVC.flight!.updateFlightParameters()
+                    self.editFlightVC.checkPlaneErrors()
                 }
             } else {
                 alert(message: "Invalid Starting Fuel", title: "Please enter a valid starting fuel amount.")
@@ -208,6 +212,7 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     editFlightVC.flight!.fuelFlow = newFlowRateNumber
                     editFlightVC.flight!.updateFlightParameters()
+                    self.editFlightVC.checkPlaneErrors()
                 }
             } else {
                 alert(message: "Invalid Flow Rate", title: "Please enter a valid flow rate.")
@@ -229,9 +234,11 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
                     editFlightVC.flight!.taxiFuelBurn = (0 - newTaxiBurnNumber)
                     textField.text = "\(editFlightVC.flight!.taxiFuelBurn)"
                     editFlightVC.flight!.updateFlightParameters()
+                    self.editFlightVC.checkPlaneErrors()
                 } else {
                     editFlightVC.flight!.taxiFuelBurn = newTaxiBurnNumber
                     editFlightVC.flight!.updateFlightParameters()
+                    self.editFlightVC.checkPlaneErrors()
                 }
             } else {
                 alert(message: "Invalid Taxi Burn", title: "Please enter a valid taxi burn.")
@@ -300,7 +307,6 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardWillBeHidden(notification: NSNotification){
         self.scrollView.setContentOffset(CGPoint.zero, animated: true)
-        self.scrollView.isScrollEnabled = false
     }
     
     func addKeyboardToolBar(textField: UITextField) {

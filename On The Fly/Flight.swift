@@ -93,11 +93,7 @@ struct Flight {
         var weight = Double(plane.emptyWeight)
         if self.passengers != nil {
             for (_, dict) in self.passengers! {
-                for (key, value) in dict {
-                    if key == "weight" {
-                        weight += (value as! Double)
-                    }
-                }
+                weight += (dict["weight"] as! Double)
             }
         }
         weight += Double(frontBaggageWeight)
@@ -134,8 +130,9 @@ struct Flight {
         
         moment += Double(aftBaggageWeight) * plane.aftBaggageArm
         
-        print("moment: ", moment)
-        print("weight: ", weight)
+//        print("takeoff")
+//        print("moment: ", moment)
+//        print("weight: ", weight)
         
         return moment / weight
     }
@@ -163,8 +160,9 @@ struct Flight {
         
         moment -= (Double(flightDuration) * fuelFlow / 10.0) * plane.fuelArm
         
-        print("moment: ", moment)
-        print("weight: ", weight)
+//        print("landing")
+//        print("moment: ", moment)
+//        print("weight: ", weight)
         
         return moment / weight
     }
@@ -173,11 +171,7 @@ struct Flight {
         let key = "seat\(index + 1)"
         var weightToReturn = 0.0
         if let weightDict = passengers?[key] {
-            for (key, value) in weightDict {
-                if key == "weight" {
-                    weightToReturn = (value as! Double)
-                }
-            }
+            weightToReturn = (weightDict["weight"] as! Double)
         }
         return weightToReturn
     }
@@ -221,8 +215,39 @@ struct Flight {
     }
     
     func checkValidFlight(plane: Plane) throws {
+        // Simple check for the weight of the plane
         if calcTakeoffWeight(plane: plane) > Double(plane.maxTakeoffWeight) {
             throw FlightErrors.tooHeavyOnRamp
+        }
+        
+        // Is there any fuel?
+        if startFuel == 0.0 {
+            throw FlightErrors.noStartingFuel
+        }
+        
+        // Check if the 2 CoG points are within the acceptable limits
+        let p = UIBezierPath()
+        var polygon: [CGPoint] = []
+        for each in plane.centerOfGravityEnvelope {
+            polygon.append(CGPoint(x: each["x"]!, y: each["y"]!))
+        }
+        
+        p.move(to: polygon.first!)
+        for index in 1...polygon.count - 1 {
+            p.addLine(to: polygon[index])
+        }
+        
+        p.close()
+        
+        let takeoffCogPoint = CGPoint(x: calcTakeoffCenterOfGravity(plane: plane), y: calcTakeoffWeight(plane: plane))
+        let landingCogPoint = CGPoint(x: calcLandingCenterOfGravity(plane: plane), y: calcLandingWeight(plane: plane))
+        
+        if !p.contains(takeoffCogPoint) && !p.contains(landingCogPoint) {
+            throw FlightErrors.invalidCenterOfGravity
+        } else if !p.contains(takeoffCogPoint){
+            throw FlightErrors.invalidTakeoffCog
+        } else if !p.contains(landingCogPoint) {
+            throw FlightErrors.invalidLandingCog
         }
     }
     
