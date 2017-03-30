@@ -37,12 +37,14 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 }
             }
             //does the try-catch block checking if plane is valid
-            checkPlaneErrors()
+            
         }
         
         self.applyUserInterfaceChanges()
         
         self.loadPassengers()
+        
+        self.checkPlaneErrors()
         
         self.updateTitleLabel()
         
@@ -91,6 +93,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     func saveNewSeatConfig() {
+        isInvalidChart = false
         if let thisFlight = flight {
             let flightref = thisFlight.fireRef
             var newConfig: [String:[String:Any]] = [:]
@@ -102,6 +105,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             let updates = ["passengers": newConfig]
             flightref?.updateChildValues(updates)
+
         }
     }
     
@@ -266,6 +270,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
 
             self.passengers[passengerIndex] = passenger
             self.passengerCollectionView.reloadData()
+            //paste here
             
             // Update firebase with new configuration
             self.saveNewSeatConfig()
@@ -279,6 +284,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             self.passengers[passengerIndex] = newby
             self.passengerCollectionView.reloadData()
             self.saveNewSeatConfig()
+            //paste here
         }
         
         alertController.addTextField { (textField : UITextField!) -> Void in
@@ -316,6 +322,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         self.present(alertController, animated: true, completion: nil)
+        
     }
     
     
