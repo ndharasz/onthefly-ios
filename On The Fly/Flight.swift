@@ -214,9 +214,9 @@ struct Flight {
         return dateformatter.string(from: time2)
     }
     
-    func checkValidFlight(plane: Plane) -> Bool {
+    func checkValidFlight(plane: Plane) throws {
         if calcTakeoffWeight(plane: plane) > Double(plane.maxTakeoffWeight) {
-            return false
+            throw FlightErrors.tooHeavyOnRamp
         }
         
         let p = UIBezierPath()
@@ -236,11 +236,8 @@ struct Flight {
         let landingCogPoint = CGPoint(x: calcLandingCenterOfGravity(plane: plane), y: calcLandingWeight(plane: plane))
         
         if !(p.contains(takeoffCogPoint) && p.contains(landingCogPoint)) {
-            return false
+            throw FlightErrors.invalidCenterOfGravity
         }
-        
-        // No issues, return true
-        return true
     }
     
 }

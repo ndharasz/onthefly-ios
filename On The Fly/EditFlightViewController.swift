@@ -111,10 +111,18 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     // Check if plane is overweight and check for CoG errors
     func checkPlaneErrors() {
-        if self.flight!.checkValidFlight(plane: plane!) {
+        do {
+            try self.flight!.checkValidFlight(plane: plane!)
             self.issueWithFlight = false
-        } else {
+        } catch FlightErrors.tooHeavyOnRamp {
             self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Takeoff Weight Too High")
+        } catch FlightErrors.invalidCenterOfGravity {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Center of Gravity Outside of Bounds")
+        } catch {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Flight Cannot Fly")
         }
         
     }
@@ -122,12 +130,10 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     // Visual feedback to user that there is something wrong with the flight
     func createWarnings() {
         if (self.issueWithFlight) {
-//            print("is turning borders red")
             self.cargoContainerView.layer.borderColor = UIColor.red.cgColor
             self.passengerCollectionView.layer.borderColor = UIColor.red.cgColor
             self.flightDetailsContainerView.layer.borderColor = UIColor.red.cgColor
         } else {
-//            print("is turning borders white")
             self.cargoContainerView.layer.borderColor = UIColor.white.cgColor
             self.passengerCollectionView.layer.borderColor = UIColor.white.cgColor
             self.flightDetailsContainerView.layer.borderColor = UIColor.white.cgColor
