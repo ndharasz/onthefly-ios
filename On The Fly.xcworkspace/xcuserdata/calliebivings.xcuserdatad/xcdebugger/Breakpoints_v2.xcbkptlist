@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
             endingLineNumber = "173"
-            landmarkName = "updateVisibleViews()"
+            landmarkName = "swipedRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "171"
             endingLineNumber = "171"
-            landmarkName = "updateVisibleViews()"
+            landmarkName = "swipedRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -223,7 +223,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
             endingLineNumber = "326"
-            landmarkName = "isSeatEmpty(index:)"
+            landmarkName = "passengerSelected(passengerIndex:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
