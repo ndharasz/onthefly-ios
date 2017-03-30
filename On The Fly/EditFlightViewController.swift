@@ -27,7 +27,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var issueWithFlight: Bool = false {
         didSet {
-            print("Issue with flight: \(issueWithFlight)")
             self.createWarnings()
         }
     }
