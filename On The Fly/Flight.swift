@@ -93,11 +93,7 @@ struct Flight {
         var weight = Double(plane.emptyWeight)
         if self.passengers != nil {
             for (_, dict) in self.passengers! {
-                for (key, value) in dict {
-                    if key == "weight" {
-                        weight += (value as! Double)
-                    }
-                }
+                weight += (dict["weight"] as! Double)
             }
         }
         weight += Double(frontBaggageWeight)
@@ -173,11 +169,7 @@ struct Flight {
         let key = "seat\(index + 1)"
         var weightToReturn = 0.0
         if let weightDict = passengers?[key] {
-            for (key, value) in weightDict {
-                if key == "weight" {
-                    weightToReturn = (value as! Double)
-                }
-            }
+            weightToReturn = (weightDict["weight"] as! Double)
         }
         return weightToReturn
     }

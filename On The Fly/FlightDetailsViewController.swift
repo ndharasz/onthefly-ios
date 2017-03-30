@@ -307,7 +307,6 @@ class FlightDetailsViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardWillBeHidden(notification: NSNotification){
         self.scrollView.setContentOffset(CGPoint.zero, animated: true)
-        self.scrollView.isScrollEnabled = false
     }
     
     func addKeyboardToolBar(textField: UITextField) {

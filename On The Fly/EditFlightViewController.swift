@@ -105,6 +105,48 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             let updates = ["passengers": newConfig]
             flightref?.updateChildValues(updates)
+            self.flight?.passengers = newConfig
+            self.checkPlaneErrors()
+        }
+    }
+    
+    // Check if plane is overweight and check for CoG errors
+    func checkPlaneErrors() {
+        do {
+            try self.flight!.checkValidFlight(plane: plane!)
+            self.issueWithFlight = false
+        } catch FlightErrors.tooHeavyOnRamp {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Takeoff Weight Too High")
+        } catch FlightErrors.invalidCenterOfGravity {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Center of Gravity Outside of Bounds")
+        } catch FlightErrors.invalidLandingCog {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Invalid Landing Center of Gravity")
+        } catch FlightErrors.invalidTakeoffCog {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Invalid Takeoff Center of Gravity")
+        } catch FlightErrors.noStartingFuel {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Flight Currently Has No Fuel")
+        } catch {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Flight Cannot Fly")
+        }
+        
+    }
+    
+    // Visual feedback to user that there is something wrong with the flight
+    func createWarnings() {
+        if (self.issueWithFlight) {
+            self.cargoContainerView.layer.borderColor = UIColor.red.cgColor
+            self.passengerCollectionView.layer.borderColor = UIColor.red.cgColor
+            self.flightDetailsContainerView.layer.borderColor = UIColor.red.cgColor
+        } else {
+            self.cargoContainerView.layer.borderColor = UIColor.white.cgColor
+            self.passengerCollectionView.layer.borderColor = UIColor.white.cgColor
+            self.flightDetailsContainerView.layer.borderColor = UIColor.white.cgColor
         }
         self.checkPlaneErrors()
     }
