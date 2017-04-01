@@ -223,6 +223,11 @@ struct Flight {
             throw FlightErrors.noStartingFuel
         }
         
+        // Is there enough fuel?
+        if (Double(flightDuration)/60.0 * fuelFlow + Double(taxiFuelBurn)) > startFuel {
+            throw FlightErrors.insufficientFuel
+        }
+        
         // Check if the 2 CoG points are within the acceptable limits
         let p = UIBezierPath()
         var polygon: [CGPoint] = []

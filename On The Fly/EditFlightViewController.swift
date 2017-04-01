@@ -129,6 +129,9 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         } catch FlightErrors.noStartingFuel {
             self.issueWithFlight = true
             Toast.showNegativeMessage(message: "Flight Currently Has No Fuel")
+        } catch FlightErrors.insufficientFuel {
+            self.issueWithFlight = true
+            Toast.showNegativeMessage(message: "Insufficient Fuel for Planned Flight")
         } catch {
             self.issueWithFlight = true
             Toast.showNegativeMessage(message: "Flight Cannot Fly")
