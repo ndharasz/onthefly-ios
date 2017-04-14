@@ -141,6 +141,7 @@ enum FlightErrors: Error {
     case invalidTakeoffCog
     case invalidLandingCog
     case noStartingFuel
+    case insufficientFuel
 }
 
 // MARK: - Style struct
