@@ -262,10 +262,10 @@ class CargoViewController: UIViewController {
     func applyUserInterfaceChanges() {
         self.view.layer.cornerRadius = 8
         self.aftCargoView.layer.borderWidth = 2
-        self.aftCargoView.layer.borderColor = UIColor.black.cgColor
+        self.aftCargoView.layer.borderColor = UIColor.white.cgColor
         self.aftCargoView.backgroundColor = Style.mainBackgroundColor
         self.frontCargoView.layer.borderWidth = 2
-        self.frontCargoView.layer.borderColor = UIColor.black.cgColor
+        self.frontCargoView.layer.borderColor = UIColor.white.cgColor
         self.frontCargoView.backgroundColor = Style.mainBackgroundColor
         
         frontAddButton.layer.cornerRadius = 0.5 * btnDiameter

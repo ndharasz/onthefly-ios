@@ -24,7 +24,7 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     var loadingView: UIView = UIView()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    let tableHeaderTitle: String = "    Date           Dpt Arpt        Arr Arpt"
+    @IBOutlet weak var headerView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,10 +141,6 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         return self.flights.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.tableHeaderTitle
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UpcomingFlightTableViewCell
         
@@ -169,7 +165,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         cell.editButton.isHidden = false
-        tableView.headerView(forSection: 0)?.isHidden = true
+//        tableView.headerView(forSection: 0)?.isHidden = true
+        self.headerView.isHidden = true
         cell.setDetailedLabel()
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -179,7 +176,8 @@ class UpcomingFlightsViewController: UIViewController, UITableViewDelegate, UITa
         let cell = tableView.cellForRow(at: indexPath) as! UpcomingFlightTableViewCell
         if cell.isSelected {
             cell.editButton.isHidden = true
-            tableView.headerView(forSection: 0)?.isHidden = false
+//            tableView.headerView(forSection: 0)?.isHidden = false
+            self.headerView.isHidden = false
             tableView.deselectRow(at: indexPath, animated: true)
             cell.setSimpleLabel()
             tableView.beginUpdates()

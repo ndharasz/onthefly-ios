@@ -249,7 +249,9 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         let numRows = Double(self.passengers.count) / 2.0
         let availableHeight = Double(self.passengerCollectionView.frame.height) - 2 * GlobalVariables.sharedInstance.collectionViewSpacing - GlobalVariables.sharedInstance.collectionViewSpacing * (numRows - 1.0)
         let cellHeight = Double(availableHeight) / numRows
-        return CGSize(width: 125, height: cellHeight)
+        let availableWidth = Double(self.passengerCollectionView.frame.width) - 3 * (GlobalVariables.sharedInstance.collectionViewSpacing + 5.0)
+        let cellWidth = Double(availableWidth) / 2
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func passengerSelected(passengerIndex: Int) {
@@ -386,8 +388,14 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     
     // MARK: - UI Stylistic Changes
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard let flowLayout = self.passengerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+    }
+    
     func applyUserInterfaceChanges() {
-        self.passengerCollectionView.layer.cornerRadius = 8
         let font = UIFont.systemFont(ofSize: 18)
         self.segmentControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         self.segmentControlHeightConstant.constant = 40

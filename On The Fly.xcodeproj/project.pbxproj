@@ -829,9 +829,10 @@
 				DEVELOPMENT_TEAM = YBDBYTJ7R7;
 				INFOPLIST_FILE = "On The Fly/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.gatech.higgins.scott.On-The-Fly";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ScottieH.OnTheFly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -845,9 +846,10 @@
 				DEVELOPMENT_TEAM = YBDBYTJ7R7;
 				INFOPLIST_FILE = "On The Fly/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.gatech.higgins.scott.On-The-Fly";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ScottieH.OnTheFly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
