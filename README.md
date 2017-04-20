@@ -11,6 +11,8 @@ This application is under the sole intellectual copyright of its developers. Any
 
 This application is for personal use only and is not intended to act in place of any other safety measures. The developers are not responsible for any damage done to any persons, aircraft, cargo, or otherwise as a result of using this application. Follow all other safety measures put forth by your airport, aircraft manufacturer, and your pilot. 
 
+The pilot in command is always responsible for the safe operation of every flight, as per FAA training and instruction. Treat the On The Fly App as a tool to aid flight preparation, not a replacement to due dilgence in the highways of the sky.
+
 
 
 
