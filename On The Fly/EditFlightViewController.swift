@@ -91,7 +91,6 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
         self.arrivalAirportLabel.sizeToFit()
     }
     
-    
     func saveNewSeatConfig() {
         if let thisFlight = flight {
             let flightref = thisFlight.fireRef
@@ -240,9 +239,35 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let temp = passengers.remove(at: sourceIndexPath.item)
-        passengers.insert(temp, at: destinationIndexPath.item)
-        self.passengerCollectionView.reloadData()
+        if sourceIndexPath.row == 0 || sourceIndexPath.row == 1 {
+            if destinationIndexPath.row == 0 || destinationIndexPath.row == 1 {
+                let temp = passengers.remove(at: sourceIndexPath.item)
+                passengers.insert(temp, at: destinationIndexPath.item)
+                self.passengerCollectionView.reloadData()
+                let standardNames: [String] = ["Pilot", "Co-Pilot"]
+                
+                if standardNames.contains(self.passengers[0].name) {
+                    self.passengers[0].name = "Pilot"
+                }
+                
+                if standardNames.contains(self.passengers[1].name) {
+                    self.passengers[1].name = "Co-Pilot"
+                }
+                self.passengerCollectionView.reloadData()
+            } else {
+                Toast.showNegativeMessage(message: "Cannot move pilots to passenger seating")
+                self.passengerCollectionView.reloadData()
+            }
+        } else {
+            if destinationIndexPath.row != 0 && destinationIndexPath.row != 1 {
+                let temp = passengers.remove(at: sourceIndexPath.item)
+                passengers.insert(temp, at: destinationIndexPath.item)
+                self.passengerCollectionView.reloadData()
+            } else {
+                Toast.showNegativeMessage(message: "Cannot move passengers to pilot seating")
+                self.passengerCollectionView.reloadData()
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -320,7 +345,7 @@ class EditFlightViewController: UIViewController, UICollectionViewDelegate, UICo
                 case 1:
                     textField.text = "Co-Pilot"
                 default:
-                    textField.text = "Pax\(passengerIndex - 1)"
+                    textField.text = "Pax"
                 }
             }
         }
