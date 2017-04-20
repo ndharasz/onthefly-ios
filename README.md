@@ -1,8 +1,7 @@
 # On The Fly - iOS
-
-[![Version](https://img.shields.io/badge/version-1.0-blue.svg)]()
-[![License]()]()
-[![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
+![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![License]()
+![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 
 "On The Fly" is a mobile application designed to aid in the create of Weight and Balance reports required prior to the takeoff of small aircraft. Users have the ability to drag and drop passengers and cargo onto any selected plane, and generate an FAA-ready PDF of the corresponding weight and balance report. This report can be emailed to any user-entered address. The application also serves as a tool to monitor center of gravity constraints for the aircraft, notifying the user if the current layout of their aircraft is unsafe and/or not able to fly per published FAA regulations. 
 
