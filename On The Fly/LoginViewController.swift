@@ -39,6 +39,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             each!.roundCorners()
             addKeyboardToolBar(textField: each!)
         }
+        
+        addShowButton()
 
         loginButton.addBlackBorder()
         scrollView.isScrollEnabled = false
@@ -167,6 +169,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         checkBoxButton.checkBox()
         
+    }
+    
+    // MARK: - Password Visibility Swap Functionality
+    
+    func addShowButton() {
+        let showButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 35))
+        showButton.setImage(#imageLiteral(resourceName: "Eye"), for: .normal)
+        let imageInsets = UIEdgeInsetsMake(0, 0, 0, 10)
+        showButton.imageEdgeInsets = imageInsets
+        showButton.addTarget(self, action: #selector(LoginViewController.swapPasswordVisibility), for: .touchUpInside)
+        self.passwordTextfield.rightViewMode = .always
+        self.passwordTextfield.rightView = showButton
+    }
+    
+    func swapPasswordVisibility() {
+        self.passwordTextfield.isSecureTextEntry = !self.passwordTextfield.isSecureTextEntry
     }
     
     // MARK: - Text Field Delegate Functionality
