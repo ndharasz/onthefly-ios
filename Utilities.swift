@@ -144,6 +144,52 @@ enum FlightErrors: Error {
     case insufficientFuel
 }
 
+// MARK: - Password Strength Checker
+
+enum PasswordStrength: Int {
+    case None
+    case Weak
+    case Moderate
+    case Strong
+    
+    static func checkStrength(password: String) -> PasswordStrength {
+        let len: Int = password.characters.count
+        var strength: Int = 0
+        
+        switch len {
+        case 0:
+            return .None
+        case 1...4:
+            strength += 1
+        case 5...8:
+            strength += 2
+        default:
+            strength += 3
+        }
+        
+        // Upper case, Lower case, Number & Symbols
+        let patterns = ["^(?=.*[A-Z]).*$", "^(?=.*[a-z]).*$", "^(?=.*[0-9]).*$",
+                        "^(?=.*[!@#%&-_=:;\"'<>,`~\\*\\?\\+\\[\\]\\(\\)\\{\\}\\^\\$\\|\\\\\\.\\/]).*$"]
+        
+        for pattern in patterns {
+            if password.range(of: pattern, options: .regularExpression) != nil {
+                strength += 1
+            }
+        }
+        
+        switch strength {
+        case 0:
+            return .None
+        case 1...3:
+            return .Weak
+        case 4...6:
+            return .Moderate
+        default:
+            return .Strong
+        }
+    }
+}
+
 // MARK: - Style struct
 
 struct Style{

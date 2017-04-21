@@ -8,7 +8,7 @@ target 'On The Fly' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
-  # pod 'Firebase/Messaging'
+  pod 'Firebase/Messaging'
   # pod 'TouchVisualizer'
 
   # Pods for On The Fly

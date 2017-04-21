@@ -42,6 +42,8 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             addKeyboardToolBar(textField: eachTextField)
         }
         
+        addPassStrengthIndicator()
+        
         passwordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
         confirmPasswordTextField.addTarget(self, action: #selector(CreateAccountViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
         
@@ -314,6 +316,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeField = textField as? PaddedTextField
+        if textField == self.passwordTextField {
+            updatePassStrengthIndicator()
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -332,12 +337,44 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                 textField.textColor = UIColor.black
                 hideUserFeedback()
             }
+            updatePassStrengthIndicator()
         } else if textField == self.confirmPasswordTextField {
             if textField.text! != self.passwordTextField.text! {
+                textField.textColor = UIColor.red
                 userFeedback(message: "Passwords do not match")
             } else {
+                textField.textColor = UIColor.black
                 hideUserFeedback()
             }
+        }
+    }
+    
+    func addPassStrengthIndicator() {
+        let indicatorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 35))
+        indicatorLabel.text = ""
+        self.passwordTextField.rightViewMode = .whileEditing
+        self.passwordTextField.rightView = indicatorLabel
+    }
+    
+    func updatePassStrengthIndicator() {
+        let curPassword = activeField?.text!
+        let label = activeField?.rightView as! UILabel
+        switch PasswordStrength.checkStrength(password: curPassword!) {
+        case .None:
+            label.text = ""
+            label.sizeToFit()
+        case .Weak:
+            label.text = "Weak   "
+            label.textColor = .red
+            label.sizeToFit()
+        case .Moderate:
+            label.text = "Moderate   "
+            label.textColor = .orange
+            label.sizeToFit()
+        case .Strong:
+            label.text = "Strong   "
+            label.textColor = UIColor.init(red: 0, green: 153, blue: 51)
+            label.sizeToFit()
         }
     }
     
