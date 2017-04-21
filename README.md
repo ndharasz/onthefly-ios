@@ -35,7 +35,7 @@ For step-by-step instructions that don't use the link above, consult the followi
 2. Select the `Search` section along the bottom toolbar. 
 3. Type `"On The Fly (Weight & Balance)"` in the search bar to find the application. 
 4. In the results page, select the application, the app icon looks like this: 
-![appicon]()
+![appicon](onthefly-ios/On_The_Fly/Assets.xcassets/AppIcon.appiconset/Icon-40.png)
 5. Select the `Get` button to download and install. You may be prompted to enter your AppleID credentials.
 
 # End-User Liscense Agreement
