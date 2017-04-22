@@ -61,8 +61,8 @@ For step-by-step instructions that don't use the link above, consult the followi
 The App Store automatically handles all aspects of software installation. In order to run the application, a user must simply click on the app icon from their device and it will run automatically. 
 
 ## Troubleshooting
-1. Make sure your device is running iOS 10.0+. To see the version of your operating system, go to Settings -> General -> About -> Version.
-2. Make sure your device has at least 28.8 MB of free space to install and run the application. To verify the amount of free space on your device, go to Settings -> General -> About -> Available. 
+1. Make sure your device is running iOS 10.0+. To see the version of your operating system, go to Settings -> General -> About -> Version. If you need to upgrade the iOS version, consult [this guide](https://support.apple.com/en-us/ht204204). 
+2. Make sure your device has at least 28.8 MB of free space to install and run the application. To verify the amount of free space on your device, go to Settings -> General -> About -> Available. If you need to clear up space, consult [this article](https://support.apple.com/en-us/HT201656) by Apple. 
 3. If having trouble loggin in, ensure that your device is connected to the internet (through either Wi-Fi or 4G/LTE data networks).
 4. If app freezes during download and installation (device error or connectivity issue), touch the app icon to re-start the process. If it stays frozen, hold the app icon until it shows a black and white "x" in the corner, delete, and follow the download instructions again.
 
