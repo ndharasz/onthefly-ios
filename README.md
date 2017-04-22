@@ -10,24 +10,41 @@
 # Release Notes
 
 ### New Software Features in 1.0
-
-list here
+* Account creation 
+* Real-time password strength estimation
+* Forgotten password recovery
+* Table of upcoming flight plans
+* Drag-and-drop rearrangement of passengers
+* Quickly edit flight details like duration, starting fuel, fuel burn rate
+* Add, subtract, and completely clear cargo from various holds on the plane
+* Real-time calculations of center of gravity and gross weight violations
+* Dynamic error reporting
+* Report generation 
+* Send reports as email attachments right from the app
+* Save report locally to iBooks, Dropbox, Google Drive, or even AirDrop files to nearby pilots
 
 ### Bug Fixes Made
-* "Forgot Password" cancel button doesn't take a user back to the home screen #20
-* Name veririfcation for account creation rejects names with spaces in them #52
-* Edit flight UI prevents users from clicking certain buttons #70
-* Creat account feature breaks upon certain errors #71
-* Keyboard toolbar doesn't appear for certain text fields in "Edit Flight" screen #73
-* Subtracting invalid weights from cargo hold leads to negative weight #76
+* "Forgot Password" cancel button doesn't take a user back to the home screen (Issue #20)
+* Name veririfcation for account creation rejects names with spaces in them (Issue #52)
+* Edit flight UI prevents users from clicking certain buttons (Issue #70)
+* Creat account feature breaks upon certain errors (Issue #71)
+* Keyboard toolbar doesn't appear for certain text fields in "Edit Flight" screen (Issue #73)
+* Subtracting invalid weights from cargo hold leads to negative weight (Issue #76)
 
 ### Known Bugs in Release 1.0
-
-list here
+* Dragging a "Co-Pilot" to "Pilot" seat doesn't rename properly
+* Navigating away from an expanded flight on "Upcoming Flights" and returning will cause the "Edit" button to disappear
+* Future versions of app will have a way to contact admin for troubleshooting support and feature suggestions
 
 # Install Guide
 
-Installation of the On The Fly mobile application is handled via the Apple App Store, the industry standard for iOS mobile applications. 
+## Pre-requisites
+Installation of the On The Fly mobile application is handled via the Apple App Store, the industry standard for iOS mobile applications. In order to download and use the app, users must have an iOS device (e.g. iPhone or iPad) that runs iOS 10.0+. The device must also have 28.6 MB of free space to download and install the application. 
+
+## Dependent Libraries
+All dependent libraries are included in the app download itself. Users do not need to install any additional software to use this application. 
+
+## Download Instructions:
 Use [this link](https://itunes.apple.com/us/app/on-the-fly-weight-balance/id1227535783?ls=1&mt=8) from an iOS device to open the app listing directly. Once the app has opened in the App Store, just click `Get` to download and install the application on your device.
 
 For step-by-step instructions that don't use the link above, consult the following: 
@@ -39,6 +56,14 @@ For step-by-step instructions that don't use the link above, consult the followi
 ![appicon](ReadMePics/appicon_small.png)
 
 5. Select the `Get` button to download and install. You may be prompted to enter your AppleID credentials.
+
+## Install and Run Instructions
+The App Store automatically handles all aspects of software installation. In order to run the application, a user must simply click on the app icon from their device and it will run automatically. 
+
+## Troubleshooting
+1. Make sure your device is running iOS 10.0+. To see the version of your operating system, go to Settings -> General -> About -> Version.
+2. Make sure your device has at least 28.8 MB of free space to install and run the application. To verify the amount of free space on your device, go to Settings -> General -> About -> Available. 
+3. If having trouble loggin in, ensure that your device is connected to the internet (through either Wi-Fi or 4G/LTE data networks).
 
 # End-User Liscense Agreement
 
