@@ -5,7 +5,7 @@
 
 # Description
 
-"On The Fly" is a mobile application designed to aid in the creation of weight and balance reports required prior to the takeoff for all aircraft. Users have the ability to drag and drop passengers and easily adjust cargo in any selected plane, and generate an FAA-ready PDF of the corresponding weight and balance report. This report can be emailed to any user-entered address or it can be saved locally on the iOS device. The application serves as a tool to monitor center of gravity constraints for the aircraft, notifying the user if the current layout of their aircraft is unsafe and/or not able to fly per published FAA regulations. On The Fly is compatible with both iPhone and iPad devices running iOS 10.0+. 
+"On The Fly" is a mobile application designed to aid in the creation of weight and balance reports required prior to the takeoff for all aircraft. Users have the ability to drag and drop passengers and easily adjust cargo in any selected plane, and generate an FAA-ready PDF of the corresponding weight and balance report. This report can be emailed to any user-entered address or it can be saved locally on the iOS device. The application serves as a tool to monitor center of gravity constraints for the aircraft, notifying the user if the current layout of their aircraft is unsafe and/or not able to fly per published FAA regulations. On The Fly is compatible with all iOS devices running iOS 10.0+. 
 
 # Release Notes
 
@@ -39,7 +39,7 @@
 # Install Guide
 
 ## Pre-requisites
-Installation of the On The Fly mobile application is handled via the Apple App Store, the industry standard for iOS mobile applications. In order to download and use the app, users must have an iOS device (e.g. iPhone or iPad) that runs iOS 10.0+. The device must also have 28.6 MB of free space to download and install the application. 
+Installation of the On The Fly mobile application is handled via the Apple App Store, the industry standard for iOS mobile applications. In order to download and use the app, users must have an iOS device (iPhone, iPad, or iPod Touch) that runs iOS 10.0+. The device must also have 28.6 MB of free space to download and install the application. 
 
 ## Dependent Libraries
 All dependent libraries are included in the app download itself. Users do not need to install any additional software to use this application. 
@@ -64,6 +64,7 @@ The App Store automatically handles all aspects of software installation. In ord
 1. Make sure your device is running iOS 10.0+. To see the version of your operating system, go to Settings -> General -> About -> Version.
 2. Make sure your device has at least 28.8 MB of free space to install and run the application. To verify the amount of free space on your device, go to Settings -> General -> About -> Available. 
 3. If having trouble loggin in, ensure that your device is connected to the internet (through either Wi-Fi or 4G/LTE data networks).
+4. If app freezes during download and installation (device error or connectivity issue), touch the app icon to re-start the process. If it stays frozen, hold the app icon until it shows a black and white "x" in the corner, delete, and follow the download instructions again.
 
 # End-User Liscense Agreement
 
